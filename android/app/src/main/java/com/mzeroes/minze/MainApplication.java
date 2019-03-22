@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+// import io.invertase.firebase.RNFirebasePackage;
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -63,6 +67,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.asList(
         new MainReactPackage(),
         new RNFirebasePackage(),
+        new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+        new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+        new AppCenterReactNativePackage(MainApplication.this),
         // add/remove these packages as appropriate
         new RNFirebaseAdMobPackage(),
         new RNFirebaseAnalyticsPackage(),

@@ -209,6 +209,10 @@ dependencies {
   // -- EXPO --
   addUnimodulesDependencies()
   // -- EXPO --
+  implementation project(':appcenter-crashes')
+  implementation project(':appcenter-analytics')
+  implementation project(':appcenter')
+
   }
 
   /* --------------------------------

@@ -34,12 +34,15 @@
     "ios": "react-native run-ios --simulator=\"iPhone X\"",
     "apk": "cd android && ./gradlew assembleRelease",
     "rename": "node ./bin/rename.js",
-    "start": "react-native start",
+    "start": "adb reverse tcp:8081 tcp:8081; react-native start",
     "test": "jest",
     "validate": "yarn test && yarn lint && tsc --noEmit",
     "lint": "tslint -p tsconfig.json src/**/*.{ts,tsx}"
   },
   "dependencies": {
+    "appcenter": "^1.13.0",
+    "appcenter-analytics": "^1.13.0",
+    "appcenter-crashes": "^1.13.0",
     "react": "16.6.3",
     "react-native": "0.58.0-rc.2",
     "react-native-firebase": "^5.2.0",
