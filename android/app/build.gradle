@@ -204,6 +204,9 @@ dependencies {
   // Crashlytics
   implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
     transitive = true
+  // -- EXPO --
+  addUnimodulesDependencies()
+  // -- EXPO --
   }
 
   /* --------------------------------
@@ -225,3 +228,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+// -- EXPO --
+apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
+// -- EXPO --
