@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "545691223180",
+    "firebase_url": "https://minze-cf40b.firebaseio.com",
+    "project_id": "minze-cf40b",
+    "storage_bucket": "minze-cf40b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545691223180:android:4d9eca4d918285f6",
+        "android_client_info": {
+          "package_name": "com.mzeroes.minze"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545691223180-r6s9h78ouki07b0h4co5igfcsne2717a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mzeroes.minze",
+            "certificate_hash": "667f2aa91c0bd57dc88c54bb99f0ffe7d9861ad0"
+          }
+        },
+        {
+          "client_id": "545691223180-04m1u7osl0t6erhdl533252jc2ls71bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNDgh-lmCNwG3CyY02PgGeat8V3GKy-WQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545691223180-04m1u7osl0t6erhdl533252jc2ls71bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
