@@ -19,7 +19,7 @@
       true,
       "single",
       "avoid-escape",
-      "avoid-template"
+      // "avoid-template"
     ]
   },
   "rulesDirectory": []
