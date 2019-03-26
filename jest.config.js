@@ -4,7 +4,8 @@ const {
 
 module.exports = {
   ...tsJestConfig,
-  preset: 'jest-expo',
+  preset: 'react-native',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
     ...tsJestConfig.transform,
     '\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js',
@@ -16,6 +17,6 @@ module.exports = {
     },
   },
   modulePaths: [
-    "<rootDir>"
+    '<rootDir>'
   ]
 };
