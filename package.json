@@ -13,13 +13,14 @@
     "lint": "tslint -p tsconfig.json src/**/*.{ts,tsx}"
   },
   "dependencies": {
+    "@types/dotenv": "^6.1.0",
+    "appcenter": "^1.13.0",
+    "appcenter-analytics": "^1.13.0",
+    "appcenter-crashes": "^1.13.0",
     "react": "16.6.3",
     "react-native": "0.58.0-rc.2",
     "react-native-firebase": "^5.2.3",
-    "react-native-unimodules": "^0.2.0",
-    "appcenter": "^1.13.0",
-    "appcenter-analytics": "^1.13.0",
-    "appcenter-crashes": "^1.13.0"
+    "react-native-unimodules": "^0.2.0"
   },
   "devDependencies": {
     "@types/expo": "^32.0.9",
