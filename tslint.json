@@ -22,5 +22,5 @@
       // "avoid-template"
     ]
   },
-  "rulesDirectory": []
+  // "rulesDirectory": []
 }
