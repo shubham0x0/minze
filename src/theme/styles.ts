@@ -15,6 +15,13 @@ const styles = StyleSheet.create({
   rootContainer: {
     backgroundColor: Theme.background
   },
+  centercontainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Theme.background
+  },
+
   headerStyle: {
     backgroundColor: Theme.statusbar,
     // height: 30,

@@ -13,7 +13,7 @@ import React, { Component } from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Provider } from 'react-redux';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider, IconButton } from 'react-native-paper';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { styles, Theme, papertheme } from './theme/index';
@@ -68,11 +68,11 @@ export default class App extends Component<Props, State> {
           backgroundColor={Theme.statusbar}
           barStyle='light-content'
         />
-        <View style={styles.statusBar} />
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <PaperProvider theme={papertheme}>
-              <View>
+              <View style={styles.centercontainer}>
+                <IconButton icon="menu" onPress={() => { }} />
                 <Text> Hello, World</Text>
               </View>
             </PaperProvider>
