@@ -1,9 +1,7 @@
-import React from 'react';
-import * as renderer from 'react-test-renderer';
+export const add = (a: number, b: number) => a + b;
 
-import App from './App';
-
-it('renders without crashing', () => {
-  const rendered = renderer.create(<App/>).toJSON();
-  expect(rendered).toBeTruthy();
+describe('add', () => {
+  it('should add two numbers', () => {
+    expect(add(1, 1)).toEqual(2);
+  });
 });

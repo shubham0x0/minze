@@ -11,7 +11,7 @@
 
 import React, { Component } from 'react';
 import { StatusBar, Text, View } from 'react-native';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider, IconButton } from 'react-native-paper';
 
@@ -49,12 +49,12 @@ export default class App extends Component<Props, State> {
   }
 
   componentDidMount() {
-    firebase.auth().signInAnonymously()
-      .then(() => {
-        this.setState({
-          isAuthenticated: true,
-        });
-      });
+    // firebase.auth().signInAnonymously()
+    //   .then(() => {
+    //     this.setState({
+    //       isAuthenticated: true,
+    //     });
+    //   });
   }
   render() {
     // If the user has not authenticated
