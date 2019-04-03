@@ -10,18 +10,16 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+import { StatusBar, Text, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import NavigationService from './utils/NavigationService';
 import { PersistGate } from 'redux-persist/integration/react';
 import { styles, Theme, papertheme } from './theme/index';
 
 import store, { persistor } from './redux/store';
 
-import { API_KEY } from 'react-native-dotenv';
 
 interface Props {
 
@@ -74,7 +72,9 @@ export default class App extends Component<Props, State> {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <PaperProvider theme={papertheme}>
-
+              <View>
+                <Text> Hello, World</Text>
+              </View>
             </PaperProvider>
           </PersistGate>
         </Provider>
