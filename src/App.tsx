@@ -1,51 +1,84 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
  *
- * Generated with the TypeScript template
- * https://github.com/emin93/react-native-template-typescript
  *
+ * @description Entry point of the App
+ * @url https://github.com/mzeroes/minze
+ *
+ *
+ * @author Shubham Jain <s.shubjain gmail com>
  * @format
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+import firebase from 'react-native-firebase';
+import { Provider } from 'react-redux';
+import { Provider as PaperProvider } from 'react-native-paper';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import NavigationService from './utils/NavigationService';
+import { PersistGate } from 'redux-persist/integration/react';
+import { styles, Theme, papertheme } from './theme/index';
 
-interface Props { }
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.tsx</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+import store, { persistor } from './redux/store';
+
+import { API_KEY } from 'react-native-dotenv';
+
+interface Props {
+
+}
+interface State {
+  isAuthenticated: Boolean,
+  user: any,
+  message: String,
+  codeInput: String,
+  phoneNumber: String,
+  confirmResult: any,
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default class App extends Component<Props, State> {
+  unsubscribe: null;
+  constructor(props: Props) {
+    super(props);
+    this.unsubscribe = null;
+    this.state = {
+      isAuthenticated: false,
+      user: null,
+      message: '',
+      codeInput: '',
+      phoneNumber: '+44',
+      confirmResult: null,
+    };
+  }
+
+  componentDidMount() {
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      });
+  }
+  render() {
+    // If the user has not authenticated
+    if (!this.state.isAuthenticated) {
+      return null;
+    }
+
+    return (
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={Theme.statusbar}
+          barStyle='light-content'
+        />
+        <View style={styles.statusBar} />
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <PaperProvider theme={papertheme}>
+
+            </PaperProvider>
+          </PersistGate>
+        </Provider>
+      </View>
+    )
+  }
+}
