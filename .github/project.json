@@ -1,7 +1,6 @@
 {
-  "name": "MINZE",
-  "type": "APP",
+  "name": "Minze",
+  "type": "Application",
   "platforms": ["Android", "iOS"],
-  "content": "README.md",
-  "related": [""]
+  "content": "README.md"
 }
