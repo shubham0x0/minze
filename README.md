@@ -1,6 +1,7 @@
 <p align="center">
   <img width="120px" src=".github/logo.png" />
 </p>
+<<<<<<< HEAD
 
 <p align="center">
     <img
@@ -8,6 +9,14 @@
 
 <a href="https://install.appcenter.ms/users/mzeroes/apps/MINZE">
     <img
+=======
+<p align="center">
+<a href="https://install.appcenter.ms/users/mzeroes/apps/MINZE">
+  <img src="https://build.appcenter.ms/v0.1/apps/09f0a46d-938b-41e1-b95c-c943560ca990/branches/development/badge" />
+    </a>
+  <a href="https://install.appcenter.ms/users/mzeroes/apps/minze/distribution_groups/public_preview">
+  <img
+>>>>>>> development
       src="https://build.appcenter.ms/v0.1/apps/09f0a46d-938b-41e1-b95c-c943560ca990/branches/master/badge" />
   </a>
 </p>
