@@ -1,17 +1,15 @@
 /**
  *
- *
- * @description Entry point of the App
+ * @description Entry point for the App
  * @url https://github.com/mzeroes/minze
  *
- *
- * @author Shubham Jain <s.shubjain gmail com>
+ * @author Shubham Jain
  * @format
  */
 
 import React, { Component } from 'react';
 import { StatusBar, Text, View } from 'react-native';
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider, IconButton } from 'react-native-paper';
 
@@ -24,6 +22,7 @@ import store, { persistor } from './redux/store';
 interface Props {
 
 }
+
 interface State {
   isAuthenticated: Boolean,
   user: any,
@@ -49,12 +48,12 @@ export default class App extends Component<Props, State> {
   }
 
   componentDidMount() {
-    // firebase.auth().signInAnonymously()
-    //   .then(() => {
-    //     this.setState({
-    //       isAuthenticated: true,
-    //     });
-    //   });
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      });
   }
   render() {
     // If the user has not authenticated
