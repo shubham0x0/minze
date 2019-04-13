@@ -1,14 +1,12 @@
 <p align="center">
   <img width="120px" src=".github/logo.png" />
 </p>
-
----
-
 <p align="center">
-  <a href="https://appcenter.ms/users/mzeroes/apps/MINZE/build/branches/">
-    <img
-      src="https://build.appcenter.ms/v0.1/apps/09f0a46d-938b-41e1-b95c-c943560ca990/branches/development/badge" />
-    <img
+<a href="https://install.appcenter.ms/users/mzeroes/apps/MINZE">
+  <img src="https://build.appcenter.ms/v0.1/apps/09f0a46d-938b-41e1-b95c-c943560ca990/branches/development/badge" />
+    </a>
+  <a href="https://install.appcenter.ms/users/mzeroes/apps/minze/distribution_groups/public_preview">
+  <img
       src="https://build.appcenter.ms/v0.1/apps/09f0a46d-938b-41e1-b95c-c943560ca990/branches/master/badge" />
   </a>
 </p>
@@ -38,7 +36,7 @@ Install the npm dependencies
 ```sh
 $ npm install
 ```
-Add a .env file for enviroment variables
+Add a .env file for environment variables
 matching the .env.demo file
 
 **On first Run** :
