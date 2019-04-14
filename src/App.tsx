@@ -7,77 +7,64 @@
  * @format
  */
 
-import React, { Component } from 'react';
-import { StatusBar, Text, View } from 'react-native';
-import firebase from 'react-native-firebase';
-import { Provider } from 'react-redux';
-import { Provider as PaperProvider, IconButton } from 'react-native-paper';
+import React, { Component } from "react";
+import { StatusBar, Text, View, Platform } from "react-native";
+import firebase from "react-native-firebase";
+import { Provider } from "react-redux";
+import { Provider as PaperProvider, IconButton } from "react-native-paper";
 
-import { PersistGate } from 'redux-persist/integration/react';
-import { styles, Theme, papertheme } from './theme/index';
+import { PersistGate } from "redux-persist/integration/react";
+import { styles, Theme, papertheme } from "./theme/index";
 
-import store, { persistor } from './redux/store';
+import { store, persistedStore } from "./store";
+import SplashScreen from "react-native-splash-screen";
+import LottieView from "lottie-react-native";
+import AppNavigator from "./navigation/AppNavigator";
 
-
-interface Props {
-
-}
-
+interface Props {}
 interface State {
-  isAuthenticated: Boolean,
-  user: any,
-  message: String,
-  codeInput: String,
-  phoneNumber: String,
-  confirmResult: any,
+  isAuthenticated: Boolean;
+  user: any;
+  message: String;
+  codeInput: String;
+  phoneNumber: String;
+  confirmResult: any;
 }
 
 export default class App extends Component<Props, State> {
-  unsubscribe: null;
-  constructor(props: Props) {
-    super(props);
-    this.unsubscribe = null;
-    this.state = {
-      isAuthenticated: false,
-      user: null,
-      message: '',
-      codeInput: '',
-      phoneNumber: '+44',
-      confirmResult: null,
-    };
-  }
-
   componentDidMount() {
-    firebase.auth().signInAnonymously()
-      .then(() => {
-        this.setState({
-          isAuthenticated: true,
-        });
-      });
+    SplashScreen.hide();
   }
   render() {
-    // If the user has not authenticated
-    if (!this.state.isAuthenticated) {
-      return null;
-    }
-
     return (
-      <View style={styles.container}>
-        <StatusBar
-          backgroundColor={Theme.statusbar}
-          barStyle='light-content'
-        />
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <PaperProvider theme={papertheme}>
-              <View style={styles.centercontainer}>
-                <IconButton icon="menu" onPress={() => { }} />
-                <Text> Hello, World</Text>
-              </View>
-            </PaperProvider>
-          </PersistGate>
-        </Provider>
-      </View>
-    )
+      <Provider store={store}>
+        <PersistGate
+          loading={
+            <View>
+              <Text>Loading persisance</Text>
+            </View>
+          }
+          persistor={persistedStore}
+        >
+          <View style={styles.container}>
+            <StatusBar
+              backgroundColor={Theme.statusbar}
+              barStyle="light-content"
+            />
+            <View style={styles.centercontainer}>
+              <LottieView
+                source={require("./assets/animations/verify_phone.json")}
+                autoPlay
+                loop
+              />
+              <AppNavigator
+                ref={navigatorRef => {
+                }}
+              />
+            </View>
+          </View>
+        </PersistGate>
+      </Provider>
+    );
   }
 }
