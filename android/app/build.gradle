@@ -151,6 +151,8 @@ android {
 }
 
 dependencies {
+    implementation project(':lottie-react-native')
+    implementation project(':react-native-splash-screen')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

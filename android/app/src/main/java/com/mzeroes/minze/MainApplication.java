@@ -3,6 +3,8 @@ package com.mzeroes.minze;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.lottie.LottiePackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -40,6 +42,7 @@ import org.unimodules.core.interfaces.SingletonModule;
 import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
+import expo.modules.webbrowser.WebBrowserPackage;
 
 // RN VectorIconsPackage
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -49,11 +52,12 @@ import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(Arrays.<Package>asList(
-     new ReactAdapterPackage(),
-     new ConstantsPackage(),
-     new PermissionsPackage(),
-     new FileSystemPackage()
-  ), Arrays.<SingletonModule>asList());
+        new ReactAdapterPackage(),
+        new ConstantsPackage(),
+        new PermissionsPackage(),
+        new FileSystemPackage(),
+        new WebBrowserPackage()
+      ), Arrays.<SingletonModule>asList());
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -65,6 +69,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new LottiePackage(),
+        new SplashScreenReactPackage(),
         new RNGestureHandlerPackage(),
         new RNFirebasePackage(),
         // add/remove these packages as appropriate

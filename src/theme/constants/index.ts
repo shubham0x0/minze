@@ -1,6 +1,9 @@
-import { Constants } from 'react-native-unimodules';
+import Constants from "expo-constants";
 import Theme from './colors';
 
 const statusbarMargin = Constants.statusBarHeight;
 
-export { statusbarMargin, Theme };
+export {
+  statusbarMargin,
+  Theme
+};
