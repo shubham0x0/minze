@@ -1,14 +1,14 @@
 // NavigationService.js
 // this provides navigator to authScreen directly
-import { NavigationActions, DrawerActions } from 'react-navigation';
+import { NavigationActions, DrawerActions, NavigatorType, NavigationAction, NavigationProp } from 'react-navigation';
 
-let navigator;
+let navigator: any;
 // this saves the ref to the top App level navigator
-function setTopLevelNavigator(navigatorRef) {
+function setTopLevelNavigator(navigatorRef: any) {
   navigator = navigatorRef;
 }
 
-function navigate(routeName, params) {
+function navigate(routeName: string, params: any) {
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
