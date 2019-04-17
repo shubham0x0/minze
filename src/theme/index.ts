@@ -1,11 +1,10 @@
 import { DefaultTheme } from 'react-native-paper';
-import { Theme } from './constants';
+import { Theme, statusbarMargin } from './constants';
+import Layout from './constants/Layout';
 import styles from './styles';
-
-export {
-  Theme,
-  styles
-};
+import { Typography, FontWeights } from './Typography';
+import DropDownAlertStyles from './DropDownStyle';
+export { Theme, statusbarMargin, styles, Layout, Typography, FontWeights, DropDownAlertStyles };
 
 export const papertheme = {
   ...DefaultTheme,
