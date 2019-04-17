@@ -1,35 +1,13 @@
-import { combineReducers, Action } from 'redux';
-import {
-  UPDATE_DATA,
-  UPDATE_USER,
-  UPDATE_SETTINGS,
-  UPDATE_SUMMARY,
-  UPDATE_LOGINSTATUS
-} from '../actions/types';
+import { combineReducers } from 'redux';
 import { userReducer, isLoggedInReducer } from './userReducer';
-import { dataReducer } from './globalDataReducer';
-
-
-const summmaryReducer = (state = {}, action: any) => {
-  if (action.type === UPDATE_SUMMARY) return { ...action.payload };
-  return state;
-};
-
-const settingsReducer = (state = [], action: any) => {
-  if (action.type === UPDATE_SETTINGS) {
-    return {
-      ...action.payload
-    };
-  }
-  return state;
-};
+import { dataReducer } from './dataReducer';
+import { settingsReducer } from './settingsReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
-  // isLoggedIn: isLoggedInReducer,
-  // data: dataReducer,
-  // settings: settingsReducer,
-  // summary: summmaryReducer
+  data: dataReducer,
+  isLoggedIn: isLoggedInReducer,
+  settings: settingsReducer,
 });
 
 export default rootReducer;

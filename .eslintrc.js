@@ -1,6 +1,8 @@
 module.exports = {
-  extends: "airbnb",
-  parser: "babel-eslint",
+  // extends: "airbnb",
+  extends: ['plugin:@typescript-eslint/recommended', 'prettier/@typescript-eslint', 'plugin:prettier/recommended',],
+  parser: "@typescript-eslint/parser",
+  plugins: ['@typescript-eslint'],
   env: {
     jest: true
   },
@@ -16,7 +18,14 @@ module.exports = {
     "no-underscore-dangle": "off",
     "react/prefer-stateless-function": "off",
     "no-else-return": "off",
-    quotes: ["error", "single"],
+    parserOptions: {
+      ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+      sourceType: 'module', // Allows for the use of imports
+      ecmaFeatures: {
+        jsx: true, // Allows for the parsing of JSX
+      },
+    },
+    // quotes: ["error", "single"],
     // "object-curly-newline": ["error", {
     //     "ObjectExpression": "always",
     //     "ObjectPattern": { "multiline": true },
@@ -27,13 +36,20 @@ module.exports = {
     "global-require": "off",
     'no-unused-vars': 'off',
     "import/prefer-default-export": "off",
-  },
-  "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    }
+    "@typescript-eslint/no-empty-interface": 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars' : 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   },
   globals: {
     fetch: false
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    },
   }
 };

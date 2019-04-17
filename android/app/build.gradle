@@ -231,10 +231,15 @@ dependencies {
      * RN vector Icons
      */
     compile project(':react-native-vector-icons')
+    compile project(':react-native-sms-retriever')
+    compile project(':react-native-text-input-mask')
+
     /**
      * RN gesture-handler
      */
     implementation project(':react-native-gesture-handler')
+    /** RN-gradient */
+    implementation project(':react-native-linear-gradient')
 
 }
 
