@@ -117,7 +117,7 @@ export const ProfileStack = createStackNavigator(
 );
 
 ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profile',
+  tabBarLabel: 'Account',
   tabBarIcon: ({ focused }: any) => (
     <TabBarIcon
       size={26}

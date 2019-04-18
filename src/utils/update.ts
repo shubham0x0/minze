@@ -1,4 +1,4 @@
-import {store} from '../store';
+import { store } from '../store';
 import { updateUser, updateloginStatus } from '../store/actions';
 
 export async function userUpdateAsync(user: any) {

@@ -1,4 +1,4 @@
-import { UPDATE_USER, UPDATE_LOGINSTATUS } from "../actions/types";
+import { UPDATE_USER, UPDATE_LOGINSTATUS } from '../actions/types';
 
 export const userReducer = (state = {}, action: any) => {
   if (action.type === UPDATE_USER) {

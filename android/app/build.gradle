@@ -230,7 +230,7 @@ dependencies {
     /**
      * RN vector Icons
      */
-    compile project(':react-native-vector-icons')
+    // compile project(':react-native-vector-icons')
     compile project(':react-native-sms-retriever')
     compile project(':react-native-text-input-mask')
 

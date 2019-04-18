@@ -13,27 +13,18 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 
 import { Permissions } from 'react-native-unimodules';
-import { uploadImageAsync } from '../../utils/uploadPhoto';
+import { uploadImage } from '../../utils/uploadPhoto';
 import { Theme, styles, Layout } from '../../theme';
 import { Avatar, Modal, Portal, Button, Text } from 'react-native-paper';
 interface Props {
   getImage: (uploadResponse: any) => void;
 }
 interface State {
-  image: string;
+  image: any;
   uploading: boolean;
   visible: boolean;
 }
 export default class UploadAvatar extends Component<Props, State> {
-  static navigationOptions = {
-    title: 'Upload image',
-    headerStyle: styles.headerStyle,
-    headerTintColor: Theme.white,
-    headerTitleStyle: {
-      fontWeight: 'bold'
-    }
-  };
-
   state = {
     image: '',
     uploading: false,
@@ -93,7 +84,7 @@ export default class UploadAvatar extends Component<Props, State> {
     }
   };
 
-  handleImagePicked = async (pickerResult: { cancelled: any; uri: any }) => {
+  handleImagePicked = async (pickerResult: any) => {
     const { getImage } = this.props;
     console.log(getImage);
     try {
@@ -102,7 +93,7 @@ export default class UploadAvatar extends Component<Props, State> {
       });
 
       if (!pickerResult.cancelled) {
-        const uploadResponse = await uploadImageAsync(pickerResult.uri, this.props.key);
+        const uploadResponse = uploadImage(pickerResult.uri);
         // uploadResult = await uploadResponse.json();
         await this.setState({
           image: uploadResponse
@@ -110,7 +101,6 @@ export default class UploadAvatar extends Component<Props, State> {
         getImage(uploadResponse);
       }
     } catch (err) {
-      // console.warn(`ERROR :: ${{ err }}`);
       Alert.alert('Upload failed, sorry :(');
     } finally {
       this.setState({
@@ -142,14 +132,6 @@ export default class UploadAvatar extends Component<Props, State> {
             >
               <Avatar.Icon style={{ alignSelf: 'center', backgroundColor: '#ccc' }} icon="photo-camera" size={60} />
             </TouchableOpacity>
-            <Text
-              style={{
-                paddingTop: 10,
-                color: Theme.text
-              }}
-            >
-              {'Upload The Receipt'}
-            </Text>
           </View>
         )}
         {image !== '' ? (
