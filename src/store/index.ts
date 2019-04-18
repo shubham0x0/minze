@@ -5,9 +5,10 @@ import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducers';
+import uuid from "uuid";
 
 const persistConfig = {
-  key: 'root',
+  key: __DEV__ ? uuid.v4() : 'root',
   storage
 };
 

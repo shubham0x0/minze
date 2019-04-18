@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     // TODO: ADD a Fix
     marginTop: -20,
     borderBottomWidth: 0,
-    height: 60,
+    height: 60
   },
   containerStyle: {
     paddingTop: 0,
@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     backgroundColor: Theme.primary,
-    bottom: 0,
-  },
+    bottom: 0
+  }
 });
 
 export default styles;

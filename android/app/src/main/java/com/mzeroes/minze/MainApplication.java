@@ -43,10 +43,13 @@ import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
 import expo.modules.webbrowser.WebBrowserPackage;
+import expo.modules.imagepicker.ImagePickerPackage;
 
 // RN VectorIconsPackage
-import com.oblador.vectoricons.VectorIconsPackage;
-
+// import com.oblador.vectoricons.VectorIconsPackage;
+import com.BV.LinearGradient.LinearGradientPackage; // <--- This!
+import me.furtado.smsretriever.RNSmsRetrieverPackage; // <-- Add the import
+import com.RNTextInputMask.RNTextInputMaskPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +59,8 @@ public class MainApplication extends Application implements ReactApplication {
         new ConstantsPackage(),
         new PermissionsPackage(),
         new FileSystemPackage(),
-        new WebBrowserPackage()
+        new WebBrowserPackage(),
+        new ImagePickerPackage()
       ), Arrays.<SingletonModule>asList());
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -95,7 +99,10 @@ public class MainApplication extends Application implements ReactApplication {
         new AppCenterReactNativePackage(MainApplication.this),
         // unimodules
         new ModuleRegistryAdapter(mModuleRegistryProvider),
-        new VectorIconsPackage()
+        // new VectorIconsPackage(),
+        new LinearGradientPackage(),
+        new RNSmsRetrieverPackage(),
+        new RNTextInputMaskPackage()
       );
     }
 
