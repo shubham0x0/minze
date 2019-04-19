@@ -1,4 +1,11 @@
-import { UPDATE_USER, UPDATE_DATA, UPDATE_SUMMARY, UPDATE_SETTINGS, UPDATE_LOGINSTATUS } from './types';
+import {
+  UPDATE_USER,
+  UPDATE_DATA,
+  UPDATE_SUMMARY,
+  UPDATE_SETTINGS,
+  UPDATE_LOGINSTATUS,
+  UPDATE_LOCATION
+} from './types';
 
 // action creators
 export const updateUser = (update: Record<string, any>) => ({
@@ -18,6 +25,11 @@ export const updateSummary = (update: Record<string, any>) => ({
 
 export const updateSettings = (update: Record<string, any>) => ({
   type: UPDATE_SETTINGS,
+  payload: update
+});
+
+export const updateLocation = (update: {}) => ({
+  type: UPDATE_LOCATION,
   payload: update
 });
 

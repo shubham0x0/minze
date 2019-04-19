@@ -44,7 +44,8 @@ import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
 import expo.modules.webbrowser.WebBrowserPackage;
 import expo.modules.imagepicker.ImagePickerPackage;
-
+import expo.modules.location.LocationPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 // RN VectorIconsPackage
 // import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage; // <--- This!
@@ -60,7 +61,8 @@ public class MainApplication extends Application implements ReactApplication {
         new PermissionsPackage(),
         new FileSystemPackage(),
         new WebBrowserPackage(),
-        new ImagePickerPackage()
+        new ImagePickerPackage(),
+        new LocationPackage()
       ), Arrays.<SingletonModule>asList());
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -102,7 +104,8 @@ public class MainApplication extends Application implements ReactApplication {
         // new VectorIconsPackage(),
         new LinearGradientPackage(),
         new RNSmsRetrieverPackage(),
-        new RNTextInputMaskPackage()
+        new RNTextInputMaskPackage(),
+        new MapsPackage()
       );
     }
 
