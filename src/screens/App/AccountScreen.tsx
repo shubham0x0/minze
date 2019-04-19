@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Alert, FlatList, StatusBar } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Alert, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { FontWeights, Theme, statusbarMargin } from '../../theme';
+import { FontWeights, Theme } from '../../theme';
 import { TermsLogoutCard } from '../../components/cards/LogoutCard';
 import { SettingsList } from '../../components/cards/SettingsList';
 import { APP_VERSION } from '../../config';
-import { Avatar, Divider, Button, Input } from 'react-native-elements';
+import { Avatar, Input } from 'react-native-elements';
 import { Title, Subheading } from 'react-native-paper';
-import TouchableOpacityButton from '../../components/buttons/TouchableOpacityButton';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import UploadAvatar from '../../components/modals/UploadAvatar';
 import { uploadImage } from '../../utils/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
 import { updateUserInfo, updateEmail } from '../../utils/updateUserInfo';
+import MapComponent from '../../components/map/MapComponent';
 
 interface Props {
   navigation: any;
@@ -37,7 +36,7 @@ class ProfileTabScreen extends Component<Props, State> {
     };
   }
 
-  keyExtractor = (item: { title: any }, index: any) => item.title;
+  keyExtractor = (item: { title: any }) => item.title;
 
   renderItem = ({ item }: any) => <SettingsList item={item} />;
 
@@ -134,6 +133,7 @@ class ProfileTabScreen extends Component<Props, State> {
 
           <FlatList keyExtractor={this.keyExtractor} data={accountData} renderItem={this.renderItem} />
           <TermsLogoutCard />
+
           <Text
             style={{
               ...FontWeights.light,

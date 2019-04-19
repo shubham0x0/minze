@@ -240,7 +240,7 @@ dependencies {
     implementation project(':react-native-gesture-handler')
     /** RN-gradient */
     implementation project(':react-native-linear-gradient')
-
+    implementation project(':react-native-maps')
 }
 
 // Run this once to be able to run the application with BUCK

@@ -7,10 +7,12 @@ import { Theme } from '../theme';
 import TabBarIcon from '../components/icons/TabBarIcon';
 import { Searchbar } from 'react-native-paper';
 import ProfileTabScreen from '../screens/App/AccountScreen';
+import CartScreen from '../screens/App/CartScreen';
+import HomeScreen from '../screens/App/HomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
-    Home: TestScreen
+    Home: HomeScreen
   },
   {
     defaultNavigationOptions: {
@@ -85,7 +87,7 @@ NearbyStack.navigationOptions = {
 
 export const CartStack = createStackNavigator(
   {
-    Inbox: TestScreen
+    Cart: CartScreen
   },
   {
     defaultNavigationOptions: {

@@ -33,6 +33,10 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBGXt1wlLIghClKLhv6r8UqrC8w5njk3UA"/>
       <activity
         android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
         android:theme="@style/Base.Theme.AppCompat">

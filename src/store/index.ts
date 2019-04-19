@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './reducers';
-import uuid from "uuid";
+import uuid from 'uuid';
 
 const persistConfig = {
   key: __DEV__ ? uuid.v4() : 'root',
@@ -24,11 +24,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(
-  persistedReducer,
-  applyMiddleware(thunk)
-);
+const store = createStore(persistedReducer, applyMiddleware(thunk));
 
-const persistedStore =  persistStore(store);
+const persistedStore = persistStore(store);
 
 export { store, persistedStore };
