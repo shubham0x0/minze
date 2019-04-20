@@ -14,7 +14,7 @@ export const locationReducer = (
   action: any
 ) => {
   if (action.type === UPDATE_LOCATION) {
-    console.warn(UPDATE_LOCATION);
+    console.warn(UPDATE_LOCATION, state, action);
     return { ...action.payload };
   }
   return state;

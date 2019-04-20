@@ -13,6 +13,7 @@
     "lint": "npx tslint -p tsconfig.json src/**/*.{ts,tsx}"
   },
   "dependencies": {
+    "@types/react-native-snap-carousel": "^3.7.1",
     "appcenter": "1.13.0",
     "appcenter-analytics": "1.13.0",
     "appcenter-crashes": "1.13.0",
@@ -67,7 +68,6 @@
     "@types/react-native-vector-icons": "^6.4.0",
     "@types/react-redux": "^7.0.6",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/redux": "^3.6.0",
     "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",

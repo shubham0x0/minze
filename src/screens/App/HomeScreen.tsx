@@ -28,18 +28,31 @@ class HomeScreen extends Component<Props, State> {
   };
 
   componentWillMount() {
-    this.getInfoAsync();
+    this.getInfoAsync(this.props.location);
   }
-  getInfoAsync = async () => {
-    getCollections().then((obj: any) => {
-      // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
-      this.setState({ collectionData: obj.collections });
-    });
-    getActivities(this.props.location).then((obj: any) => {
+
+  getInfoAsync = async (location: any) => {
+    // getCollections().then((obj: any) => {
+    //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
+    //   console.warn(JSON.stringify(obj, null, 4));
+    //   this.setState({ collectionData: obj.collections });
+    // });
+    const data = getCollections();
+    this.setState({ collectionData: data.collections });
+    getActivities(location).then((obj: any) => {
+      console.warn(JSON.stringify(obj, null, 4));
       // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
       this.setState({ activitiesData: obj });
     });
   };
+
+  componentDidUpdate(prevProps: Props) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.location !== prevProps.location) {
+      this.getInfoAsync(this.props.location);
+    }
+  }
+
   renderItem({ item }: any) {
     const { title, description, image_url } = item.collection;
     return (
@@ -50,9 +63,7 @@ class HomeScreen extends Component<Props, State> {
       </Card>
     );
   }
-  componentWillReceiveProps() {
-    this.getInfoAsync();
-  }
+
   render() {
     return this.state.errorMessage ? (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
