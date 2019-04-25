@@ -1,8 +1,10 @@
 import { store } from '../store';
-import { updateUser, updateloginStatus } from '../store/actions';
+import { updateUser } from '../store/actions';
+import { signOutUser } from './authFirebase';
 
 export async function userUpdateAsync(user: any) {
-  console.log(`userUpdateAsync :: ${JSON.stringify(user)}`);
+  console.warn(`userUpdateAsync :: ${JSON.stringify(user)}`);
+  if (Object.keys(user).length == 0) await signOutUser();
   store.dispatch(updateUser(user));
-  store.dispatch(updateloginStatus(true));
+  // store.dispatch(updateloginStatus(user !== {}));
 }

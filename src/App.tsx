@@ -9,24 +9,23 @@
 
 import React, { Component } from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import { Text, View } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistedStore } from './store';
 import AppNavigator from './navigation/AppNavigator';
 import NavigationService from './utils/NavigationService';
-import { styles, papertheme } from './theme';
+import { styles, papertheme, Theme } from './theme';
 import { signOutUser, authStateAsync } from './utils/authFirebase';
 import LoadingAnimated from './components/loaders/LoadingAnimated';
-import { any } from 'prop-types';
 
 interface Props {}
 interface State {}
 export default class App extends Component<Props, State> {
   unsubscribe: (() => void) | undefined;
   async componentDidMount() {
-    this.unsubscribe = await authStateAsync();
+    // this.unsubscribe = await authStateAsync();
     SplashScreen.hide();
   }
   componentWillUnmount() {
@@ -37,7 +36,7 @@ export default class App extends Component<Props, State> {
       <Provider store={store}>
         <PersistGate
           loading={
-            <View style={styles.centercontainer}>
+            <View style={[styles.centercontainer, { backgroundColor: '#fff' }]}>
               <LoadingAnimated />
             </View>
           }

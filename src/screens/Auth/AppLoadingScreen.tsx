@@ -3,6 +3,7 @@ import { View, Text, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { authStateAsync } from '../../utils/authFirebase';
 import { styles } from '../../theme';
+import LoadingAnimated from '../../components/loaders/LoadingAnimated';
 
 interface Props {
   navigation: any;
@@ -10,23 +11,21 @@ interface Props {
 }
 
 class AuthLoadingScreen extends Component<Props, {}> {
-  async componentWillMount() {
-    await authStateAsync();
-  }
-  bootstrapAsync = async () => {
-    await authStateAsync();
-  };
+  unsubscribe: (() => void) | undefined;
 
-  componentDidMount() {
-    // this.bootstrapAsync();
-    this.props.navigation.navigate(this.props.isLoggedIn ? 'App' : 'Auth');
+  async componentDidMount() {
+    this.unsubscribe = await authStateAsync();
+    if (this.props.isLoggedIn) this.props.navigation.navigate('App');
+    else this.props.navigation.navigate('Auth');
   }
-
+  componentWillUnmount() {
+    if (this.unsubscribe) this.unsubscribe();
+  }
   render() {
     return (
-      <View style={styles.centercontainer}>
+      <View style={[styles.centercontainer, { backgroundColor: '#fff' }]}>
         <Text>{this.props.isLoggedIn}</Text>
-        <ActivityIndicator size="large" />
+        <LoadingAnimated />
       </View>
     );
   }

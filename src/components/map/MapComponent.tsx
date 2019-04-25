@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { styles } from '../../theme';
 import { getLocationUpdate } from '../../utils/getLocation';
@@ -61,6 +61,7 @@ class MapComponent extends Component<Props, State> {
     ) : (
       <View style={[styles.container, { paddingTop: 20 }]}>
         <MapView
+          provider={PROVIDER_GOOGLE}
           // customMapStyle={mapstyle}
           style={{
             flex: 1

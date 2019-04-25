@@ -8,8 +8,12 @@ export const userReducer = (state = {}, action: any) => {
 };
 
 export const isLoggedInReducer = (state = false, action: any) => {
-  if (action.type === UPDATE_LOGINSTATUS) {
-    return action.payload;
+  if (action.type === UPDATE_USER) {
+    if (Object.keys(action.payload).length == 0) {
+      // ie. if payload == {} then set isLoggedIn: false
+      return false;
+    }
+    return state;
   }
   return state;
 };

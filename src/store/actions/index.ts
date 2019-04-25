@@ -33,7 +33,7 @@ export const updateLocation = (update: {}) => ({
   payload: update
 });
 
-export const updateloginStatus = (update: boolean) => ({
-  type: UPDATE_LOGINSTATUS,
-  payload: update
-});
+// export const updateloginStatus = (update: boolean) => ({
+//   type: UPDATE_LOGINSTATUS,
+//   payload: update
+// });

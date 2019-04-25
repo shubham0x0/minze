@@ -1,8 +1,6 @@
 import { openBrowserAsync } from 'expo-web-browser';
-import { signOutUser } from './authFirebase';
-import { store } from '../store';
-import { updateUser, updateloginStatus } from '../store/actions';
 import NavigationService from './NavigationService';
+import { userUpdateAsync } from './update';
 
 export const handleUrl = (url: string) => {
   openBrowserAsync(url);
@@ -10,9 +8,7 @@ export const handleUrl = (url: string) => {
 
 export const onPressLogoutAsync = async () => {
   try {
-    await signOutUser();
-    store.dispatch(updateUser({}));
-    store.dispatch(updateloginStatus(false));
+    await userUpdateAsync({});
     NavigationService.navigate('Loading', {});
   } catch (err) {
     console.log(err);

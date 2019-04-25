@@ -9,6 +9,8 @@ import { Searchbar } from 'react-native-paper';
 import ProfileTabScreen from '../screens/App/AccountScreen';
 import CartScreen from '../screens/App/CartScreen';
 import HomeScreen from '../screens/App/HomeScreen';
+import ExploreScreen from '../screens/App/ExploreScreen';
+import ActivitiesScreen from '../screens/App/ActivitiesScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -22,25 +24,34 @@ export const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Minze',
-  tabBarIcon: ({ focused }: any) => (
-    <Image source={require('../assets/logo.png')} style={{ borderRadius: 50, height: 40, width: 40 }} />
-  )
+  tabBarLabel: ' ',
+  tabBarIcon: ({ focused }: any) => {
+    if (focused) {
+      return (
+        <Image
+          source={require('../assets/logo-focussed.png')}
+          style={{ marginTop: 12, borderRadius: 50, height: 60, width: 60 }}
+        />
+      );
+    } else {
+      return (
+        <Image
+          source={require('../assets/logo.png')}
+          style={{ marginTop: 12, borderRadius: 50, height: 60, width: 60 }}
+        />
+      );
+    }
+  }
 };
 
 export const ExploreStack = createStackNavigator(
   {
-    Explore: TestScreen,
+    Explore: ExploreScreen,
     Search: TestScreen
   },
   {
     defaultNavigationOptions: {
-      // header: null
-      headerTitle: (
-        <View style={{ flex: 1 }}>
-          <Searchbar autoFocus autoCapitalize="none" placeholder="Search" />
-        </View>
-      ),
+      header: null,
       headerTitleStyle: {
         fontWeight: 'normal'
       },
@@ -58,14 +69,14 @@ ExploreStack.navigationOptions = {
     <TabBarIcon
       size={26}
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-search${focused ? '' : '-outline'}` : 'md-search'}
+      name={Platform.OS === 'ios' ? `ios-search${focused ? '' : '-outline'}` : 'ios-search'}
     />
   )
 };
 
 export const NearbyStack = createStackNavigator(
   {
-    Activities: TestScreen
+    Activities: ActivitiesScreen
   },
   {
     defaultNavigationOptions: {
@@ -80,7 +91,7 @@ NearbyStack.navigationOptions = {
     <TabBarIcon
       size={26}
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-restaurant${focused ? '' : '-outline'}` : 'md-restaurant'}
+      name={Platform.OS === 'ios' ? `ios-restaurant${focused ? '' : '-outline'}` : 'ios-restaurant'}
     />
   )
 };
@@ -102,7 +113,7 @@ CartStack.navigationOptions = {
     <TabBarIcon
       size={26}
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'md-cart'}
+      name={Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'ios-cart'}
     />
   )
 };
@@ -124,7 +135,7 @@ ProfileStack.navigationOptions = {
     <TabBarIcon
       size={26}
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-contact${focused ? '' : '-outline'}` : 'md-contact'}
+      name={Platform.OS === 'ios' ? `ios-contact${focused ? '' : '-outline'}` : 'ios-contact'}
     />
   )
 };
@@ -147,8 +158,10 @@ export default createMaterialTopTabNavigator(
       showIcon: true,
       scrollEnabled: false,
       pressOpacity: 0.7,
+      pressColor: Theme.darkgrey,
       activeTintColor: Theme.primary,
-      inactiveTintColor: Theme.grey,
+      allowFontScaling: true,
+      inactiveTintColor: Theme.inactiveTintColor,
       indicatorStyle: {
         height: 0,
         borderRadius: 0,
@@ -161,13 +174,14 @@ export default createMaterialTopTabNavigator(
       labelStyle: {
         padding: 0,
         margin: 0,
-        fontSize: 8,
-        color: '#666'
+        fontSize: 11,
+        fontWeight: 'bold'
       },
+      activeBackgroundColor: Theme.navigator,
       style: {
-        backgroundColor: Theme.navigator,
+        backgroundColor: Theme.tabBar,
         borderTopWidth: 1,
-        borderTopColor: '#F2F2F2'
+        borderTopColor: Theme.white
       }
     }
   }

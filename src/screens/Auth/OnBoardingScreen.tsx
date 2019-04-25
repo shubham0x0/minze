@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, StatusBar } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { Theme, Layout, FontWeights } from '../../theme';
 import { Button as ButtonBase } from 'react-native-paper';
 const { height, width } = Layout.window;
 
 const Button = (props: any) => (
-  <ButtonBase {...props} theme={{ roundness: 4, colors: { primary: Theme.green } }} mode="contained" />
+  <ButtonBase {...props} theme={{ roundness: 4, colors: { primary: Theme.primary } }} mode="contained" />
 );
 
 const ImagePath = '../../assets/images/onboard';
@@ -77,6 +77,7 @@ class AppIntroScreen extends Component<Props, State> {
 
     return (
       <View style={{ flex: 1, height, width }}>
+        <StatusBar backgroundColor={Theme.primary} />
         <View style={{ flex: 2, backgroundColor: 'transparent' }}>
           <ImageBackground
             source={props.image}
@@ -149,7 +150,7 @@ class AppIntroScreen extends Component<Props, State> {
           ref={(ref: any) => (this.appIntroSliderRef = ref)}
           showSkipButton
           dotStyle={{ marginTop: 16, backgroundColor: Theme.grey }}
-          activeDotStyle={{ marginTop: 16, backgroundColor: Theme.green }}
+          activeDotStyle={{ marginTop: 16, backgroundColor: Theme.primary }}
           renderItem={this.renderScreens}
           renderSkipButton={this.skipButton}
           renderNextButton={this.nextButton}

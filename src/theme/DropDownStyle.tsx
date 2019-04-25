@@ -1,7 +1,7 @@
-import { Platform } from "react-native";
-import { iOSColors } from "react-native-typography";
-import { Theme } from "./constants";
-import { FontWeights } from "./Typography";
+import { Platform } from 'react-native';
+import { iOSColors } from 'react-native-typography';
+import { Theme, statusbarMargin } from './constants';
+import { FontWeights } from './Typography';
 const { green, orange, red } = iOSColors;
 
 export default {
@@ -16,21 +16,21 @@ export default {
     ...FontWeights.light,
     fontSize: 18,
     paddingVertical: 4,
-    textAlign: "left",
-    color: "white",
-    backgroundColor: "transparent"
+    textAlign: 'left',
+    color: 'white',
+    backgroundColor: 'transparent'
   },
   messageStyle: {
     ...FontWeights.light,
     fontSize: 15,
-    textAlign: "left",
-    color: "white",
-    backgroundColor: "transparent"
+    textAlign: 'left',
+    color: 'white',
+    backgroundColor: 'transparent'
   },
   defaultContainer: {
-    padding: 4,
+    padding: 6,
     paddingHorizontal: 8,
-    flexDirection: "row",
-    marginTop: Platform.OS === "ios" ? 0 : 0
+    flexDirection: 'row'
+    // marginTop: statusbarMargin
   }
 };
