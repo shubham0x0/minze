@@ -11,12 +11,17 @@ export class SettingsList extends React.Component<{ item: any }, {}> {
   render() {
     const { item } = this.props;
     return (
-      <View>
+      <View style={{}}>
+        {/*
+        // @ts-ignore */}
         <ListItem
+          chevron
+          underlayColor="transparent"
+          containerStyle={{ backgroundColor: 'transparent' }}
           title={item.title}
           subtitle={item.subtitle}
           leftIcon={{ name: item.icon, type: item.iconType }}
-          rightIcon={{ name: 'chevron-with-circle-down', type: 'entypo' }}
+          // rightIcon={{ name: 'chevron-with-circle-right', type: 'entypo' }}
           onPress={() => {
             if (!item.children) {
               item.onPress();

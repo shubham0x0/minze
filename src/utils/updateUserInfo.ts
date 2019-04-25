@@ -40,3 +40,19 @@ export const updateEmail = async (email: string) => {
     throw Error('USER DO NOT EXIST LOGIN AGAIN');
   }
 };
+
+export const sendEmailVerification = async () => {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    return user
+      .sendEmailVerification()
+      .then(function() {
+        // Email sent.
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+  } else {
+    throw Error('USER DO NOT EXIST LOGIN AGAIN');
+  }
+};

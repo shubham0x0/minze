@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Alert, FlatList } from 'react-native';
+import { View, Text, ScrollView, Alert, FlatList, Platform, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { FontWeights, Theme } from '../../theme';
+import { FontWeights, Theme, styles, DropDownAlertStyles } from '../../theme';
 import { TermsLogoutCard } from '../../components/cards/LogoutCard';
 import { SettingsList } from '../../components/cards/SettingsList';
 import { APP_VERSION } from '../../config';
-import { Avatar, Input } from 'react-native-elements';
-import { Title, Subheading } from 'react-native-paper';
+import { Avatar } from 'react-native-elements';
+import { TextInput, Button } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { uploadImage } from '../../utils/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
-import { updateUserInfo, updateEmail } from '../../utils/updateUserInfo';
-import MapComponent from '../../components/map/MapComponent';
+import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/updateUserInfo';
+import { Icon } from 'react-native-elements';
+import TextInputMask from 'react-native-text-input-mask';
+import DropdownAlert from 'react-native-dropdownalert';
 
 interface Props {
   navigation: any;
@@ -20,19 +22,25 @@ interface Props {
 }
 interface State {
   isLogoutDialogDisplayed: boolean;
-  editmode: boolean;
+  editmode: any;
   name: string;
   email: string;
+  phone: string;
 }
 
 class ProfileTabScreen extends Component<Props, State> {
+  dropDownNotification: any;
   constructor(props: Props) {
     super(props);
     this.state = {
       isLogoutDialogDisplayed: false,
-      editmode: false,
+      editmode: {
+        name: false,
+        email: false
+      },
       name: this.props.user.displayName || '',
-      email: this.props.user.email || ''
+      email: this.props.user.email || '',
+      phone: this.props.user.phoneNumber || ''
     };
   }
 
@@ -41,9 +49,10 @@ class ProfileTabScreen extends Component<Props, State> {
   renderItem = ({ item }: any) => <SettingsList item={item} />;
 
   render() {
+    console.warn('USER: ', this.props.user);
     const accountData = [
       {
-        title: 'MY ACCOUNT',
+        title: 'My Account',
         // icon: 'settings',
         subtitle: 'Addresses, Payments, Favourites, Referals and others.',
         onPress: () => Alert.alert('Work In Progress'),
@@ -51,34 +60,24 @@ class ProfileTabScreen extends Component<Props, State> {
         children: <Text>INFO</Text>
       },
       {
-        title: 'ORDERS',
+        title: 'Orders',
         subtitle: 'Give Your Valueable Feedback',
         onPress: () => Alert.alert('Give Feedback')
         // children: <Text>Give Feedback</Text>
       }
     ];
-
+    console.log(this.state.editmode);
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingTop: 20 }]}>
+        <StatusBar backgroundColor={Theme.primary} translucent />
         <ScrollView contentContainerStyle={{ backgroundColor: Theme.background }}>
-          {this.state.editmode && (
-            <View style={{ paddingTop: 20 }}>
-              <Input
-                placeholder="Name"
-                autoFocus
-                onChangeText={name => this.setState({ name })}
-                value={this.state.name}
-              />
-              {/* <Input
-                placeholder="Email"
-                // autoFocus
-                keyboardType="email-address"
-                onChangeText={email => this.setState({ email })}
-                value={this.state.email}
-              /> */}
-            </View>
-          )}
-          <View style={{ padding: 20, flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
+          <View
+            style={{
+              padding: 20,
+              justifyContent: 'center',
+              flex: 1
+            }}
+          >
             <Avatar
               source={{
                 uri: this.props.user.photoURL
@@ -104,34 +103,166 @@ class ProfileTabScreen extends Component<Props, State> {
               rounded
               size="large"
             />
-            {/* <UploadAvatar /> */}
-
-            <View>
-              <Title> {this.props.user.displayName && this.props.user.displayName}</Title>
-              <Subheading style={{ paddingLeft: 6 }}>
-                {this.props.user.phoneNumber && this.props.user.phoneNumber}
-              </Subheading>
-              <Subheading style={{ paddingLeft: 6 }}>{this.props.user.email && this.props.user.email}</Subheading>
-            </View>
-
-            <TouchableOpacity
-              style={{ alignItems: 'flex-end' }}
+            {/* <Button
               onPress={() => {
-                const mode = this.state.editmode;
-                this.setState({ editmode: !mode });
-                if (this.state.name) {
-                  updateUserInfo({ displayName: this.state.name });
-                }
-                if (this.state.email) {
-                  updateEmail(this.state.email);
-                }
+                this.setState({ editmode: { name: true } });
               }}
-            >
-              <Text>{this.state.editmode ? 'Done' : 'Edit'}</Text>
-            </TouchableOpacity>
+            /> */}
+            <View style={{ paddingTop: 10, flex: 1 }}>
+              <TextInput
+                onTouchStart={() => console.log('Hello...')}
+                ref={'textInput'}
+                label={'Name'}
+                underlineColorAndroid={'transparent'}
+                autoCapitalize={'words'}
+                autoCorrect={false}
+                underlineColor={'transparent'}
+                theme={{
+                  colors: {
+                    text: Theme.text,
+                    error: Theme.red,
+                    disabled: Theme.text
+                  }
+                }}
+                // disabled={!this.state.editmode.name}
+                value={this.state.name}
+                onChangeText={name => this.setState(prevState => ({ name, editmode: { ...prevState, name: true } }))}
+                placeholder={'Name'}
+                keyboardType={Platform.OS === 'ios' ? 'name-phone-pad' : 'name-phone-pad'}
+                // style={styles.textInput}
+                returnKeyType={'next'}
+                style={{ backgroundColor: 'transparent' }}
+                // placeholderTextColor={Theme.primary}
+                // selectionColor={Theme.primary}
+                maxLength={20}
+              />
+              <TextInput
+                ref={'textInput'}
+                label={'Email'}
+                underlineColor={'transparent'}
+                theme={{
+                  colors: {
+                    text: Theme.text,
+                    error: Theme.red,
+                    disabled: Theme.text
+                  }
+                }}
+                underlineColorAndroid={'transparent'}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                // disabled={!this.state.editmode.name}
+                value={this.state.email}
+                onChangeText={email => this.setState(prevState => ({ email, editmode: { ...prevState, email: true } }))}
+                placeholder={'Email'}
+                keyboardType={'email-address'}
+                style={{ backgroundColor: 'transparent' }}
+                returnKeyType={'next'}
+                // placeholderTextColor={Theme.primary}
+                // selectionColor={Theme.primary}
+                maxLength={20}
+              />
+              {!this.props.user.emailVerified && (
+                <TouchableOpacity
+                  style={[
+                    {
+                      alignSelf: 'flex-end',
+                      padding: 20,
+                      marginTop: 18,
+                      paddingTop: 4,
+                      paddingBottom: 4,
+                      borderWidth: 1,
+                      borderColor: Theme.green
+                    }
+                  ]}
+                  onPress={() => {
+                    const mode = this.state.editmode;
+                    this.setState({ editmode: !mode });
+                    sendEmailVerification().then(() => {
+                      this.dropDownNotification.alertWithType(
+                        'info',
+                        'Verification Email Sent',
+                        'Please Click on the link'
+                      );
+                    });
+                  }}
+                >
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.green} />
+                    <Text style={{ color: Theme.green }}>Verify</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+              <TextInput
+                ref={'textInput'}
+                label={'Phone Number'}
+                disabled
+                underlineColorAndroid={'transparent'}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                value={this.state.phone}
+                onChangeText={phone => this.setState({ phone, editmode: true })}
+                placeholder={'Phone Number'}
+                keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
+                returnKeyType={'next'}
+                // placeholderTextColor={Theme.primary}
+                // selectionColor={Theme.primary}
+                theme={{
+                  colors: {
+                    text: Theme.textDark,
+                    error: Theme.red,
+                    disabled: Theme.text
+                  }
+                }}
+                maxLength={20}
+                style={{ backgroundColor: 'transparent' }}
+                // onSubmitEditing={this.getSubmitAction}
+                render={(props: any) => (
+                  <TextInputMask
+                    {...props}
+                    onChangeText={(formatted: any, extracted: any) => {
+                      this.setState({ phone: extracted });
+                    }}
+                    mask={'[000] [000] [0000]'}
+                  />
+                )}
+              />
+
+              {this.state.editmode.name ||
+                (this.state.editmode.email && (
+                  <TouchableOpacity
+                    style={[
+                      {
+                        alignSelf: 'flex-end',
+                        padding: 20,
+                        marginTop: 18,
+                        paddingTop: 4,
+                        paddingBottom: 4,
+                        borderWidth: 1,
+                        borderColor: Theme.primary
+                      }
+                    ]}
+                    onPress={() => {
+                      const mode = this.state.editmode;
+                      this.setState({ editmode: !mode });
+                      if (this.state.name) {
+                        updateUserInfo({ displayName: this.state.name });
+                      }
+                      if (this.state.email) {
+                        updateEmail(this.state.email);
+                      }
+                    }}
+                  >
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.primary} />
+                      <Text style={{ color: Theme.primary }}>Save</Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+            </View>
           </View>
 
           <FlatList keyExtractor={this.keyExtractor} data={accountData} renderItem={this.renderItem} />
+
           <TermsLogoutCard />
 
           <Text
@@ -145,18 +276,12 @@ class ProfileTabScreen extends Component<Props, State> {
           >
             {APP_VERSION}
           </Text>
+          <DropdownAlert {...DropDownAlertStyles} ref={(ref: any) => (this.dropDownNotification = ref)} />
         </ScrollView>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Theme.background
-  }
-});
 
 const mapStateToProps = (state: { user: any }) => {
   return {

@@ -177,6 +177,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'space-mono'
   },
+  cursiveText: {
+    fontSize: 17,
+    color: Theme.infoText,
+    textAlign: 'center',
+    fontFamily: 'space-mono'
+  },
   navigationFilename: {
     marginTop: 5
   },

@@ -973,6 +973,11 @@
   dependencies:
     "@types/jest-diff" "*"
 
+"@types/lodash@^4.14.132":
+  version "4.14.132"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.132.tgz#8ce45ca8745ff2e004fac0de0ab46f61e390ffa0"
+  integrity sha512-RNUU1rrh85NgUJcjOOr96YXr+RHwInGbaQCZmlitqOaCKXffj8bh+Zxwuq5rjDy5OgzFldDVoqk4pyLEDiwxIw==
+
 "@types/node@*":
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.2.tgz#3452a24edf9fea138b48fad4a0a028a683da1e40"
@@ -6382,6 +6387,13 @@ react-native-text-input-mask@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-text-input-mask/-/react-native-text-input-mask-1.0.1.tgz#93b4374c3c73bc78eac907094662d5d98166f359"
   integrity sha512-gN0N+3tpw1kgHsuaqzugN7hc5XsjlyXET4/Q3C36F6LxwpIdnf3k9yCL4vfAlw6QxwuBTtyFaRxGJgwZkzk4Ng==
+
+react-native-touchable-scale@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-touchable-scale/-/react-native-touchable-scale-2.0.0.tgz#13a83a9423e46049cad3e3cc306eba2130883cb1"
+  integrity sha512-Dh0tSVJ4hv+gMDx3x7YHEO9Dxsw6JPrIAc6NVpPB6i8QlV7A5ty8l/4nL/Yl2pYHCzesj26zughnBSniMKTVqA==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-native-typography@^1.4.0:
   version "1.4.0"

@@ -75,6 +75,8 @@ target 'minze' do
 
   use_unimodules!
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'minzeTests' do
     inherit! :search_paths
   end

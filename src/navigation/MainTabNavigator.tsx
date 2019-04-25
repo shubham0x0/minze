@@ -29,7 +29,7 @@ HomeStack.navigationOptions = {
     if (focused) {
       return (
         <Image
-          source={require('../assets/logo-focussed.png')}
+          source={require('../assets/logo.png')}
           style={{ marginTop: 12, borderRadius: 50, height: 60, width: 60 }}
         />
       );
