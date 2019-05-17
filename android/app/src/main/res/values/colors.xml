@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_theme">#cccccc</color>
-    <color name="primary_dark">#3d5a6b</color>
+    <item name="splashBackground" type="color">#277d31ff</item>
 </resources>
-

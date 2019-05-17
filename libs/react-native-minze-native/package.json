@@ -1,0 +1,19 @@
+
+{
+  "name": "react-native-minze-native",
+  "version": "1.0.0",
+  "description": "native module for react native project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "Shubham Jain <s.shubjain@gmail.com>",
+  "license": "BSD",
+  "peerDependencies": {
+    "react-native": "^0.59.3",
+    "react-native-windows": "^0.59.0-rc.1"
+  }
+}

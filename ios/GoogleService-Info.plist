@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>545691223180-5acr8ffkg7job8o9qs25t51af8aq3ej9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.545691223180-5acr8ffkg7job8o9qs25t51af8aq3ej9</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>545691223180-te756lt32ejqgsicat1lq2jf2j2etj8h.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD3egb-qCjFYUwZjn3TjrqKrEVTGZoZn48</string>
+	<key>GCM_SENDER_ID</key>
+	<string>545691223180</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mzeroes.minze</string>
+	<key>PROJECT_ID</key>
+	<string>minze-cf40b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>minze-cf40b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:545691223180:ios:4d9eca4d918285f6</string>
+	<key>DATABASE_URL</key>
+	<string>https://minze-cf40b.firebaseio.com</string>
+</dict>
+</plist>

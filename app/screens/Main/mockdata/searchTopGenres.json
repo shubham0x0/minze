@@ -1,0 +1,8 @@
+[
+  { "id": 1, "color": "#e69c40", "title": "Offers Near You" },
+  { "id": 2, "color": "#d23739", "title": "Top Rated" },
+  { "id": 3, "color": "#6297eb", "title": "Super Fast Delivery" },
+  { "id": 4, "color": "#ea6c45", "title": "Biryani" },
+  { "id": 5, "color": "#5b8d7c", "title": "North Indian" },
+  { "id": 6, "color": "#ac9ac1", "title": "South Indian" }
+]

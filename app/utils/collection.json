@@ -1,0 +1,81 @@
+{
+  "collections": [
+    {
+      "collection": {
+        "collection_id": 1,
+        "res_count": 30,
+        "image_url": "https://b.zmtcdn.com/data/collections/b53772a204429cb9b42313d6dc22bf3c_1535469399.jpg",
+        "url": "https://www.zomato.com/ncr/top-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Trending This Week",
+        "description": "Most popular restaurants in town this week",
+        "share_url": "http://www.zoma.to/c-1/1"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 274852,
+        "res_count": 240,
+        "image_url": "https://b.zmtcdn.com/data/collections/59fec9103fbc48195f827d3effc8cd94_1536122340.jpg",
+        "url": "https://www.zomato.com/ncr/great-food-no-bull?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Best of Delhi NCR",
+        "description": "The hunt for the highest-rated restaurants in your city ends here",
+        "share_url": "http://www.zoma.to/c-1/274852"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 29,
+        "res_count": 32,
+        "image_url": "https://b.zmtcdn.com/data/collections/7bef8e84e64ccf5b728c77510b7d52ad_1535355701.jpg",
+        "url": "https://www.zomato.com/ncr/best-new-restaurants?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Newly Opened",
+        "description": "The best new places in town",
+        "share_url": "http://www.zoma.to/c-1/29"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 297070,
+        "res_count": 88,
+        "image_url": "https://b.zmtcdn.com/data/collections/5c3f368dde1866fbc5c38b5462c39321_1554175370.jpg",
+        "url": "https://www.zomato.com/ncr/summer-treats?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Summer Treats",
+        "description": "Say hello to the summer heat with these all time fave cool treats",
+        "share_url": "http://www.zoma.to/c-1/297070"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 99,
+        "res_count": 53,
+        "image_url": "https://b.zmtcdn.com/data/collections/083468dbee9b51b10b7e6d8c9f091b4f_1553488690.jpg",
+        "url": "https://www.zomato.com/ncr/sports-screenings?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Live Cricket Screening",
+        "description": "Catch the best sporting action live!",
+        "share_url": "http://www.zoma.to/c-1/99"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 438,
+        "res_count": 53,
+        "image_url": "https://b.zmtcdn.com/data/collections/1c90f2c2aa88a560ed29af1660df1a3d_1538112784.jpg",
+        "url": "https://www.zomato.com/ncr/top-cafes?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Great Cafes",
+        "description": "Grab a bite to eat, a cup of coffee, and catch up with friends or family",
+        "share_url": "http://www.zoma.to/c-1/438"
+      }
+    },
+    {
+      "collection": {
+        "collection_id": 40,
+        "res_count": 31,
+        "image_url": "https://b.zmtcdn.com/data/collections/aaa0ee598b2f745d9c184d9bf92412d3_1535696201.jpg",
+        "url": "https://www.zomato.com/ncr/dessert-places?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "title": "Sweet Tooth",
+        "description": "From cookies and doughnuts to ice cream and cakes, knock yourself out with these classic and creative desserts ",
+        "share_url": "http://www.zoma.to/c-1/40"
+      }
+    }
+  ]
+}

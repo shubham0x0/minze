@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_theme"
+    android:background="@color/splashBackground"
     android:gravity="center">
-    <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/splash" android:scaleType="centerCrop" />
+    <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/launch_screen" android:scaleType="centerCrop" />
 </LinearLayout>
