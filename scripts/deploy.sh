@@ -1,5 +1,7 @@
 #! /bin/bash
 source scripts/common.sh
+source fastlane/.env
+source fastlane/.env.secret
 ################################################################################
 # DEPLOY SCRIPT
 ################################################################################
@@ -15,7 +17,7 @@ check_environment(){
   fi
 }
 
-
+DEPLOY_TYPE='soft'
 while getopts ":e:o:t:d:m:" opt; do
   case $opt in
     e) APP_ENV="$OPTARG"
@@ -33,11 +35,10 @@ done
 
 [[ -z $(git status -s) ]] || warn 'Please make sure you deploy with no changes or untracked files. You can run *git stash --include-untracked*.'
 
-source fastlane/.env.$APP_ENV
 
 check_environment $APP_ENV
 
-if [ $DEPLOY_TYPE == "hard" ]; then
+if [[ $DEPLOY_TYPE == "hard" ]]; then
   echo -e "${BLUE}* * * * *"
   echo -e "👷  Hard-Deploy"
   echo -e "* * * * *${NO_COLOR}"
@@ -47,17 +48,17 @@ if [ $DEPLOY_TYPE == "hard" ]; then
     echo -e "${GREEN}- - - - -"
     echo -e "Fastlane 🍎  iOS $APP_ENV"
     echo -e "- - - - -${NO_COLOR}"
-    bundle exec fastlane ios deploy --env=$APP_ENV
+    bundle exec fastlane ios deploy
   fi
   if [[ $APP_OS != "ios" ]]; then
     echo -e "${YELLOW}- - - - -"
     echo "Fastlane 🤖  Android $APP_ENV"
     echo -e "- - - - -${NO_COLOR}"
-    bundle exec fastlane android deploy --env=$APP_ENV
+    bundle exec fastlane android deploy
   fi
 fi
 
-if [ $DEPLOY_TYPE == "soft" ]; then
+if [[ $DEPLOY_TYPE == "soft" ]]; then
   echo -e "${CYAN}* * * * *"
   echo -e "🍦  Soft-Deploy"
   echo -e "* * * * *${NO_COLOR}"

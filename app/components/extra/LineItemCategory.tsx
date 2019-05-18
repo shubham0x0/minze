@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Feather from 'react-native-vector-icons/Feather';
-import { globalStyle, Theme, Colors } from '../../theme';
+import { baseStyle, Theme, Colors, activeOpacity } from '../../theme';
 
 const LineItemCategory = ({ icon, onPress, title }: any) => (
-  <TouchableOpacity activeOpacity={globalStyle.activeOpacity} onPress={onPress} style={styles.container}>
+  <TouchableOpacity activeOpacity={activeOpacity} onPress={onPress} style={styles.container}>
     <View style={{ alignItems: 'center', flexDirection: 'row' }}>
       <Feather color={Theme.inactive} name={icon} size={24} />
       <Text style={styles.title}>{title}</Text>

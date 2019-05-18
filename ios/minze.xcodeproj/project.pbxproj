@@ -37,10 +37,20 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		58C4EB955AF74CE4A89375AB /* libAppCenterReactNativePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948E6488DCFD42D2BEA1D249 /* libAppCenterReactNativePush.a */; };
-		D93A1A50D7CE439F8B028492 /* HelveticaNeue-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1C230F8B919341668750E106 /* HelveticaNeue-Roman.otf */; };
 		F30870091C6044D180FC4EED /* DonButiqueRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A510BAD52FB4A649392343E /* DonButiqueRegular.ttf */; };
 		64C01CAF92534B6DB7C16DED /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F33CAF7FF83E43959C204FC0 /* SpaceMono-Regular.ttf */; };
-		F427EAB8654B44118F5291BA /* spotify-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FECE5706201F429C97FCC695 /* spotify-light.ttf */; };
+		D640C4662B0B4B64B07A435D /* CeraPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB4A8CC3AFF44B1FBFD67F92 /* CeraPro-Black.ttf */; };
+		4D6ED3D51B844705B533DFDE /* CeraPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63C2318FC3044C0AA7A77AA6 /* CeraPro-BlackItalic.ttf */; };
+		88CBA093C2934F17BAA593B0 /* CeraPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6ABC538C298F4DD39AAFEEE4 /* CeraPro-Bold.ttf */; };
+		66D5D8A2794C44458ED9B9CF /* CeraPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D26C08879E044707BCD3B69F /* CeraPro-BoldItalic.ttf */; };
+		C2A6E53F79F14F92B8DA4E3F /* CeraPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF990A0631464106A2B87EB8 /* CeraPro-Italic.ttf */; };
+		9A8D24C0F05646A1BDA5CCFD /* CeraPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE29FE9F49DB41F6A0617E6D /* CeraPro-Light.ttf */; };
+		366BF10BB822410D893E0980 /* CeraPro-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A890D311567747E683CD2821 /* CeraPro-LightItalic.ttf */; };
+		1A635E79CEB14FCB8174185C /* CeraPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4588C75CA6A4E6DB10B3C54 /* CeraPro-Medium.ttf */; };
+		B72711C81F8740518621DE24 /* CeraPro-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 837EC629A16243D195C916EC /* CeraPro-MediumItalic.ttf */; };
+		5782F837DCF7465EA42F0CF7 /* CeraPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A477F95B330742F48F86C0D1 /* CeraPro-Regular.ttf */; };
+		7778AD2B1E2F4E1389D3E233 /* CeraPro-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1A578333DFF474DBF4C2F66 /* CeraPro-Thin.ttf */; };
+		3FB73CE8636B425A90DB7AAC /* CeraPro-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F2937E9894A46E79512E309 /* CeraPro-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -429,10 +439,20 @@
 		FA3979E0932A453E8AC96847 /* libAppCenterReactNativeAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeAnalytics.a; sourceTree = "<group>"; };
 		1D56CEF682DC465E8B501273 /* AppCenterReactNativePush.xcodeproj */ = {isa = PBXFileReference; name = "AppCenterReactNativePush.xcodeproj"; path = "../node_modules/appcenter-push/ios/AppCenterReactNativePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		948E6488DCFD42D2BEA1D249 /* libAppCenterReactNativePush.a */ = {isa = PBXFileReference; name = "libAppCenterReactNativePush.a"; path = "libAppCenterReactNativePush.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1C230F8B919341668750E106 /* HelveticaNeue-Roman.otf */ = {isa = PBXFileReference; name = "HelveticaNeue-Roman.otf"; path = "../app/assets/fonts/HelveticaNeue-Roman.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2A510BAD52FB4A649392343E /* DonButiqueRegular.ttf */ = {isa = PBXFileReference; name = "DonButiqueRegular.ttf"; path = "../app/assets/fonts/DonButiqueRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F33CAF7FF83E43959C204FC0 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; name = "SpaceMono-Regular.ttf"; path = "../app/assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FECE5706201F429C97FCC695 /* spotify-light.ttf */ = {isa = PBXFileReference; name = "spotify-light.ttf"; path = "../app/assets/fonts/spotify-light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB4A8CC3AFF44B1FBFD67F92 /* CeraPro-Black.ttf */ = {isa = PBXFileReference; name = "CeraPro-Black.ttf"; path = "../app/assets/fonts/CeraPro-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		63C2318FC3044C0AA7A77AA6 /* CeraPro-BlackItalic.ttf */ = {isa = PBXFileReference; name = "CeraPro-BlackItalic.ttf"; path = "../app/assets/fonts/CeraPro-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6ABC538C298F4DD39AAFEEE4 /* CeraPro-Bold.ttf */ = {isa = PBXFileReference; name = "CeraPro-Bold.ttf"; path = "../app/assets/fonts/CeraPro-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D26C08879E044707BCD3B69F /* CeraPro-BoldItalic.ttf */ = {isa = PBXFileReference; name = "CeraPro-BoldItalic.ttf"; path = "../app/assets/fonts/CeraPro-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DF990A0631464106A2B87EB8 /* CeraPro-Italic.ttf */ = {isa = PBXFileReference; name = "CeraPro-Italic.ttf"; path = "../app/assets/fonts/CeraPro-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE29FE9F49DB41F6A0617E6D /* CeraPro-Light.ttf */ = {isa = PBXFileReference; name = "CeraPro-Light.ttf"; path = "../app/assets/fonts/CeraPro-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A890D311567747E683CD2821 /* CeraPro-LightItalic.ttf */ = {isa = PBXFileReference; name = "CeraPro-LightItalic.ttf"; path = "../app/assets/fonts/CeraPro-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F4588C75CA6A4E6DB10B3C54 /* CeraPro-Medium.ttf */ = {isa = PBXFileReference; name = "CeraPro-Medium.ttf"; path = "../app/assets/fonts/CeraPro-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		837EC629A16243D195C916EC /* CeraPro-MediumItalic.ttf */ = {isa = PBXFileReference; name = "CeraPro-MediumItalic.ttf"; path = "../app/assets/fonts/CeraPro-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A477F95B330742F48F86C0D1 /* CeraPro-Regular.ttf */ = {isa = PBXFileReference; name = "CeraPro-Regular.ttf"; path = "../app/assets/fonts/CeraPro-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1A578333DFF474DBF4C2F66 /* CeraPro-Thin.ttf */ = {isa = PBXFileReference; name = "CeraPro-Thin.ttf"; path = "../app/assets/fonts/CeraPro-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9F2937E9894A46E79512E309 /* CeraPro-ThinItalic.ttf */ = {isa = PBXFileReference; name = "CeraPro-ThinItalic.ttf"; path = "../app/assets/fonts/CeraPro-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -775,10 +795,20 @@
 		0C09B70DD5C74E2BAD5A123B /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				1C230F8B919341668750E106 /* HelveticaNeue-Roman.otf */,
 				2A510BAD52FB4A649392343E /* DonButiqueRegular.ttf */,
 				F33CAF7FF83E43959C204FC0 /* SpaceMono-Regular.ttf */,
-				FECE5706201F429C97FCC695 /* spotify-light.ttf */,
+				FB4A8CC3AFF44B1FBFD67F92 /* CeraPro-Black.ttf */,
+				63C2318FC3044C0AA7A77AA6 /* CeraPro-BlackItalic.ttf */,
+				6ABC538C298F4DD39AAFEEE4 /* CeraPro-Bold.ttf */,
+				D26C08879E044707BCD3B69F /* CeraPro-BoldItalic.ttf */,
+				DF990A0631464106A2B87EB8 /* CeraPro-Italic.ttf */,
+				FE29FE9F49DB41F6A0617E6D /* CeraPro-Light.ttf */,
+				A890D311567747E683CD2821 /* CeraPro-LightItalic.ttf */,
+				F4588C75CA6A4E6DB10B3C54 /* CeraPro-Medium.ttf */,
+				837EC629A16243D195C916EC /* CeraPro-MediumItalic.ttf */,
+				A477F95B330742F48F86C0D1 /* CeraPro-Regular.ttf */,
+				F1A578333DFF474DBF4C2F66 /* CeraPro-Thin.ttf */,
+				9F2937E9894A46E79512E309 /* CeraPro-ThinItalic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1275,10 +1305,20 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4A82BCB9E5F746F694CE61F7 /* AppCenter-Config.plist in Resources */,
 				1800C47B2291097D007B2624 /* GoogleService-Info.plist in Resources */,
-				D93A1A50D7CE439F8B028492 /* HelveticaNeue-Roman.otf in Resources */,
 				F30870091C6044D180FC4EED /* DonButiqueRegular.ttf in Resources */,
 				64C01CAF92534B6DB7C16DED /* SpaceMono-Regular.ttf in Resources */,
-				F427EAB8654B44118F5291BA /* spotify-light.ttf in Resources */,
+				D640C4662B0B4B64B07A435D /* CeraPro-Black.ttf in Resources */,
+				4D6ED3D51B844705B533DFDE /* CeraPro-BlackItalic.ttf in Resources */,
+				88CBA093C2934F17BAA593B0 /* CeraPro-Bold.ttf in Resources */,
+				66D5D8A2794C44458ED9B9CF /* CeraPro-BoldItalic.ttf in Resources */,
+				C2A6E53F79F14F92B8DA4E3F /* CeraPro-Italic.ttf in Resources */,
+				9A8D24C0F05646A1BDA5CCFD /* CeraPro-Light.ttf in Resources */,
+				366BF10BB822410D893E0980 /* CeraPro-LightItalic.ttf in Resources */,
+				1A635E79CEB14FCB8174185C /* CeraPro-Medium.ttf in Resources */,
+				B72711C81F8740518621DE24 /* CeraPro-MediumItalic.ttf in Resources */,
+				5782F837DCF7465EA42F0CF7 /* CeraPro-Regular.ttf in Resources */,
+				7778AD2B1E2F4E1389D3E233 /* CeraPro-Thin.ttf in Resources */,
+				3FB73CE8636B425A90DB7AAC /* CeraPro-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

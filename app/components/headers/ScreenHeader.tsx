@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 // components
 import TouchableIcon from '../touchable/TouchIcon';
-import { globalStyle, Theme, Layout, Colors } from '../../theme';
+import { baseStyle, Theme, Layout, Colors } from '../../theme';
 
 const ScreenHeader = ({ navigation, showBack, title }: any) => (
   <BlurView tint="dark" intensity={96} style={styles.container}>
@@ -23,7 +23,7 @@ const ScreenHeader = ({ navigation, showBack, title }: any) => (
       <Text style={styles.text}>{title}</Text>
     </View>
 
-    {showBack && <View style={globalStyle.flex1} />}
+    {showBack && <View style={baseStyle.flex1} />}
   </BlurView>
 );
 
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     paddingTop: Layout.iPhoneX ? 48 : 24
   },
   containerText: {
-    ...globalStyle.flex5,
+    ...baseStyle.flex5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   left: {
-    ...globalStyle.flex1,
+    ...baseStyle.flex1,
     alignItems: 'flex-start'
   },
   text: {

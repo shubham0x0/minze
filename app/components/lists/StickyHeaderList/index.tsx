@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Layout, Colors, globalStyle } from '../../../theme';
+import { Theme, Layout, Colors, baseStyle } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
@@ -45,11 +45,11 @@ class StickyHeaderList extends React.Component<Props, any> {
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[1]}
-          style={globalStyle.container}
+          style={baseStyle.container}
         >
-          <View style={globalStyle.spacer11}>
+          <View style={baseStyle.spacer11}>
             <TouchableOpacity activeOpacity={1} onPress={() => null} style={styles.searchPlaceholder}>
-              <View style={globalStyle.mR1}>
+              <View style={baseStyle.mR1}>
                 <SvgSearch />
               </View>
               <TextInput
@@ -61,7 +61,7 @@ class StickyHeaderList extends React.Component<Props, any> {
           <View style={styles.containerSearchBar}>
             <Animated.View style={{ width: opacity }}>
               <TouchableOpacity activeOpacity={1} onPress={() => null} style={styles.searchPlaceholder}>
-                <View style={globalStyle.mR1}>
+                <View style={baseStyle.mR1}>
                   <SvgSearch />
                 </View>
                 <TextInput
@@ -114,7 +114,7 @@ class StickyHeaderList extends React.Component<Props, any> {
 
 const styles = StyleSheet.create({
   containerSearchBar: {
-    ...globalStyle.pH3,
+    ...baseStyle.pH3,
     backgroundColor: Theme.background,
     paddingBottom: 16,
     paddingTop: Layout.iPhoneX ? 64 : 24
@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
     paddingVertical: 4
   },
   searchPlaceholderText: {
-    ...globalStyle.cursive14,
+    ...baseStyle.cursive4,
     color: Theme.background
   },
   sectionHeading: {
-    ...globalStyle.cursiveBold18,
+    ...baseStyle.cursiveBold2,
     color: Colors.white,
     marginBottom: 24,
     marginLeft: 24,

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Colors, Layout, globalStyle } from '../../../theme';
+import { Theme, Colors, Layout, baseStyle } from '../../../theme';
 import { getCollections, getActivities } from '../../../utils/getData';
 import { Card, Title, Subheading, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
+import { HeaderBar } from '../../../components/headers/HeaderBar';
 
 class CartScreen extends React.Component<any, any> {
   constructor(props: any) {
@@ -58,32 +59,49 @@ class CartScreen extends React.Component<any, any> {
               source={{ uri: thumb || 'https://b.zmtcdn.com/images/developers/apihome_bg.jpg' }}
             />
             <View style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20, paddingRight: 20 }}>
-              <Title>{name}</Title>
-              <Subheading style={{ fontSize: 12 }}>{cuisines}</Subheading>
-              {/* {item.offers && item.offers.map(self => <Subheading style={{ fontSize: 12 }}>{self.name}</Subheading>)} */}
-              <View style={{ paddingTop: 30, flex: 1, flexWrap: 'wrap' }}>
-                <Divider />
-                <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome
-                    color={Colors.white}
-                    style={{ fontSize: 12, alignSelf: 'center', paddingRight: 4 }}
-                    name="star"
-                  />
-                  <Subheading style={{ fontSize: 12 }}>
-                    {user_rating.aggregate_rating && user_rating.aggregate_rating}
-                  </Subheading>
-                  <Text style={{ paddingLeft: 16, fontSize: 12, alignSelf: 'center', paddingRight: 16 }}>•</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Title>{name}</Title>
+                <FontAwesome
+                  color={Theme.text}
+                  style={{ fontSize: 18, justifyContent: 'center', alignSelf: 'center' }}
+                  name="trash"
+                />
+              </View>
 
-                  <FontAwesome
-                    color={Colors.white}
-                    style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }}
-                    name="rupee"
-                  />
-                  <Subheading style={{ fontSize: 12 }}>
-                    {average_cost_for_two && average_cost_for_two} for two{' '}
-                  </Subheading>
+              <Subheading style={{ fontSize: 12 }}>QTY. {1}</Subheading>
+              <View style={{ flexDirection: 'row' }}>
+                <FontAwesome
+                  color={Theme.text}
+                  style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }}
+                  name="rupee"
+                />
+                <Subheading style={{ fontSize: 12 }}>{average_cost_for_two && average_cost_for_two}</Subheading>
+              </View>
+              {/* {item.offers && item.offers.map(self => <Subheading style={{ fontSize: 12 }}>{self.name}</Subheading>)} */}
+              <View style={{ paddingBottom: 10, flex: 1, flexWrap: 'wrap' }}>
+                <View style={{ flexDirection: 'row', paddingTop: 6, justifyContent: 'space-between' }}>
+                  <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
+                    <FontAwesome color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="minus" />
+                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      color: Theme.text,
+                      alignSelf: 'center',
+                      justifyContent: 'center',
+                      padding: 10,
+                      paddingTop: 6,
+                      paddingBottom: 6
+                    }}
+                  >
+                    {' '}
+                    Add
+                  </Text>
+                  <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
+                    <FontAwesome color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="plus" />
+                  </TouchableOpacity>
                 </View>
               </View>
+              <Divider />
             </View>
           </View>
         </Card.Content>
@@ -97,10 +115,10 @@ class CartScreen extends React.Component<any, any> {
       <>
         <ImageBackground style={{ height: 136, width: 200 }} source={{ uri: image_url }} />
         <View style={{ backgroundColor: Colors.white, flexDirection: 'column', height: 64, padding: 10 }}>
-          <Text numberOfLines={1} ellipsizeMode={'tail'} style={[globalStyle.cursiveBold16]}>
+          <Text numberOfLines={1} ellipsizeMode={'tail'} style={[baseStyle.cursiveBold3]}>
             {title}
           </Text>
-          <Text numberOfLines={3} ellipsizeMode={'tail'} style={[globalStyle.cursiveBold12]}>
+          <Text numberOfLines={3} ellipsizeMode={'tail'} style={[baseStyle.cursiveBold5]}>
             {description}
           </Text>
         </View>
@@ -113,13 +131,15 @@ class CartScreen extends React.Component<any, any> {
 
     return (
       <React.Fragment>
+        <HeaderBar title={'Cart'} />
         <Animated.ScrollView
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          style={globalStyle.container}
+          stickyHeaderIndices={[1]}
+          style={baseStyle.container}
         >
+          <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
           <View>
             <View
               style={{
@@ -127,13 +147,37 @@ class CartScreen extends React.Component<any, any> {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 padding: 10,
-                backgroundColor: Theme.surface + 'ef'
+                backgroundColor: Theme.surface
               }}
             >
-              <Text style={[globalStyle.cursiveBold12, { color: Theme.text }]}>Total</Text>
+              <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
               <TouchableOpacity activeOpacity={1} onPress={() => null} style={{ flexDirection: 'row' }}>
                 <Icon size={16} name={'rupee'} color={Theme.text} />
-                <Text style={[globalStyle.cursiveBold12, { color: Theme.text, marginLeft: 10 }]}>990</Text>
+                <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>990</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.bottom}>
+              <TouchableOpacity
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  backgroundColor: Theme.backdrop,
+                  height: '100%',
+                  justifyContent: 'center'
+                }}
+              >
+                <Text style={{ ...baseStyle.heading5, color: Theme.surface }}>Select Payment Method</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  backgroundColor: Theme.surface,
+                  height: '100%',
+                  justifyContent: 'center'
+                }}
+              >
+                <Text style={{ ...baseStyle.heading5, color: Theme.backdrop }}>Checkout</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -145,30 +189,6 @@ class CartScreen extends React.Component<any, any> {
             />
           )}
         </Animated.ScrollView>
-        <View style={styles.bottom}>
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              backgroundColor: Theme.surface,
-              height: '100%',
-              justifyContent: 'center'
-            }}
-          >
-            <Text>Select Payment Method</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              backgroundColor: Colors.green,
-              height: '100%',
-              justifyContent: 'center'
-            }}
-          >
-            <Text>Select Payment Method</Text>
-          </TouchableOpacity>
-        </View>
       </React.Fragment>
     );
   }
@@ -186,16 +206,16 @@ const styles = StyleSheet.create({
     paddingVertical: 0
   },
   searchPlaceholderText: {
-    ...globalStyle.cursive12,
+    ...baseStyle.cursive5,
     color: Theme.background
   },
   headerText: {
-    ...globalStyle.cursiveBold12,
+    ...baseStyle.cursiveBold5,
     color: Colors.white,
     marginLeft: 24
   },
   sectionHeading: {
-    ...globalStyle.cursiveBold16,
+    ...baseStyle.cursiveBold3,
     color: Colors.white,
     marginBottom: 24,
     marginLeft: 24,
@@ -208,9 +228,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    height: 60,
-    position: 'absolute',
-    bottom: 0,
+    height: 40,
     width: '100%',
     backgroundColor: Theme.surface
   }

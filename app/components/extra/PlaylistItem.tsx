@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { globalStyle, Colors } from '../../theme';
+import { baseStyle, Colors, activeOpacity } from '../../theme';
 
 const PlaylistItem = ({ bgColor, onPress, title }: any) => (
   <TouchableOpacity
-    activeOpacity={globalStyle.activeOpacity}
+    activeOpacity={activeOpacity}
     onPress={onPress}
     style={[styles.playlistItem, { backgroundColor: bgColor }]}
   >

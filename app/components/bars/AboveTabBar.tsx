@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, GestureResponderEvent } from 'react-native';
-import { Theme, Colors, Layout, globalStyle } from '../../theme';
+import { Theme, Colors, Layout, baseStyle, activeOpacity } from '../../theme';
 
 export interface IAboveTopBarProps {
   visible: boolean;
@@ -16,7 +16,7 @@ export interface IAboveTopBarProps {
 
 const LeftContainer = (props: IAboveTopBarProps) => (
   <TouchableOpacity
-    activeOpacity={globalStyle.activeOpacity}
+    activeOpacity={activeOpacity}
     hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
     onPress={props.onPress}
     style={styles.containerIcon}
@@ -27,7 +27,7 @@ const LeftContainer = (props: IAboveTopBarProps) => (
 
 const RightContainer = (props: IAboveTopBarProps) => (
   <TouchableOpacity
-    activeOpacity={globalStyle.activeOpacity}
+    activeOpacity={activeOpacity}
     hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
     onPress={props.onPress}
     style={styles.containerIcon}

@@ -5,15 +5,11 @@ import PropTypes from 'prop-types';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { globalStyle, Theme, Colors } from '../../theme';
+import { baseStyle, Theme, Colors, activeOpacity } from '../../theme';
 
 const LineItemSong = ({ active, downloaded, onPress, songData }: any) => (
   <View style={styles.container}>
-    <TouchableOpacity
-      activeOpacity={globalStyle.activeOpacity}
-      onPress={() => onPress(songData)}
-      style={globalStyle.flex5}
-    >
+    <TouchableOpacity activeOpacity={activeOpacity} onPress={() => onPress(songData)} style={baseStyle.flex5}>
       <Text style={[styles.title, { color: active ? Theme.brandPrimary : Colors.white }]}>{songData.title}</Text>
       <View style={{ flexDirection: 'row' }}>
         {downloaded && (

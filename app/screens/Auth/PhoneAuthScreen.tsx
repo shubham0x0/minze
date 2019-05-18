@@ -139,7 +139,10 @@ class PhoneAuthScreen extends Component<Props, State> {
               value={this.state.phoneNumber}
               placeholder={'Phone'}
               keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
-              style={[{ fontSize: 24 }, styles.textInput]}
+              style={[
+                { fontSize: 24, backgroundColor: Theme.background, justifyContent: 'center', paddingLeft: 20 },
+                styles.textInput
+              ]}
               returnKeyType={'next'}
               autoFocus
               placeholderTextColor={Theme.primary}

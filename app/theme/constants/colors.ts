@@ -1,6 +1,13 @@
 // All the constant colors should be added here
 
+export const theme = {
+  primary: '#03256d',
+  secondary: '#f6f6f6',
+  tertiary: '#2D2D2D'
+};
+
 export const colors = {
+  ...theme,
   greyBlack: '#222222',
   cyanBlue: '#2f8be6',
   cyanBlueC: '#e68a2f',
@@ -13,6 +20,7 @@ export const colors = {
   blue: '#3B5998',
   turquoise: '#3fe0d0',
   powder: '#B0DFE5',
+  whiteSurface: '#F8F8F8',
   sky: '#95C8D8',
   electric: '#7EF9FF',
   cobalt: '#0048ba',
@@ -20,16 +28,18 @@ export const colors = {
   aliceBlue: '#F0F8FF',
   morningGlory: '#95d6dc',
   gainsboro: '#DCDCDC',
+  paperGray: '#e6e6e6',
   lightGray: '#D3D3D3',
   silver: '#C0C0C0',
   darkgray: '#A9A9A9',
   gray: '#808080',
-  dimgray: '#696969',
+
+  dimgrey: '#696969',
   lightSlateGray: '#778899',
   slateGray: '#708090',
   darkSlateGray: '#2F4F4F',
   darkGreen: '#111f10',
-  darkGrey: '#eeeeee',
+  darkGrey: '#404355',
   darkRed: '#ff1100',
   green: '#2b8c2e',
   grey: '#282828',
@@ -44,43 +54,3 @@ export const colors = {
   orange: '#ff6600',
   greenDark: '#277d31ff'
 };
-
-const Base = {
-  accent: colors.cyanBlue,
-  background: colors.white,
-  brandPrimary: colors.greenDark,
-  disabled: colors.darkGrey,
-  primary: colors.greenDark,
-  secondary: colors.greyWhite,
-  surface: colors.greyWhite,
-  tertiary: colors.grey
-};
-
-const Text = {
-  text: Base.tertiary,
-  darkText: colors.greyBlack,
-  errorText: colors.red,
-  headingtext: colors.blue,
-  highlightedText: colors.darkGrey,
-  infoText: colors.greyLight,
-  lightText: colors.greyWhite,
-  linkText: colors.blue,
-  placeholderText: colors.greyOff,
-  warningText: colors.yellow
-};
-
-const Extended = {
-  textC: Text.lightText,
-  tintColorActive: colors.blue,
-  backdrop: colors.greyBlack,
-  errorBackground: colors.darkRed,
-  inactive: colors.greyLight,
-  tintColorInactive: Base.tertiary,
-  statusbar: Base.tertiary,
-  tabIcon: Base.tertiary,
-  tabIconActive: colors.blue,
-  tintColor: colors.blue,
-  warningBackground: colors.yellow
-};
-
-export const Theme = { ...Base, ...Text, ...Extended };

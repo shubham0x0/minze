@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { globalStyle } from '../../theme';
+import { baseStyle, activeOpacity } from '../../theme';
 
 const TouchText = ({ onPress, style, styleText, text }: any) => (
   <TouchableOpacity
-    activeOpacity={globalStyle.activeOpacity}
+    activeOpacity={activeOpacity}
     hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
     onPress={onPress}
-    style={[globalStyle.flexCenter, style]}
+    style={[baseStyle.flexCenter, style]}
   >
     <Text style={styleText}>{text}</Text>
   </TouchableOpacity>

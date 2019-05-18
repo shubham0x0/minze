@@ -203,7 +203,7 @@ class OTPScreen extends Component<Props, State> {
           <Text style={styles.header}>{'Enter your verification code.'}</Text>
           <OTPTextView
             containerStyle={{ padding: 20, flexWrap: 'wrap' }}
-            textInputStyle={{ color: Colors.greyLight }}
+            textInputStyle={{ color: Colors.darkBlack, backgroundColor: Theme.background }}
             handleTextChange={async (value: string) => {
               await this.setState({ otp: value });
               if (value.length >= 6) {

@@ -1,2 +1,3 @@
-export * from './formtheme';
-export * from './papertheme';
+export * from './form';
+export * from './paper';
+export * from './base';

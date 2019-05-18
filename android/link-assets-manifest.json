@@ -2,20 +2,60 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "app/assets/fonts/CeraPro-Black.ttf",
+      "sha1": "3087c7abf36203889efec73487ec74b0cbd8e6bb"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-BlackItalic.ttf",
+      "sha1": "7d4968fe6d150ccf1b268ad2e4849bc58c79f6a8"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Bold.ttf",
+      "sha1": "1f8dff23a88d42eda3e8199ec091213f00d1a819"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-BoldItalic.ttf",
+      "sha1": "c975d7b6e1973836bda7e20dca78295c96c25fc7"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Italic.ttf",
+      "sha1": "9c8ecc6de6086c8ed526a9348afdc3efb2d586cb"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Light.ttf",
+      "sha1": "54aa52537209005c9d86be4ff5e34d01ad49415c"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-LightItalic.ttf",
+      "sha1": "582b3f842dd674f7efa8a98f29e030c8e8d3d236"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Medium.ttf",
+      "sha1": "a0b66a6989cc5b95b7a4a3de2fe7053171d728ef"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-MediumItalic.ttf",
+      "sha1": "38ca2eaa191559ca6286826577f3edfeb4e3a7a8"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Regular.ttf",
+      "sha1": "e1727c18fa6f808a39682162e3ce4ac5b6604d33"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-Thin.ttf",
+      "sha1": "302116fc9174581c7520f37f688677a0736e77d0"
+    },
+    {
+      "path": "app/assets/fonts/CeraPro-ThinItalic.ttf",
+      "sha1": "86cb011687678eb997053c86673c56442b65e77b"
+    },
+    {
       "path": "app/assets/fonts/DonButiqueRegular.ttf",
       "sha1": "7887207a26c7f01a184c7b9ff581b47acb7426b0"
     },
     {
-      "path": "app/assets/fonts/HelveticaNeue-Roman.otf",
-      "sha1": "1cfb94cd7d3818187fb9670eea88d3b20d629acb"
-    },
-    {
       "path": "app/assets/fonts/SpaceMono-Regular.ttf",
       "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
-    },
-    {
-      "path": "app/assets/fonts/spotify-light.ttf",
-      "sha1": "b70e54faf9db004427ecae9014eb6ea3c511eab8"
     }
   ]
 }

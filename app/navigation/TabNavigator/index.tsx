@@ -1,27 +1,34 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import CustomTabBar from '../../components/bars/CustomTabBar';
-import { Theme, Colors, Fonts } from '../../theme';
+import { Theme, Fonts, baseStyle } from '../../theme';
 import CartStack from './CartStack';
 import ExploreStack from './ExploreStack';
 import HomeStack from './HomeStack';
+import ActivitesStack from './ActivitesStack';
 import ProfileStack from './ProfileStack';
+import { ApolloProvider } from 'react-apollo';
+import LoadingAnimated from '../../components/loaders/LoadingAnimated';
+import createApolloClient from '../../graphql';
+import { RootContext } from '../../context';
+import { NavigationType } from '../../types';
 
-export default createMaterialTopTabNavigator(
+const TabNavigator = createMaterialTopTabNavigator(
   {
-    HomeStack,
+    ActivitesStack,
     ExploreStack,
+    // HomeStack,
     CartStack,
     ProfileStack
   },
   {
-    initialRouteName: 'HomeStack',
+    initialRouteName: 'ActivitesStack',
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: true,
     tabBarComponent: props => <CustomTabBar {...props} />,
     tabBarOptions: {
-      showLabel: false,
+      showLabel: true,
       showIcon: true,
       scrollEnabled: false,
       pressOpacity: 0.8,
@@ -35,19 +42,39 @@ export default createMaterialTopTabNavigator(
         width: 36
       },
       labelStyle: {
-        color: Theme.darkText,
+        ...baseStyle.heading5,
+        // color: Theme.darkText,
         padding: 0,
         margin: 0,
-        fontSize: 10,
-        fontFamily: Fonts.regular
+        fontSize: 10
       },
       // activeBackgroundColor: Theme.background,
       activeTintColor: Theme.tabIconActive,
-      inactiveTintColor: Theme.inactive,
+      inactiveTintColor: Theme.tabIcon,
       style: {
-        backgroundColor: Theme.secondary,
+        backgroundColor: Theme.surface,
         borderTopWidth: 0
       }
     }
   }
 );
+
+interface Props {
+  navigation: NavigationType;
+}
+
+const MainTabNavigator = (props: Props) => {
+  const context = React.useContext(RootContext);
+  const authToken = context.state.network.authToken;
+  const client = createApolloClient(authToken);
+  if (!client) return <LoadingAnimated />;
+  return (
+    <ApolloProvider client={client}>
+      <TabNavigator navigation={props.navigation} />
+    </ApolloProvider>
+  );
+};
+
+MainTabNavigator.router = TabNavigator.router;
+
+export default MainTabNavigator;

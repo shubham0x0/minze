@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
-import { globalStyle } from '../theme';
+import { baseStyle, activeOpacity } from '../theme';
 
 const TouchIcon = ({ icon, iconSize, onPress, style }: any) => (
   <TouchableOpacity
-    activeOpacity={globalStyle.activeOpacity}
+    activeOpacity={activeOpacity}
     onPress={onPress}
     hitSlop={{ bottom: 5, left: 5, right: 5, top: 5 }}
-    style={[globalStyle.flexCenter, style]}
+    style={[baseStyle.flexCenter, style]}
   >
     {React.cloneElement(icon, { size: iconSize })}
   </TouchableOpacity>

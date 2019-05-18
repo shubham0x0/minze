@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Theme, Colors, globalStyle } from '../../theme';
+import { Theme, Colors, baseStyle, activeOpacity } from '../../theme';
 import { NavigationType } from '../../types';
 
 const AlbumsHorizontal = ({ data, heading, navigation, tagline, images }: Props) => (
@@ -18,7 +18,7 @@ const AlbumsHorizontal = ({ data, heading, navigation, tagline, images }: Props)
 
         return (
           <TouchableOpacity
-            activeOpacity={globalStyle.activeOpacity}
+            activeOpacity={activeOpacity}
             hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
             onPress={() => navigation.navigate('Album', { title: item.title })}
             style={styles.item}

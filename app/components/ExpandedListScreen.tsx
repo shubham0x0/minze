@@ -6,7 +6,7 @@ import LinearGradient from './gradients/LinearGradient';
 import TouchableIcon from './touchable/TouchIcon';
 import TouchText from './touchable/TouchText';
 
-import { globalStyle, Theme, Colors, styles, Layout, Fonts } from '../theme';
+import { baseStyle, Theme, Colors, styles, Layout, Fonts } from '../theme';
 import { NavigationType } from '../types';
 
 interface Props {
@@ -161,7 +161,7 @@ class ExpandedList extends React.Component<Props, State> {
               <Switch tintColor={Colors.grey} onValueChange={val => this.toggleDownloaded(val)} value={downloaded} />
             </View>
           </View>
-          <View style={globalStyle.spacer128} />
+          <View style={baseStyle.spacer128} />
         </Animated.ScrollView>
       </View>
     );
@@ -238,7 +238,7 @@ const localstyles = StyleSheet.create({
   },
   downloadText: {
     color: Colors.white,
-    fontFamily: Fonts.donButique,
+    fontFamily: Fonts.cursive,
     fontSize: 18
   },
   header: {

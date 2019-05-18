@@ -3,10 +3,12 @@ import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import TabBarIcon from '../../components/icons/TabBarIcon';
 import ProfileTabScreen from '../../screens/Main/AccountScreen';
+import EditProfileScreen from '../../screens/Main/EditProfileScreen';
 
 const ProfileStack = createStackNavigator(
   {
-    Settings: ProfileTabScreen
+    Settings: ProfileTabScreen,
+    EditProfile: EditProfileScreen
   },
   {
     defaultNavigationOptions: {

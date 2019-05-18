@@ -87,10 +87,20 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>HelveticaNeue-Roman.otf</string>
 		<string>DonButiqueRegular.ttf</string>
 		<string>SpaceMono-Regular.ttf</string>
-		<string>spotify-light.ttf</string>
+		<string>CeraPro-Black.ttf</string>
+		<string>CeraPro-BlackItalic.ttf</string>
+		<string>CeraPro-Bold.ttf</string>
+		<string>CeraPro-BoldItalic.ttf</string>
+		<string>CeraPro-Italic.ttf</string>
+		<string>CeraPro-Light.ttf</string>
+		<string>CeraPro-LightItalic.ttf</string>
+		<string>CeraPro-Medium.ttf</string>
+		<string>CeraPro-MediumItalic.ttf</string>
+		<string>CeraPro-Regular.ttf</string>
+		<string>CeraPro-Thin.ttf</string>
+		<string>CeraPro-ThinItalic.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

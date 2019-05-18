@@ -23,13 +23,14 @@ end
 
 # JS Environments
 
-lane :set_js_env do |options|
-  backup_file(path: 'app/config/environment/index.js')
-  sh "cp ../app/config/environment/index.#{ENV['ENV']}.js ../app/config/environment/index.js"
-end
+# lane :set_js_env do |options|
+#   backup_file(path: 'app/config/environment/index.js')
+#   sh "cp ../app/config/environment/index.js ../app/config/environment/index.js"
+# end
 
 before_all do |lane, options|
-  Dotenv.load(".env.#{ENV['ENV']}.secret")
+  Dotenv.load(".env")
+  Dotenv.load(".env.secret")
 end
 
 after_all do |lane, options|
@@ -127,7 +128,6 @@ platform :android do
   end
 
   lane :deploy do |options|
-    set_js_env
     if options[:codepush] then
       release_notes = %x[#{release_notes_command}]
       sh "cd .. && appcenter codepush release-react -d #{ENV['ANDROID_CODEPUSH_DEPLOYMENT_NAME']} -a #{ENV['APPCENTER_USERNAME']}/#{ENV['ANDROID_APPCENTER_APP_ID']} --target-binary-version \"#{ENV['ANDROID_VERSION_NAME']}\" --description \"#{release_notes}\" --disable-duplicate-release-error"

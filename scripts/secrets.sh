@@ -7,6 +7,8 @@ source scripts/common.sh
 # for later unzipping.                                                                 #
 ########################################################################################
 
+# source secrets/secrets
+
 MODE='unpack'
 
 while getopts ":m:e:p:" opt; do
@@ -44,14 +46,17 @@ fi
 
 if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
-  SECRETS_TO_PACK=".env fastlane/.env.${APP_ENV} fastlane/.env.${APP_ENV}.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json "
+  source fastlane/.env
+  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
   # Encrypt archive
+
   if [ -z $APP_SECRET_PASSPHRASE ]; then
+    echo -e "↪"
     gpg --symmetric $FILE_ROOT.tar.gz
   else
-    echo $APP_SECRET_PASSPHRASE | gpg --batch --yes --symmetric --passphrase-fd 0 $FILE_ROOT.tar.gz
+    echo $APP_SECRET_PASSPHRASE | sudo gpg --batch --yes --symmetric --passphrase-fd 0 $FILE_ROOT.tar.gz
   fi
   ## Remove intermediaries
   rm $FILE_ROOT.tar.gz
@@ -65,7 +70,7 @@ elif [[ $MODE == "unpack" ]]; then
     exit 1
   fi
   ## Decrypt
-  gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
+  sudo gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
   ## Unzip to correct locations in project
   tar -xzvf $FILE_ROOT.tar.gz
   ## Remove intermediaries

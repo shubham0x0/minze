@@ -25,11 +25,6 @@ fastlane check_git_status
 fastlane set_build_numbers_to_current_timestamp
 ```
 
-### set_js_env
-```
-fastlane set_js_env
-```
-
 
 ----
 

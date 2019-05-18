@@ -11,7 +11,7 @@ echo -e "- - - - -${NO_COLOR}"
 # imagemagic required
 # ↪ sudo apt-get install imagemagick-6-common
 echo -e "↪ converting svg to png"
-convert ./app/assets/images/splash/splash.svg -background  '#277d31ff' -gravity center -extent 1600x1600 ./app/assets/images/splash/splash.png
+convert ./app/assets/images/splash/splash.svg -background  '#e6e6e6' -gravity center -extent 1600x1600 ./app/assets/images/splash/splash.png
 
 # requires yeoman and rn-toolbox
 # ↪ npm install -g yo generator-rn-toolbox

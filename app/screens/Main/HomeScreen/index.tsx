@@ -1,8 +1,8 @@
 import React from 'react';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Colors, Layout, globalStyle } from '../../../theme';
-import topGenres from '../mockdata/searchTopGenres.json';
+import { Theme, Colors, Layout, baseStyle, activeOpacity, statusBarHeight } from '../../../theme';
+import topGenres from '../../../mockdata/ourPicks.json';
 import { getCollections, getActivities } from '../../../utils/getData';
 import { Card, Title, Subheading, Divider } from 'react-native-paper';
 import Carousel from 'react-native-snap-carousel';
@@ -67,7 +67,7 @@ class HomeScreen extends React.Component<any, any> {
                 <Divider />
                 <View style={{ flexDirection: 'row' }}>
                   <FontAwesome
-                    color={Colors.white}
+                    color={Theme.text}
                     style={{ fontSize: 12, alignSelf: 'center', paddingRight: 4 }}
                     name="star"
                   />
@@ -77,7 +77,7 @@ class HomeScreen extends React.Component<any, any> {
                   <Text style={{ paddingLeft: 16, fontSize: 12, alignSelf: 'center', paddingRight: 16 }}>•</Text>
 
                   <FontAwesome
-                    color={Colors.white}
+                    color={Theme.text}
                     style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }}
                     name="rupee"
                   />
@@ -109,10 +109,10 @@ class HomeScreen extends React.Component<any, any> {
       <>
         <ImageBackground style={{ height: 136, width: 200 }} source={{ uri: image_url }} />
         <View style={{ backgroundColor: Colors.white, flexDirection: 'column', height: 64, padding: 10 }}>
-          <Text numberOfLines={1} ellipsizeMode={'tail'} style={[globalStyle.cursiveBold16]}>
+          <Text numberOfLines={1} ellipsizeMode={'tail'} style={[baseStyle.heading3]}>
             {title}
           </Text>
-          <Text numberOfLines={3} ellipsizeMode={'tail'} style={[globalStyle.cursiveBold12]}>
+          <Text numberOfLines={2} ellipsizeMode={'tail'} style={[baseStyle.heading5]}>
             {description}
           </Text>
         </View>
@@ -124,20 +124,53 @@ class HomeScreen extends React.Component<any, any> {
 
     return (
       <React.Fragment>
-        <HeaderBar title={'Home'} />
+        <HeaderBar
+          // title={'Home'}
+          containerStyle={{
+            backgroundColor: Theme.secondary,
+            borderBottomColor: Theme.secondary,
+            borderBottomWidth: 0,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: -statusBarHeight
+          }}
+          leftComponent={
+            <View>
+              <View style={{ flexDirection: 'row', paddingLeft: 12 }}>
+                <FontAwesome color={Theme.text} name="location-arrow" />
+                <Text style={[styles.sectionHeading]}>Delivery Location</Text>
+              </View>
+              <TouchableOpacity
+                activeOpacity={activeOpacity}
+                onPress={() => {}}
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  paddingLeft: 12
+                }}
+              >
+                {/* <Text style={[styles.headerText]}>Home</Text> */}
+                <Text style={[styles.headerText, { marginLeft: 16 }]}>Sector 24, Rohini</Text>
+              </TouchableOpacity>
+            </View>
+          }
+          centerComponent={{}}
+          rightComponent={{ icon: 'notifications', color: Theme.text }}
+        />
 
         <Animated.ScrollView
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[1]}
-          style={globalStyle.container}
+          style={baseStyle.container}
         >
           <View
             style={[
               {
                 justifyContent: 'space-between',
                 alignContent: 'space-between',
+                paddingBottom: 20,
                 backgroundColor: Theme.secondary
               }
             ]}
@@ -166,19 +199,26 @@ class HomeScreen extends React.Component<any, any> {
                 const { item } = itemObj;
                 return (
                   <TouchableOpacity
-                    activeOpacity={globalStyle.activeOpacity}
+                    activeOpacity={activeOpacity}
                     onPress={() => {}}
                     style={{
                       backgroundColor: item.color,
-                      borderRadius: 6,
+                      borderRadius: 3,
                       height: 60,
                       width: 60,
                       flex: 1,
-                      marginRight: 24,
-                      padding: 12
+                      margin: 12,
+                      // marginRight: 24,
+                      // marginLeft: 24,
+                      paddingLeft: 6,
+                      paddingTop: 6,
+                      paddingRight: 12,
+                      paddingBottom: 12
                     }}
                   >
-                    <Text style={globalStyle.cursive12}>{item.title}</Text>
+                    <Text numberOfLines={3} ellipsizeMode={'tail'} style={baseStyle.heading5}>
+                      {item.title}
+                    </Text>
                   </TouchableOpacity>
                 );
               }}
@@ -188,16 +228,23 @@ class HomeScreen extends React.Component<any, any> {
             <View
               style={{
                 display: 'flex',
+                // alignContent: 'center',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                padding: 10,
-                backgroundColor: Theme.surface + 'ef'
+                padding: 8,
+                backgroundColor: Theme.surface + 'ef',
+                borderTopColor: Colors.lightGray,
+                borderTopWidth: 1,
+                borderBottomColor: Colors.lightGray,
+                borderBottomWidth: 1
               }}
             >
-              <Text style={[globalStyle.cursiveBold12, { color: Theme.text }]}>33 Results</Text>
+              <Text style={[baseStyle.heading5, { color: Theme.text, justifyContent: 'center' }]}>33 Results</Text>
               <TouchableOpacity activeOpacity={1} onPress={() => null} style={{ flexDirection: 'row' }}>
-                <Icon size={16} name={'filter'} color={Theme.text} />
-                <Text style={[globalStyle.cursiveBold12, { color: Theme.text, marginLeft: 10 }]}>Sort/Filter</Text>
+                <Icon size={16} name={'filter'} color={Theme.text} style={{ justifyContent: 'center' }} />
+                <Text style={[baseStyle.heading5, { color: Theme.text, marginLeft: 10, justifyContent: 'center' }]}>
+                  Sort/Filter
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -222,31 +269,31 @@ const styles = StyleSheet.create({
   searchPlaceholder: {
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: Colors.white,
+    backgroundColor: Theme.darkText,
     borderRadius: 3,
     flexDirection: 'row',
     paddingLeft: 16,
     paddingVertical: 0
   },
   searchPlaceholderText: {
-    ...globalStyle.cursive12,
+    ...baseStyle.heading5,
     color: Theme.background
   },
   headerText: {
-    ...globalStyle.cursiveBold12,
-    color: Colors.white,
-    marginLeft: 24
+    ...baseStyle.heading5,
+    color: Theme.darkText,
+    borderBottomColor: Theme.primary,
+    borderBottomWidth: 1,
+    padding: 4,
+    paddingBottom: 6
   },
   sectionHeading: {
-    ...globalStyle.cursiveBold16,
-    color: Colors.white,
-    marginBottom: 24,
-    marginLeft: 24,
-    marginTop: 16
+    ...baseStyle.heading5,
+    color: Theme.darkText,
+    marginLeft: 12
+    // marginTop: 16
   },
-  containerFlatlist: {
-    marginLeft: 24
-  },
+  containerFlatlist: {},
   iconRight: {
     alignItems: 'center',
     height: 24,

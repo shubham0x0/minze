@@ -7,10 +7,12 @@
  * @format
  */
 
-import { AppRegistry } from 'react-native';
+import { AppRegistry, YellowBox } from 'react-native';
 import App from './app/navigation/index.tsx';
 import { name as appName } from './app.json';
 import StorybookUIRoot from './storybook/index.tsx';
+
+YellowBox.ignoreWarnings(['ViewPagerAndroid']);
 
 /**
  *  @note Leave `SHOW_STORYBOOK` as `false` when checking into git.

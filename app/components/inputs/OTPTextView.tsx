@@ -141,7 +141,7 @@ OTPTextView.defaultProps = {
   defaultValue: '',
   inputCount: 6,
   tintColor: Theme.brandPrimary,
-  offTintColor: Colors.greyLight,
+  offTintColor: Theme.secondary,
   cellTextLength: 1,
   containerStyle: {},
   textInputStyle: {},

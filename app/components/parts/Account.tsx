@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Theme, Colors } from '../../theme';
+import { Theme, Colors, baseStyle } from '../../theme';
 import { Avatar, Icon } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { uploadImage } from '../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
 import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/profile/updateUserInfo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import TextInputMask from 'react-native-text-input-mask';
 
@@ -15,10 +16,11 @@ interface Props {
   user: any;
 }
 interface State {
-  editmode: any;
+  editmode: boolean;
   name: string;
   email: string;
   phone: string;
+  location: string;
 }
 
 class ProfileTabScreen extends Component<Props, State> {
@@ -26,20 +28,70 @@ class ProfileTabScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      editmode: {
-        name: false,
-        email: false
-      },
+      editmode: false,
       name: this.props.user.displayName || '',
       email: this.props.user.email || '',
-      phone: this.props.user.phoneNumber || ''
+      phone: this.props.user.phoneNumber || '',
+      location: 'Rohini, New Delhi'
     };
   }
 
   render() {
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View>
+      <View style={{}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 10 }}>
+          <Avatar
+            size="large"
+            rounded
+            source={{
+              uri: this.props.user.photoURL
+            }}
+            onEditPress={async () => {
+              try {
+                const response = await ImagePicker.launchImageLibraryAsync({
+                  allowsEditing: true,
+                  aspect: [1, 1]
+                });
+                if (!response.cancelled) {
+                  const res = await uploadImage(response, 'profile');
+                  if (res.downloadURL) {
+                    updateUserInfo({
+                      photoURL: res.downloadURL
+                    });
+                  }
+                }
+              } catch (error) {
+                // console.warn(error);
+              }
+            }}
+            showEditButton={this.state.editmode}
+          />
+          <Text style={[baseStyle.heading1, { paddingTop: 20 }]}>{this.state.name}</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center', paddingBottom: 10 }}>
+            <MaterialIcons
+              style={[baseStyle.heading3, { paddingRight: 6 }]}
+              color={Theme.darkText}
+              name="my-location"
+            />
+            <Text style={[baseStyle.heading3, {}]}>{this.state.location}</Text>
+          </View>
+
+          <Text style={[baseStyle.heading5, {}]}>{this.state.phone}</Text>
+          <Text style={[baseStyle.heading5, {}]}>{this.state.email}</Text>
+        </View>
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = (state: { user: any }) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(ProfileTabScreen);
+/*
+*
+<View style={{justifyContent: 'center'}}>
           <TextInput
             onTouchStart={() => {}}
             ref={'textInput'}
@@ -180,41 +232,4 @@ class ProfileTabScreen extends Component<Props, State> {
               </TouchableOpacity>
             ))}
         </View>
-        <View style={{ marginLeft: 10 }}>
-          <Avatar
-            size="large"
-            rounded
-            source={{
-              uri: this.props.user.photoURL
-            }}
-            onEditPress={async () => {
-              try {
-                const response = await ImagePicker.launchImageLibraryAsync({
-                  allowsEditing: true,
-                  aspect: [1, 1]
-                });
-                if (!response.cancelled) {
-                  const res = await uploadImage(response, 'profile');
-                  if (res.downloadURL) {
-                    updateUserInfo({
-                      photoURL: res.downloadURL
-                    });
-                  }
-                }
-              } catch (error) {
-                // console.warn(error);
-              }
-            }}
-            showEditButton
-          />
-        </View>
-      </View>
-    );
-  }
-}
-
-const mapStateToProps = (state: { user: any }) => ({
-  user: state.user
-});
-
-export default connect(mapStateToProps)(ProfileTabScreen);
+*/
