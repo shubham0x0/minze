@@ -7,8 +7,6 @@ source scripts/common.sh
 # for later unzipping.                                                                 #
 ########################################################################################
 
-# source secrets/secrets
-
 MODE='unpack'
 
 while getopts ":m:e:p:" opt; do
@@ -28,6 +26,15 @@ while getopts ":m:e:p:" opt; do
   esac
 done
 FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
+if [ -z $APP_SECRET_PASSPHRASE ]; then
+  echo -e "↪ Checking for secrets/secrets File"
+  FILE=secrets/secrets && test -f $FILE && source $FILE
+  if [ $APP_ENV == $PRODUCTION ]; then
+    APP_SECRET_PASSPHRASE=$PROD_APP_SECRET_PASSPHRASE
+  else
+    APP_SECRET_PASSPHRASE=$DEV_APP_SECRET_PASSPHRASE
+  fi
+fi
 
 echo -e "${YELLOW}- - - - -"
 echo -e "↪  secrets script 🤖"
@@ -51,9 +58,8 @@ if [[ $MODE == "pack" ]]; then
   # Create archive
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
   # Encrypt archive
-
   if [ -z $APP_SECRET_PASSPHRASE ]; then
-    echo -e "↪"
+    echo -e "↪ APP_SECRET_PASSPHRASE Not Set"
     gpg --symmetric $FILE_ROOT.tar.gz
   else
     echo $APP_SECRET_PASSPHRASE | sudo gpg --batch --yes --symmetric --passphrase-fd 0 $FILE_ROOT.tar.gz

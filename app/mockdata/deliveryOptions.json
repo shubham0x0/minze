@@ -1,5 +1,10 @@
 [
-  { "id": 1, "color": "#e69c40", "title": "Food", "background": { "uri": "https://b.zmtcdn.com/data/collections/b53772a204429cb9b42313d6dc22bf3c_1535469399.jpg"} },
+  {
+    "id": 1,
+    "color": "#e69c40",
+    "title": "Food",
+    "background": { "uri": "https://b.zmtcdn.com/data/collections/b53772a204429cb9b42313d6dc22bf3c_1535469399.jpg" }
+  },
   { "id": 2, "color": "#d23739", "title": "Restaurants" },
   { "id": 3, "color": "#6297eb", "title": "Groceries" },
   { "id": 4, "color": "#ea6c45", "title": "Beverages" },
