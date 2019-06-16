@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+// for env vars
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply plugin: "com.google.firebase.firebase-perf"
 apply plugin: 'io.fabric'
 
@@ -98,7 +100,7 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
@@ -151,6 +153,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-config')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-screens')
     implementation project(':lottie-react-native')
     implementation project(':react-native-splash-screen')
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -219,6 +224,7 @@ dependencies {
     /**
      *  For App-Center
      */
+    implementation project(':appcenter-push')
     implementation project(':appcenter-crashes')
     implementation project(':appcenter-analytics')
     implementation project(':appcenter')
@@ -231,7 +237,6 @@ dependencies {
      * RN vector Icons
      */
     // compile project(':react-native-vector-icons')
-    compile project(':react-native-sms-retriever')
     compile project(':react-native-text-input-mask')
 
     /**

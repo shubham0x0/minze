@@ -87,6 +87,9 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SpaceMono-Regular.ttf</string>
+		<string>DonButiqueRegular.ttf</string>
+		<string>spotify-light.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

@@ -36,7 +36,7 @@
 
       <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBGXt1wlLIghClKLhv6r8UqrC8w5njk3UA"/>
+        android:value="@string/RN_GOOGLE_MAPS_API_KEY" />
       <activity
         android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
         android:theme="@style/Base.Theme.AppCompat">

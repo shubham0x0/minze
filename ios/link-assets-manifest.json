@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/DonButiqueRegular.ttf",
+      "sha1": "7887207a26c7f01a184c7b9ff581b47acb7426b0"
+    },
+    {
+      "path": "src/assets/fonts/HelveticaNeue-Roman.otf",
+      "sha1": "1cfb94cd7d3818187fb9670eea88d3b20d629acb"
+    },
+    {
+      "path": "src/assets/fonts/SpaceMono-Regular.ttf",
+      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
+    },
+    {
+      "path": "src/assets/fonts/spotify-light.ttf",
+      "sha1": "b70e54faf9db004427ecae9014eb6ea3c511eab8"
+    }
+  ]
+}

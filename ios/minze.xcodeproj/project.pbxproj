@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,6 +36,11 @@
 		8AEB10120B9847F8905B7DA1 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DD56AE46E45398AF70E2E /* libRNFirebase.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		52C48847F1154D6FB7CF13CE /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A060E96809274924B77FD5B4 /* SpaceMono-Regular.ttf */; };
+		6B444A83E0E2465DBE5EFA67 /* DonButiqueRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09224C0EF6AB4E22ABB38C94 /* DonButiqueRegular.ttf */; };
+		58C4EB955AF74CE4A89375AB /* libAppCenterReactNativePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 948E6488DCFD42D2BEA1D249 /* libAppCenterReactNativePush.a */; };
+		3FC032731B494A79BA2BAB7F /* spotify-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC6D7254C1DC4C3DAC3CB987 /* spotify-light.ttf */; };
+		F00323E93BC44E3A8C142330 /* HelveticaNeue-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 668D925026914222A788A21B /* HelveticaNeue-Roman.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -423,6 +427,12 @@
 		F2C89EE2F4607D097253AE26 /* Pods-minze-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minze-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-minze-tvOSTests/Pods-minze-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		F8BEF5BD567D4E87896A5D31 /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
 		FA3979E0932A453E8AC96847 /* libAppCenterReactNativeAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeAnalytics.a; sourceTree = "<group>"; };
+		A060E96809274924B77FD5B4 /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; name = "SpaceMono-Regular.ttf"; path = "../src/assets/fonts/SpaceMono-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		09224C0EF6AB4E22ABB38C94 /* DonButiqueRegular.ttf */ = {isa = PBXFileReference; name = "DonButiqueRegular.ttf"; path = "../src/assets/fonts/DonButiqueRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1D56CEF682DC465E8B501273 /* AppCenterReactNativePush.xcodeproj */ = {isa = PBXFileReference; name = "AppCenterReactNativePush.xcodeproj"; path = "../node_modules/appcenter-push/ios/AppCenterReactNativePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		948E6488DCFD42D2BEA1D249 /* libAppCenterReactNativePush.a */ = {isa = PBXFileReference; name = "libAppCenterReactNativePush.a"; path = "libAppCenterReactNativePush.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		FC6D7254C1DC4C3DAC3CB987 /* spotify-light.ttf */ = {isa = PBXFileReference; name = "spotify-light.ttf"; path = "../src/assets/fonts/spotify-light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		668D925026914222A788A21B /* HelveticaNeue-Roman.otf */ = {isa = PBXFileReference; name = "HelveticaNeue-Roman.otf"; path = "../src/assets/fonts/HelveticaNeue-Roman.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +469,7 @@
 				88FF8A0BE8E24F0DA6283FD2 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
 				3A914683E2BC416D9EBC22DD /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				795345FC1C2049FDB8A182F5 /* libRNTextInputMask.a in Frameworks */,
+				58C4EB955AF74CE4A89375AB /* libAppCenterReactNativePush.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +722,7 @@
 				D26F303092F847DABBE284B4 /* AppCenterReactNativeAnalytics.xcodeproj */,
 				F8BEF5BD567D4E87896A5D31 /* AppCenterReactNativeCrashes.xcodeproj */,
 				5ABFE335CF6C4030AE444869 /* RNTextInputMask.xcodeproj */,
+				1D56CEF682DC465E8B501273 /* AppCenterReactNativePush.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -735,6 +747,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				0F65422D7FF42AB1B1B439CC /* Pods */,
 				1856F40F22901D290090A1EB /* Recovered References */,
+				0C09B70DD5C74E2BAD5A123B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -758,6 +771,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		0C09B70DD5C74E2BAD5A123B /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				A060E96809274924B77FD5B4 /* SpaceMono-Regular.ttf */,
+				09224C0EF6AB4E22ABB38C94 /* DonButiqueRegular.ttf */,
+				FC6D7254C1DC4C3DAC3CB987 /* spotify-light.ttf */,
+				668D925026914222A788A21B /* HelveticaNeue-Roman.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1250,6 +1275,10 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4A82BCB9E5F746F694CE61F7 /* AppCenter-Config.plist in Resources */,
 				1800C47B2291097D007B2624 /* GoogleService-Info.plist in Resources */,
+				52C48847F1154D6FB7CF13CE /* SpaceMono-Regular.ttf in Resources */,
+				6B444A83E0E2465DBE5EFA67 /* DonButiqueRegular.ttf in Resources */,
+				3FC032731B494A79BA2BAB7F /* spotify-light.ttf in Resources */,
+				F00323E93BC44E3A8C142330 /* HelveticaNeue-Roman.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,12 +1444,14 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
 				);
 				INFOPLIST_FILE = minzeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1450,12 +1481,14 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
 				);
 				INFOPLIST_FILE = minzeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1490,6 +1523,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
 				);
 				INFOPLIST_FILE = minze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1524,6 +1558,7 @@
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
 					"$(SRCROOT)/../node_modules/react-native-text-input-mask/ios/**",
+					"$(SRCROOT)/../node_modules/appcenter-push/ios/AppCenterReactNativePush",
 				);
 				INFOPLIST_FILE = minze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -8,17 +8,16 @@
       "name": "Debug Android",
       "program": "${workspaceRoot}/.vscode/launchReactNative.js",
       "type": "reactnative",
-      "request": "launch",
-      "platform": "android",
+      "request": "attach",
+      // "platform": "android",
       "sourceMaps": true,
       "outDir": "${workspaceRoot}/.vscode/.react"
     },
-
     {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      "url": "http://localhost:8080",
+      "url": "http://localhost:8081/debugger-ui/",
       "webRoot": "${workspaceFolder}"
     },
     {

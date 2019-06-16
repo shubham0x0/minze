@@ -6,6 +6,7 @@
  */
 
 #import "AppDelegate.h"
+#import <AppCenterReactNativePush/AppCenterReactNativePush.h>
 #import <AppCenterReactNativeCrashes/AppCenterReactNativeCrashes.h>
 #import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
 #import <AppCenterReactNative/AppCenterReactNative.h>
@@ -24,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [AppCenterReactNativePush register];  // Initialize AppCenter push
   [FIRApp configure];
   //NOTE: This API KEY SHOULD BE RESTRICTED USING BUNDLE.ID TO PREVENT LEAKAGE
   [GMSServices provideAPIKey:@"AIzaSyD3egb-qCjFYUwZjn3TjrqKrEVTGZoZn48"]; // add this line using the api key obtained from Google Console
