@@ -99,8 +99,10 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
  * The advantage is the size of the APK is reduced by about 4MB.
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
+ * appcenter does not support this.
+ * REF: https://github.com/microsoft/react-native-code-push/issues/1607
  */
-def enableSeparateBuildPerCPUArchitecture = true
+def enableSeparateBuildPerCPUArchitecture = false
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.

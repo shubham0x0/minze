@@ -2,6 +2,9 @@ GOOGLE_JSON_FILE=$APPCENTER_SOURCE_DIRECTORY/android/app/google-services.json
 ## SEE:
 # https://www.jimbobbennett.io/updating-your-google-service-json-from-an-appcenter-environment-variable/
 
+echo "Creating an empty google-services.json file"
+touch $GOOGLE_JSON_FILE
+
 if [ -e "$GOOGLE_JSON_FILE" ]
 then
     echo "Updating Google Json"
@@ -10,7 +13,7 @@ then
 
     echo "File content:"
     cat $GOOGLE_JSON_FILE
-
+    echo "Successfuly generated google-services.json"
 fi
 
 # # Creates an .env from existing env files for use with react-native-config
