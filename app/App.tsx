@@ -21,13 +21,13 @@ import { RootContextProvider } from './context';
 useScreens();
 
 interface Props {}
-const App = (props: Props) => {
+const App: React.FC = (props: Props) => {
   return (
     <RootContextProvider>
       <Provider store={store}>
         <PersistGate loading={<LoadingAnimated />} persistor={persistedStore}>
           <PaperProvider theme={papertheme}>
-            <RootNavigator />
+            <RootNavigator {...props} />
           </PaperProvider>
         </PersistGate>
       </Provider>
