@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { Theme, Layout } from '../../theme';
+import { Colors, Layout } from '../../theme';
 
 // components
 import TouchableIcon from '../touchable/TouchIcon';
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 16,
     textAlign: 'center'
   }

@@ -3,7 +3,7 @@ import { Platform, Text } from 'react-native';
 import Dialog, { DialogContent, ScaleAnimation, SlideAnimation } from 'react-native-popup-dialog';
 import TouchableOpacityButton from '../touchable/TouchableOpacityButton';
 
-import { FontWeights, Theme } from '../../theme';
+import { FontWeights, Colors } from '../../theme';
 
 const AskUserModal = (props: {
   onSuccess: any;
@@ -83,7 +83,7 @@ const AskUserModal = (props: {
             paddingTop: 10,
             paddingBottom: 10,
             marginTop: 15,
-            backgroundColor: Theme.grey
+            backgroundColor: Colors.grey
           }}
         >
           <Text style={{ color: successButtonTextColor, fontSize: 22 }}>{successButtonText}</Text>
@@ -98,7 +98,7 @@ const AskUserModal = (props: {
             paddingTop: 10,
             paddingBottom: 10,
             marginTop: 15,
-            backgroundColor: Theme.primary
+            backgroundColor: Colors.primary
           }}
         >
           <Text style={{ ...FontWeights.light, color: failureButtonTextColor, fontSize: 22 }}>{failureButtonText}</Text>

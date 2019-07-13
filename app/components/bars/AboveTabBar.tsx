@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Layout, globalStyle } from '../../theme';
+import { Colors, Layout, globalStyle } from '../../theme';
 
 interface Props {
   navigation: any;
@@ -42,7 +42,7 @@ class AboveTabBar extends React.Component<Props, State> {
     const { navigation, info } = this.props;
     const { favorited, paused } = this.state;
 
-    const favoriteColor = favorited ? Theme.brandPrimary : Theme.white;
+    const favoriteColor = favorited ? Colors.brandPrimary : Colors.white;
     const favoriteIcon = favorited ? 'heart' : 'heart-o';
     const iconPlay = paused ? 'play-circle' : 'pause-circle';
 
@@ -73,7 +73,7 @@ class AboveTabBar extends React.Component<Props, State> {
                 marginTop: 4
               }}
             >
-              <FontAwesome color={Theme.brandPrimary} name="bluetooth-b" size={14} />
+              <FontAwesome color={Colors.brandPrimary} name="bluetooth-b" size={14} />
               <Text style={styles.device}>Caleb&apos;s Beatsx</Text>
             </View>
           </View>
@@ -84,7 +84,7 @@ class AboveTabBar extends React.Component<Props, State> {
           onPress={this.togglePlay}
           style={styles.containerIcon}
         >
-          <FontAwesome color={Theme.white} name={iconPlay} size={28} />
+          <FontAwesome color={Colors.white} name={iconPlay} size={28} />
         </TouchableOpacity>
       </TouchableOpacity>
     );
@@ -93,13 +93,13 @@ class AboveTabBar extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   artist: {
-    color: Theme.greyLight,
+    color: Colors.greyLight,
     fontSize: 12
   },
   container: {
     alignSelf: 'center',
-    backgroundColor: Theme.grey,
-    borderBottomColor: Theme.blackBg,
+    backgroundColor: Colors.grey,
+    borderBottomColor: Colors.blackBg,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -119,13 +119,13 @@ const styles = StyleSheet.create({
     width: Layout.window.width - 100
   },
   device: {
-    color: Theme.brandPrimary,
+    color: Colors.brandPrimary,
     fontSize: 10,
     marginLeft: 4,
     textTransform: 'uppercase'
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 12
   }
 });

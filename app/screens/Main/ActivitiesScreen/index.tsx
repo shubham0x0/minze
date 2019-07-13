@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react';
-import { Text, View, ScrollView, ImageBackground, FlatList, RefreshControl, StatusBar } from 'react-native';
+import { Text, View, ScrollView, ImageBackground, FlatList, RefreshControl } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { connect } from 'react-redux';
-import { styles, Layout, Theme, statusbarMargin } from '../../theme';
-import { Card, Avatar, Title, Paragraph, Subheading, Divider } from 'react-native-paper';
-import { getCollections, getActivities } from '../../utils/getData';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import { Layout, Colors } from '../../../theme';
+import { Card, Title, Paragraph, Subheading, Divider } from 'react-native-paper';
+import { getCollections, getActivities } from '../../../utils/getData';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { SearchBar } from 'react-native-elements';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
@@ -24,7 +22,7 @@ interface State {
   isFetching: boolean;
   searchText: string;
 }
-class EditProfileScreen extends Component<Props, State> {
+class ActivitiesScreen extends Component<Props, State> {
   carousel: any;
 
   state = {
@@ -56,7 +54,7 @@ class EditProfileScreen extends Component<Props, State> {
     //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
     //   this.setState({ activitiesData: obj });
     // });
-    const activities = getActivities(location);
+    const activities = getActivities();
     this.setState({ activitiesData: activities });
   };
 
@@ -82,7 +80,7 @@ class EditProfileScreen extends Component<Props, State> {
   renderRestautrantsItem({ item }: any) {
     const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
     return (
-      <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
+      <Card style={{ paddingTop: 20, backgroundColor: Colors.background }}>
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <ImageBackground
@@ -123,7 +121,7 @@ class EditProfileScreen extends Component<Props, State> {
 
   filterData = (data: any[]) =>
     data.filter((item: any) => {
-      const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
+      const { name, cuisines } = item.restaurant;
       // console.warn(JSON.stringify(item));
       let temp = 0;
       temp += name.toLowerCase().includes(this.state.searchText.toLowerCase());
@@ -142,22 +140,9 @@ class EditProfileScreen extends Component<Props, State> {
         <Text>{JSON.stringify(this.props.user)}</Text>
       </View>
     ) : (
-      <View style={{ backgroundColor: Theme.background }}>
-        <SearchBar
-          lightTheme
-          value={this.state.searchText}
-          onChangeText={this.onChangeSearchText}
-          placeholder="Search for restaurant and food"
-          inputContainerStyle={{ backgroundColor: Theme.lightgrey }}
-          // containerStyle={{
-          //   borderTopWidth: 0,
-          //   borderBottomWidth: 0,
-          //   paddingTop: statusbarMargin,
-          //   backgroundColor: '#666'
-          // }}
-        />
+      <View style={{ backgroundColor: Colors.background }}>
         <ScrollView
-          style={{ paddingTop: 28, backgroundColor: Theme.background }}
+          style={{ paddingTop: 28, backgroundColor: Colors.background }}
           refreshControl={
             <RefreshControl refreshing={this.state.isFetching} onRefresh={async () => this.onRefresh()} />
           }
@@ -200,4 +185,4 @@ const mapStateToProps = (state: any) => ({
   location: state.location
 });
 
-export default connect(mapStateToProps)(EditProfileScreen);
+export default connect(mapStateToProps)(ActivitiesScreen);

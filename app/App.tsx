@@ -7,7 +7,7 @@
  * @format
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
@@ -16,13 +16,14 @@ import LoadingAnimated from './components/loaders/LoadingAnimated';
 import { papertheme } from './theme';
 import { persistedStore, store } from './store';
 import RootNavigator from './navigation/RootNavigator';
+import { RootContextProvider } from './context';
+
 useScreens();
 
 interface Props {}
-interface State {}
-export default class App extends Component<Props, State> {
-  render() {
-    return (
+const App = (props: Props) => {
+  return (
+    <RootContextProvider>
       <Provider store={store}>
         <PersistGate loading={<LoadingAnimated />} persistor={persistedStore}>
           <PaperProvider theme={papertheme}>
@@ -30,6 +31,7 @@ export default class App extends Component<Props, State> {
           </PaperProvider>
         </PersistGate>
       </Provider>
-    );
-  }
-}
+    </RootContextProvider>
+  );
+};
+export default App;

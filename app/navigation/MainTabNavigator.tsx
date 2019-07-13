@@ -3,14 +3,14 @@ import { Platform, Image } from 'react-native';
 
 import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import TestScreen from '../screens/TestScreen';
-import { Theme, Fonts } from '../theme';
+import { Colors, Fonts } from '../theme';
 import TabBarIcon from '../components/icons/TabBarIcon';
-import ProfileTabScreen from '../screens/App/AccountScreen';
-import CartScreen from '../screens/App/CartScreen';
-import ExploreScreen from '../screens/App/ExploreScreen';
-import ActivitiesScreen from '../screens/App/ActivitiesScreen';
+import ProfileTabScreen from '../screens/Main/AccountScreen';
+import CartScreen from '../screens/Main/CartScreen';
+import ExploreScreen from '../screens/Main/ExploreScreen';
+import ActivitiesScreen from '../screens/Main/ActivitiesScreen';
 import CustomTabBar from '../components/bars/CustomTabBar';
-import Album from '../screens/App/ExpandedListScreen';
+import Album from '../screens/Main/ExpandedListScreen';
 import { images } from '../assets/preload';
 import StorybookUIRoot from '../../storybook';
 
@@ -48,7 +48,7 @@ export const ExploreStack = createStackNavigator(
         fontWeight: 'normal'
       },
       headerStyle: {
-        backgroundColor: Theme.navigator,
+        backgroundColor: Colors.navigator,
         elevation: 0
       }
     }
@@ -176,12 +176,12 @@ export default createMaterialTopTabNavigator(
       showIcon: true,
       scrollEnabled: false,
       pressOpacity: 0.8,
-      pressColor: Theme.grey,
+      pressColor: Colors.grey,
       allowFontScaling: true,
       indicatorStyle: {
         height: 0,
         borderRadius: 0,
-        backgroundColor: Theme.greyLight
+        backgroundColor: Colors.greyLight
       },
       iconStyle: {
         height: 32,
@@ -193,13 +193,13 @@ export default createMaterialTopTabNavigator(
         fontSize: 8,
         fontFamily: Fonts.regular
       },
-      activeBackgroundColor: Theme.white,
-      activeTintColor: Theme.white,
-      inactiveTintColor: Theme.greyInactive,
+      activeBackgroundColor: Colors.white,
+      activeTintColor: Colors.white,
+      inactiveTintColor: Colors.greyInactive,
       style: {
-        backgroundColor: Theme.grey,
+        backgroundColor: Colors.grey,
         borderTopWidth: 0,
-        borderTopColor: Theme.white
+        borderTopColor: Colors.white
       }
     }
   }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 import { TextInput } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -140,8 +140,8 @@ class OTPTextView extends PureComponent<Props, State> {
 OTPTextView.defaultProps = {
   defaultValue: '',
   inputCount: 6,
-  tintColor: Theme.brandPrimary,
-  offTintColor: Theme.greyLight,
+  tintColor: Colors.brandPrimary,
+  offTintColor: Colors.greyLight,
   cellTextLength: 1,
   containerStyle: {},
   textInputStyle: {},

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Alert, Animated, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 // components
 import LinearGradient from '../../components/gradients/LinearGradient';
 import TouchableIcon from '../../components/touchable/TouchIcon';
 
-import { Theme, Layout, Fonts } from '../../theme';
-import { NavigationScreenProp, NavigationRoute, NavigationEventSubscription } from 'react-navigation';
+import { Colors, Layout, Fonts } from '../../theme';
+import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute<any>>;
@@ -50,17 +50,17 @@ class Album extends React.Component<Props, State> {
     return (
       <View style={localstyles.containerHeader}>
         <Animated.View style={[localstyles.headerLinear, { opacity: opacityHeading }]}>
-          <LinearGradient fill={Theme.blue} height={89} />
+          <LinearGradient fill={Colors.blue} height={89} />
         </Animated.View>
         <View style={localstyles.header}>
           <TouchableIcon
-            icon={<Feather color={Theme.white} name="chevron-left" />}
+            icon={<Feather color={Colors.white} name="chevron-left" />}
             onPress={() => navigation.goBack(null)}
           />
           <Animated.View style={{ opacity: opacityShuffle }}>
             <Text style={localstyles.headerTitle}>Hello, Testing</Text>
           </Animated.View>
-          <TouchableIcon icon={<Feather color={Theme.white} name="more-horizontal" />} onPress={() => null} />
+          <TouchableIcon icon={<Feather color={Colors.white} name="more-horizontal" />} onPress={() => null} />
         </View>
       </View>
     );
@@ -69,19 +69,19 @@ class Album extends React.Component<Props, State> {
 
 const localstyles = StyleSheet.create({
   albumInfo: {
-    color: Theme.greyInactive,
+    color: Colors.greyInactive,
     fontFamily: Fonts.monospace,
     fontSize: 12,
     marginBottom: 48
   },
   btn: {
-    backgroundColor: Theme.brandPrimary,
+    backgroundColor: Colors.brandPrimary,
     borderRadius: 25,
     height: 50,
     width: 220
   },
   btnText: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.helvitica,
     fontSize: 16,
     letterSpacing: 1,
@@ -101,7 +101,7 @@ const localstyles = StyleSheet.create({
     zIndex: 100
   },
   containerImage: {
-    shadowColor: Theme.black,
+    shadowColor: Colors.black,
     shadowOffset: { height: 8, width: 0 },
     shadowOpacity: 0.8,
     shadowRadius: 6
@@ -117,14 +117,14 @@ const localstyles = StyleSheet.create({
   containerShuffle: {
     alignItems: 'center',
     height: 50,
-    shadowColor: Theme.blackBg,
+    shadowColor: Colors.blackBg,
     shadowOffset: { height: -10, width: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 20
   },
   containerSongs: {
     alignItems: 'center',
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     minHeight: 540
   },
   containerSticky: {
@@ -136,7 +136,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   downloadText: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.donButique,
     fontSize: 18
   },
@@ -155,7 +155,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   headerTitle: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.bold,
     fontSize: 16,
     marginTop: 2,
@@ -176,7 +176,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.bold,
     fontSize: 20,
     marginBottom: 8,

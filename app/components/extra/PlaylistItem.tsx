@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { globalStyle, Theme } from '../../theme';
+import { globalStyle, Colors } from '../../theme';
 
 const PlaylistItem = ({ bgColor, onPress, title }: any) => (
   <TouchableOpacity
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     paddingTop: 12
   },
   playlistTitle: {
-    color: Theme.white,
+    color: Colors.white,
     // fontFamily: fonts.spotifyBold,
     fontSize: 22
   }

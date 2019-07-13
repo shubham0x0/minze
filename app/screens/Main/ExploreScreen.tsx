@@ -1,17 +1,17 @@
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import React from 'react';
-import { Text, View, Animated, StyleSheet, ImageBackground, FlatList, RefreshControl } from 'react-native';
-
+/* eslint-disable @typescript-eslint/camelcase */
+import React, { Component } from 'react';
+import { Text, View, ScrollView, ImageBackground, FlatList, RefreshControl } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { Layout, Theme } from '../../theme';
+import { connect } from 'react-redux';
+import { Layout, Colors, styles, statusbarMargin } from '../../theme';
 import { Card, Title, Paragraph, Subheading, Divider } from 'react-native-paper';
 import { getCollections, getActivities } from '../../utils/getData';
-import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { SearchBar } from 'react-native-elements';
 
-// import { colors, device, gStyle } from '../api';
 interface Props {
   info: any;
-  navigation: NavigationScreenProp<NavigationRoute<any>>;
+  navigation: any;
   user: any;
   location: any;
 }
@@ -22,20 +22,17 @@ interface State {
   isFetching: boolean;
   searchText: string;
 }
-
-class Home extends React.Component<Props, State> {
+class ExploreScreen extends Component<Props, State> {
   carousel: any;
 
   state = {
     collectionData: [],
     activitiesData: {
-      /* eslint-disable @typescript-eslint/camelcase */
       nearby_restaurants: []
     },
     searchText: '',
     errorMessage: null,
-    isFetching: false,
-    scrollY: new Animated.Value(0)
+    isFetching: false
   };
 
   componentWillMount() {
@@ -57,7 +54,7 @@ class Home extends React.Component<Props, State> {
     //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
     //   this.setState({ activitiesData: obj });
     // });
-    const activities = getActivities(location);
+    const activities = getActivities();
     this.setState({ activitiesData: activities });
   };
 
@@ -83,7 +80,7 @@ class Home extends React.Component<Props, State> {
   renderRestautrantsItem({ item }: any) {
     const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
     return (
-      <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
+      <Card style={{ paddingTop: 20, backgroundColor: Colors.background }}>
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <ImageBackground
@@ -97,13 +94,19 @@ class Home extends React.Component<Props, State> {
               <View style={{ paddingTop: 30, flex: 1, flexWrap: 'wrap' }}>
                 <Divider />
                 <View style={{ flexDirection: 'row' }}>
-                  <FontAwesome style={{ fontSize: 12, alignSelf: 'center', paddingRight: 4 }} name="star" />
+                  <FontAwesome
+                    style={{ color: Colors.greyLight, fontSize: 12, alignSelf: 'center', paddingRight: 4 }}
+                    name="star"
+                  />
                   <Subheading style={{ fontSize: 12 }}>
                     {user_rating.aggregate_rating && user_rating.aggregate_rating}
                   </Subheading>
                   <Text style={{ paddingLeft: 16, fontSize: 16, alignSelf: 'center', paddingRight: 16 }}>•</Text>
 
-                  <FontAwesome style={{ fontSize: 12, alignSelf: 'center', paddingRight: 4 }} name="rupee" />
+                  <FontAwesome
+                    style={{ color: Colors.greyLight, fontSize: 12, alignSelf: 'center', paddingRight: 4 }}
+                    name="rupee"
+                  />
                   <Subheading style={{ fontSize: 12 }}>
                     {average_cost_for_two && average_cost_for_two} for two{' '}
                   </Subheading>
@@ -137,33 +140,24 @@ class Home extends React.Component<Props, State> {
   };
 
   render() {
-    const { scrollY } = this.state;
-
-    const opacityIn = scrollY.interpolate({
-      inputRange: [0, 128],
-      outputRange: [0, 1],
-      extrapolate: 'clamp'
-    });
-
-    const opacityOut = scrollY.interpolate({
-      inputRange: [0, 88],
-      outputRange: [1, 0],
-      extrapolate: 'clamp'
-    });
-
-    return (
-      <React.Fragment>
-        {Layout.iPhoneX && <Animated.View style={[localstyles.iPhoneNotch, { opacity: opacityIn }]} />}
-        <Animated.View style={[localstyles.containerHeader, { opacity: opacityOut }]}>
-          <FontAwesome color={Theme.white} name="cog" size={28} />
-        </Animated.View>
-
-        <Animated.ScrollView
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-          // style={styles.container}
-          style={{ paddingTop: 28, backgroundColor: Theme.background }}
+    return this.state.errorMessage ? (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>{this.state.errorMessage}</Text>
+        <Text>{JSON.stringify(this.props.user)}</Text>
+      </View>
+    ) : (
+      <View style={[styles.container, { paddingTop: statusbarMargin, backgroundColor: Colors.grey }]}>
+        <SearchBar
+          value={this.state.searchText}
+          onChangeText={this.onChangeSearchText}
+          placeholder="Search"
+          containerStyle={{ backgroundColor: Colors.grey, borderTopWidth: 0 }}
+          inputContainerStyle={{ paddingLeft: 10, backgroundColor: Colors.background }}
+          placeholderTextColor={Colors.greyLight}
+        />
+        {/* <Searchbar placeholder="Search" onChangeText={query => {}} value={firstQuery} /> */}
+        <ScrollView
+          style={{ paddingTop: 28, backgroundColor: Colors.background }}
           refreshControl={
             <RefreshControl refreshing={this.state.isFetching} onRefresh={async () => this.onRefresh()} />
           }
@@ -195,32 +189,15 @@ class Home extends React.Component<Props, State> {
           )}
 
           {/* <Text>{JSON.stringify(this.state.activitiesData.nearby_restaurants, null, 4)}</Text> */}
-        </Animated.ScrollView>
-      </React.Fragment>
+        </ScrollView>
+      </View>
     );
   }
 }
-
-const localstyles = StyleSheet.create({
-  containerHeader: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingTop: Layout.iPhoneX ? 60 : 36,
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    zIndex: 10
-  },
-  iPhoneNotch: {
-    backgroundColor: Theme.black70,
-    height: 44,
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    zIndex: 20
-  }
+const mapStateToProps = (state: any) => ({
+  info: state.collectionData,
+  user: state.user,
+  location: state.location
 });
 
-export default Home;
+export default connect(mapStateToProps)(ExploreScreen);

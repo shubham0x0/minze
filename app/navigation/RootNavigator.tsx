@@ -8,7 +8,7 @@ import NavigationService from '../utils/NavigationService';
 import LoadingAnimated from '../components/loaders/LoadingAnimated';
 import createApolloClient from '../graphql';
 import { loadAssetsAsync } from '../assets/preload';
-import { Theme } from '../theme';
+import { Colors } from '../theme';
 import { persistedStore } from '../store';
 
 interface Props {
@@ -44,7 +44,7 @@ class RootNavigator extends React.Component<Props, State> {
     return (
       // @ts-ignore
       <ApolloProvider store={persistedStore} client={this.state.client}>
-        <StatusBar backgroundColor={Theme.statusbar} translucent />
+        <StatusBar backgroundColor={Colors.statusbar} translucent />
         <AppNavigator
           ref={navigatorRef => {
             NavigationService.setTopLevelNavigator(navigatorRef);

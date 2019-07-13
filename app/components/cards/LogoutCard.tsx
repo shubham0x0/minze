@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { APP_URL } from '../../config';
-import { Theme } from '../../theme';
-import { Icon, Button } from 'react-native-elements';
-import LinearGradient from 'react-native-linear-gradient';
+import { Colors } from '../../theme';
+import { Button } from 'react-native-elements';
 
 import { handleUrl, onPressLogoutAsync } from '../../utils';
 
@@ -19,10 +18,10 @@ export const LogOutCard = () => (
         name: 'security',
         type: 'material',
         size: 15,
-        color: Theme.greyLight
+        color: Colors.greyLight
       }}
       title="Privacy policy"
-      titleStyle={{ color: Theme.greyLight }}
+      titleStyle={{ color: Colors.greyLight }}
     />
     <Button
       type="clear"
@@ -34,10 +33,10 @@ export const LogOutCard = () => (
         name: 'infocirlceo',
         type: 'antdesign',
         size: 15,
-        color: Theme.greyLight
+        color: Colors.greyLight
       }}
       title="Licences & Terms of Service"
-      titleStyle={{ color: Theme.greyLight }}
+      titleStyle={{ color: Colors.greyLight }}
     />
     <Button
       type="clear"
@@ -47,10 +46,10 @@ export const LogOutCard = () => (
         name: 'logout',
         type: 'antdesign',
         size: 15,
-        color: Theme.greyLight
+        color: Colors.greyLight
       }}
       title="Logout"
-      titleStyle={{ color: Theme.greyLight }}
+      titleStyle={{ color: Colors.greyLight }}
     />
   </View>
 );
@@ -72,20 +71,20 @@ const styles = StyleSheet.create({
     margin: 10
   },
   logOutButton: {
-    backgroundColor: Theme.darkred,
-    borderColor: Theme.darkred,
+    backgroundColor: Colors.darkred,
+    borderColor: Colors.darkred,
     borderRadius: 4,
     borderWidth: 1,
     marginTop: 10,
     padding: 10
   },
   ppContainer: {
-    borderColor: Theme.grey,
+    borderColor: Colors.grey,
     borderWidth: 1,
     padding: 10
   },
   tncContainer: {
-    borderColor: Theme.grey,
+    borderColor: Colors.grey,
     borderWidth: 1,
     marginTop: 10,
     padding: 10

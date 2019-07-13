@@ -1,7 +1,7 @@
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 
 interface Props {
   name: string;
@@ -18,7 +18,7 @@ export default class TabBarIcon extends React.Component<Props, {}> {
         style={{
           alignItems: 'center'
         }}
-        color={this.props.focused ? Theme.tabIconSelected : Theme.tabIconDefault}
+        color={this.props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
     );
   }

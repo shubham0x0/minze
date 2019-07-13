@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Text, Alert, FlatList, View, StyleSheet } from 'react-native';
+import { Text, FlatList, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { DropDownAlertStyles, styles, Theme, statusbarMargin } from '../../theme';
-import { SettingsList } from '../../components/cards/SettingsList';
+import { DropDownAlertStyles, styles, Colors } from '../../../theme';
+import { SettingsList } from '../../../components/cards/SettingsList';
 import DropdownAlert from 'react-native-dropdownalert';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
-import Account from '../../components/parts/Account';
+import Account from '../../../components/parts/Account';
 import { Header } from 'react-native-elements';
-import { onPressLogoutAsync } from '../../utils';
+import { onPressLogoutAsync } from '../../../utils';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationRoute<any>>;
@@ -55,8 +55,8 @@ class AccountScreen extends Component<Props, State> {
         <Header
           placement="left"
           containerStyle={{
-            backgroundColor: Theme.grey,
-            borderBottomColor: Theme.blackBg,
+            backgroundColor: Colors.grey,
+            borderBottomColor: Colors.blackBg,
             borderBottomWidth: StyleSheet.hairlineWidth,
             flexDirection: 'row',
             justifyContent: 'space-between'

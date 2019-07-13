@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   ActivityIndicator,
   Clipboard,
-  Image,
   Share,
   StyleSheet,
   TouchableOpacity,
@@ -13,7 +12,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { uploadImage } from '../../utils/uploadPhoto';
-import { Theme, styles, Layout } from '../../theme';
+import { Colors, Layout } from '../../theme';
 import { Avatar, Modal, Portal, Button, Text } from 'react-native-paper';
 interface Props {
   getImage: (uploadResponse: any) => void;
@@ -183,7 +182,7 @@ export default class UploadAvatar extends Component<Props, State> {
                 <Text
                   style={{
                     paddingTop: 10,
-                    color: Theme.infoText
+                    color: Colors.infoText
                   }}
                 >
                   Take from Camera
@@ -195,7 +194,7 @@ export default class UploadAvatar extends Component<Props, State> {
                 <Text
                   style={{
                     paddingTop: 10,
-                    color: Theme.infoText
+                    color: Colors.infoText
                   }}
                 >
                   Add from Files
@@ -215,12 +214,12 @@ const localstyles = StyleSheet.create({
     justifyContent: 'center'
   },
   headText: {
-    color: Theme.dark,
+    color: Colors.dark,
     fontSize: 14
   },
   headingContainer: {
-    backgroundColor: Theme.statusbar,
-    borderColor: Theme.statusbar
+    backgroundColor: Colors.statusbar,
+    borderColor: Colors.statusbar
   },
   maybeRenderContainer: {
     justifyContent: 'center'
@@ -235,18 +234,18 @@ const localstyles = StyleSheet.create({
   maybeRenderImageText: {},
   maybeRenderUploading: {
     alignItems: 'center',
-    backgroundColor: Theme.statusbar,
+    backgroundColor: Colors.statusbar,
     justifyContent: 'center'
   },
   monoText: {
-    color: Theme.infoText,
+    color: Colors.infoText,
     fontFamily: 'space-mono',
     fontSize: 17,
     textAlign: 'center'
   },
   touchableButton: {
     alignItems: 'center',
-    backgroundColor: Theme.statusbar,
+    backgroundColor: Colors.statusbar,
     justifyContent: 'center',
     padding: 10
   }

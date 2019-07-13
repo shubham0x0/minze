@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Text, View, Button, ScrollView, StatusBar } from 'react-native';
+import React from 'react';
+import { Text, View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { styles, Theme } from '../../theme';
-import MapComponent from '../../components/map/MapComponent';
+import { styles } from '../../../theme';
+import MapComponent from '../../../components/map/MapComponent';
 
 const CartScreen = (props: any) => (
   <View style={[styles.container, { padding: 20 }]}>

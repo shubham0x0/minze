@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView, ImageBackground, FlatList, RefreshControl } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { connect } from 'react-redux';
-import { Layout, Theme, statusbarMargin } from '../../theme';
+import { Layout, Colors } from '../../theme';
 import { Card, Title, Paragraph, Subheading, Divider } from 'react-native-paper';
 import { getCollections, getActivities } from '../../utils/getData';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -23,7 +23,7 @@ interface State {
   isFetching: boolean;
   searchText: string;
 }
-class ActivitiesScreen extends Component<Props, State> {
+class HomeScreen extends Component<Props, State> {
   carousel: any;
 
   state = {
@@ -55,7 +55,7 @@ class ActivitiesScreen extends Component<Props, State> {
     //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
     //   this.setState({ activitiesData: obj });
     // });
-    const activities = getActivities(location);
+    const activities = getActivities();
     this.setState({ activitiesData: activities });
   };
 
@@ -81,7 +81,7 @@ class ActivitiesScreen extends Component<Props, State> {
   renderRestautrantsItem({ item }: any) {
     const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
     return (
-      <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
+      <Card style={{ paddingTop: 20, backgroundColor: Colors.background }}>
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <ImageBackground
@@ -141,9 +141,22 @@ class ActivitiesScreen extends Component<Props, State> {
         <Text>{JSON.stringify(this.props.user)}</Text>
       </View>
     ) : (
-      <View style={{ backgroundColor: Theme.background }}>
+      <View style={{ backgroundColor: Colors.background }}>
+        <SearchBar
+          lightTheme
+          value={this.state.searchText}
+          onChangeText={this.onChangeSearchText}
+          placeholder="Search for restaurant and food"
+          inputContainerStyle={{ backgroundColor: Colors.lightgrey }}
+          // containerStyle={{
+          //   borderTopWidth: 0,
+          //   borderBottomWidth: 0,
+          //   paddingTop: statusbarMargin,
+          //   backgroundColor: Theme.primary
+          // }}
+        />
         <ScrollView
-          style={{ paddingTop: 28, backgroundColor: Theme.background }}
+          style={{ paddingTop: 28, backgroundColor: Colors.background }}
           refreshControl={
             <RefreshControl refreshing={this.state.isFetching} onRefresh={async () => this.onRefresh()} />
           }
@@ -186,4 +199,4 @@ const mapStateToProps = (state: any) => ({
   location: state.location
 });
 
-export default connect(mapStateToProps)(ActivitiesScreen);
+export default connect(mapStateToProps)(HomeScreen);

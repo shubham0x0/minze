@@ -1,0 +1,2 @@
+export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
+export const RESET_STATE = 'RESET_STATE'

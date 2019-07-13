@@ -1,4 +1,4 @@
-import { Theme } from '../constants';
+import { Colors } from '../constants';
 
 export const globalStyle = {
   activeOpacity: 0.7,
@@ -24,7 +24,7 @@ export const globalStyle = {
     justifyContent: 'space-between'
   },
   navHeaderStyle: {
-    backgroundColor: Theme.black,
+    backgroundColor: Colors.black,
     borderBottomWidth: 0,
     elevation: 0
   },

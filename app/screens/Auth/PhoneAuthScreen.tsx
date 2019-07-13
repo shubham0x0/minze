@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Platform } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
 import CountryPicker, { CCA2Code } from 'react-native-country-picker-modal';
-import { FontWeights, Theme, DropDownAlertStyles } from '../../theme';
+import { FontWeights, Colors, DropDownAlertStyles } from '../../theme';
 import { TextInput, Modal, Portal } from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
 import TouchableOpacityButton from '../../components/touchable/TouchableOpacityButton';
@@ -144,8 +144,8 @@ class PhoneAuthScreen extends Component<Props, State> {
               style={[{ fontSize: 24 }, styles.textInput]}
               returnKeyType={'next'}
               autoFocus
-              placeholderTextColor={Theme.primary}
-              selectionColor={Theme.primary}
+              placeholderTextColor={Colors.primary}
+              selectionColor={Colors.primary}
               maxLength={20}
               onSubmitEditing={this.getSubmitAction}
               render={(props: any) => (
@@ -187,17 +187,17 @@ const styles = StyleSheet.create({
     height: 45,
     width: '100%',
     // borderRadius: 50,
-    backgroundColor: Theme.brandPrimary,
+    backgroundColor: Colors.brandPrimary,
     alignItems: 'center',
     justifyContent: 'center'
   },
   buttonText: {
-    color: Theme.greyLight,
+    color: Colors.greyLight,
     fontSize: 20,
     ...FontWeights.light
   },
   callingCodeText: {
-    color: Theme.primary,
+    color: Colors.primary,
     fontSize: 28,
     paddingHorizontal: 10,
     ...FontWeights.light
@@ -206,15 +206,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  container: { backgroundColor: Theme.background, flex: 1 },
+  container: { backgroundColor: Colors.background, flex: 1 },
   disclaimerText: {
     // marginTop: 30,
     fontSize: 12,
-    color: Theme.text
+    color: Colors.text
     // ...FontWeights.light
   },
   header: {
-    color: Theme.textDark,
+    color: Colors.textDark,
     fontSize: 22,
     marginTop: 60,
     margin: 20,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     ...FontWeights.light
   },
   textInput: {
-    color: Theme.primary,
+    color: Colors.primary,
     flex: 1,
     marginBottom: -10,
     padding: 0

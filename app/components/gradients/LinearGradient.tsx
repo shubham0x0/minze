@@ -1,13 +1,13 @@
 import React from 'react';
 import * as Svg from 'react-native-svg';
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 
-const LinearGradient = ({ fill = Theme.brandPrimary, height = 320 }: any) => (
+const LinearGradient = ({ fill = Colors.brandPrimary, height = 320 }: any) => (
   <Svg.Svg height={height} width="100%">
     <Svg.Defs>
       <Svg.LinearGradient id="grad" x1="50%" y1="100%" x2="50%" y2="0%">
-        <Svg.Stop offset="0%" stopColor={Theme.blackBg} stopOpacity="1" />
-        <Svg.Stop offset="5%" stopColor={Theme.blackBg} stopOpacity="1" />
+        <Svg.Stop offset="0%" stopColor={Colors.blackBg} stopOpacity="1" />
+        <Svg.Stop offset="5%" stopColor={Colors.blackBg} stopOpacity="1" />
         <Svg.Stop offset="100%" stopColor={fill} stopOpacity="1" />
       </Svg.LinearGradient>
     </Svg.Defs>

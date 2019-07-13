@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Theme, globalStyle } from '../../theme';
+import { Colors, globalStyle } from '../../theme';
 import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 const AlbumsHorizontal = ({ data, heading, navigation, tagline, images }: Props) => (
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     paddingLeft: 16
   },
   heading: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 18,
     paddingBottom: 6,
     textAlign: 'center'
   },
   image: {
-    backgroundColor: Theme.greyLight,
+    backgroundColor: Colors.greyLight,
     height: 148,
     width: 148
   },
@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     width: 148
   },
   tagline: {
-    color: Theme.greyInactive,
+    color: Colors.greyInactive,
     fontSize: 12,
     paddingBottom: 6,
     textAlign: 'center'
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 12,
     marginTop: 4,
     textAlign: 'center'

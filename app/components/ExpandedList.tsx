@@ -6,7 +6,7 @@ import LinearGradient from './gradients/LinearGradient';
 import TouchableIcon from './touchable/TouchIcon';
 import TouchText from './touchable/TouchText';
 
-import { globalStyle, Theme, styles, Layout, Fonts } from '../theme';
+import { globalStyle, Colors, styles, Layout, Fonts } from '../theme';
 import { NavigationScreenProp, NavigationRoute, NavigationEventSubscription } from 'react-navigation';
 
 interface Props {
@@ -53,11 +53,11 @@ class ExpandedList extends React.Component<Props, State> {
     // @ref: https://reactnavigation.org/docs/en/status-bar.html
     this.navListenerOnFocus = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('light-content');
-      StatusBar.setBackgroundColor(Theme.blue);
+      StatusBar.setBackgroundColor(Colors.blue);
     });
     this.navListenerOnBlur = this.props.navigation.addListener('didBlur', () => {
       StatusBar.setBarStyle('light-content');
-      StatusBar.setBackgroundColor(Theme.statusbar);
+      StatusBar.setBackgroundColor(Colors.statusbar);
     });
   }
 
@@ -106,7 +106,7 @@ class ExpandedList extends React.Component<Props, State> {
     if (ExpandedList === null) {
       return (
         <View style={{ flex: 1 }}>
-          <Text style={{ color: Theme.white }}>{`ExpandedList: ${title}`}</Text>
+          <Text style={{ color: Colors.white }}>{`ExpandedList: ${title}`}</Text>
         </View>
       );
     }
@@ -124,26 +124,26 @@ class ExpandedList extends React.Component<Props, State> {
     });
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" translucent backgroundColor={Theme.blue} />
+        <StatusBar barStyle="light-content" translucent backgroundColor={Colors.blue} />
         <View style={localstyles.containerHeader}>
           <Animated.View style={[localstyles.headerLinear, { opacity: opacityHeading }]}>
-            <LinearGradient fill={Theme.blue} height={89} />
+            <LinearGradient fill={Colors.blue} height={89} />
           </Animated.View>
           <View style={localstyles.header}>
             <TouchableIcon
-              icon={<Feather color={Theme.white} name="chevron-left" />}
+              icon={<Feather color={Colors.white} name="chevron-left" />}
               onPress={() => navigation.goBack(null)}
             />
             <Animated.View style={{ opacity: opacityShuffle }}>
               <Text style={localstyles.headerTitle}>Hello, Testing</Text>
             </Animated.View>
-            <TouchableIcon icon={<Feather color={Theme.white} name="more-horizontal" />} onPress={() => null} />
+            <TouchableIcon icon={<Feather color={Colors.white} name="more-horizontal" />} onPress={() => null} />
           </View>
         </View>
 
         <View style={localstyles.containerFixed}>
           <View style={localstyles.containerLinear}>
-            <LinearGradient fill={Theme.blue} />
+            <LinearGradient fill={Colors.blue} />
           </View>
           <View style={localstyles.containerImage}>
             <Image source={{ uri: 'https://picsum.photos/600/400' }} style={styles.image} />
@@ -165,7 +165,7 @@ class ExpandedList extends React.Component<Props, State> {
         >
           <View style={localstyles.containerSticky}>
             <Animated.View style={[localstyles.containerStickyLinear, { opacity: opacityShuffle }]}>
-              <LinearGradient fill={Theme.black20} height={50} />
+              <LinearGradient fill={Colors.black20} height={50} />
             </Animated.View>
             <View style={localstyles.containerShuffle}>
               <TouchText
@@ -178,9 +178,9 @@ class ExpandedList extends React.Component<Props, State> {
           </View>
           <View style={localstyles.containerSongs}>
             <View style={localstyles.row}>
-              <Text style={{ fontFamily: Fonts.helvitica, color: Theme.greyLight }}> hello</Text>
+              <Text style={{ fontFamily: Fonts.helvitica, color: Colors.greyLight }}> hello</Text>
               <Switch
-                tintColor={Theme.greySwitchBorder}
+                tintColor={Colors.greySwitchBorder}
                 onValueChange={val => this.toggleDownloaded(val)}
                 value={downloaded}
               />
@@ -195,19 +195,19 @@ class ExpandedList extends React.Component<Props, State> {
 
 const localstyles = StyleSheet.create({
   ExpandedListInfo: {
-    color: Theme.greyInactive,
+    color: Colors.greyInactive,
     fontFamily: Fonts.monospace,
     fontSize: 12,
     marginBottom: 48
   },
   btn: {
-    backgroundColor: Theme.brandPrimary,
+    backgroundColor: Colors.brandPrimary,
     borderRadius: 25,
     height: 50,
     width: 220
   },
   btnText: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.helvitica,
     fontSize: 16,
     letterSpacing: 1,
@@ -227,7 +227,7 @@ const localstyles = StyleSheet.create({
     zIndex: 100
   },
   containerImage: {
-    shadowColor: Theme.black,
+    shadowColor: Colors.black,
     shadowOffset: { height: 8, width: 0 },
     shadowOpacity: 0.8,
     shadowRadius: 6
@@ -243,14 +243,14 @@ const localstyles = StyleSheet.create({
   containerShuffle: {
     alignItems: 'center',
     height: 50,
-    shadowColor: Theme.blackBg,
+    shadowColor: Colors.blackBg,
     shadowOffset: { height: -10, width: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 20
   },
   containerSongs: {
     alignItems: 'center',
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     minHeight: 540
   },
   containerSticky: {
@@ -262,7 +262,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   downloadText: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.donButique,
     fontSize: 18
   },
@@ -281,7 +281,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   headerTitle: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.bold,
     fontSize: 16,
     marginTop: 2,
@@ -302,7 +302,7 @@ const localstyles = StyleSheet.create({
     width: '100%'
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontFamily: Fonts.bold,
     fontSize: 20,
     marginBottom: 8,

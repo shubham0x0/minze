@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
 import firebase from 'react-native-firebase';
-import { FontWeights, Theme, DropDownAlertStyles } from '../../theme';
-import { TextInput, Modal, Portal } from 'react-native-paper';
+import { FontWeights, Colors, DropDownAlertStyles } from '../../theme';
+import { Modal, Portal } from 'react-native-paper';
 import { userUpdateAsync } from '../../utils/update';
-import TextInputMask from 'react-native-text-input-mask';
 import TouchableOpacityButton from '../../components/touchable/TouchableOpacityButton';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import { VerifyPhoneAnimated } from '../../components/animations/VerifyPhoneAnimated';
@@ -122,9 +121,7 @@ class OTPScreen extends Component<Props, State> {
     this.setState({
       spinner: true
     });
-    const { otp, firebaseConfirmResult } = this.state;
     try {
-      const onFirebaseConfirmResult = await firebaseConfirmResult.confirm(otp);
       this.setState({
         spinner: false
       });
@@ -182,21 +179,21 @@ class OTPScreen extends Component<Props, State> {
                 paddingTop: 4,
                 paddingBottom: 4,
                 borderWidth: 1,
-                borderColor: Theme.primary
+                borderColor: Colors.primary
               }
             ]}
             onPress={this.resendOTP}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.primary} />
-              <Text style={{ color: Theme.primary }}>Resend</Text>
+              <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.primary} />
+              <Text style={{ color: Colors.primary }}>Resend</Text>
             </View>
           </TouchableOpacity>
         ) : (
           <Text
             style={{
               ...FontWeights.light,
-              color: Theme.textDark,
+              color: Colors.textDark,
               fontSize: 16
             }}
           >
@@ -214,7 +211,7 @@ class OTPScreen extends Component<Props, State> {
           <Text style={styles.header}>{'Enter your verification code.'}</Text>
           <OTPTextView
             containerStyle={{ padding: 20, flexWrap: 'wrap' }}
-            textInputStyle={{ color: Theme.greyLight }}
+            textInputStyle={{ color: Colors.greyLight }}
             handleTextChange={async (value: string) => {
               this.setState({ otp: value });
               if (value.length === 6) {
@@ -251,18 +248,18 @@ const styles = StyleSheet.create({
     height: 45,
     width: '100%',
     // borderRadius: 50,
-    backgroundColor: Theme.brandPrimary,
+    backgroundColor: Colors.brandPrimary,
     alignItems: 'center',
     justifyContent: 'center'
   },
   buttonText: {
-    color: Theme.greyLight,
+    color: Colors.greyLight,
     fontSize: 20,
     ...FontWeights.light
   },
-  container: { backgroundColor: Theme.background, flex: 1 },
+  container: { backgroundColor: Colors.background, flex: 1 },
   header: {
-    color: Theme.textDark,
+    color: Colors.textDark,
     fontSize: 22,
     marginTop: 60,
     margin: 20,
@@ -270,7 +267,7 @@ const styles = StyleSheet.create({
     ...FontWeights.light
   },
   otptextInput: {
-    color: Theme.primary,
+    color: Colors.primary,
     flex: 1,
     fontSize: 42,
     margin: 0,
@@ -279,7 +276,7 @@ const styles = StyleSheet.create({
     ...FontWeights.regular
   },
   wrongNumberText: {
-    color: Theme.textDark,
+    color: Colors.textDark,
     fontSize: 14,
     margin: 10,
     textAlign: 'center',

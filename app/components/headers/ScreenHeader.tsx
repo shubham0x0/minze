@@ -6,14 +6,14 @@ import Feather from 'react-native-vector-icons/Feather';
 
 // components
 import TouchableIcon from '../touchable/TouchIcon';
-import { globalStyle, Theme, Layout } from '../../theme';
+import { globalStyle, Colors, Layout } from '../../theme';
 
 const ScreenHeader = ({ navigation, showBack, title }: any) => (
   <BlurView tint="dark" intensity={96} style={styles.container}>
     {showBack && (
       <View style={styles.left}>
         <TouchableIcon
-          icon={<Feather color={Theme.white} name="chevron-left" />}
+          icon={<Feather color={Colors.white} name="chevron-left" />}
           onPress={() => navigation.goBack(null)}
         />
       </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   text: {
-    color: Theme.white,
+    color: Colors.white,
     // fontFamily: fonts.spotifyBold,
     fontSize: 16,
     textAlign: 'center'

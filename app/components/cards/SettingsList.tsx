@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Theme } from '../../theme';
+import { View } from 'react-native';
+import { Colors } from '../../theme';
 import { ListItem } from 'react-native-elements';
 
 interface Props {
@@ -45,9 +45,9 @@ export class SettingsList extends React.Component<Props, State> {
           {...this.props.listItemProps}
           chevron={!!item.children}
           underlayColor="transparent"
-          containerStyle={{ backgroundColor: 'transparent', borderColor: Theme.black20 }}
-          titleStyle={{ color: Theme.lightgrey }}
-          subtitleStyle={{ color: Theme.lightgrey }}
+          containerStyle={{ backgroundColor: 'transparent', borderColor: Colors.black20 }}
+          titleStyle={{ color: Colors.lightgrey }}
+          subtitleStyle={{ color: Colors.lightgrey }}
           title={item.title}
           subtitle={item.subtitle}
           leftIcon={{ name: item.icon, type: item.iconType }}

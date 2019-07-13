@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Theme, statusbarMargin } from '../constants';
+import { Colors, statusbarMargin } from '../constants';
 import { Fonts } from '../fonts';
 
 export const ROUNDNESS = 6;
@@ -10,18 +10,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 30
   },
   bottomTab: {
-    backgroundColor: Theme.background,
-    borderColor: Theme.tintColor,
-    color: Theme.text
+    backgroundColor: Colors.background,
+    borderColor: Colors.tintColor,
+    color: Colors.text
   },
   centercontainer: {
     alignItems: 'center',
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     flex: 1,
     justifyContent: 'center'
   },
   container: {
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     flex: 1
   },
 
@@ -40,26 +40,26 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   cursiveText: {
-    color: Theme.infoText,
+    color: Colors.infoText,
     fontFamily: 'space-mono',
     fontSize: 17,
     textAlign: 'center'
   },
   errorText: {
     alignSelf: 'flex-end',
-    color: Theme.red,
+    color: Colors.red,
     fontSize: 14,
     margin: 6
   },
   fab: {
-    backgroundColor: Theme.primary,
+    backgroundColor: Colors.primary,
     bottom: 0,
     margin: 16,
     position: 'absolute',
     right: 0
   },
   formikContainer: {
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     flex: 1,
     paddingBottom: 24,
     paddingLeft: 16,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     height: 60
   },
   headingText: {
-    color: Theme.headingtext,
+    color: Colors.headingtext,
     fontSize: 17,
     lineHeight: 24,
     textAlign: 'left'
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   highlightText: {
-    color: Theme.highlightedText
+    color: Colors.highlightedText
   },
   icon: {
     height: 60,
@@ -107,23 +107,23 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     alignItems: 'center',
-    backgroundColor: Theme.warningBackground,
+    backgroundColor: Colors.warningBackground,
     marginTop: 20,
     padding: 10
   },
   linkLoginSignup: {
     alignItems: 'center',
-    backgroundColor: Theme.grey,
-    color: Theme.white,
+    backgroundColor: Colors.grey,
+    color: Colors.white,
     padding: 12,
     width: '100%'
   },
   linkText: {
-    color: Theme.link,
+    color: Colors.link,
     fontSize: 14
   },
   monoText: {
-    color: Theme.infoText,
+    color: Colors.infoText,
     fontFamily: 'space-mono',
     fontSize: 17,
     textAlign: 'center'
@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   option: {
-    backgroundColor: Theme.grey,
-    borderBottomColor: Theme.black,
+    backgroundColor: Colors.grey,
+    borderBottomColor: Colors.black,
     borderBottomWidth: StyleSheet.hairlineWidth,
     paddingHorizontal: 15,
     paddingVertical: 15
@@ -152,29 +152,29 @@ const styles = StyleSheet.create({
     marginTop: 9
   },
   rootContainer: {
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     marginTop: statusbarMargin
   },
   statusBar: {
-    backgroundColor: Theme.statusbar,
+    backgroundColor: Colors.statusbar,
     height: statusbarMargin
   },
   tabBarInfoText: {
-    color: Theme.infoText,
+    color: Colors.infoText,
     fontSize: 17,
     textAlign: 'center'
   },
   text: {
-    color: Theme.text,
+    color: Colors.text,
     fontFamily: Fonts.regular,
     fontSize: 14,
     marginTop: 6
   },
   textInput: {
-    borderColor: Theme.tintColor,
+    borderColor: Colors.tintColor,
     borderRadius: ROUNDNESS,
     borderWidth: 1,
-    color: Theme.tintColor,
+    color: Colors.tintColor,
     height: 36,
     marginTop: 10,
     paddingBottom: 4,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   tintColor: {
-    color: Theme.background
+    color: Colors.background
   },
   topBarStyle: {
     alignContent: 'center',
@@ -204,13 +204,13 @@ const styles = StyleSheet.create({
     // marginRight: 10,
     margin: 4,
     height: 46,
-    backgroundColor: Theme.grey,
+    backgroundColor: Colors.grey,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Theme.grey
+    borderBottomColor: Colors.grey
   },
   touchableButton: {
     alignItems: 'center',
-    backgroundColor: Theme.blue,
+    backgroundColor: Colors.blue,
     borderRadius: ROUNDNESS,
     flexDirection: 'row',
     justifyContent: 'center',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleProp } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { Theme, Layout } from '../../theme';
+import { Colors, Layout } from '../../theme';
 import { animations } from '../../assets';
 
 const Animation = (props: AnimatedProps) => {
@@ -16,7 +16,7 @@ Animation.defaultProps = {
   source: animations.InfoListLoading,
   containerStyles: {
     flex: 1,
-    backgroundColor: Theme.background,
+    backgroundColor: Colors.background,
     width: Layout.window.width,
     maxWidth: Layout.window.width,
     maxHeight: Layout.window.height
