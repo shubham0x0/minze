@@ -5,12 +5,12 @@ export const updateServerStatus = (onLine: boolean) => ({
   payload: onLine ? 'Online' : 'Offline'
 });
 
-type updateTokenPayload = {
+interface IUpdateTokenPayload {
   idTokenRegistered: boolean;
   authToken: string;
-};
+}
 
-export const updateTokenRegistered = (payload: updateTokenPayload) => ({
+export const updateTokenRegistered = (payload: IUpdateTokenPayload) => ({
   type: UPDATE_TOKEN_REGISTERED,
   payload
 });

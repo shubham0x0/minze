@@ -5,7 +5,7 @@ const dispatcher = {
    * this dispatcher is used when we want to dispatch action
    * outside of the context
    */
-  dispatch: (params: any) => {},
-}
+  dispatch: (params: any) => {}
+};
 
-export default dispatcher
+export default dispatcher;

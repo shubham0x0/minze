@@ -1,33 +1,33 @@
-import React from "react"
-import { Button, StyleSheet, Text, View } from "react-native"
+import React from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export interface Props {
-  name: string
-  enthusiasmLevel?: number
-  onIncrement?: () => void
-  onDecrement?: () => void
+  name: string;
+  enthusiasmLevel?: number;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
 }
 
 interface State {
-  enthusiasmLevel: number
+  enthusiasmLevel: number;
 }
 
 export class Hello extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
 
     if ((props.enthusiasmLevel || 0) <= 0) {
-      throw new Error("You could be a little more enthusiastic. :D")
+      throw new Error('You could be a little more enthusiastic. :D');
     }
 
     this.state = {
       enthusiasmLevel: props.enthusiasmLevel || 1
-    }
+    };
   }
 
   onIncrement = () => this.setState({ enthusiasmLevel: this.state.enthusiasmLevel + 1 });
   onDecrement = () => this.setState({ enthusiasmLevel: Math.max(0, this.state.enthusiasmLevel - 1) });
-  getExclamationMarks = (numChars: number) => Array(numChars + 1).join("!")
+  getExclamationMarks = (numChars: number) => Array(numChars + 1).join('!');
 
   render() {
     return (
@@ -38,25 +38,15 @@ export class Hello extends React.Component<Props, State> {
 
         <View style={styles.buttons}>
           <View style={styles.button}>
-            <Button
-              title="-"
-              onPress={this.onDecrement}
-              accessibilityLabel="decrement"
-              color="red"
-            />
+            <Button title="-" onPress={this.onDecrement} accessibilityLabel="decrement" color="red" />
           </View>
 
           <View style={styles.button}>
-            <Button
-              title="+"
-              onPress={this.onIncrement}
-              accessibilityLabel="increment"
-              color="blue"
-            />
+            <Button title="+" onPress={this.onIncrement} accessibilityLabel="increment" color="blue" />
           </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -64,14 +54,14 @@ export class Hello extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   root: {
-    alignItems: "center",
-    alignSelf: "center"
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   buttons: {
-    flexDirection: "row",
+    flexDirection: 'row',
     minHeight: 70,
-    alignItems: "stretch",
-    alignSelf: "center",
+    alignItems: 'stretch',
+    alignSelf: 'center',
     borderWidth: 5
   },
   button: {
@@ -79,10 +69,10 @@ const styles = StyleSheet.create({
     paddingVertical: 0
   },
   greeting: {
-    color: "#999",
-    fontWeight: "bold"
+    color: '#999',
+    fontWeight: 'bold'
   }
-})
+});
 export const add = (a: number, b: number) => a + b;
 
 describe('add', () => {

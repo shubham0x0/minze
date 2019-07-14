@@ -1,4 +1,4 @@
-import { add } from "./Sanity";
+import { add } from './Sanity';
 
 // import * as React from 'react';
 // import * as ReactDOM from 'react-dom';

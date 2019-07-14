@@ -7,8 +7,7 @@ export const authStateAsync = async () => {
       console.warn('USER authStateAsync');
       await userUpdateAsync(user);
       // NavigationService.navigate('App', {});
-    }
-    else {
+    } else {
       // signOut
       await userUpdateAsync({});
     }

@@ -18,7 +18,7 @@ export const getLocationUpdate = async () => {
         store.dispatch(updateLocation({ ...location }));
       },
       err => {
-        // re
+        console.log(err);
       }
       // options
     );

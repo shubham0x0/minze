@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-import { authStateAsync } from "../auth/authStateAsync";
+import { authStateAsync } from '../auth/authStateAsync';
 
 interface UpdateProfile {
   displayName?: string;
@@ -18,6 +18,7 @@ export const updateUserInfo = async (updateProfile: UpdateProfile) => {
       })
       .catch(function(error) {
         // An error happened.
+        console.log(error);
       });
   } else {
     throw Error('USER DO NOT EXIST LOGIN AGAIN');

@@ -4,7 +4,7 @@ import {
   UPDATE_SUMMARY,
   UPDATE_SETTINGS,
   UPDATE_LOGINSTATUS,
-  UPDATE_LOCATION,
+  UPDATE_LOCATION
 } from './types';
 
 // action creators

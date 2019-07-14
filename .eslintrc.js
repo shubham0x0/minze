@@ -35,6 +35,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
     'comma-dangle': 'off',
     'global-require': 'off',
     'import/no-unresolved': 'off',

@@ -7,7 +7,7 @@ import { resetContext } from '../../context/Rootcontext/actions';
 export const signOutUserAsync = async () => {
   try {
     await firebase.auth().signOut();
-    dispatcher.dispatch(resetContext(true))
+    dispatcher.dispatch(resetContext(true));
     // store.dispatch({
     //   type: 'SIGNOUT_REQUEST'
     // })

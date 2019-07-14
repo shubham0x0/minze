@@ -16,19 +16,23 @@ interface Props {}
 const RootNavigator = (props: Props) => {
   const [client, setClient] = React.useState(null);
   const context = React.useContext(RootContext);
-  const firstUpdate = React.useRef(true)
+  const firstUpdate = React.useRef(true);
+
+  const loadAssets = async () => loadAssetsAsync();
+  loadAssets();
+
   React.useEffect(() => {
     if (firstUpdate.current) {
-      firstUpdate.current = false
+      firstUpdate.current = false;
       console.warn('CLIENT FIRST TOKEN UPDATES');
       const token = '';
       const client = createApolloClient(token);
       setClient(client);
       SplashScreen.hide();
-      return
+      return;
     }
+
     try {
-      async () => loadAssetsAsync();
       console.warn('CLIENT TOKEN UPDATES' + context.state.network.authToken);
       const client = createApolloClient(context.state.network.authToken);
       setClient(client);

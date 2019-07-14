@@ -3,8 +3,7 @@ export const onPressLogoutAsync = async () => {
   try {
     await userUpdateAsync({});
     // NavigationService.navigate('Loading', {});
-  }
-  catch (err) {
+  } catch (err) {
     console.warn(err);
   }
 };

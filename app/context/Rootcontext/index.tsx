@@ -20,7 +20,6 @@ const RootContextProvider = (props: { children: React.ReactNode }) => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
       dispatch({ type: GET_PERSISTED_CONTEXT });
-      return;
     }
   }, []);
 

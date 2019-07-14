@@ -4,4 +4,4 @@ export const handleUrl = (url: string) => {
   openBrowserAsync(url);
 };
 
-export * from './auth/onPressLogoutAsync'
+export * from './auth/onPressLogoutAsync';

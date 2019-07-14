@@ -32,7 +32,6 @@ const AccountScreen = (props: Props) => {
   React.useEffect(() => {
     if (firstupdate.current) {
       firstupdate.current = false;
-      return;
     }
   }, []);
   // @ts-ignore
