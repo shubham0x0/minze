@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-import { authStateAsync } from './authFirebase';
+import { authStateAsync } from "../auth/authStateAsync";
 
 interface UpdateProfile {
   displayName?: string;

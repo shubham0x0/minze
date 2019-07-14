@@ -1,7 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
-import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './AppNavigator';
 import NavigationService from '../utils/NavigationService';
@@ -10,53 +9,46 @@ import createApolloClient from '../graphql';
 import { loadAssetsAsync } from '../assets/preload';
 import { Colors } from '../theme';
 import { persistedStore } from '../store';
+import { RootContext } from '../context';
 
-interface Props {
-  authToken: string;
-}
+interface Props {}
 
-interface State {
-  client: any;
-}
-
-class RootNavigator extends React.Component<Props, State> {
-  state = {
-    client: null
-  };
-
-  async componentDidMount() {
-    // const unsubscribe = await authStateAsync();
-    // console.warn(JSON.stringify(store.getState()));
-    // console.warn('CLIENT TOKEN UPDATES' + this.props.authToken);
-    const client = createApolloClient(this.props.authToken);
-    this.setState({
-      client
-    });
+const RootNavigator = (props: Props) => {
+  const [client, setClient] = React.useState(null);
+  const context = React.useContext(RootContext);
+  const firstUpdate = React.useRef(true)
+  React.useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false
+      console.warn('CLIENT FIRST TOKEN UPDATES');
+      const token = '';
+      const client = createApolloClient(token);
+      setClient(client);
+      SplashScreen.hide();
+      return
+    }
     try {
-      await loadAssetsAsync();
+      async () => loadAssetsAsync();
+      console.warn('CLIENT TOKEN UPDATES' + context.state.network.authToken);
+      const client = createApolloClient(context.state.network.authToken);
+      setClient(client);
     } catch (error) {
       console.warn(error);
     }
-    SplashScreen.hide();
-  }
-  render() {
-    if (!this.state.client) return <LoadingAnimated />;
-    return (
-      // @ts-ignore
-      <ApolloProvider store={persistedStore} client={this.state.client}>
-        <StatusBar backgroundColor={Colors.statusbar} translucent />
-        <AppNavigator
-          ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
-      </ApolloProvider>
-    );
-  }
-}
+  }, [context.state.network.authToken]);
 
-const mapStateToProps = (state: any) => ({
-  authToken: state.authToken
-});
+  if (!client) return <LoadingAnimated />;
+  return (
+    // @ts-ignore
+    <ApolloProvider store={persistedStore} client={client}>
+      <StatusBar backgroundColor={Colors.statusbar} translucent />
+      <AppNavigator
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </ApolloProvider>
+  );
+};
 
-export default connect(mapStateToProps)(RootNavigator);
+export default RootNavigator;

@@ -30,8 +30,8 @@ export class SettingsList extends React.Component<Props, State> {
     },
     containerStyle: {},
     childrenStyle: {
-      paddingLeft: 30,
-      paddingRight: 30
+      paddingLeft: 0,
+      paddingRight: 0
     },
     listItemProps: {}
   };

@@ -5,7 +5,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { styles } from '../../theme';
 import { getLocationUpdate } from '../../utils/getLocation';
-import {NavigationRoute, NavigationScreenProp } from 'react-navigation';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 interface Props {
   info: any;

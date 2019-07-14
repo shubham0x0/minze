@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import { uploadImage } from '../../utils/uploadPhoto';
+import { uploadImage } from '../../utils/profile/uploadPhoto';
 import { Colors, Layout } from '../../theme';
 import { Avatar, Modal, Portal, Button, Text } from 'react-native-paper';
 interface Props {

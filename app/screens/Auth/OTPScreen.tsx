@@ -5,7 +5,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import firebase from 'react-native-firebase';
 import { FontWeights, Colors, DropDownAlertStyles } from '../../theme';
 import { Modal, Portal } from 'react-native-paper';
-import { userUpdateAsync } from '../../utils/update';
+import { userUpdateAsync } from '../../utils/auth/userUpdateAsync';
 import TouchableOpacityButton from '../../components/touchable/TouchableOpacityButton';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
 import { VerifyPhoneAnimated } from '../../components/animations/VerifyPhoneAnimated';
@@ -23,12 +23,11 @@ interface State {
   phoneNumber: string;
   firebaseConfirmResult: any;
   otp: string;
-  temporaryToken: string;
 }
 
 class OTPScreen extends Component<Props, State> {
   static navigationOptions = {
-    label: 'hello'
+    label: 'OTPScreen'
   };
 
   dropDownNotification: any;
@@ -38,37 +37,41 @@ class OTPScreen extends Component<Props, State> {
     phoneNumber: '',
     resendTimer: __DEV__ ? 10 : 60,
     firebaseConfirmResult: null,
-    otp: '',
-    temporaryToken: ''
+    otp: ''
   };
   timerHandle: NodeJS.Timeout | undefined;
   componentWillMount() {
     const phoneNumber = this.props.navigation.getParam('phoneNumber');
-    this.setState({
-      phoneNumber
-    });
+    this.setState({ phoneNumber });
   }
+
   unsubscribe: (() => void) | undefined;
-  componentDidMount() {
-    this.getCode();
-    this.timerHandle = setInterval(() => {
-      const { resendTimer } = this.state;
-      resendTimer > 0 ? this.setState({ resendTimer: resendTimer - 1 }) : clearInterval(0);
-    }, 1000);
-    this.unsubscribe = firebase.auth().onAuthStateChanged((user: any) => {
-      if (user) {
-        userUpdateAsync(user);
-        // Navigate with a delay.
-        this.dropDownNotification.alertWithType('success', 'Verified', 'Your phone number is verified');
-        setTimeout(
-          self => {
-            self.props.navigation.navigate('App');
-          },
-          800,
-          this
-        );
-      }
-    });
+
+  async componentDidMount() {
+    try {
+      this.getCode();
+      const resendTimer = () => {
+        const { resendTimer } = this.state;
+        resendTimer > 0 ? this.setState({ resendTimer: resendTimer - 1 }) : clearInterval(0);
+      };
+      this.timerHandle = setInterval(resendTimer, 1000);
+      const authStateChangeHandler = async (user: any) => {
+        if (user) {
+          await userUpdateAsync(user);
+          this.dropDownNotification.alertWithType('success', 'Verified', 'Your phone number is verified');
+          setTimeout(
+            self => {
+              self.props.navigation.navigate('App');
+            },
+            800,
+            this
+          );
+        }
+      };
+      this.unsubscribe = firebase.auth().onAuthStateChanged(authStateChangeHandler);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   componentWillUnmount() {
@@ -115,26 +118,24 @@ class OTPScreen extends Component<Props, State> {
   };
 
   verifyCode = async () => {
-    /**
-     * NOTE: onAuthStateChanged should handle update and navigation
-     **/
     this.setState({
       spinner: true
     });
     try {
-      this.setState({
-        spinner: false
-      });
+      /**
+       * NOTE: onAuthStateChanged should handle update and navigation
+       **/
+      await this.state.firebaseConfirmResult.confirm(this.state.otp);
     } catch (error) {
-      this.setState({
-        spinner: false
-      });
       this.dropDownNotification.alertWithType(
         'error',
         'Not Verified',
-        'The Otp you provided is incorrect' + __DEV__ && error
+        'The OTP you provided is not correct' + __DEV__ && error
       );
     }
+    this.setState({
+      spinner: false
+    });
   };
 
   tryAgain = () => {
@@ -143,13 +144,13 @@ class OTPScreen extends Component<Props, State> {
 
   getSubmitAction = () => {
     const { otp } = this.state;
-    if (otp.length === 6) {
+    if (otp.length >= 6) {
       this.verifyCode();
     } else {
       this.dropDownNotification.alertWithType(
         'error',
         'Please Enter a correct OTP',
-        'The Otp you provided is incorrect'
+        'The OTP you provided is not correct'
       );
     }
   };
@@ -160,7 +161,6 @@ class OTPScreen extends Component<Props, State> {
     return (
       <View
         style={{
-          flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: 10,
@@ -170,20 +170,7 @@ class OTPScreen extends Component<Props, State> {
       >
         <Text style={styles.wrongNumberText}>Wrong number or need a new code?</Text>
         {resendTimer === 0 ? (
-          <TouchableOpacity
-            style={[
-              {
-                alignSelf: 'flex-end',
-                padding: 20,
-                marginTop: 18,
-                paddingTop: 4,
-                paddingBottom: 4,
-                borderWidth: 1,
-                borderColor: Colors.primary
-              }
-            ]}
-            onPress={this.resendOTP}
-          >
+          <TouchableOpacity onPress={this.resendOTP}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.primary} />
               <Text style={{ color: Colors.primary }}>Resend</Text>
@@ -213,15 +200,13 @@ class OTPScreen extends Component<Props, State> {
             containerStyle={{ padding: 20, flexWrap: 'wrap' }}
             textInputStyle={{ color: Colors.greyLight }}
             handleTextChange={async (value: string) => {
-              this.setState({ otp: value });
-              if (value.length === 6) {
-                console.warn(this.state.otp);
+              await this.setState({ otp: value });
+              if (value.length >= 6) {
                 await this.setState({ otp: value });
                 this.verifyCode();
               }
             }}
           />
-          {/* <Text style={{ color: Theme.greyLight }}>{this.state.otp}</Text> */}
           {this.renderFooter()}
         </View>
         <TouchableOpacityButton style={styles.button} onPress={this.getSubmitAction}>
@@ -253,8 +238,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    color: Colors.greyLight,
-    fontSize: 20,
+    color: Colors.white,
+    fontSize: 24,
     ...FontWeights.light
   },
   container: { backgroundColor: Colors.background, flex: 1 },
@@ -266,7 +251,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     ...FontWeights.light
   },
-  otptextInput: {
+  otpTextInput: {
     color: Colors.primary,
     flex: 1,
     fontSize: 42,

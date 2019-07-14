@@ -5,9 +5,9 @@ import { Colors } from '../../theme';
 import { Avatar, Icon } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { uploadImage } from '../../utils/uploadPhoto';
+import { uploadImage } from '../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
-import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/updateUserInfo';
+import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/profile/updateUserInfo';
 
 import TextInputMask from 'react-native-text-input-mask';
 

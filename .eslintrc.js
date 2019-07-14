@@ -44,7 +44,7 @@ module.exports = {
     'no-undef': 'off',
     'no-underscore-dangle': 'off',
     'no-unused-vars': 'off',
-    semi: 'off',
+    'semi': 'off',
     'no-use-before-define': 'off',
     'object-curly-newline': 'off',
     'react-native/no-raw-text': 'off',

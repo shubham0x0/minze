@@ -4,7 +4,8 @@ import { APP_URL } from '../../config';
 import { Colors } from '../../theme';
 import { Button } from 'react-native-elements';
 
-import { handleUrl, onPressLogoutAsync } from '../../utils';
+import { handleUrl } from '../../utils';
+import { onPressLogoutAsync } from "../../utils";
 
 export const LogOutCard = () => (
   <View style={[styles.container, { justifyContent: 'space-between' }]}>
