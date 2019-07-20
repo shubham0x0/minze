@@ -62,6 +62,4 @@ const Colors = {
   yellow: '#F8B106'
 };
 
-export default {
-  ...Colors
-};
+export default Colors;

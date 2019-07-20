@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -7,13 +8,12 @@ module.exports = {
     project: './tsconfig.json'
   },
   extends: [
-    'standard',
-    'prettier',
-    'plugin:prettier/recommended',
+    '@react-native-community',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-native/all',
-    'prettier/@typescript-eslint'
+    'plugin:prettier/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'react-native'
   ],
   settings: {
     react: {
@@ -26,44 +26,49 @@ module.exports = {
     jest: true
   },
   rules: {
+    '@typescript-eslint/camelcase': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-object-literal-type-assertion': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'comma-dangle': 'off',
+    'import/no-commonjs': 'off',
     'global-require': 'off',
-    'import/no-unresolved': 'off',
+    'handle-callback-err': 'warn',
+    'import/no-unresolved': 'warn',
     'import/prefer-default-export': 'off',
-    'no-console': 'off',
+    'no-console': 'warn',
     'no-else-return': 'off',
-    'no-undef': 'off',
+    'no-invalid-this': 'off',
+    'no-undef': 'warn',
     'no-underscore-dangle': 'off',
-    'no-unused-vars': 'off',
-    semi: 'off',
+    'no-unused-vars': 'warn',
     'no-use-before-define': 'off',
     'object-curly-newline': 'off',
+    'react-native/no-color-literal': 'off',
+    'react-native/no-color-literals': 'off',
+    'react-native/no-inline-styles': 'off',
+    'react-native/no-inline-styles': 'off',
     'react-native/no-raw-text': 'off',
+    'react-native/no-unused-styles': 'off',
+    'react-native/sort-styles': 'off',
     'react/destructuring-assignment': 'off',
+    'react/display-name': 'off',
     'react/jsx-filename-extension': 'off',
     'react/no-multi-comp': 'off',
+    'react/no-string-refs': 'warn',
     'react/no-unescaped-entities': 'off',
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/sort-comp': 'off',
-    'react/display-name': 'off',
-    'react/no-string-refs': 'warn',
-    'react-native/no-inline-styles': 'off',
-    'react-native/no-inline-styles': 'off',
-    'react-native/no-color-literal': 'off',
-    'react-native/no-color-literals': 'off',
-    'react-native/sort-styles': 'off',
-    'react-native/no-unused-styles': 'off',
-    'handle-callback-err': 'warn'
+    'semi': 'off',
   },
   globals: {
     __DEV__: false,
@@ -76,6 +81,10 @@ module.exports = {
     it: false,
     jasmine: false,
     jest: false,
-    test: false
+    test: false,
+    device: false,
+    waitFor: false,
+    element: false,
+    by: false
   }
 };

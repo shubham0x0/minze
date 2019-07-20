@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomTabBar, MaterialTopTabBar } from 'react-navigation';
+import { MaterialTopTabBar } from 'react-navigation';
 
 // components
 import AboveTabBar from './AboveTabBar';

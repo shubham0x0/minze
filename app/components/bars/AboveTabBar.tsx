@@ -1,109 +1,90 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Layout, globalStyle } from '../../theme';
+import { StyleSheet, Text, TouchableOpacity, View, GestureResponderEvent } from 'react-native';
+import { Colors, Layout, globalStyle } from '../../theme';
 
 interface Props {
+  onPress: (event: GestureResponderEvent) => void;
   navigation: any;
+  title: any;
   info: any;
+  centerContent?: React.ReactNode;
+  leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-interface State {
-  favorited: boolean;
-  paused: boolean;
-}
+const LeftContainer = (props: Props) => (
+  <TouchableOpacity
+    activeOpacity={globalStyle.activeOpacity}
+    hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
+    onPress={props.onPress}
+    style={styles.containerIcon}
+  >
+    {props.leftContent}
+  </TouchableOpacity>
+);
 
-class AboveTabBar extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const RightContainer = (props: Props) => (
+  <TouchableOpacity
+    activeOpacity={globalStyle.activeOpacity}
+    hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
+    onPress={props.onPress}
+    style={styles.containerIcon}
+  >
+    {props.rightContent}
+  </TouchableOpacity>
+);
 
-    this.state = {
-      favorited: false,
-      paused: true
-    };
+const CenterContainer = (props: Props) => (
+  <React.Fragment>
+    {props.info && (
+      <View>
+        <View style={styles.containerinfo}>
+          <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.info}>{props.info}</Text>
+        </View>
+      </View>
+    )}
+    <View
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 4,
+        minHeight: 30
+      }}
+    >
+      {props.centerContent}
+    </View>
+  </React.Fragment>
+);
 
-    this.toggleFavorite = this.toggleFavorite.bind(this);
-    this.togglePlay = this.togglePlay.bind(this);
-  }
-
-  toggleFavorite() {
-    this.setState(prev => ({
-      favorited: !prev.favorited
-    }));
-  }
-
-  togglePlay() {
-    this.setState(prev => ({
-      paused: !prev.paused
-    }));
-  }
-
-  render() {
-    const { navigation, info } = this.props;
-    const { favorited, paused } = this.state;
-
-    const favoriteColor = favorited ? Theme.brandPrimary : Theme.white;
-    const favoriteIcon = favorited ? 'heart' : 'heart-o';
-    const iconPlay = paused ? 'play-circle' : 'pause-circle';
-
-    return (
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={() => navigation.navigate('ModalMusicPlayer')}
-        style={styles.container}
-      >
-        <TouchableOpacity
-          activeOpacity={globalStyle.activeOpacity}
-          hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
-          onPress={this.toggleFavorite}
-          style={styles.containerIcon}
-        >
-          <FontAwesome color={favoriteColor} name={favoriteIcon} size={20} />
-        </TouchableOpacity>
-        {info && (
-          <View>
-            <View style={styles.containerinfo}>
-              <Text style={styles.title}>{`${info.title} · `}</Text>
-              <Text style={styles.artist}>{info.artist}</Text>
-            </View>
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: 4
-              }}
-            >
-              <FontAwesome color={Theme.brandPrimary} name="bluetooth-b" size={14} />
-              <Text style={styles.device}>Caleb&apos;s Beatsx</Text>
-            </View>
-          </View>
-        )}
-        <TouchableOpacity
-          activeOpacity={globalStyle.activeOpacity}
-          hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
-          onPress={this.togglePlay}
-          style={styles.containerIcon}
-        >
-          <FontAwesome color={Theme.white} name={iconPlay} size={28} />
-        </TouchableOpacity>
-      </TouchableOpacity>
-    );
-  }
-}
+const AboveTabBar: React.FC<Props> = (props: Props) => (
+  <TouchableOpacity activeOpacity={1} onPress={props.onPress} style={styles.container}>
+    {props.children ? (
+      props.children
+    ) : (
+      <React.Fragment>
+        {props.leftContent && <LeftContainer {...props} />}
+        {props.leftContent && <CenterContainer {...props} />}
+        {props.centerContent && <RightContainer {...props} />}
+      </React.Fragment>
+    )}
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
-  artist: {
-    color: Theme.greyLight,
+  info: {
+    color: Colors.greyLight,
     fontSize: 12
   },
   container: {
     alignSelf: 'center',
-    backgroundColor: Theme.grey,
-    borderBottomColor: Theme.blackBg,
+    backgroundColor: Colors.grey,
+    borderBottomColor: Colors.blackBg,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
+    minHeight: 40,
     width: '100%'
   },
   containerIcon: {
@@ -119,13 +100,13 @@ const styles = StyleSheet.create({
     width: Layout.window.width - 100
   },
   device: {
-    color: Theme.brandPrimary,
+    color: Colors.brandPrimary,
     fontSize: 10,
     marginLeft: 4,
     textTransform: 'uppercase'
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 12
   }
 });

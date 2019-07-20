@@ -114,9 +114,15 @@ Building Apk file
 
 ```sh
 $ npm run apk
-
 ```
 
+### Fastlane
+- Install fastlane
+```
+sudo gem install bundler
+
+bundle
+```
 ---
 
 <!-- Add all the dependencies that req linking -->
@@ -124,6 +130,7 @@ $ npm run apk
 ### Dependencies that requires linking
 
 - appcenter
+- codepush
 - react-native-firebase
 - react-native-unimodules
 - react-native-vector-icons

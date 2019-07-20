@@ -1,5 +1,5 @@
 import { Linking } from 'react-native';
-import { PermissionStatus, PermissionMap, PermissionType } from 'expo-permissions/build/Permissions.types';
+import { PermissionStatus, PermissionType } from 'expo-permissions/build/Permissions.types';
 import * as Permissions from 'expo-permissions';
 
 export default async function getPermission(permission: PermissionType) {

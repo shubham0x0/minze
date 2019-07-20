@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Svg from 'react-native-svg';
 import PropTypes from 'prop-types';
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 
 const SvgSearch = ({ fill, size }: any) => (
   <Svg.Svg height={size} width={size} viewBox="0 0 512 512">
@@ -14,7 +14,7 @@ const SvgSearch = ({ fill, size }: any) => (
 );
 
 SvgSearch.defaultProps = {
-  fill: Theme.blackBg,
+  fill: Colors.blackBg,
   size: 24
 };
 

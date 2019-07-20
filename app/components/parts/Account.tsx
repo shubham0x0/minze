@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 import { Avatar, Icon } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { uploadImage } from '../../utils/uploadPhoto';
+import { uploadImage } from '../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
-import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/updateUserInfo';
+import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/profile/updateUserInfo';
 
 import TextInputMask from 'react-native-text-input-mask';
 
@@ -50,9 +50,9 @@ class ProfileTabScreen extends Component<Props, State> {
             underlineColor={'transparent'}
             theme={{
               colors: {
-                text: Theme.text,
-                error: Theme.red,
-                disabled: Theme.text
+                text: Colors.text,
+                error: Colors.red,
+                disabled: Colors.text
               }
             }}
             value={this.state.name}
@@ -69,9 +69,9 @@ class ProfileTabScreen extends Component<Props, State> {
             underlineColor={'transparent'}
             theme={{
               colors: {
-                text: Theme.text,
-                error: Theme.red,
-                disabled: Theme.text
+                text: Colors.text,
+                error: Colors.red,
+                disabled: Colors.text
               }
             }}
             underlineColorAndroid={'transparent'}
@@ -95,7 +95,7 @@ class ProfileTabScreen extends Component<Props, State> {
                   paddingTop: 4,
                   paddingBottom: 4,
                   borderWidth: 1,
-                  borderColor: Theme.green
+                  borderColor: Colors.green
                 }
               ]}
               onPress={() => {
@@ -111,8 +111,8 @@ class ProfileTabScreen extends Component<Props, State> {
               }}
             >
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.green} />
-                <Text style={{ color: Theme.green }}>Verify</Text>
+                <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.green} />
+                <Text style={{ color: Colors.green }}>Verify</Text>
               </View>
             </TouchableOpacity>
           )}
@@ -130,9 +130,9 @@ class ProfileTabScreen extends Component<Props, State> {
             returnKeyType={'next'}
             theme={{
               colors: {
-                text: Theme.textDark,
-                error: Theme.red,
-                disabled: Theme.text
+                text: Colors.textDark,
+                error: Colors.red,
+                disabled: Colors.text
               }
             }}
             maxLength={20}
@@ -159,7 +159,7 @@ class ProfileTabScreen extends Component<Props, State> {
                     paddingTop: 4,
                     paddingBottom: 4,
                     borderWidth: 1,
-                    borderColor: Theme.primary
+                    borderColor: Colors.primary
                   }
                 ]}
                 onPress={() => {
@@ -174,8 +174,8 @@ class ProfileTabScreen extends Component<Props, State> {
                 }}
               >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.primary} />
-                  <Text style={{ color: Theme.primary }}>Save</Text>
+                  <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.primary} />
+                  <Text style={{ color: Colors.primary }}>Save</Text>
                 </View>
               </TouchableOpacity>
             ))}
@@ -213,10 +213,8 @@ class ProfileTabScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: any }) => {
-  return {
-    user: state.user
-  };
-};
+const mapStateToProps = (state: { user: any }) => ({
+  user: state.user
+});
 
 export default connect(mapStateToProps)(ProfileTabScreen);

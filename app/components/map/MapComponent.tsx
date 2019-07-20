@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { styles } from '../../theme';
 import { getLocationUpdate } from '../../utils/getLocation';
+import { NavigationRoute, NavigationScreenProp } from 'react-navigation';
 
 interface Props {
   info: any;
-  navigation: NavigationScreenProp<NavigationRoute<any>>;
+  navigation: NavigationType;
   user: any;
   location: any;
 }

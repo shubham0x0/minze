@@ -1,6 +1,6 @@
 package com.mzeroes.minze;
-import android.os.Bundle; // here
-import org.devio.rn.splashscreen.SplashScreen; // here
+import android.os.Bundle;
+import org.devio.rn.splashscreen.SplashScreen;
 
 // import com.facebook.react.ReactActivity;
 import android.os.Bundle;

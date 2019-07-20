@@ -4,8 +4,7 @@ import {
   UPDATE_SUMMARY,
   UPDATE_SETTINGS,
   UPDATE_LOGINSTATUS,
-  UPDATE_LOCATION,
-  UPDATE_AUTH_TOKEN
+  UPDATE_LOCATION
 } from './types';
 
 // action creators
@@ -31,11 +30,6 @@ export const updateSettings = (update: Record<string, any>) => ({
 
 export const updateLocation = (update: {}) => ({
   type: UPDATE_LOCATION,
-  payload: update
-});
-
-export const updateAuthToken = (update: string) => ({
-  type: UPDATE_AUTH_TOKEN,
   payload: update
 });
 

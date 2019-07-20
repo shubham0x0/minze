@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoadingAnimated from '../../components/loaders/LoadingAnimated';
+import { NavigationType } from '../../types';
 
 interface Props {
-  navigation: any;
+  navigation: NavigationType;
   isLoggedIn: boolean;
 }
 

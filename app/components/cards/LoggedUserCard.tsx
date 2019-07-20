@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { Theme } from '../../theme';
+import { Colors } from '../../theme';
 import { connect } from 'react-redux';
 
 const LoggedUser = (props: { user: any }) => {
@@ -38,17 +38,17 @@ const LoggedUser = (props: { user: any }) => {
 
 const styles = StyleSheet.create({
   descriptionText: {
-    color: Theme.secondary,
+    color: Colors.secondary,
     fontSize: 14,
     marginTop: 6
   },
   monoText: {
-    color: Theme.infoText,
+    color: Colors.infoText,
     fontFamily: 'space-mono',
     fontSize: 14
   },
   titleContainer: {
-    borderColor: Theme.grey,
+    borderColor: Colors.grey,
     borderRadius: 12,
     borderWidth: 2,
     marginBottom: 12,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     alignSelf: 'center',
-    color: Theme.primary,
+    color: Colors.primary,
     fontSize: 28
   },
   titleIconContainer: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     alignContent: 'center'
   },
   userText: {
-    color: Theme.dark,
+    color: Colors.dark,
     fontSize: 14,
     marginTop: 6
   }

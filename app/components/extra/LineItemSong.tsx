@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { globalStyle, Theme } from '../../theme';
+import { globalStyle, Colors } from '../../theme';
 
 const LineItemSong = ({ active, downloaded, onPress, songData }: any) => (
   <View style={styles.container}>
@@ -14,11 +14,11 @@ const LineItemSong = ({ active, downloaded, onPress, songData }: any) => (
       onPress={() => onPress(songData)}
       style={globalStyle.flex5}
     >
-      <Text style={[styles.title, { color: active ? Theme.brandPrimary : Theme.white }]}>{songData.title}</Text>
+      <Text style={[styles.title, { color: active ? Colors.brandPrimary : Colors.white }]}>{songData.title}</Text>
       <View style={{ flexDirection: 'row' }}>
         {downloaded && (
           <View style={styles.circleDownloaded}>
-            <Ionicons color={Theme.blackBg} name="ios-arrow-round-down" size={14} />
+            <Ionicons color={Colors.blackBg} name="ios-arrow-round-down" size={14} />
           </View>
         )}
         <Text style={styles.artist}>{songData.artist}</Text>
@@ -26,7 +26,7 @@ const LineItemSong = ({ active, downloaded, onPress, songData }: any) => (
     </TouchableOpacity>
 
     <View style={styles.containerRight}>
-      <Feather color={Theme.greyLight} name="more-horizontal" size={20} />
+      <Feather color={Colors.greyLight} name="more-horizontal" size={20} />
     </View>
   </View>
 );
@@ -54,12 +54,12 @@ LineItemSong.propTypes = {
 
 const styles = StyleSheet.create({
   artist: {
-    color: Theme.greyInactive,
+    color: Colors.greyInactive,
     fontSize: 12
   },
   circleDownloaded: {
     alignItems: 'center',
-    backgroundColor: Theme.brandPrimary,
+    backgroundColor: Colors.brandPrimary,
     borderRadius: 7,
     height: 14,
     justifyContent: 'center',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 16,
     marginBottom: 4
   }

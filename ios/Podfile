@@ -56,12 +56,12 @@ target 'minze' do
   pod 'Firebase/Performance', '~> 5.20.1'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
-  pod 'AppCenter'
+  
 
   # Use the following line to use App Center Analytics and Crashes. 
-  pod 'AppCenter/Analytics'
+  pod 'AppCenter/Analytics', '~> 2.2.0'
   pod 'AppCenter/Crashes'
-  pod 'AppCenterReactNativeShared', '~> 1.13.0'
+  pod 'AppCenterReactNativeShared', '~> 2.2.0'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
@@ -82,6 +82,10 @@ target 'minze' do
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
+
+  pod 'RNCViewpager', :path => '../node_modules/@react-native-community/viewpager'
+
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
   target 'minzeTests' do
     inherit! :search_paths

@@ -2,16 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Feather from 'react-native-vector-icons/Feather';
-import { globalStyle, Theme } from '../../theme';
+import { globalStyle, Colors } from '../../theme';
 
 const LineItemCategory = ({ icon, onPress, title }: any) => (
   <TouchableOpacity activeOpacity={globalStyle.activeOpacity} onPress={onPress} style={styles.container}>
     <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-      <Feather color={Theme.greyInactive} name={icon} size={24} />
+      <Feather color={Colors.greyInactive} name={icon} size={24} />
       <Text style={styles.title}>{title}</Text>
     </View>
     <View style={styles.containerRight}>
-      <Feather color={Theme.greyInactive} name="chevron-right" size={20} />
+      <Feather color={Colors.greyInactive} name="chevron-right" size={20} />
     </View>
   </TouchableOpacity>
 );
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   title: {
-    color: Theme.white,
+    color: Colors.white,
     fontSize: 14,
     marginLeft: 16
   }

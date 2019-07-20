@@ -3,7 +3,7 @@ import geocode from './geocode.json';
 
 // import  from './collection.json';
 
-export const getCollections = () => {
+export const getCollections = () =>
   // console.warn('CALLED');
   // return fetch('https://developers.zomato.com/api/v2.1/collections?city_id=1&count=10', {
   //   headers: {
@@ -13,10 +13,9 @@ export const getCollections = () => {
   // }).then(response => {
   //   return response.json();
   // });
-  return collections;
-};
+  collections;
 
-export const getActivities = () => {
+export const getActivities = () =>
   // console.warn('CALLED');
   // console.warn(location);
   // return fetch(
@@ -30,8 +29,7 @@ export const getActivities = () => {
   // ).then(response => {
   //   return response.json();
   // });
-  return geocode;
-};
+  geocode;
 
 export const getRegionForCoordinates = (points: any[], zoom: number = 200) => {
   const distanceDelta = Math.exp(Math.log(360) - zoom * Math.LN2);

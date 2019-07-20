@@ -840,9 +840,12 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+          13B07F861A680F5B00A75B9A = {
+            ProvisioningStyle = Manual;
+          };
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = RDM88T627P;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, StatusBar } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { Theme, Layout, FontWeights } from '../../theme';
+import { Colors, Layout, FontWeights } from '../../theme';
 import { Button as ButtonBase } from 'react-native-paper';
 const { height, width } = Layout.window;
+import { NavigationType } from '../../types';
 
 const Button = (props: any) => (
-  <ButtonBase {...props} theme={{ roundness: 4, colors: { primary: Theme.primary } }} mode="contained" />
+  <ButtonBase {...props} theme={{ roundness: 4, colors: { primary: Colors.primary } }} mode="contained" />
 );
 
 const ImagePath = '../../assets/images/onboard';
@@ -34,7 +35,7 @@ const Slides = [
 ];
 
 interface Props {
-  navigation: any;
+  navigation: NavigationType;
 }
 
 interface State {}
@@ -52,28 +53,22 @@ class AppIntroScreen extends Component<Props, State> {
   };
 
   navigateToAuth = () => {
-    let { navigation } = this.props;
+    const { navigation } = this.props;
     navigation.navigate('PhoneAuth');
   };
 
-  nextButton = () => {
-    return <Button>Next</Button>;
-  };
+  nextButton = () => <Button>Next</Button>;
 
-  skipButton = () => {
-    return <Button onPress={() => this.appIntroSliderRef.goToSlide(2)}>Skip</Button>;
-  };
+  skipButton = () => <Button onPress={() => this.appIntroSliderRef.goToSlide(2)}>Skip</Button>;
 
-  doneButton = () => {
-    return (
-      <Button icon="done" onPress={() => this.navigateToAuth()}>
-        Done
-      </Button>
-    );
-  };
+  doneButton = () => (
+    <Button icon="done" onPress={() => this.navigateToAuth()}>
+      Done
+    </Button>
+  );
 
   renderScreens = (props: { title?: any; text?: any; image?: any }) => {
-    let { title, text } = props;
+    const { title, text } = props;
 
     return (
       <View style={{ flex: 1, height, width }}>
@@ -101,7 +96,7 @@ class AppIntroScreen extends Component<Props, State> {
           >
             <Text
               style={{
-                color: Theme.darkGreen,
+                color: Colors.darkGreen,
                 flexWrap: 'wrap',
                 fontSize: 26,
                 ...FontWeights.medium
@@ -148,8 +143,8 @@ class AppIntroScreen extends Component<Props, State> {
           slides={Slides}
           ref={(ref: any) => (this.appIntroSliderRef = ref)}
           showSkipButton
-          dotStyle={{ marginTop: 16, backgroundColor: Theme.grey }}
-          activeDotStyle={{ marginTop: 16, backgroundColor: Theme.primary }}
+          dotStyle={{ marginTop: 16, backgroundColor: Colors.grey }}
+          activeDotStyle={{ marginTop: 16, backgroundColor: Colors.primary }}
           renderItem={this.renderScreens}
           renderSkipButton={this.skipButton}
           renderNextButton={this.nextButton}

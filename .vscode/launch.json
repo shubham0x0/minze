@@ -6,36 +6,23 @@
   "configurations": [
     {
       "name": "Debug Android",
-      "program": "${workspaceRoot}/.vscode/launchReactNative.js",
-      "type": "reactnative",
-      "request": "attach",
-      // "platform": "android",
-      "sourceMaps": true,
-      "outDir": "${workspaceRoot}/.vscode/.react"
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://localhost:8081/debugger-ui/",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "Debug Android",
-      "program": "${workspaceRoot}/.vscode/launchReactNative.js",
+      "cwd": "${workspaceFolder}",
       "type": "reactnative",
       "request": "launch",
-      "platform": "android",
-      "sourceMaps": true,
-      "outDir": "${workspaceRoot}/.vscode/.react"
+      "platform": "android"
+    },
+    {
+      "name": "Debug iOS",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "ios"
     },
     {
       "name": "Attach to packager",
-      "program": "${workspaceRoot}/.vscode/launchReactNative.js",
+      "cwd": "${workspaceFolder}",
       "type": "reactnative",
-      "request": "attach",
-      "sourceMaps": true,
-      "outDir": "${workspaceRoot}/.vscode/.react"
+      "request": "attach"
     }
   ]
 }
