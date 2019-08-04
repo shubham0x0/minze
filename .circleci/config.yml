@@ -229,9 +229,14 @@ jobs:
 
 workflows:
   version: 2
-  node-android-ios:
+  node-android:
     jobs:
       - node
+        filters:
+          branches:
+              only:
+                - master
+                - staging
       # - ios:
       #     requires:
       #       - node
