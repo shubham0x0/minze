@@ -232,11 +232,6 @@ workflows:
   node-android:
     jobs:
       - node
-        filters:
-          branches:
-              only:
-                - master
-                - staging
       # - ios:
       #     requires:
       #       - node
