@@ -15,7 +15,7 @@
 
 PRODUCTION="master"       # Resticted access
 STAGING="staging"         # Resticted access; pre-production alpha testing
-DEVELOPMENT="developmentx" # merge point and development takes place here
+DEVELOPMENT="development" # merge point and development takes place here
 TESTING="testing"         # full access to everyone
 
 
