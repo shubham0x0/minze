@@ -105,18 +105,6 @@ jobs:
       - attach_workspace:
           at: ~/minze
 
-      - run:
-          name: Unpack secrets
-          command: |
-            cd ./
-            if [ "${CIRCLE_BRANCH}" == "master" ];
-            then
-              sudo yarn secrets:unpack -e production -p ${PRODUCTION_SECRETS_PASSPHRASE}
-            elif [ "${CIRCLE_BRANCH}" == "staging" ];
-            then
-              sudo yarn secrets:unpack -e staging -p ${STAGING_SECRETS_PASSPHRASE}
-            fi
-
       - run: cd ./ && sudo gem install bundler && bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
 
       - run:
@@ -126,16 +114,10 @@ jobs:
             yarn
 
       - deploy:
-          name: Build, Sign & Deploy
+          name: Fastlane build
           command: |
             cd ./
-            if [ "${CIRCLE_BRANCH}" == "master" ];
-            then
-              yarn deploy -t hard -o android -e production
-            elif [ "${CIRCLE_BRANCH}" == "staging" ];
-            then
-              yarn deploy -t hard -o android -e staging
-            fi
+            yarn run build -e ${CIRCLE_BRANCH}
 
       - store_test_results:
           path: ./test-results
@@ -229,7 +211,7 @@ jobs:
 
 workflows:
   version: 2
-  node-android-ios:
+  node-android:
     jobs:
       - node
       # - ios:
@@ -248,3 +230,4 @@ workflows:
               only:
                 - master
                 - staging
+                - development
