@@ -248,3 +248,4 @@ workflows:
               only:
                 - master
                 - staging
+      
