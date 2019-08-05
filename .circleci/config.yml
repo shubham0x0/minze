@@ -126,16 +126,17 @@ jobs:
             yarn
 
       - deploy:
-          name: Build, Sign & Deploy
+          name: Fastlane build
           command: |
             cd ./
-            if [ "${CIRCLE_BRANCH}" == "master" ];
-            then
-              yarn deploy -t hard -o android -e production
-            elif [ "${CIRCLE_BRANCH}" == "staging" ];
-            then
-              yarn deploy -t hard -o android -e staging
-            fi
+            yarn run fastlane:build
+            # if [ "${CIRCLE_BRANCH}" == "master" ];
+            # then
+            #   yarn deploy -t hard -o android -e production
+            # elif [ "${CIRCLE_BRANCH}" == "staging" ];
+            # then
+            #   yarn deploy -t hard -o android -e staging
+            # fi
 
       - store_test_results:
           path: ./test-results
