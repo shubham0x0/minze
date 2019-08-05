@@ -7,7 +7,7 @@
 
 set -e
 
-APP_ENV="testing"
+APP_ENV=`git rev-parse --abbrev-ref HEAD`
 SECRETS_PASSPHRASE=""
 GREEN='\033[0;32m'
 

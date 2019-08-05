@@ -10,7 +10,7 @@ set -e
 ## Use to create the secrets archive by grabbing all the secret files from your current codebase.
 ## Useful to add/remove secrets from the archive, after having unpacked currently comited archive with unpack_secrets.sh.
 
-APP_ENV="testing"
+APP_ENV=`git rev-parse --abbrev-ref HEAD`
 GREEN='\033[0;32m'
 
 
