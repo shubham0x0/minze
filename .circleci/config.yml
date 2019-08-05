@@ -117,14 +117,7 @@ jobs:
           name: Fastlane build
           command: |
             cd ./
-            yarn run fastlane:build
-            # if [ "${CIRCLE_BRANCH}" == "master" ];
-            # then
-            #   yarn deploy -t hard -o android -e production
-            # elif [ "${CIRCLE_BRANCH}" == "staging" ];
-            # then
-            #   yarn deploy -t hard -o android -e staging
-            # fi
+            yarn run build -e ${CIRCLE_BRANCH}
 
       - store_test_results:
           path: ./test-results

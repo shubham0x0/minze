@@ -7,7 +7,7 @@
 
 set -e
 
-APP_ENV="staging"
+APP_ENV="testing"
 SECRETS_PASSPHRASE=""
 GREEN='\033[0;32m'
 

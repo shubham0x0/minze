@@ -10,7 +10,7 @@ set -e
 ## Use to create the secrets archive by grabbing all the secret files from your current codebase.
 ## Useful to add/remove secrets from the archive, after having unpacked currently comited archive with unpack_secrets.sh.
 
-APP_ENV="staging"
+APP_ENV="testing"
 GREEN='\033[0;32m'
 
 
@@ -29,7 +29,7 @@ source fastlane/.env.${APP_ENV}
 FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
 
 # Select files to put in the archive
-SECRETS_TO_PACK="fastlane/.env.${APP_ENV}.secret android/app/${GRADLE_KEYSTORE}"
+SECRETS_TO_PACK=".env fastlane/.env.${APP_ENV} fastlane/.env.${APP_ENV}.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json "
 
 # Create archive
 tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
