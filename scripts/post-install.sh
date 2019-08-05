@@ -32,11 +32,11 @@ echo $BRANCH
 # symmetric cipher is used to encrypt the secrets.
 ################################################################################
 if [ ${BRANCH} == $PRODUCTION ]; then
-  yarn secrets:unpack -e production -p ${PRODUCTION_SECRET_PASSPHRASE}
+  sudo yarn secrets:unpack -e production -p ${PRODUCTION_SECRET_PASSPHRASE}
 elif [ $BRANCH == $STAGING ]; then
-  yarn secrets:unpack -e staging -p ${STAGING_SECRET_PASSPHRASE}
+  sudo yarn secrets:unpack -e staging -p ${STAGING_SECRET_PASSPHRASE}
 elif [ $BRANCH == $DEVELOPMENT ]; then
-  yarn secrets:unpack -e development -p ${DEVELOPMENT_SECRET_PASSPHRASE}
+  sudo yarn secrets:unpack -e development -p ${DEVELOPMENT_SECRET_PASSPHRASE}
 fi
 ################################################################################
 
