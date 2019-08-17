@@ -1,10 +1,15 @@
 <a href="https://github.com/mzeroes/minze">
   <p align="center">
-    <img width="120px" src=".github/logo.png" />
+    <img width="120px" src="app/assets/images/logo/logo.svg" />
   </p>
 <h1 align="center" style="font-family: monospace">Minze</h1>
 </a>
-
+<p align="center">
+ <a href="https://github.com/shubhamxy/minze/actions">
+  <img
+      src="https://github.com/shubhamxy/minze/workflows/Main%20CI%20Workflow/badge.svg" />
+  </a>
+</p>
 <p align="center">
  <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Android_Studio_icon.svg" height="22">&nbsp;&nbsp;
  <a href="https://install.appcenter.ms/users/mzeroes/apps/minze-2/distribution_groups/public%20preview">
@@ -160,7 +165,20 @@ bundle exec fastlane
 
 ## Screenshots
 
-- See [Screenshots](/.github/screenshots/README.md)
+<div style="width: 100%">
+    <img src=".github/screenshots/1.png" height="300px"/>
+    <img src=".github/screenshots/2.png" height="300px"/>
+    <img src=".github/screenshots/3.png" height="300px"/>
+    <img src=".github/screenshots/4.png" height="300px"/>
+    <img src=".github/screenshots/5.png" height="300px"/>
+    <img src=".github/screenshots/6.png" height="300px"/>
+    <img src=".github/screenshots/7.png" height="300px"/>
+    <img src=".github/screenshots/8.png" height="300px"/>
+    <img src=".github/screenshots/10.png" height="300px"/>
+    <img src=".github/screenshots/11.png" height="300px"/>
+    <img src=".github/screenshots/12.png" height="300px"/>
+    <img src=".github/screenshots/13.png" height="300px"/>
+</div>
 
 ### License
 

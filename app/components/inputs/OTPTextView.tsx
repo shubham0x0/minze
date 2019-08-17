@@ -115,6 +115,7 @@ class OTPTextView extends PureComponent<Props, State> {
 
       TextInputs.push(
         <TextInput
+          testID={'otp' + i}
           ref={e => {
             this.inputs[i] = e;
           }}

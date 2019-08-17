@@ -57,12 +57,12 @@ class AppIntroScreen extends Component<Props, State> {
     navigation.navigate('PhoneAuth');
   };
 
-  nextButton = () => <Button>Next</Button>;
+  nextButton = () => <Button testID="nextButton">Next</Button>;
 
   skipButton = () => <Button onPress={() => this.appIntroSliderRef.goToSlide(2)}>Skip</Button>;
 
   doneButton = () => (
-    <Button icon="done" onPress={() => this.navigateToAuth()}>
+    <Button icon="done" testID="doneButton" onPress={() => this.navigateToAuth()}>
       Done
     </Button>
   );
@@ -95,6 +95,7 @@ class AppIntroScreen extends Component<Props, State> {
             }}
           >
             <Text
+              testID="title"
               style={{
                 color: Colors.darkGreen,
                 flexWrap: 'wrap',
@@ -114,6 +115,7 @@ class AppIntroScreen extends Component<Props, State> {
             }}
           >
             <Text
+              testID="description"
               style={{
                 color: '#444',
                 textAlign: 'center',

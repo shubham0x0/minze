@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Keyboard } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
 import firebase from 'react-native-firebase';
@@ -149,6 +149,7 @@ class OTPScreen extends Component<Props, State> {
 
   getSubmitAction = () => {
     const { otp } = this.state;
+    Keyboard.dismiss();
     if (otp.length >= 6) {
       this.verifyCode();
     } else {
@@ -214,7 +215,7 @@ class OTPScreen extends Component<Props, State> {
           />
           {this.renderFooter()}
         </View>
-        <TouchableOpacityButton style={styles.button} onPress={this.getSubmitAction}>
+        <TouchableOpacityButton testID="submitButton_1" style={styles.button} onPress={this.getSubmitAction}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacityButton>
         <Portal>
