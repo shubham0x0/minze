@@ -1,6 +1,0 @@
-{
-  "generator-rn-toolbox": {
-    "fastlane": true,
-    "jest": true
-  }
-}

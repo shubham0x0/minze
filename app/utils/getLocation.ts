@@ -1,27 +1,67 @@
-import getPermission from './getPermission';
-import { Permissions } from 'react-native-unimodules';
-import { PermissionStatus } from 'expo-permissions/build/Permissions.types';
-import { store } from '../store';
-import { updateLocation } from '../store/actions';
+import { dispatcher } from '../context';
+import { updateLocation } from '../context/Rootcontext/actions';
+import * as Location from 'expo-location';
 
 export const getLocationUpdate = async () => {
-  // const options = {
-  //   enableHighAccuracy: true,
-  //   timeout: 2000
-  // };
-  const status = await getPermission(Permissions.LOCATION);
-  if (status !== PermissionStatus.GRANTED) {
-    // err
-  } else {
-    navigator.geolocation.getCurrentPosition(
-      location => {
-        store.dispatch(updateLocation({ ...location }));
-      },
-      err => {
-        // console.log(err);
+  try {
+    await Location.requestPermissionsAsync();
+    const position = await Location.getCurrentPositionAsync({
+      accuracy: 5
+    });
+
+    dispatcher.dispatch(updateLocation({ position }));
+    return position;
+  } catch (err) {
+    console.warn('LOCATION ERRROR' + err);
+    return null;
+  }
+};
+
+export const reverseGeocoder = async (coords: any) => {
+  try {
+    return {
+      title: 'Mock Title',
+      address: '123, Hello, world park, Delhi',
+      coords: {
+        ...coords
       }
-      // options
-    );
-    // const metro = (await Location.geocodeAsync('Rithala metro'))[0];
+    };
+  } catch (err) {
+    console.warn(err);
+    return {
+      title: '',
+      address: '',
+      coords: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
+  }
+};
+
+export const geocoder = async (address: string) => {
+  try {
+    // const response = await fetch(
+    //   `https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${coords.latitude},${coords.longitude}&mode=retrieveAddresses&maxresults=1&gen=9&app_id=HxPqfmRPvPUbjtldsH8d&app_code=KcABDOVO3ziS5lQhkQhB-A`
+    // );
+    // const json = await response.json()
+    return {
+      title: '',
+      address: '',
+      coords: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
+  } catch (err) {
+    console.warn(err);
+    return {
+      title: '',
+      address: '',
+      coords: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
   }
 };

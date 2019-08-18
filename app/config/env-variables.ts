@@ -24,24 +24,18 @@
 // tell typescript that there will be a the `node.js` process global variable used
 // declare var process: any;
 /// /////////////////////////////////////////////////////////////////////////////
-import Config from 'react-native-config';
-
-// import { runtimeEnvTest } from "../utils/runtimetests";
+import CONFIG from 'react-native-config';
 
 // loads environment variables from a .env file into process.env
 // these env vars will be exported to be used in the app directly
-const requiredEnvVars = ['APP_ENV', 'SERVER_ENV', 'APP_SECRET'];
-// ENV_VARS contains all the vars needed in the app
-const ENV_VARS: { [key: string]: string } = {};
-requiredEnvVars.forEach((item: string) => (ENV_VARS[item] = Config[item] || ''));
-
 // runtimeEnvTest(ENV_VARS);
 
-export default { ...Config };
 /// //////////////////////////////////////////////////////////////////////////////
-export const API: string = Config.API;
-
-export const APP_URL = 'https://mzeroes.github.io/strictly';
-export const APP_VERSION = '1.0.1';
+export const APP_ENV = CONFIG.APP_ENV;
+export const GOOGLE_MAP_API_KEY = CONFIG.RN_GOOGLE_MAPS_API_KEY;
+export const APP_URL = 'https://minze-server.herokuapp.com';
+export const APP_VERSION = require('../../package.json').version;
 export const GRAPHQL_ENDPOINT: string =
-  Config.SERVER_ENV === 'local' ? `http://192.168.0.104:3000/graphql` : `https://minze-server.herokuapp.com/graphql`;
+  CONFIG.SERVER_ENV === 'local' ? 'http://192.168.0.104:3000/graphql' : 'https://minze-server.herokuapp.com/graphql';
+
+export default CONFIG;

@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
-import { Theme, baseStyle } from '../../../theme';
+import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Theme, baseStyle, Layout, Colors } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
@@ -9,45 +9,48 @@ import TouchableListItem from '../../../components/TouchableListItem';
 import topGenres from '../../../mockdata/ourPicks.json';
 import { connect } from 'react-redux';
 import Account from '../../../components/parts/Account';
-import { onPressLogoutAsync, handleUrl } from '../../../utils';
+import { handleUrl } from '../../../utils';
 import { RootContext } from '../../../context';
 import { ApolloContext } from 'react-apollo';
-import { FETCH_USER, Query } from '../../../graphql/queries';
+import { FETCH_USER } from '../../../graphql/queries';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
 import { GRAPHQL_ENDPOINT } from '../../../config';
+import { getLocationUpdate } from '../../../utils/getLocation';
+import { APP_VERSION } from '../../../config/env-variables';
 import { Button } from 'react-native-elements';
+import AskUserModal from '../../../components/modals/AskUserModal';
+import { signOutUserAsync } from '../../../utils/auth/signOutUserAsync';
+import { NavigationType } from '../../../types';
+interface Props {
+  navigation: NavigationType;
+}
 
-const AccountScreen = (props: any) => {
+const AccountScreen = (props: Props) => {
   const [scrollY] = React.useState(new Animated.Value(0));
-  const [settingsTab, setSettingsTab] = React.useState(false);
+  const [settingsTab, setSettingsTab] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
   const context = React.useContext(RootContext);
   const gqlContext = React.useContext(ApolloContext);
-  const [profile, setprofile] = React.useState('');
-  const firstupdate = React.useRef(true);
-  const fetchData = async () => {
-    if (!gqlContext || !gqlContext.client) return;
-    try {
-      const response = await gqlContext.client.query({ query: FETCH_USER });
-      setprofile(response.data.me);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData, gqlContext]);
-  React.useEffect(() => {
-    if (firstupdate.current) {
-      firstupdate.current = false;
-    }
-  }, []);
+    (async () => {
+      // await getLocationUpdate();
+      if (!gqlContext || !gqlContext.client) {
+        return;
+      }
+      try {
+        const response = await gqlContext.client.query({ query: FETCH_USER });
+      } catch (err) {
+        // console.log(err);
+      }
+    })();
+  }, [gqlContext]);
 
   const accountData = [
     {
       title: 'Feedback',
       subtitle: 'Give Your Valueable Feedback',
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy/minze/issues');
       },
       children: <Text>Give Feedback</Text>
@@ -55,39 +58,32 @@ const AccountScreen = (props: any) => {
     {
       title: 'About',
       subtitle: 'Build with ❤️ by Shubham Jain <github.com/shubhamxy>',
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy');
       }
     },
     {
       title: 'Version',
-      subtitle: '1.0.1',
-      onPress: () => {
+      subtitle: APP_VERSION,
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy/minze');
       }
     },
     {
       title: 'Server Status',
       subtitle: context.state.network.serverStatus,
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl(GRAPHQL_ENDPOINT);
       }
     },
     {
       title: 'AuthToken',
       subtitle: context.state.network.authToken,
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://minze-server.herokuapp.com/playground');
-      }
-    },
-    {
-      title: 'Logout',
-      onPress: async () => {
-        await onPressLogoutAsync();
       }
     }
   ];
-  const [query, setQuery] = React.useState('{me {id}}');
 
   return (
     <React.Fragment>
@@ -95,23 +91,22 @@ const AccountScreen = (props: any) => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[1]}
+        stickyHeaderIndices={[0, 2]}
         style={baseStyle.container}
       >
+        <HeaderBar
+          title={'Profile'}
+          rightComponent={{
+            icon: 'edit',
+            onPress: () => {
+              props.navigation.navigate('EditProfile');
+            }
+          }}
+        />
         <View style={[{ paddingBottom: 20, justifyContent: 'center', backgroundColor: Theme.secondary }]}>
-          <HeaderBar
-            placement={'center'}
-            title={'Profile'}
-            rightComponent={{
-              icon: 'edit',
-              onPress: () => {
-                props.navigation.navigate('EditProfile');
-              }
-            }}
-          />
-          <Account />
+          <Account navigation={props.navigation} />
         </View>
-        <View>
+        <>
           <View style={styles.bottom}>
             <TouchableOpacity
               style={{
@@ -138,6 +133,7 @@ const AccountScreen = (props: any) => {
               onPress={() => {
                 setSettingsTab(true);
               }}
+              testID="AccountSettings"
               style={{
                 flex: 1,
                 alignItems: 'center',
@@ -156,9 +152,9 @@ const AccountScreen = (props: any) => {
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </>
         {settingsTab ? (
-          <View style={{ padding: 12 }}>
+          <View style={{ padding: 12, minHeight: Layout.window.height }}>
             <FlatList
               key={1}
               contentContainerStyle={styles.containerFlatlist}
@@ -172,48 +168,46 @@ const AccountScreen = (props: any) => {
                     itemStyle={{ borderRadius: 0, margin: 12 }}
                     bgColor={item.surface ? item.surface : Theme.surface}
                     subtitle={item.subtitle}
-                    onPress={item.onPress}
+                    onPress={item.handleOnPress}
                     title={item.title}
                     textColor={Theme.text}
                   />
                 );
               }}
             />
-            <Text style={{ color: Theme.text }}>{JSON.stringify(profile, null, 4)}</Text>
+            <AskUserModal toggleDialog={() => setVisible(false)} visible={visible} onSuccess={signOutUserAsync} />
+            <Button
+              type="clear"
+              onPress={() => {
+                setVisible(true);
+              }}
+              containerStyle={{ width: '100%' }}
+              icon={{
+                name: 'logout',
+                type: 'antdesign',
+                size: 15,
+                color: Theme.lightText
+              }}
+              title="Logout"
+              buttonStyle={{ backgroundColor: Theme.darkText }}
+              titleStyle={{ ...baseStyle.heading2, color: Theme.lightText }}
+            />
           </View>
         ) : (
-          <View style={{ padding: 12 }}>
+          <View style={{ padding: 12, paddingBottom: 100, minHeight: Layout.window.height }}>
             <FlatList
               key={2}
-              contentContainerStyle={styles.containerFlatlist}
               data={topGenres}
               keyExtractor={itemObj => itemObj.title.toString()}
               numColumns={2}
               renderItem={itemObj => {
                 const { item } = itemObj;
 
-                return (
-                  <TouchableListItem
-                    itemStyle={{ margin: 12 }}
-                    bgColor={item.color}
-                    onPress={() => {}}
-                    title={item.title}
-                  />
-                );
+                return <TouchableListItem itemStyle={{ margin: 12 }} bgColor={item.color} title={item.title} />;
               }}
             />
           </View>
         )}
-        {/* <TextInput placeholder={'Query'} value={query} onChangeText={(value)=>{setQuery(value)}}/>
-        <Button title={'Submit'} onPress={async()=>{
-              if (!gqlContext || !gqlContext.client) return;
-              try {
-                const response = await gqlContext.client.query({ query: Query(query) });
-                setprofile(response.data.me);
-              } catch (err) {
-                console.warn(err);
-              }
-        }} /> */}
       </Animated.ScrollView>
     </React.Fragment>
   );
@@ -251,27 +245,12 @@ const styles = StyleSheet.create({
     // marginTop: 16
   },
   containerFlatlist: {},
-  iconRight: {
-    alignItems: 'center',
-    height: 14,
-    justifyContent: 'center',
-    position: 'absolute',
-    right: 24,
-    top: 20,
-    width: 24
-  },
   bottom: {
-    flex: 1,
+    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     height: 48,
-    width: '100%',
     backgroundColor: Theme.surface
   }
 });
 
-const mapStateToProps = (state: { user: any }) => ({
-  user: state.user
-});
-
-export default connect(mapStateToProps)(AccountScreen);
+export default AccountScreen;

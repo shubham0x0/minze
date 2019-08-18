@@ -3,19 +3,19 @@ import { Platform, Text } from 'react-native';
 import Dialog, { DialogContent, ScaleAnimation, SlideAnimation } from 'react-native-popup-dialog';
 import TouchableOpacityButton from '../touchable/TouchableOpacityButton';
 
-import { FontWeights, Theme, Colors } from '../../theme';
+import { FontWeights, Theme, Colors, Layout, baseStyle } from '../../theme';
 
 const AskUserModal = (props: {
   onSuccess: any;
-  onFailure: any;
-  headerContent: any;
-  subContent: any;
-  successButtonText: any;
-  failureButtonText: any;
-  successButtonTextColor: any;
-  failureButtonTextColor: any;
-  isVisible: any;
-  toggleDialog: any;
+  onFailure?: any;
+  headerContent?: any;
+  subContent?: any;
+  successButtonText?: any;
+  failureButtonText?: any;
+  successButtonTextColor?: any;
+  failureButtonTextColor?: any;
+  visible: any;
+  toggleDialog?: any;
 }) => {
   const {
     onSuccess,
@@ -26,56 +26,53 @@ const AskUserModal = (props: {
     failureButtonText,
     successButtonTextColor,
     failureButtonTextColor,
-    isVisible,
+    visible,
     toggleDialog
   } = props;
 
   return (
-    // @ts-ignore
     <Dialog
       containerStyle={{ backgroundColor: 'transparent' }}
       animationDuration={Platform.OS === 'ios' ? 500 : 800}
       onTouchOutside={toggleDialog}
       dialogAnimation={Platform.OS === 'ios' ? new ScaleAnimation() : new SlideAnimation({ slideFrom: 'bottom' })}
-      onRequestClose={toggleDialog}
-      presentationStyle={'overFullScreen'}
-      transparent
-      visible={isVisible}
-      animationType={'slide'}
+      visible={visible}
+      {...props}
     >
       <DialogContent
         style={{
-          width: 192,
+          width: Layout.window.width / 1.2,
           padding: 20,
-          backgroundColor: '#EFEFEF',
+          backgroundColor: Theme.background,
           borderRadius: 10
         }}
       >
         <Text
           style={{
-            color: '#000',
+            ...baseStyle.heading1,
+            color: Theme.darkText,
             textAlign: 'left',
-            fontSize: 32,
             marginBottom: 8,
             padding: 4
           }}
         >
-          {headerContent}
+          {headerContent || 'Confirm'}
         </Text>
         <Text
           style={{
-            ...FontWeights.light,
-            color: '#000',
-            textAlign: 'left',
-            fontSize: 28,
-            padding: 4
+            ...baseStyle.heading4,
+            color: Theme.darkText,
+            textAlign: 'left'
           }}
         >
-          {subContent}
+          {subContent || 'Do you confirm?'}
         </Text>
 
         <TouchableOpacityButton
-          onPress={() => onSuccess()}
+          onPress={() => {
+            onSuccess && onSuccess();
+            toggleDialog();
+          }}
           style={{
             borderRadius: 5,
             alignItems: 'center',
@@ -83,14 +80,25 @@ const AskUserModal = (props: {
             paddingTop: 10,
             paddingBottom: 10,
             marginTop: 15,
-            backgroundColor: Theme.secondary
+            backgroundColor: Theme.brandPrimary
           }}
         >
-          <Text style={{ color: successButtonTextColor, fontSize: 22 }}>{successButtonText}</Text>
+          <Text
+            style={{
+              ...baseStyle.heading4,
+              color: successButtonTextColor || Theme.lightText,
+              fontSize: 22
+            }}
+          >
+            {successButtonText || 'Yes'}
+          </Text>
         </TouchableOpacityButton>
 
         <TouchableOpacityButton
-          onPress={() => onFailure()}
+          onPress={() => {
+            onFailure && onFailure();
+            toggleDialog();
+          }}
           style={{
             borderRadius: 5,
             alignItems: 'center',
@@ -98,10 +106,19 @@ const AskUserModal = (props: {
             paddingTop: 10,
             paddingBottom: 10,
             marginTop: 15,
-            backgroundColor: Theme.primary
+            backgroundColor: Theme.surface
           }}
         >
-          <Text style={{ ...FontWeights.light, color: failureButtonTextColor, fontSize: 22 }}>{failureButtonText}</Text>
+          <Text
+            style={{
+              ...baseStyle.heading4,
+              ...FontWeights.light,
+              color: failureButtonTextColor || Theme.darkText,
+              fontSize: 22
+            }}
+          >
+            {failureButtonText || 'No'}
+          </Text>
         </TouchableOpacityButton>
       </DialogContent>
     </Dialog>

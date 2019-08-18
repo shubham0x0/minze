@@ -4,7 +4,7 @@ import { APP_URL } from '../../config';
 import { Theme, Colors } from '../../theme';
 import { Button } from 'react-native-elements';
 
-import { handleUrl, onPressLogoutAsync } from '../../utils';
+import { handleUrl, signOutUserAsync } from '../../utils';
 
 export const LogOutCard = () => (
   <View style={[styles.container, { justifyContent: 'space-between' }]}>
@@ -40,7 +40,7 @@ export const LogOutCard = () => (
     />
     <Button
       type="clear"
-      onPress={onPressLogoutAsync}
+      onPress={signOutUserAsync}
       containerStyle={{ paddingLeft: 10, marginBottom: 10, alignItems: 'flex-start' }}
       icon={{
         name: 'logout',

@@ -1,19 +1,16 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Theme, Layout, baseStyle } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
 
 import deliveryOptions from '../../../mockdata/deliveryOptions.json';
-import TouchIcon from '../../../components/TouchIcon';
-import SvgSearch from '../../../components/icons/Svg.Search';
-import { getCollections } from '../../../utils/getData';
-import { HeaderBar } from '../../../components/headers/HeaderBar';
+import { RootContext } from '../../../context';
 
 class Search extends React.Component<any, any> {
+  static contextType = RootContext;
   constructor(props: any) {
     super(props);
 
@@ -29,12 +26,7 @@ class Search extends React.Component<any, any> {
 
   render() {
     const { scrollY, searchStart, searchEnd } = this.state;
-
-    const opacity = scrollY.interpolate({
-      inputRange: [0, 48],
-      outputRange: [searchStart, searchEnd],
-      extrapolate: 'clamp'
-    });
+    const { context } = this;
 
     return (
       <React.Fragment>
@@ -56,12 +48,21 @@ class Search extends React.Component<any, any> {
             ]}
           >
             <TouchableOpacity activeOpacity={0.8} onPress={() => null} style={{ flexDirection: 'row' }}>
-              <FontAwesome style={[styles.sectionHeading]} color={Theme.darkText} name="location-arrow" />
-              <Text style={[styles.sectionHeading]}>Delivery Location</Text>
+              <Text style={[styles.sectionHeading, { marginLeft: 0 }]}>Delivery Location</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 20, marginBottom: 20 }} activeOpacity={0.8} onPress={() => null}>
-              <Text style={[styles.headerText]}>98, 3rd Floor, Pocket21</Text>
-              <Text style={[styles.headerText]}>Sector 24, Rohini</Text>
+              {context.state.savedAddresses.length === 0 ? (
+                <Text>Select Delivery Location</Text>
+              ) : (
+                <Text
+                  ellipsizeMode={'tail'}
+                  numberOfLines={3}
+                  style={[styles.headerText, { paddingLeft: 0, maxWidth: Layout.window.width / 2 }]}
+                >
+                  {context.state.savedAddresses[context.state.currentDelivery].title ||
+                    context.state.savedAddresses[context.state.currentDelivery].address}
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
           <View style={styles.containerSearchBar}>

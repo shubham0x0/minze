@@ -121,16 +121,14 @@ export default class UploadAvatar extends Component<Props, State> {
             source={{ uri: image }}
           />
         ) : (
-          <View>
-            <TouchableOpacity
-              onPress={() => {
-                const { visible } = this.state;
-                this.setState({ visible: !visible });
-              }}
-            >
-              <Avatar.Icon style={{ alignSelf: 'center', backgroundColor: '#ccc' }} icon="photo-camera" size={60} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              const { visible } = this.state;
+              this.setState({ visible: !visible });
+            }}
+          >
+            <Avatar.Icon style={{ alignSelf: 'center', backgroundColor: '#ccc' }} icon="photo-camera" size={60} />
+          </TouchableOpacity>
         )}
         {image !== '' ? (
           <Button
@@ -214,7 +212,7 @@ const localstyles = StyleSheet.create({
     justifyContent: 'center'
   },
   headText: {
-    color: Theme.dark,
+    color: Theme.darkText,
     fontSize: 14
   },
   headingContainer: {

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Colors, Layout, baseStyle } from '../../../theme';
+import { Theme, Colors, Layout, baseStyle, activeOpacity } from '../../../theme';
 import { getCollections, getActivities } from '../../../utils/getData';
 import { Card, Title, Subheading, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from 'react-native-elements';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
 
 class CartScreen extends React.Component<any, any> {
@@ -48,8 +46,8 @@ class CartScreen extends React.Component<any, any> {
     const activities = getActivities();
     this.setState({ activitiesData: activities });
   };
-  renderRestautrantsItem({ item }: any) {
-    const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
+  renderRestautrantsItem = ({ item }: any) => {
+    const { name, thumb, average_cost_for_two } = item.restaurant;
     return (
       <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
         <Card.Content>
@@ -61,7 +59,7 @@ class CartScreen extends React.Component<any, any> {
             <View style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20, paddingRight: 20 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Title>{name}</Title>
-                <FontAwesome
+                <Icon
                   color={Theme.text}
                   style={{ fontSize: 18, justifyContent: 'center', alignSelf: 'center' }}
                   name="trash"
@@ -70,18 +68,14 @@ class CartScreen extends React.Component<any, any> {
 
               <Subheading style={{ fontSize: 12 }}>QTY. {1}</Subheading>
               <View style={{ flexDirection: 'row' }}>
-                <FontAwesome
-                  color={Theme.text}
-                  style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }}
-                  name="rupee"
-                />
+                <Icon color={Theme.text} style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }} name="rupee" />
                 <Subheading style={{ fontSize: 12 }}>{average_cost_for_two && average_cost_for_two}</Subheading>
               </View>
               {/* {item.offers && item.offers.map(self => <Subheading style={{ fontSize: 12 }}>{self.name}</Subheading>)} */}
               <View style={{ paddingBottom: 10, flex: 1, flexWrap: 'wrap' }}>
                 <View style={{ flexDirection: 'row', paddingTop: 6, justifyContent: 'space-between' }}>
                   <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
-                    <FontAwesome color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="minus" />
+                    <Icon color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="minus" />
                   </TouchableOpacity>
                   <Text
                     style={{
@@ -97,7 +91,7 @@ class CartScreen extends React.Component<any, any> {
                     Add
                   </Text>
                   <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
-                    <FontAwesome color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="plus" />
+                    <Icon color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="plus" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -107,9 +101,9 @@ class CartScreen extends React.Component<any, any> {
         </Card.Content>
       </Card>
     );
-  }
+  };
 
-  renderItem({ item }: any) {
+  renderItem = ({ item }: any) => {
     const { title, description, image_url } = item.collection;
     return (
       <>
@@ -124,23 +118,23 @@ class CartScreen extends React.Component<any, any> {
         </View>
       </>
     );
-  }
+  };
 
   render() {
     const { scrollY } = this.state;
 
     return (
       <React.Fragment>
-        <HeaderBar title={'Cart'} />
         <Animated.ScrollView
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[1]}
+          stickyHeaderIndices={[0, 2]}
           style={baseStyle.container}
         >
+          <HeaderBar title={'Cart'} />
           <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
-          <View>
+          <>
             <View
               style={{
                 display: 'flex',
@@ -151,7 +145,7 @@ class CartScreen extends React.Component<any, any> {
               }}
             >
               <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
-              <TouchableOpacity activeOpacity={1} onPress={() => null} style={{ flexDirection: 'row' }}>
+              <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
                 <Icon size={16} name={'rupee'} color={Theme.text} />
                 <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>990</Text>
               </TouchableOpacity>
@@ -180,7 +174,7 @@ class CartScreen extends React.Component<any, any> {
                 <Text style={{ ...baseStyle.heading5, color: Theme.backdrop }}>Checkout</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </>
           {this.state.activitiesData.nearby_restaurants && (
             <FlatList
               keyExtractor={(item, index) => index.toString()}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
-import { View } from 'react-native';
 
 class DoMutation extends React.Component<{ mutate: any }> {
   componentDidMount() {

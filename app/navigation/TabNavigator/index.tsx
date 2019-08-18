@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
+import { AppState, Text } from 'react-native';
 import CustomTabBar from '../../components/bars/CustomTabBar';
 import { Theme, Fonts, baseStyle } from '../../theme';
 import CartStack from './CartStack';
@@ -12,17 +13,18 @@ import LoadingAnimated from '../../components/loaders/LoadingAnimated';
 import createApolloClient from '../../graphql';
 import { RootContext } from '../../context';
 import { NavigationType } from '../../types';
+import { userUpdateAsync } from '../../utils/auth/userUpdateAsync';
+import { getLocationUpdate } from '../../utils/getLocation';
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
     ActivitesStack,
     ExploreStack,
-    // HomeStack,
     CartStack,
     ProfileStack
   },
   {
-    initialRouteName: 'ActivitesStack',
+    // initialRouteName: 'ActivitesStack',
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: true,
@@ -43,12 +45,10 @@ const TabNavigator = createMaterialTopTabNavigator(
       },
       labelStyle: {
         ...baseStyle.heading5,
-        // color: Theme.darkText,
         padding: 0,
         margin: 0,
         fontSize: 10
       },
-      // activeBackgroundColor: Theme.background,
       activeTintColor: Theme.tabIconActive,
       inactiveTintColor: Theme.tabIcon,
       style: {
@@ -64,10 +64,26 @@ interface Props {
 }
 
 const MainTabNavigator = (props: Props) => {
+  const [appState, setAppState] = useState(AppState.currentState);
+  const handleAppStateChange = (nextAppState: any) => {
+    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+      // console.warn('App has come to the foreground!');
+    }
+    setAppState(nextAppState);
+  };
+  useEffect(() => {
+    getLocationUpdate();
+
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
   const context = React.useContext(RootContext);
-  const authToken = context.state.network.authToken;
-  const client = createApolloClient(authToken);
-  if (!client) return <LoadingAnimated />;
+  const client = createApolloClient(context.state.network.authToken);
+  if (!client) {
+    return <LoadingAnimated />;
+  }
   return (
     <ApolloProvider client={client}>
       <TabNavigator navigation={props.navigation} />

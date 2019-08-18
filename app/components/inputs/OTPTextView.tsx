@@ -115,6 +115,7 @@ class OTPTextView extends PureComponent<Props, State> {
 
       TextInputs.push(
         <TextInput
+          testID={'otp' + i}
           ref={e => {
             this.inputs[i] = e;
           }}
@@ -126,8 +127,6 @@ class OTPTextView extends PureComponent<Props, State> {
           onChangeText={text => this.onTextChange(text, i)}
           multiline={false}
           onKeyPress={e => this.onKeyPress(e, i)}
-          autoCapitalize={'none'}
-          autoCorrect={false}
           keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
           {...textInputProps}
         />

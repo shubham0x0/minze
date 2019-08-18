@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Theme, Layout, Colors, baseStyle } from '../../../theme';
+import { Theme, Layout, Colors, baseStyle, activeOpacity } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
@@ -48,7 +48,7 @@ class StickyHeaderList extends React.Component<Props, any> {
           style={baseStyle.container}
         >
           <View style={baseStyle.spacer11}>
-            <TouchableOpacity activeOpacity={1} onPress={() => null} style={styles.searchPlaceholder}>
+            <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={styles.searchPlaceholder}>
               <View style={baseStyle.mR1}>
                 <SvgSearch />
               </View>
@@ -60,7 +60,7 @@ class StickyHeaderList extends React.Component<Props, any> {
           </View>
           <View style={styles.containerSearchBar}>
             <Animated.View style={{ width: opacity }}>
-              <TouchableOpacity activeOpacity={1} onPress={() => null} style={styles.searchPlaceholder}>
+              <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={styles.searchPlaceholder}>
                 <View style={baseStyle.mR1}>
                   <SvgSearch />
                 </View>

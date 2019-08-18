@@ -2,16 +2,17 @@ import { iOSColors } from 'react-native-typography';
 import { Colors } from '../constants';
 import { FontWeights } from '../fonts/typography';
 import { Theme } from '../themes';
+import { DropdownAlertProps } from 'react-native-dropdownalert';
 const { orange, red } = iOSColors;
 
-const DropDownAlertStyles = {
-  updateStatusBar: true,
+const DropDownAlertStyles: DropdownAlertProps = {
+  updateStatusBar: false,
   successColor: Colors.green,
   infoColor: Theme.brandPrimary,
   warnColor: orange,
   errorColor: red,
   closeInterval: 8000,
-  userNativeDriver: true,
+  useNativeDriver: true,
   titleStyle: {
     ...FontWeights.light,
     fontSize: 15,

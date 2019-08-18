@@ -17,7 +17,7 @@
    id="svg10"
    sodipodi:docname="logo.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/logo/logo.png"
+   inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/logo/logo-green.png"
    inkscape:export-xdpi="192"
    inkscape:export-ydpi="192">
   <metadata
@@ -28,7 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -432,9 +432,9 @@
      inkscape:window-height="768"
      id="namedview12"
      showgrid="false"
-     inkscape:zoom="0.92187498"
-     inkscape:cx="285.74965"
-     inkscape:cy="265.4641"
+     inkscape:zoom="0.26889988"
+     inkscape:cx="-638.66406"
+     inkscape:cy="-264.29521"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -463,43 +463,33 @@
          overflow="visible"
          id="use189" />
     </clipPath>
-    <rect
-       style="opacity:1;fill:#f9f9f9;fill-opacity:0;fill-rule:nonzero;stroke-width:0.89720947"
-       id="rect2696"
-       width="460.8288"
-       height="460.8288"
-       x="118.5076"
-       y="77.8116"
-       ry="230.4144"
-       inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
     <g
-       id="g4721"
-       transform="matrix(-0.70422143,-0.72032594,0.71819698,-0.70243926,-186.44632,1040.9584)"
-       inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96">
+       id="g5359">
       <rect
-         transform="matrix(-0.71858715,-0.69543692,-0.69543692,0.71858715,0,0)"
-         y="420.02338"
-         x="-809.79883"
-         height="200"
-         width="200"
-         id="rect4687-6"
-         style="fill:#03256d;fill-opacity:0.72000002"
-         ry="37.653629" />
+         ry="230.4144"
+         y="77.8116"
+         x="118.5076"
+         height="460.8288"
+         width="460.82883"
+         id="rect79"
+         style="opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke-width:1.15207195" />
       <rect
-         transform="matrix(0.69627239,-0.71777766,-0.71777766,-0.69627239,0,0)"
-         y="-843.40881"
-         x="-653.14563"
-         height="200"
-         width="200"
-         id="rect4687"
-         style="fill:#f3f3ef;fill-opacity:0.8831169"
-         ry="34.724472"
+         inkscape:export-ydpi="96"
          inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
+         inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
+         ry="230.4144"
+         y="77.8116"
+         x="118.5076"
+         height="460.8288"
+         width="460.8288"
+         id="rect2696"
+         style="opacity:1;fill:#f9f9f9;fill-opacity:0;fill-rule:nonzero;stroke-width:0.89720947" />
+      <path
+         style="fill:#008080;stroke-width:15.38202953"
+         id="path8"
+         d="m 452.79917,277.70858 -18.91992,-18.7661 66.60428,-66.60419 -19.07371,-18.91989 -66.60416,66.14273 -19.07372,-18.91992 66.60416,-66.60417 -18.30467,-19.07371 -66.60418,66.60415 a 53.837103,53.837103 0 0 0 -2.15347,73.52617 l -166.58738,165.97201 23.68831,23.84213 165.5107,-166.12581 a 53.529461,53.529461 0 0 0 73.37225,-1.99968 L 537.8618,230.17814 519.40346,211.1044 Z m -105.05924,44.30027 1.53823,25.99562 116.74966,116.7495 24.14975,-23.99594 -116.90346,-116.7495 z m -64.6045,7.84474 47.99189,-47.99187 L 212.0705,162.9586 a 67.988567,67.988567 0 0 0 0,95.98388 z"
+         class="cls-1"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>

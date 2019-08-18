@@ -38,12 +38,6 @@ class ExpandedList extends React.Component<Props, State> {
   static defaultProps = {};
   componentDidMount() {
     console.disableYellowBox = true;
-
-    this.setState({
-      ExpandedList: 'YOYO' || null,
-      song: 'ASDSAD',
-      title: 'asdasdsad'
-    });
   }
 
   toggleDownloaded(val: boolean) {

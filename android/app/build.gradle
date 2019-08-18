@@ -181,16 +181,15 @@ dependencies {
    /**
     *  Native modules from libs
     */
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-minze-native')
     // ------------------------------------------ //
     implementation project(':react-native-config')
     implementation project(':react-native-svg')
     implementation project(':react-native-screens')
     implementation project(':lottie-react-native')
-    implementation project(':react-native-splash-screen')
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
-
     /* ----------------------------
     *    REACT NATIVE FIREBASE
     * ---------------------------- */
@@ -267,21 +266,14 @@ dependencies {
     /**
      * RN vector Icons
      */
-    // compile project(':react-native-vector-icons')
     implementation project(':react-native-text-input-mask')
-
-    /**
-     * RN gesture-handler
-     */
     implementation project(':react-native-gesture-handler')
-    /** RN-gradient */
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-maps')
     implementation project(':@react-native-community_viewpager')
     /**
      * Detox
      */
-    // androidTestImplementation('com.wix:detox:+') { transitive = true }
     androidTestImplementation(project(path: ":detox"))
     androidTestImplementation 'junit:junit:4.12'
 }

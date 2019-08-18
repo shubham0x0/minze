@@ -1,10 +1,11 @@
 package com.mzeroes.minze;
 
 import android.app.Application;
-import com.mzeroes.nativemodules.MinzeNativePackage;
-import com.mzeroes.nativemodules.RNMinzeNativePackage; // from libs folder
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.RNTextInputMask.RNTextInputMaskPackage;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
@@ -19,20 +20,10 @@ import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyti
 import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
-import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.swmansion.rnscreens.RNScreensPackage;
 
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactAdapterPackage;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
-// import org.unimodules.core.interfaces.Package;
-// import org.unimodules.core.interfaces.SingletonModule;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import expo.modules.constants.ConstantsPackage;
 import expo.modules.filesystem.FileSystemPackage;
@@ -40,6 +31,7 @@ import expo.modules.imagepicker.ImagePickerPackage;
 import expo.modules.location.LocationPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.webbrowser.WebBrowserPackage;
+
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
@@ -55,6 +47,15 @@ import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.invertase.firebase.perf.RNFirebasePerformancePackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
+
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.swmansion.rnscreens.RNScreensPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.RNTextInputMask.RNTextInputMaskPackage;
+
+import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
+
+import com.mzeroes.nativemodules.RNMinzeNativePackage; // from libs folder
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(Arrays.asList(
@@ -88,7 +89,6 @@ public class MainApplication extends Application implements ReactApplication {
         new SvgPackage(),
         new RNScreensPackage(),
         new LottiePackage(),
-        new SplashScreenReactPackage(),
         new RNGestureHandlerPackage(),
         new RNFirebasePackage(),
         // add/remove these packages as appropriate
@@ -117,7 +117,6 @@ public class MainApplication extends Application implements ReactApplication {
         new LinearGradientPackage(),
         new RNTextInputMaskPackage(),
         new MapsPackage(),
-        new MinzeNativePackage(),
         new RNMinzeNativePackage()
       );
     }

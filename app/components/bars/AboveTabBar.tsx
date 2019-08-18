@@ -39,12 +39,12 @@ const RightContainer = (props: IAboveTopBarProps) => (
 const CenterContainer = (props: IAboveTopBarProps) => (
   <React.Fragment>
     {props.info && (
-      <View>
+      <>
         <View style={styles.containerinfo}>
           <Text style={styles.title}>{props.title}</Text>
           <Text style={styles.info}>{props.info}</Text>
         </View>
-      </View>
+      </>
     )}
     <View
       style={{
@@ -61,7 +61,7 @@ const CenterContainer = (props: IAboveTopBarProps) => (
 
 const AboveTabBar: React.FC<IAboveTopBarProps> = (props: IAboveTopBarProps) =>
   props.visible ? (
-    <TouchableOpacity activeOpacity={1} onPress={props.onPress} style={styles.container}>
+    <TouchableOpacity activeOpacity={activeOpacity} onPress={props.onPress} style={styles.container}>
       {props.children ? (
         props.children
       ) : (

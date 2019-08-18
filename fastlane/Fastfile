@@ -24,8 +24,6 @@ end
 # JS Environments
 
 # lane :set_js_env do |options|
-#   backup_file(path: 'app/config/environment/index.js')
-#   sh "cp ../app/config/environment/index.js ../app/config/environment/index.js"
 # end
 
 before_all do |lane, options|
@@ -34,15 +32,9 @@ before_all do |lane, options|
 end
 
 after_all do |lane, options|
-  if File.exist?('../app/config/environment/index.js.back')
-    restore_file(path: 'app/config/environment/index.js')
-  end
 end
 
 error do |lane, exception, options|
-  if File.exist?('../app/config/environment/index.js.back')
-    restore_file(path: 'app/config/environment/index.js')
-  end
 end
 
 

@@ -1,19 +1,16 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react';
 import { Text, View, ScrollView, ImageBackground, FlatList, RefreshControl } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
 import { connect } from 'react-redux';
-import { Layout, Theme } from '../../../theme';
+import { Theme } from '../../../theme';
 import { Card, Title, Paragraph, Subheading, Divider } from 'react-native-paper';
 import { getCollections, getActivities } from '../../../utils/getData';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { NavigationType } from '../../../types';
+import { RootContext } from '../../../context';
 
 interface Props {
   info: any;
   navigation: NavigationType;
-  user: any;
-  location: any;
 }
 interface State {
   collectionData: any[];
@@ -24,7 +21,7 @@ interface State {
 }
 class ActivitiesScreen extends Component<Props, State> {
   carousel: any;
-
+  static contextType = RootContext;
   state = {
     collectionData: [],
     activitiesData: {
@@ -36,7 +33,8 @@ class ActivitiesScreen extends Component<Props, State> {
   };
 
   componentWillMount() {
-    this.getInfoAsync(this.props.location);
+    const { location } = this.context.state;
+    this.getInfoAsync(location);
   }
 
   getInfoAsync = async (location: any) => {
@@ -58,26 +56,27 @@ class ActivitiesScreen extends Component<Props, State> {
     this.setState({ activitiesData: activities });
   };
 
-  componentDidUpdate(prevProps: Props) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.location !== prevProps.location) {
-      this.getInfoAsync(this.props.location);
-    }
-  }
+  // componentDidUpdate(prevProps: Props) {
+  //   // Typical usage (don't forget to compare props):
 
-  renderItem({ item }: any) {
+  //   if (this.props.location !== prevProps.location) {
+  //     this.getInfoAsync(this.props.location);
+  //   }
+  // }
+
+  renderItem = ({ item }: any) => {
     const { title, description, image_url } = item.collection;
     return (
-      <View>
+      <>
         <ImageBackground style={{ height: 160, width: 200 }} source={{ uri: image_url }} />
         <View style={{ backgroundColor: '#ffffff07', flex: 1, flexWrap: 'wrap' }}>
           <Title>{title}</Title>
           <Paragraph>{description}</Paragraph>
         </View>
-      </View>
+      </>
     );
-  }
-  renderRestautrantsItem({ item }: any) {
+  };
+  renderRestautrantsItem = ({ item }: any) => {
     const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
     return (
       <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
@@ -111,11 +110,12 @@ class ActivitiesScreen extends Component<Props, State> {
         </Card.Content>
       </Card>
     );
-  }
+  };
 
   onRefresh = async () => {
     this.setState({ isFetching: true });
-    await this.getInfoAsync(this.props.location);
+    const { location } = this.context.state;
+    await this.getInfoAsync(location);
     this.setState({ isFetching: false });
   };
 
@@ -125,7 +125,9 @@ class ActivitiesScreen extends Component<Props, State> {
       // console.warn(JSON.stringify(item));
       let temp = 0;
       temp += name.toLowerCase().includes(this.state.searchText.toLowerCase());
-      if (cuisines) temp += cuisines.toLowerCase().includes(this.state.searchText.toLowerCase());
+      if (cuisines) {
+        temp += cuisines.toLowerCase().includes(this.state.searchText.toLowerCase());
+      }
       return temp !== 0;
     });
 
@@ -137,7 +139,7 @@ class ActivitiesScreen extends Component<Props, State> {
     return this.state.errorMessage ? (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>{this.state.errorMessage}</Text>
-        <Text>{JSON.stringify(this.props.user)}</Text>
+        <Text>{JSON.stringify(this.context.state.user)}</Text>
       </View>
     ) : (
       <View style={{ backgroundColor: Theme.background }}>

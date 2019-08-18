@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Animated, StyleSheet, TouchableOpacity, View, TextInput } from 'react-native';
-import { Theme, Layout, baseStyle } from '../../../theme';
+import { Theme, Layout, baseStyle, activeOpacity } from '../../../theme';
 
 import SvgSearch from '../../../components/icons/Svg.Search';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
@@ -52,7 +52,7 @@ class SearchScreen extends React.Component<any, any> {
           </View>
           <View style={styles.containerSearchBar}>
             <Animated.View style={{ width: opacity }}>
-              <TouchableOpacity activeOpacity={1} onPress={() => null} style={styles.searchPlaceholder}>
+              <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={styles.searchPlaceholder}>
                 <View style={baseStyle.mR1}>
                   <SvgSearch size={16} fill={Theme.darkText} />
                 </View>

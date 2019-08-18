@@ -1,5 +1,7 @@
 #! /bin/bash
 source scripts/common.sh
+
+source .env
 source fastlane/.env
 source fastlane/.env.secret
 ################################################################################
@@ -26,7 +28,7 @@ done
 
 if [[ $APP_OS == "android" ]]; then
   echo -e "${YELLOW}- - - - -"
-  echo -e "↪ fastlane Android ${APP_ENV} 🤖"
+  echo -e "↪Android ${APP_ENV} 🤖"
   echo -e "- - - - -${NO_COLOR}"
   if [ $# -eq 0 ]; then
     bundle exec fastlane android

@@ -1,17 +1,4 @@
-import {
-  UPDATE_USER,
-  UPDATE_DATA,
-  UPDATE_SUMMARY,
-  UPDATE_SETTINGS,
-  UPDATE_LOGINSTATUS,
-  UPDATE_LOCATION
-} from './types';
-
-// action creators
-export const updateUser = (update: Record<string, any>) => ({
-  type: UPDATE_USER,
-  payload: update
-});
+import { UPDATE_DATA, UPDATE_SUMMARY, UPDATE_SETTINGS, UPDATE_LOGINSTATUS } from './types';
 
 export const updateData = (update: Record<string, any>) => ({
   type: UPDATE_DATA,
@@ -28,12 +15,7 @@ export const updateSettings = (update: Record<string, any>) => ({
   payload: update
 });
 
-export const updateLocation = (update: {}) => ({
-  type: UPDATE_LOCATION,
-  payload: update
-});
-
-export const updateloginStatus = (update: Record<string, any>) => ({
+export const updateloginStatus = (update: boolean) => ({
   type: UPDATE_LOGINSTATUS,
   payload: update
 });

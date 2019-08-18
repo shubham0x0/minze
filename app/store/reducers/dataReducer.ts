@@ -1,4 +1,4 @@
-import { UPDATE_DATA, PHONE_VERIFICATION_SUCCESS, APP_LOGOUT } from '../actions/types';
+import { UPDATE_DATA, UPDATE_LOGINSTATUS } from '../actions/types';
 
 const initialData = {};
 
@@ -9,17 +9,13 @@ export const dataReducer = (state = initialData, action: any) => {
         ...state,
         ...action.payload
       };
-    case PHONE_VERIFICATION_SUCCESS:
-      const { userPhoneNumber } = action;
-      return {
-        ...state,
-        userPhoneNumber,
-        isVerified: true
-      };
-    case APP_LOGOUT:
-      return {
-        ...initialData
-      };
+    case UPDATE_LOGINSTATUS:
+      if (action.payload === false) {
+        return {
+          ...initialData
+        };
+      }
+      return state;
     default:
       return state;
   }

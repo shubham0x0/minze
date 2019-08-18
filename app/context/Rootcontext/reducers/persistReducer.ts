@@ -11,17 +11,14 @@ export const persistReducer = (
   }
 ) => {
   switch (action.type) {
-    // case 'DEV_MERGE_CONTEXT':
-    // store.dispatch(persistStore(initialState));
-    // return initialState;
     case RESET_CONTEXT:
       store.dispatch(persistStore(initialState));
       return initialState;
     case GET_PERSISTED_CONTEXT:
       const contexts = store.getState().contexts;
-      // !!!TODO!!!! for update in context merge the structures of contexts
-      if (__DEV__) return { ...initialState, network: contexts.network };
-      else return contexts;
+      if (contexts.savedAddresses.length === 0) {
+      }
+      return { ...contexts, loading: false };
     default:
       store.dispatch(persistStore(state));
       return state;

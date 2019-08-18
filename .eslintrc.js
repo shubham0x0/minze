@@ -8,19 +8,11 @@ module.exports = {
     project: './tsconfig.json'
   },
   extends: [
-    '@react-native-community',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
+    // '@react-native-community',
     'prettier/@typescript-eslint',
     'react-native'
   ],
   settings: {
-    'import/resolver': {
-      node: {
-        paths: ['app']
-      }
-    },
     react: {
       pragma: 'React',
       version: 'detect'
@@ -31,7 +23,7 @@ module.exports = {
     jest: true
   },
   rules: {
-    '@typescript-eslint/camelcase': 'warn',
+    '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/indent': 'off',
@@ -44,23 +36,25 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'comma-dangle': 'off',
-    'import/no-commonjs': 'off',
     'global-require': 'off',
-    'handle-callback-err': 'warn',
-    'import/no-unresolved': 'warn',
+    'handle-callback-err': 'off',
+    'import/default': 'off',
+    'import/named': 'off',
+    'import/namespace': 'off',
+    'import/no-commonjs': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-namespace': 'warn',
+    'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'no-console': 'warn',
-    'import/no-namespace': 'warn',
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: false, optionalDependencies: false, peerDependencies: false }
-    ],
-    'import/default': 'off',
     'no-else-return': 'off',
+    'no-empty-function': 'off',
     'no-invalid-this': 'off',
+    'no-case-declarations': 'off',
+    'class-methods-use-this': 'off',
     'no-undef': 'warn',
     'no-underscore-dangle': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-use-before-define': 'off',
     'object-curly-newline': 'off',
     'react-native/no-color-literal': 'off',
@@ -73,13 +67,14 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/display-name': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/jsx-no-bind': 'off',
     'react/no-multi-comp': 'off',
     'react/no-string-refs': 'warn',
     'react/no-unescaped-entities': 'off',
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/sort-comp': 'off',
-    semi: 'off'
+    'semi': 'off'
   },
   globals: {
     __DEV__: false,

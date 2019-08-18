@@ -24,20 +24,17 @@ while getopts ":e:o:p:" opt; do
   esac
 done
 
-if [ -z $APP_SECRET_PASSPHRASE ]; then
-  echo "❌ ${RED} APP_SECRET_PASSPHRASE is not set{NO_COLOR}"
-  exit -1
-fi
-
 ################################################################################
 ./scripts/secrets.sh -m unpack -e ${APP_ENV} -p ${APP_SECRET_PASSPHRASE}
 ################################################################################
-
+source .env
 source fastlane/.env
 source fastlane/.env.secret
 
 echo -e "${YELLOW}- - - - -"
 echo -e "↪ post-install script 🤖"
 echo -e "- - - - -${NO_COLOR}"
-echo -e "CURRENT APP_ENV: ${YELLOW}$APP_ENV{NO_COLOR}"
+echo -e "↪ APP_ENV: ${YELLOW}$APP_ENV${NO_COLOR}"
 success "post-install succeed 📦"
+#  npx jetify
+# success "jetify succeed 📦"

@@ -1,5 +1,6 @@
 #! /bin/bash
 source scripts/common.sh
+source .env
 source fastlane/.env
 source fastlane/.env.secret
 ################################################################################

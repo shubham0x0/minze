@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Theme } from '../../theme';
-import { connect } from 'react-redux';
 
 const LoggedUser = (props: { user: any }) => {
   const { user } = props;
-  if (!user) return <View />;
+  if (!user) {
+    return <View />;
+  }
   return (
     <View style={styles.titleContainer}>
       <View style={styles.titleIconContainer}>
@@ -75,8 +76,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state: { user: any[] }) => ({
-  user: state.user
-});
-
-export default connect(mapStateToProps)(LoggedUser);
+export default LoggedUser;

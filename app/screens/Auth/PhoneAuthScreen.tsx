@@ -3,19 +3,17 @@ import { StyleSheet, Text, View, Platform } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
 import CountryPicker, { CCA2Code } from 'react-native-country-picker-modal';
-import { FontWeights, Theme, Colors, DropDownAlertStyles } from '../../theme';
-import { TextInput, Modal, Portal } from 'react-native-paper';
+import { FontWeights, Theme, Colors, DropDownAlertStyles, activeOpacity, baseStyle, Layout } from '../../theme';
+import { TextInput } from 'react-native-paper';
 import TextInputMask from 'react-native-text-input-mask';
-import TouchableOpacityButton from '../../components/touchable/TouchableOpacityButton';
-import { VerifyPhoneAnimated } from '../../components/animations';
 import { NavigationType } from '../../types';
+import { Button } from 'react-native-elements';
 
 interface Props {
   navigation: NavigationType;
 }
 
 interface State {
-  verifyOTP: boolean;
   spinner: boolean;
   phoneNumber: string;
   country: {
@@ -27,7 +25,6 @@ interface State {
 class PhoneAuthScreen extends Component<Props, State> {
   dropDownNotification: any;
   state: State = {
-    verifyOTP: false,
     spinner: false,
     phoneNumber: __DEV__ ? '1234567890' : '',
     country: {
@@ -39,7 +36,7 @@ class PhoneAuthScreen extends Component<Props, State> {
     header: null
   };
 
-  getSubmitAction = () => {
+  handleSubmitAction = () => {
     const { phoneNumber } = this.state;
     const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     if (phoneNumber.match(regex)) {
@@ -56,7 +53,7 @@ class PhoneAuthScreen extends Component<Props, State> {
     }
   };
 
-  changeCountry = (country: any) => {
+  handleChangeCountry = (country: any) => {
     this.setState({ country });
   };
 
@@ -70,7 +67,7 @@ class PhoneAuthScreen extends Component<Props, State> {
         marginRight: 30
       }}
     >
-      <Text style={styles.disclaimerText}>
+      <Text testID="submitTerms" style={styles.disclaimerText}>
         By tapping "Submit", we will send you an SMS to confirm your phone number. Message &amp; data rates may apply.
       </Text>
     </View>
@@ -86,9 +83,7 @@ class PhoneAuthScreen extends Component<Props, State> {
       FADE = 'fade',
       NONE = 'none'
     }
-    return this.state.verifyOTP ? (
-      <View />
-    ) : (
+    return (
       <CountryPicker
         ref={'countryPicker'}
         closeable
@@ -96,29 +91,24 @@ class PhoneAuthScreen extends Component<Props, State> {
         flagType={FlagType.FLAT}
         animationType={AnimationType.SLIDE}
         autoFocusFilter={false}
-        onChange={this.changeCountry}
+        onChange={this.handleChangeCountry}
         cca2={this.state.country.cca2}
         translation={'common'}
       />
     );
   };
 
-  renderCallingCode = () =>
-    this.state.verifyOTP ? (
-      <View />
-    ) : (
-      <View style={styles.callingCodeView}>
-        <Text style={styles.callingCodeText}>+{this.state.country.callingCode}</Text>
-      </View>
-    );
+  renderCallingCode = () => (
+    <View style={styles.callingCodeView}>
+      <Text style={styles.callingCodeText}>+{this.state.country.callingCode}</Text>
+    </View>
+  );
 
   render() {
     return (
       <View style={styles.container}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.header}>
-            {this.state.verifyOTP ? 'Enter your verification code.' : "What's your Phone Number ?"}
-          </Text>
+          <Text style={styles.header}>What's your Phone Number ?</Text>
           <View style={{ flexDirection: 'row', margin: 20 }}>
             <View
               style={{
@@ -132,46 +122,55 @@ class PhoneAuthScreen extends Component<Props, State> {
             </View>
             <TextInput
               ref={'textInput'}
-              // label={'Phone Number'}
               underlineColorAndroid={'transparent'}
               autoCapitalize={'none'}
               autoCorrect={false}
               value={this.state.phoneNumber}
-              placeholder={'Phone'}
+              placeholder={'Phone Number'}
               keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
-              style={[
-                { fontSize: 24, backgroundColor: Theme.background, justifyContent: 'center', paddingLeft: 20 },
-                styles.textInput
-              ]}
+              style={styles.textInput}
+              textContentType="telephoneNumber"
               returnKeyType={'next'}
-              autoFocus
+              autoFocus={true}
               placeholderTextColor={Theme.primary}
               selectionColor={Theme.primary}
               maxLength={20}
-              onSubmitEditing={this.getSubmitAction}
-              render={(props: any) => (
-                <TextInputMask
-                  {...props}
-                  allowFontScaling
-                  style={[{ fontSize: 24 }, styles.textInput]}
-                  onChangeText={(formatted: any, extracted: any) => {
-                    this.setState({ phoneNumber: extracted });
-                  }}
-                  mask={'[000] [000] [0000]'}
-                />
-              )}
+              onChangeText={phoneNumber => this.setState({ phoneNumber })}
+              onSubmitEditing={this.handleSubmitAction}
+              // render={(props: any) => (
+              //   <TextInput
+              //     {...props}
+              //     allowFontScaling
+              //     style={[{ fontSize: 22 }, styles.textInput]}
+              //     onChangeText={text => {
+              //       this.setState({ phoneNumber: text });
+              //     }}
+              //   />
+              //   // <TextInputMask
+              //   //   {...props}
+              //   //   allowFontScaling
+              //   //   style={[{ fontSize: 22 }, styles.textInput]}
+              //   //   onChangeText={(formatted: any, extracted: any) => {
+              //   //     this.setState({ phoneNumber: extracted });
+              //   //   }}
+              //   //   mask={'[000] [000] [0000]'}
+              //   // />
+              // )}
             />
           </View>
+          <Button
+            testID="submitButton"
+            onPress={this.handleSubmitAction}
+            title={'Submit'}
+            type={'solid'}
+            loading={this.state.spinner}
+            activeOpacity={activeOpacity}
+            containerStyle={{ marginTop: Layout.window.height / 3, borderRadius: 0, marginLeft: 20, marginRight: 20 }}
+            buttonStyle={{ backgroundColor: Theme.darkText }}
+            titleStyle={{ ...baseStyle.heading2, color: Theme.secondary }}
+          />
           {this.renderFooter()}
         </View>
-        <TouchableOpacityButton style={styles.button} onPress={this.getSubmitAction}>
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacityButton>
-        <Portal>
-          <Modal visible={this.state.spinner}>
-            <VerifyPhoneAnimated />
-          </Modal>
-        </Portal>
         <DropdownAlert {...DropDownAlertStyles} ref={(ref: any) => (this.dropDownNotification = ref)} />
       </View>
     );
@@ -182,13 +181,10 @@ export default PhoneAuthScreen;
 
 const styles = StyleSheet.create({
   button: {
-    position: 'absolute',
-    bottom: 0,
     // right: 0,
-    height: 45,
+    // height: 45,
+    marginTop: 300,
     width: '100%',
-    // borderRadius: 50,
-    backgroundColor: Theme.brandPrimary,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -199,7 +195,7 @@ const styles = StyleSheet.create({
   },
   callingCodeText: {
     color: Theme.primary,
-    fontSize: 28,
+    fontSize: 18,
     paddingHorizontal: 10,
     ...FontWeights.light
   },
@@ -225,7 +221,9 @@ const styles = StyleSheet.create({
   textInput: {
     color: Theme.primary,
     flex: 1,
-    marginBottom: -10,
-    padding: 0
+    padding: 4,
+    fontSize: 44,
+    height: 50,
+    backgroundColor: Theme.background
   }
 });

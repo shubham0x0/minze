@@ -4,7 +4,7 @@ import { colors } from '../constants/colors';
 const Base = {
   accent: colors.cyanBlue,
   background: colors.white,
-  brandPrimary: colors.primary,
+  brandPrimary: colors.greyBlack,
   disabled: colors.darkGrey,
   primary: colors.primary,
   secondary: colors.secondary,

@@ -1,20 +1,8 @@
-import { UPDATE_USER } from '../actions/types';
+import { UPDATE_LOGINSTATUS } from '../actions/types';
 
-export const userReducer = (state = {}, action: any) => {
-  if (action.type === UPDATE_USER) {
+export const isLoggedInReducer = (state = false, action: { payload: boolean; type: string }) => {
+  if (action.type === UPDATE_LOGINSTATUS) {
     return action.payload;
-  }
-  return state;
-};
-
-export const isLoggedInReducer = (state = false, action: any) => {
-  if (action.type === UPDATE_USER) {
-    // ie. if payload == {} then set isLoggedIn: false
-    if (Object.keys(action.payload).length === 0) {
-      return false;
-    } else {
-      return true;
-    }
   }
   return state;
 };
