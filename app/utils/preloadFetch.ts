@@ -1,5 +1,4 @@
 import { loadAssetsAsync } from '../assets';
-import { signOutUserAsync } from './auth/signOutUserAsync';
 
 export const preloadFetch = async () => {
   try {
@@ -9,6 +8,6 @@ export const preloadFetch = async () => {
      */
     await loadAssetsAsync();
   } catch (err) {
-    // console.error('PreloadError' + err);
+    console.warn('PreloadError' + err);
   }
 };

@@ -1,0 +1,78 @@
+{
+  "featured_image": {
+    "uri": "https://b.zmtcdn.com/images/developers/apihome_bg.jpg"
+  },
+  "daily_menu_id": "16507624",
+  "menu_items": [
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089341",
+      "name": "Food Menu Item 1",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089342",
+      "name": "Food Menu Item 2",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089343",
+      "name": "Food Menu Item 3",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089344",
+      "name": "Food Menu Item 4",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089345",
+      "name": "Food Menu Item 5",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089346",
+      "name": "Food Menu Item 6",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    },
+    {
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089347",
+      "name": "Food Menu Item 7",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      }
+    }
+  ]
+}

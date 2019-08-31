@@ -136,25 +136,6 @@ class PhoneAuthScreen extends Component<Props, State> {
               maxLength={20}
               onChangeText={phoneNumber => this.setState({ phoneNumber })}
               onSubmitEditing={this.handleSubmitAction}
-              // render={(props: any) => (
-              //   <TextInput
-              //     {...props}
-              //     allowFontScaling
-              //     style={[{ fontSize: 22 }, styles.textInput]}
-              //     onChangeText={text => {
-              //       this.setState({ phoneNumber: text });
-              //     }}
-              //   />
-              //   // <TextInputMask
-              //   //   {...props}
-              //   //   allowFontScaling
-              //   //   style={[{ fontSize: 22 }, styles.textInput]}
-              //   //   onChangeText={(formatted: any, extracted: any) => {
-              //   //     this.setState({ phoneNumber: extracted });
-              //   //   }}
-              //   //   mask={'[000] [000] [0000]'}
-              //   // />
-              // )}
             />
           </View>
           <Button

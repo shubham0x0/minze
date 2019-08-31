@@ -15,9 +15,7 @@ export const persistReducer = (
       store.dispatch(persistStore(initialState));
       return initialState;
     case GET_PERSISTED_CONTEXT:
-      const contexts = store.getState().contexts;
-      if (contexts.savedAddresses.length === 0) {
-      }
+      const { contexts } = store.getState();
       return { ...contexts, loading: false };
     default:
       store.dispatch(persistStore(state));

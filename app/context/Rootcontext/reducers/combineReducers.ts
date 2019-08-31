@@ -1,4 +1,4 @@
-export const combineReducers = (...args) => {
+export const combineReducers = (...args: any) => {
   const initialState = typeof args[0] !== 'function' && args.shift();
   const reducers = args;
   if (typeof initialState === 'undefined') {
@@ -6,14 +6,14 @@ export const combineReducers = (...args) => {
       'The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.'
     );
   }
-  return (prevState, value, ...args) => {
+  return (prevState: any, value: any, ...args: any) => {
     const prevStateIsUndefined = typeof prevState === 'undefined';
     const valueIsUndefined = typeof value === 'undefined';
     if (prevStateIsUndefined && valueIsUndefined && initialState) {
       return initialState;
     }
     return reducers.reduce(
-      (newState, reducer, index) => {
+      (newState: any, reducer: any, index: any) => {
         if (typeof reducer === 'undefined') {
           throw new TypeError(`An undefined reducer was passed in at index ${index}`);
         }

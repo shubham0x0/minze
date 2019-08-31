@@ -6,7 +6,7 @@ import { Theme, Colors, baseStyle, activeOpacity } from '../../theme';
 import MapComponent from '../map/MapComponent';
 import { RootContext, dispatcher } from '../../context';
 import { IAddress } from '../../context/Rootcontext/reducers';
-import { getLocationUpdate, reverseGeocoder } from '../../utils/getLocation';
+import { getLocationUpdate, reverseGeocoder, searchLocation } from '../../utils/getLocation';
 import { Region } from 'react-native-maps';
 import { selectCurrentAddress } from '../../context/Rootcontext/actions';
 
@@ -55,57 +55,14 @@ interface Props {
   setSelected: (i: number) => void;
 }
 export const SelectAddress: React.FC<Props> = (props: Props) => {
-  const textInput = React.createRef<any>();
-  const { coords } = props.savedAddresses[props.selected];
   const { search, setSearch } = props;
-  const [region, setRegion] = useState<Region>({
-    latitude: coords ? coords.latitude : 22,
-    longitude: coords ? coords.longitude : 72,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01
-  });
-
-  useEffect(() => {
-    setRegion({
-      longitudeDelta: 0.01,
-      latitudeDelta: 0.01,
-      latitude: coords ? coords.latitude : 22,
-      longitude: coords ? coords.longitude : 72
-    });
-  }, [props.selected]);
-
   const [searchResult, setSearchResult] = useState<any[]>([]);
 
   useEffect(() => {
     if (!search) return;
     (async () => {
       try {
-        const searchResult = [
-          {
-            title: 'Home1',
-            address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-            coordinate: {
-              latitude: 23,
-              longitude: 72
-            }
-          },
-          {
-            title: 'Home2',
-            address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-            coordinate: {
-              latitude: 23,
-              longitude: 72
-            }
-          },
-          {
-            title: 'Home3',
-            address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-            coordinate: {
-              latitude: 23,
-              longitude: 72
-            }
-          }
-        ];
+        const searchResult = await searchLocation(search);
         setSearchResult(searchResult);
       } catch (err) {
         console.warn(err);
@@ -151,7 +108,9 @@ export const SelectAddress: React.FC<Props> = (props: Props) => {
             const position = await getLocationUpdate();
             if (position) {
               const getLocation = await reverseGeocoder(position.coords);
-              props.setEditData(getLocation);
+              props.setEditData({
+                ...getLocation
+              });
             }
           }}
           style={{

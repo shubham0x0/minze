@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import TabBarIcon from '../../components/icons/TabBarIcon';
 import CartScreen from '../../screens/Main/CartScreen';
+import BadgeTabIcon from '../../components/icons/BadgeTabIcon';
 const CartStack = createStackNavigator(
   {
     Cart: CartScreen
@@ -16,9 +17,9 @@ const CartStack = createStackNavigator(
 CartStack.navigationOptions = {
   tabBarLabel: 'Cart',
   tabBarIcon: ({ focused }: any) => (
-    <TabBarIcon
-      size={26}
+    <BadgeTabIcon
       focused={focused}
+      size={26}
       name={Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'ios-cart'}
     />
   )

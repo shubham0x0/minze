@@ -1,82 +1,73 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { Theme, Colors, Layout, baseStyle, activeOpacity } from '../../../theme';
-import { getCollections, getActivities } from '../../../utils/getData';
 import { Card, Title, Subheading, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
+import { RootContext, dispatcher } from '../../../context';
+import { addCartItem, removeCartItem } from '../../../context/Rootcontext/actions';
 
-class CartScreen extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
+interface Props {}
 
-    // search start (24 horizontal padding )
-    const searchStart = Layout.window.width - 48;
+const CartScreen: React.FC = (props: Props) => {
+  const scrollY = new Animated.Value(0);
+  const context = useContext(RootContext);
+  const cartItems = context.state.cart.items;
+  const cartData: any = Object.values(cartItems);
 
-    this.state = {
-      collectionData: [],
-      activitiesData: {
-        /* eslint-disable @typescript-eslint/camelcase */
-        nearby_restaurants: []
-      },
-      scrollY: new Animated.Value(0),
-      searchStart,
-      searchEnd: searchStart - 40
-    };
-  }
-  componentWillMount() {
-    this.getInfoAsync();
-  }
-
-  getInfoAsync = async () => {
-    // getCollections().then((obj: any) => {
-    //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
-    //   console.warn(JSON.stringify(obj, null, 4));
-    //   this.setState({ collectionData: obj.collections });
-    // });
-    const data = getCollections();
-    this.setState({
-      collectionData: data.collections
-    });
-    // getActivities(location).then((obj: any) => {
-    //   console.warn(JSON.stringify(obj, null, 4));
-    //   // const collectionDataArray = Object.keys(obj).map((index: any) => obj[index]);
-    //   this.setState({ activitiesData: obj });
-    // });
-    const activities = getActivities();
-    this.setState({ activitiesData: activities });
-  };
-  renderRestautrantsItem = ({ item }: any) => {
-    const { name, thumb, average_cost_for_two } = item.restaurant;
+  const renderListItem = ({ item }: any) => {
+    const { name, dish_image, amount_per_item, quantity } = item;
     return (
       <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <ImageBackground
               style={{ height: 100, width: 100 }}
-              source={{ uri: thumb || 'https://b.zmtcdn.com/images/developers/apihome_bg.jpg' }}
+              source={{ uri: dish_image.uri || 'https://b.zmtcdn.com/images/developers/apihome_bg.jpg' }}
             />
             <View style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20, paddingRight: 20 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Title>{name}</Title>
-                <Icon
-                  color={Theme.text}
-                  style={{ fontSize: 18, justifyContent: 'center', alignSelf: 'center' }}
-                  name="trash"
-                />
               </View>
-
-              <Subheading style={{ fontSize: 12 }}>QTY. {1}</Subheading>
-              <View style={{ flexDirection: 'row' }}>
-                <Icon color={Theme.text} style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }} name="rupee" />
-                <Subheading style={{ fontSize: 12 }}>{average_cost_for_two && average_cost_for_two}</Subheading>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Subheading style={{ fontSize: 18 }}>QTY. {quantity}</Subheading>
+                <View style={{ flexDirection: 'row' }}>
+                  <Icon
+                    color={Theme.text}
+                    style={{ fontSize: 18, alignSelf: 'center', paddingRight: 4 }}
+                    name="rupee"
+                  />
+                  <Subheading style={{ fontSize: 18 }}>{amount_per_item && amount_per_item * quantity}</Subheading>
+                </View>
               </View>
-              {/* {item.offers && item.offers.map(self => <Subheading style={{ fontSize: 12 }}>{self.name}</Subheading>)} */}
               <View style={{ paddingBottom: 10, flex: 1, flexWrap: 'wrap' }}>
                 <View style={{ flexDirection: 'row', paddingTop: 6, justifyContent: 'space-between' }}>
-                  <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
-                    <Icon color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="minus" />
-                  </TouchableOpacity>
+                  <Icon
+                    onPress={() => {
+                      let qty = 0;
+                      if (cartItems[item.dish_id] && cartItems[item.dish_id]['quantity']) {
+                        qty = cartItems[item.dish_id]['quantity'];
+                      }
+                      if (qty <= 1) {
+                        dispatcher.dispatch(
+                          removeCartItem({
+                            dish_id: item.dish_id
+                          })
+                        );
+                      } else {
+                        dispatcher.dispatch(
+                          addCartItem({
+                            ...item,
+                            quantity: qty - 1
+                          })
+                        );
+                      }
+                    }}
+                    size={12}
+                    color={Theme.text}
+                    style={{ backgroundColor: Colors.grey, color: Theme.textC, padding: 10 }}
+                    name="minus"
+                  />
                   <Text
                     style={{
                       color: Theme.text,
@@ -91,7 +82,28 @@ class CartScreen extends React.Component<any, any> {
                     Add
                   </Text>
                   <TouchableOpacity style={{ backgroundColor: Colors.grey }}>
-                    <Icon color={Theme.text} style={{ color: Theme.textC, padding: 10 }} name="plus" />
+                    <Icon
+                      onPress={() => {
+                        let qty = 0;
+                        if (cartItems[item.dish_id] && cartItems[item.dish_id]['quantity']) {
+                          qty = cartItems[item.dish_id]['quantity'];
+                        }
+                        dispatcher.dispatch(
+                          addCartItem({
+                            ...item,
+                            quantity: qty + 1
+                          })
+                        );
+                      }}
+                      size={12}
+                      color={Theme.text}
+                      style={{
+                        backgroundColor: Colors.grey,
+                        color: Theme.textC,
+                        padding: 10
+                      }}
+                      name="plus"
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -103,90 +115,65 @@ class CartScreen extends React.Component<any, any> {
     );
   };
 
-  renderItem = ({ item }: any) => {
-    const { title, description, image_url } = item.collection;
-    return (
-      <>
-        <ImageBackground style={{ height: 136, width: 200 }} source={{ uri: image_url }} />
-        <View style={{ backgroundColor: Colors.white, flexDirection: 'column', height: 64, padding: 10 }}>
-          <Text numberOfLines={1} ellipsizeMode={'tail'} style={[baseStyle.cursiveBold3]}>
-            {title}
-          </Text>
-          <Text numberOfLines={3} ellipsizeMode={'tail'} style={[baseStyle.cursiveBold5]}>
-            {description}
-          </Text>
-        </View>
-      </>
-    );
-  };
-
-  render() {
-    const { scrollY } = this.state;
-
-    return (
-      <React.Fragment>
-        <Animated.ScrollView
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
-          scrollEventThrottle={16}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0, 2]}
-          style={baseStyle.container}
-        >
-          <HeaderBar title={'Cart'} />
-          <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
-          <>
-            <View
+  return (
+    <React.Fragment>
+      <Animated.ScrollView
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0, 2]}
+        style={baseStyle.container}
+      >
+        <HeaderBar title={'Cart'} />
+        <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
+        <>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              padding: 10,
+              backgroundColor: Theme.surface
+            }}
+          >
+            <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
+            <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
+              <Icon size={16} name={'rupee'} color={Theme.text} />
+              <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>990</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.bottom}>
+            <TouchableOpacity
               style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                padding: 10,
-                backgroundColor: Theme.surface
+                flex: 1,
+                alignItems: 'center',
+                backgroundColor: Theme.backdrop,
+                height: '100%',
+                justifyContent: 'center'
               }}
             >
-              <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
-              <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
-                <Icon size={16} name={'rupee'} color={Theme.text} />
-                <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>990</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.bottom}>
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  backgroundColor: Theme.backdrop,
-                  height: '100%',
-                  justifyContent: 'center'
-                }}
-              >
-                <Text style={{ ...baseStyle.heading5, color: Theme.surface }}>Select Payment Method</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  backgroundColor: Theme.surface,
-                  height: '100%',
-                  justifyContent: 'center'
-                }}
-              >
-                <Text style={{ ...baseStyle.heading5, color: Theme.backdrop }}>Checkout</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-          {this.state.activitiesData.nearby_restaurants && (
-            <FlatList
-              keyExtractor={(item, index) => index.toString()}
-              data={this.state.activitiesData.nearby_restaurants}
-              renderItem={this.renderRestautrantsItem}
-            />
-          )}
-        </Animated.ScrollView>
-      </React.Fragment>
-    );
-  }
-}
+              <Text style={{ ...baseStyle.heading5, color: Theme.surface }}>Select Payment Method</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                backgroundColor: Theme.surface,
+                height: '100%',
+                justifyContent: 'center'
+              }}
+            >
+              <Text style={{ ...baseStyle.heading5, color: Theme.backdrop }}>Checkout</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+        {cartData && (
+          <FlatList keyExtractor={(item, index) => index.toString()} data={cartData} renderItem={renderListItem} />
+        )}
+      </Animated.ScrollView>
+    </React.Fragment>
+  );
+};
 
 const styles = StyleSheet.create({
   containerSearchBar: {},
