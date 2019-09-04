@@ -1,12 +1,13 @@
 name: Main CI Workflow
 on:
   push:
-      # Sequence of patterns matched against refs/heads
     branches:
-      - master         # Push events on master branch
+      - master       # Push events on master branch
       - 'releases/*'   # Push events to branches matching refs/heads/releases/*
       - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
-    # Sequence of patterns matched against refs/tags
+  pull_request:
+    branches:
+      - master       # Push events on master branch
 jobs:
   Ubuntu:
     name: Run Android on Ubuntu
@@ -30,7 +31,9 @@ jobs:
         APPCENTER_BRANCH: master
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
 
-      run: yarn install
+      run: |
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        yarn install
 
     # - name: Test
     #   run: yarn test
@@ -40,12 +43,21 @@ jobs:
 
     # - name: Format
     #   run: npm run format
+    - name: Set up Ruby 2.5
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.5.x
+    - name: Fastlane Setup
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
 
     - name: Fastlane Build
       env:
         APPCENTER_BRANCH: master
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
-      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p; yarn run fast:build
+      run: |
+        yarn run fast:build
 
   # macOS:
   #   name: Run macOS
