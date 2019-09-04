@@ -1,12 +1,10 @@
 name: Main CI Workflow
 on:
   push:
-      # Sequence of patterns matched against refs/heads
     branches:
-      - master         # Push events on master branch
+      - maseter       # Push events on master branch
       - 'releases/*'   # Push events to branches matching refs/heads/releases/*
       - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
-    # Sequence of patterns matched against refs/tags
 jobs:
   Ubuntu:
     name: Run Android on Ubuntu
@@ -46,13 +44,15 @@ jobs:
         ruby-version: 2.6.x
     - name: Fastlane Setup
       run: |
-        sudo gem install fastlane -NV
+        gem install fastlane -NV
 
     - name: Fastlane Build
       env:
         APPCENTER_BRANCH: master
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
-      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p; yarn run fast:build
+      run: |
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        yarn run fast:build
 
   # macOS:
   #   name: Run macOS
