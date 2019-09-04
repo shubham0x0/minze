@@ -2,7 +2,7 @@ name: Main CI Workflow
 on:
   push:
     branches:
-      - maseter       # Push events on master branch
+      - master       # Push events on master branch
       - 'releases/*'   # Push events to branches matching refs/heads/releases/*
       - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
 jobs:
