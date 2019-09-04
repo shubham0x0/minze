@@ -44,7 +44,8 @@ jobs:
         ruby-version: 2.5.x
     - name: Fastlane Setup
       run: |
-        gem install fastlane -NV
+        gem install bundler
+        bundle install --jobs 4 --retry 3
 
     - name: Fastlane Build
       env:
