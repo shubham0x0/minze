@@ -1,20 +1,98 @@
-name: Android CI
-
-on: [push]
-
+name: Main CI Workflow
+on:
+  push:
+      # Sequence of patterns matched against refs/heads
+    branches:
+      - master         # Push events on master branch
+      - 'releases/*'   # Push events to branches matching refs/heads/releases/*
+      - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
+    # Sequence of patterns matched against refs/tags
 jobs:
-  build:
-
+  Ubuntu:
+    name: Run Android on Ubuntu
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        version: 10.x
+
     - name: set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Gradle
+
+    - name: npm install
       env:
         APPCENTER_BRANCH: master
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
-      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p; yarn install; yarn run fast:build
+
+      run: yarn install
+
+    # - name: Test
+    #   run: yarn test
+
+    # - name: Lint
+    #   run: npm run lint
+
+    # - name: Format
+    #   run: npm run format
+
+    - name: Fastlane Build
+      env:
+        APPCENTER_BRANCH: master
+        APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
+      run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p; yarn run fast:build
+
+  # macOS:
+  #   name: Run macOS
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
+
+  #     - name: Set Node.js 10.x
+  #       uses: actions/setup-node@master
+  #       with:
+  #         version: 10.x
+
+  #     - name: npm install
+  #       run: npm install
+
+  #     - name: Bootstrap
+  #       run: npm run bootstrap
+
+  #     - name: Compile
+  #       run: npm run build
+
+  #     - name: npm test
+  #       run: npm test
+  # Windows:
+  #   name: Run Windows
+  #   runs-on: windows-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@master
+
+  #   - name: Set Node.js 10.x
+  #     uses: actions/setup-node@master
+  #     with:
+  #       version: 10.x
+
+  #   - name: npm install
+  #     run: npm install
+
+  #   - name: Bootstrap
+  #     run: npm run bootstrap
+
+  #   - name: Compile
+  #     run: npm run build
+
+  #   # TODO: This currently ignores exec due to issues with Node and spawning on Windows, which I think is exacerbated by Jest.
+  #   # It doesn't seem to affect behavior in actions themselves, just when testing with Jest.
+  #   # See other similar issues here: https://github.com/nodejs/node/issues/25484
+  #   - name: npm test
+  #     run: npm run test-ci
