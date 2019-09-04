@@ -40,6 +40,13 @@ jobs:
 
     # - name: Format
     #   run: npm run format
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: Fastlane Setup
+      run: |
+        sudo gem install fastlane -NV
 
     - name: Fastlane Build
       env:
