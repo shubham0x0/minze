@@ -7,7 +7,7 @@ source fastlane/.env.secret
 ################################################################################
 #  make sure fastlane is installed
 if ! gem query -i -n fastlane > /dev/null 2>&1; then
-  sudo gem install fastlane -NV
+  gem install fastlane -NV
 fi
 
 while getopts ":e:o:" opt; do
