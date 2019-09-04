@@ -5,6 +5,9 @@ on:
       - master       # Push events on master branch
       - 'releases/*'   # Push events to branches matching refs/heads/releases/*
       - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
+  pull_request:
+    branches:
+      - master       # Push events on master branch
 jobs:
   Ubuntu:
     name: Run Android on Ubuntu
