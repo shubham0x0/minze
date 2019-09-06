@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
-import { Theme, baseStyle } from '../../../theme';
+import { Theme, baseStyle, Layout } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
@@ -158,7 +158,7 @@ const AccountScreen = (props: any) => {
           </View>
         </View>
         {settingsTab ? (
-          <View style={{ padding: 12 }}>
+          <View style={{ padding: 12, minHeight: Layout.window.height }}>
             <FlatList
               key={1}
               contentContainerStyle={styles.containerFlatlist}
@@ -182,7 +182,7 @@ const AccountScreen = (props: any) => {
             <Text style={{ color: Theme.text }}>{JSON.stringify(profile, null, 4)}</Text>
           </View>
         ) : (
-          <View style={{ padding: 12 }}>
+          <View style={{ padding: 12, minHeight: Layout.window.height }}>
             <FlatList
               key={2}
               contentContainerStyle={styles.containerFlatlist}
@@ -192,14 +192,7 @@ const AccountScreen = (props: any) => {
               renderItem={itemObj => {
                 const { item } = itemObj;
 
-                return (
-                  <TouchableListItem
-                    itemStyle={{ margin: 12 }}
-                    bgColor={item.color}
-                    onPress={() => {}}
-                    title={item.title}
-                  />
-                );
+                return <TouchableListItem itemStyle={{ margin: 12 }} bgColor={item.color} title={item.title} />;
               }}
             />
           </View>
