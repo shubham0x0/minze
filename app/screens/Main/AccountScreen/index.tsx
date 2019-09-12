@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Theme, baseStyle, Layout } from '../../../theme';
 
 // components
@@ -12,10 +12,10 @@ import Account from '../../../components/parts/Account';
 import { onPressLogoutAsync, handleUrl } from '../../../utils';
 import { RootContext } from '../../../context';
 import { ApolloContext } from 'react-apollo';
-import { FETCH_USER, Query } from '../../../graphql/queries';
+import { FETCH_USER } from '../../../graphql/queries';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
 import { GRAPHQL_ENDPOINT } from '../../../config';
-import { Button } from 'react-native-elements';
+import { getLocationUpdate } from '../../../utils/getLocation';
 
 const AccountScreen = (props: any) => {
   const [scrollY] = React.useState(new Animated.Value(0));
@@ -24,19 +24,19 @@ const AccountScreen = (props: any) => {
   const gqlContext = React.useContext(ApolloContext);
   const [profile, setprofile] = React.useState('');
   const firstupdate = React.useRef(true);
-  const fetchData = async () => {
-    if (!gqlContext || !gqlContext.client) return;
-    try {
-      const response = await gqlContext.client.query({ query: FETCH_USER });
-      setprofile(response.data.me);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData, gqlContext]);
+    (async () => {
+      await getLocationUpdate();
+      if (!gqlContext || !gqlContext.client) return;
+      try {
+        const response = await gqlContext.client.query({ query: FETCH_USER });
+        setprofile(response.data.me);
+      } catch (err) {
+        // console.log(err);
+      }
+    })();
+  }, [gqlContext]);
   React.useEffect(() => {
     if (firstupdate.current) {
       firstupdate.current = false;
@@ -47,7 +47,7 @@ const AccountScreen = (props: any) => {
     {
       title: 'Feedback',
       subtitle: 'Give Your Valueable Feedback',
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy/minze/issues');
       },
       children: <Text>Give Feedback</Text>
@@ -55,39 +55,38 @@ const AccountScreen = (props: any) => {
     {
       title: 'About',
       subtitle: 'Build with ❤️ by Shubham Jain <github.com/shubhamxy>',
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy');
       }
     },
     {
       title: 'Version',
       subtitle: '1.0.1',
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy/minze');
       }
     },
     {
       title: 'Server Status',
       subtitle: context.state.network.serverStatus,
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl(GRAPHQL_ENDPOINT);
       }
     },
     {
       title: 'AuthToken',
       subtitle: context.state.network.authToken,
-      onPress: () => {
+      handleOnPress: () => {
         handleUrl('https://minze-server.herokuapp.com/playground');
       }
     },
     {
       title: 'Logout',
-      onPress: async () => {
+      handleOnPress: async () => {
         await onPressLogoutAsync();
       }
     }
   ];
-  const [query, setQuery] = React.useState('{me {id}}');
 
   return (
     <React.Fragment>
@@ -95,21 +94,20 @@ const AccountScreen = (props: any) => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[1]}
+        stickyHeaderIndices={[0, 2]}
         style={baseStyle.container}
       >
+        <HeaderBar
+          title={'Profile'}
+          rightComponent={{
+            icon: 'edit',
+            onPress: () => {
+              props.navigation.navigate('EditProfile');
+            }
+          }}
+        />
         <View style={[{ paddingBottom: 20, justifyContent: 'center', backgroundColor: Theme.secondary }]}>
-          <HeaderBar
-            placement={'center'}
-            title={'Profile'}
-            rightComponent={{
-              icon: 'edit',
-              onPress: () => {
-                props.navigation.navigate('EditProfile');
-              }
-            }}
-          />
-          <Account />
+          <Account navigation={props.navigation} />
         </View>
         <View>
           <View style={styles.bottom}>
@@ -172,7 +170,7 @@ const AccountScreen = (props: any) => {
                     itemStyle={{ borderRadius: 0, margin: 12 }}
                     bgColor={item.surface ? item.surface : Theme.surface}
                     subtitle={item.subtitle}
-                    onPress={item.onPress}
+                    onPress={item.handleOnPress}
                     title={item.title}
                     textColor={Theme.text}
                   />
@@ -197,16 +195,6 @@ const AccountScreen = (props: any) => {
             />
           </View>
         )}
-        {/* <TextInput placeholder={'Query'} value={query} onChangeText={(value)=>{setQuery(value)}}/>
-        <Button title={'Submit'} onPress={async()=>{
-              if (!gqlContext || !gqlContext.client) return;
-              try {
-                const response = await gqlContext.client.query({ query: Query(query) });
-                setprofile(response.data.me);
-              } catch (err) {
-                console.warn(err);
-              }
-        }} /> */}
       </Animated.ScrollView>
     </React.Fragment>
   );

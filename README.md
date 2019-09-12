@@ -174,7 +174,6 @@ bundle exec fastlane
     <img src=".github/screenshots/6.png" height="300px"/>
     <img src=".github/screenshots/7.png" height="300px"/>
     <img src=".github/screenshots/8.png" height="300px"/>
-    <img src=".github/screenshots/9.png" height="300px"/>
     <img src=".github/screenshots/10.png" height="300px"/>
     <img src=".github/screenshots/11.png" height="300px"/>
     <img src=".github/screenshots/12.png" height="300px"/>
