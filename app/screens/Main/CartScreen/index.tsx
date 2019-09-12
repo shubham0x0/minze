@@ -131,14 +131,14 @@ class CartScreen extends React.Component<any, any> {
 
     return (
       <React.Fragment>
-        <HeaderBar title={'Cart'} />
         <Animated.ScrollView
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[1]}
+          stickyHeaderIndices={[0, 2]}
           style={baseStyle.container}
         >
+          <HeaderBar title={'Cart'} />
           <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
           <View>
             <View
