@@ -25,14 +25,16 @@ while getopts ":m:e:p:" opt; do
     ;;
   esac
 done
-FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
+
+FILE_ROOT="${SECRETS}_app_secrets_with_paths"
+
 if [ -z $APP_SECRET_PASSPHRASE ]; then
   echo -e "↪ Checking for secrets/secrets File"
   FILE=secrets/secrets && test -f $FILE && source $FILE
-  if [ $APP_ENV == $PRODUCTION ]; then
-    APP_SECRET_PASSPHRASE=$PROD_APP_SECRET_PASSPHRASE
+  if [ $SECRETS == $PRODUCTION ]; then
+    APP_SECRET_PASSPHRASE=$PROD_SECRET
   else
-    APP_SECRET_PASSPHRASE=$DEV_APP_SECRET_PASSPHRASE
+    APP_SECRET_PASSPHRASE=$DEV_SECRET
   fi
 fi
 
@@ -53,7 +55,7 @@ fi
 
 if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
-  source fastlane/.env
+  source fastlane/.env # should have GRADLE_KEYSTORE def in it
   SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK

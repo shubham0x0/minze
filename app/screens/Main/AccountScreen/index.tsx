@@ -136,6 +136,7 @@ const AccountScreen = (props: any) => {
               onPress={() => {
                 setSettingsTab(true);
               }}
+              testID="AccountSettings"
               style={{
                 flex: 1,
                 alignItems: 'center',

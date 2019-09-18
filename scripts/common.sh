@@ -36,14 +36,21 @@ if [ -z $GIT_BRANCH ]; then
   GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 fi
 
+# there are two secrets
+# production and development
+
 if [ ${GIT_BRANCH} == $PRODUCTION ]; then
   APP_ENV='production'
+  SECRETS='production'
 elif [ $GIT_BRANCH == $STAGING ]; then
   APP_ENV='staging'
+  SECRETS='production'
 elif [ $GIT_BRANCH == $DEVELOPMENT ]; then
   APP_ENV='development'
+  SECRETS='development'
 else
   APP_ENV='testing'
+  SECRETS='development'
 fi
 
 APP_OS="android"

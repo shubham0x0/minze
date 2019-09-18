@@ -132,6 +132,8 @@ android {
         multiDexEnabled true
         testBuildType System.getProperty('testBuildType', 'debug')  // This will later be used to control the test apk build type
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        // testBuildType System.getProperty('testBuildType', 'debug')  // This will later be used to control the test apk build type
+        // testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     splits {
         abi {
@@ -234,7 +236,7 @@ dependencies {
     // Cloud Firestore
     implementation "com.google.firebase:firebase-firestore:18.2.0"
     // Cloud Messaging / FCM
-    implementation "com.google.firebase:firebase-messaging:17.5.0"
+    implementation "com.google.firebase:firebase-messaging:+"
     // Crashlytics
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
@@ -281,7 +283,6 @@ dependencies {
     /**
      * Detox
      */
-    // androidTestImplementation('com.wix:detox:+') { transitive = true }
     androidTestImplementation(project(path: ":detox"))
     androidTestImplementation 'junit:junit:4.12'
 }

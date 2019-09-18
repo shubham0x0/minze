@@ -2,12 +2,12 @@ name: CI
 on:
   push:
     branches:
+      - staging
       # - master       # Push events on master branch --already building on appcenter
-      - 'releases/*'   # Push events to branches matching refs/heads/releases/*
-      - '!refs/pull/*' # Push events on branches that do not match refs/pull/*
   pull_request:
     branches:
       - master       # Push events on master branch
+      - staging      # Push events on staging branch
 jobs:
   Ubuntu:
     name: Ubuntu Android
