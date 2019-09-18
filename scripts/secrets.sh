@@ -26,22 +26,22 @@ while getopts ":m:e:p:" opt; do
   esac
 done
 
-FILE_ROOT="${SECRETS}_app_secrets_with_paths"
+FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
 
 if [ -z $APP_SECRET_PASSPHRASE ]; then
   echo -e "↪ Checking for secrets/secrets File"
   FILE=secrets/secrets && test -f $FILE && source $FILE
-  if [ $SECRETS == $PRODUCTION ]; then
+  if [ $APP_ENV == "production" ]; then
     APP_SECRET_PASSPHRASE=$PROD_SECRET
   else
     APP_SECRET_PASSPHRASE=$DEV_SECRET
   fi
 fi
 
-echo -e "${YELLOW}- - - - -"
+echo -e "${YELLOW}===================="
 echo -e "↪  secrets script 🤖"
-echo -e "- - - - -${NO_COLOR}"
-echo -e "CURRENT APP_ENV: ${YELLOW}$APP_ENV"
+echo -e "====================${NO_COLOR}"
+echo -e "${GREEN}CURRENT APP_ENV: $APP_ENV${NO_COLOR}"
 
 # required to decrypt secrets
 if ! [ -x "$(command -v gpg)" ]; then
@@ -71,7 +71,7 @@ if [[ $MODE == "pack" ]]; then
   # move to secrets folder
   mkdir -p secrets
   mv $FILE_ROOT.tar.gz.gpg secrets
-  echo -e "↪ ${GREEN} ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
+  echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
 elif [[ $MODE == "unpack" ]]; then
   if [ -z $APP_SECRET_PASSPHRASE ]; then
     echo -e "❌ ${RED} APP_SECRET_PASSPHRASE for '${APP_ENV}' is required to decrypt the secrets.${NO_COLOR}"
@@ -83,5 +83,5 @@ elif [[ $MODE == "unpack" ]]; then
   tar -xzvf $FILE_ROOT.tar.gz
   ## Remove intermediaries
   rm $FILE_ROOT.tar.gz
-  echo -e "↪ ${GREEN} ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
+  echo -e "${GREEN}↪ ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
 fi

@@ -39,18 +39,10 @@ fi
 # there are two secrets
 # production and development
 
-if [ ${GIT_BRANCH} == $PRODUCTION ]; then
+if [ ${GIT_BRANCH} == $PRODUCTION ] || [ $GIT_BRANCH == $STAGING ]; then
   APP_ENV='production'
-  SECRETS='production'
-elif [ $GIT_BRANCH == $STAGING ]; then
-  APP_ENV='staging'
-  SECRETS='production'
-elif [ $GIT_BRANCH == $DEVELOPMENT ]; then
-  APP_ENV='development'
-  SECRETS='development'
 else
-  APP_ENV='testing'
-  SECRETS='development'
+  APP_ENV='development'
 fi
 
 APP_OS="android"
