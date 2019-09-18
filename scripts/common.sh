@@ -45,4 +45,6 @@ else
   APP_ENV='development'
 fi
 
+
 APP_OS="android"
+echo -e "${GREEN}APP_ENV: $APP_ENV${NO_COLOR}"

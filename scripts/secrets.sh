@@ -41,7 +41,6 @@ fi
 echo -e "${YELLOW}===================="
 echo -e "↪  secrets script 🤖"
 echo -e "====================${NO_COLOR}"
-echo -e "${GREEN}CURRENT APP_ENV: $APP_ENV${NO_COLOR}"
 
 # required to decrypt secrets
 if ! [ -x "$(command -v gpg)" ]; then
