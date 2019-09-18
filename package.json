@@ -26,6 +26,7 @@
     "secrets:unpack": "sudo ./scripts/secrets.sh",
     "start:storybook": "react-native start",
     "start": "react-native start",
+    "detox": "detox test -c android.attached.debug --reuse",
     "test": "jest -u --no-cache --coverage --verbose",
     "validate": "yarn test && yarn lint && tsc --noEmit",
     "wireless": "adb tcpip 5555; adb tcpip 192.168.0.101:5555; adb connect 192.168.0.101:5555"
@@ -184,7 +185,8 @@
   "jest": {
     "preset": "jest-preset-ignite",
     "testPathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "/e2e/"
     ]
   },
   "detox": {
