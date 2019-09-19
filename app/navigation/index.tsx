@@ -29,7 +29,7 @@ useScreens();
 const codePushOptions = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
   installMode: codePush.InstallMode.ON_NEXT_SUSPEND,
-  minimumBackgroundDuration: ENV === 'production' ? 120 : 0
+  minimumBackgroundDuration: 120
 };
 
 const Navigator: React.FC = () => {

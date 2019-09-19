@@ -1,6 +1,6 @@
 <a href="https://github.com/mzeroes/minze">
   <p align="center">
-    <img width="120px" src=".github/logo.png" />
+    <img width="120px" src="app/assets/images/logo/logo.svg" />
   </p>
 <h1 align="center" style="font-family: monospace">Minze</h1>
 </a>
