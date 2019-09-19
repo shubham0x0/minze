@@ -3,7 +3,7 @@
   "version": "5.3.0",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "source fastlane/.env; source fastlane/.env.secret; cd android ; ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release ; cd ..",
     "apk": "cd android ; ./gradlew assembleRelease",
     "assets": "./scripts/assets.sh",
     "compile": "tsc --noEmit -p . --pretty",
