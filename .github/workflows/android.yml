@@ -1,4 +1,4 @@
-name: CI
+name: AndroidCI
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ on:
       - staging      # Push events on staging branch
 jobs:
   Ubuntu:
-    name: Ubuntu Android
+    name: Ubuntu
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
