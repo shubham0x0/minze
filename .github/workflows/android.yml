@@ -2,7 +2,7 @@ name: AndroidCI
 on:
   push:
     branches:
-      - staging
+      # - staging
       # - master       # Push events on master branch --already building on appcenter
   pull_request:
     branches:
