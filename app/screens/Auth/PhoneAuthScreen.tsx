@@ -70,7 +70,7 @@ class PhoneAuthScreen extends Component<Props, State> {
         marginRight: 30
       }}
     >
-      <Text style={styles.disclaimerText}>
+      <Text testID="submitTerms" style={styles.disclaimerText}>
         By tapping "Submit", we will send you an SMS to confirm your phone number. Message &amp; data rates may apply.
       </Text>
     </View>
@@ -164,7 +164,7 @@ class PhoneAuthScreen extends Component<Props, State> {
           </View>
           {this.renderFooter()}
         </View>
-        <TouchableOpacityButton style={styles.button} onPress={this.getSubmitAction}>
+        <TouchableOpacityButton style={styles.button} testID="submitButton" onPress={this.getSubmitAction}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacityButton>
         <Portal>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ImageBackground, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Colors, baseStyle, Theme, activeOpacity } from '../theme';
 
-const TouchableListItem = ({ bgColor, onPress, title, thumb, textColor = Theme.textC, itemStyle, subtitle }: any) => (
+const TouchableListItem = ({ bgColor, onPress, title, textColor = Theme.textC, itemStyle, subtitle }: any) => (
   <TouchableOpacity
     activeOpacity={activeOpacity}
     onPress={onPress}
@@ -11,15 +11,13 @@ const TouchableListItem = ({ bgColor, onPress, title, thumb, textColor = Theme.t
     <Text numberOfLines={3} ellipsizeMode={'tail'} style={[styles.title, { color: textColor }]}>
       {title}
     </Text>
-    {subtitle && (
-      <Text
-        numberOfLines={2}
-        ellipsizeMode={'tail'}
-        style={[styles.subtitle, { color: Colors.grey, padding: 20, paddingLeft: 0 }]}
-      >
-        {subtitle}
-      </Text>
-    )}
+    <Text
+      numberOfLines={2}
+      ellipsizeMode={'tail'}
+      style={[styles.subtitle, { color: Colors.grey, padding: 20, paddingLeft: 0 }]}
+    >
+      {subtitle && subtitle}
+    </Text>
   </TouchableOpacity>
 );
 

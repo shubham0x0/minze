@@ -25,21 +25,22 @@ while getopts ":m:e:p:" opt; do
     ;;
   esac
 done
+
 FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
+
 if [ -z $APP_SECRET_PASSPHRASE ]; then
   echo -e "↪ Checking for secrets/secrets File"
   FILE=secrets/secrets && test -f $FILE && source $FILE
-  if [ $APP_ENV == $PRODUCTION ]; then
-    APP_SECRET_PASSPHRASE=$PROD_APP_SECRET_PASSPHRASE
+  if [ $APP_ENV == "production" ]; then
+    APP_SECRET_PASSPHRASE=$PROD_SECRET
   else
-    APP_SECRET_PASSPHRASE=$DEV_APP_SECRET_PASSPHRASE
+    APP_SECRET_PASSPHRASE=$DEV_SECRET
   fi
 fi
 
-echo -e "${YELLOW}- - - - -"
+echo -e "${YELLOW}===================="
 echo -e "↪  secrets script 🤖"
-echo -e "- - - - -${NO_COLOR}"
-echo -e "CURRENT APP_ENV: ${YELLOW}$APP_ENV"
+echo -e "====================${NO_COLOR}"
 
 # required to decrypt secrets
 if ! [ -x "$(command -v gpg)" ]; then
@@ -53,7 +54,7 @@ fi
 
 if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
-  source fastlane/.env
+  source fastlane/.env # should have GRADLE_KEYSTORE def in it
   SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
@@ -69,7 +70,7 @@ if [[ $MODE == "pack" ]]; then
   # move to secrets folder
   mkdir -p secrets
   mv $FILE_ROOT.tar.gz.gpg secrets
-  echo -e "↪ ${GREEN} ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
+  echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
 elif [[ $MODE == "unpack" ]]; then
   if [ -z $APP_SECRET_PASSPHRASE ]; then
     echo -e "❌ ${RED} APP_SECRET_PASSPHRASE for '${APP_ENV}' is required to decrypt the secrets.${NO_COLOR}"
@@ -81,5 +82,5 @@ elif [[ $MODE == "unpack" ]]; then
   tar -xzvf $FILE_ROOT.tar.gz
   ## Remove intermediaries
   rm $FILE_ROOT.tar.gz
-  echo -e "↪ ${GREEN} ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
+  echo -e "${GREEN}↪ ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
 fi

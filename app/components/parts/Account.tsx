@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Theme, Colors, baseStyle } from '../../theme';
-import { Avatar, Icon } from 'react-native-elements';
-import { TextInput } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Theme, baseStyle } from '../../theme';
+import { Avatar } from 'react-native-elements';
 import { uploadImage } from '../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
-import { updateUserInfo, updateEmail, sendEmailVerification } from '../../utils/profile/updateUserInfo';
+import { updateUserInfo } from '../../utils/profile/updateUserInfo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-import TextInputMask from 'react-native-text-input-mask';
 
 interface Props {
   user: any;
+  navigation: any;
+  location: any;
 }
 interface State {
   editmode: boolean;
@@ -32,14 +30,29 @@ class ProfileTabScreen extends Component<Props, State> {
       name: this.props.user.displayName || '',
       email: this.props.user.email || '',
       phone: this.props.user.phoneNumber || '',
-      location: 'Rohini, New Delhi'
+      location: 'NA'
     };
+    this.geocode();
   }
+
+  geocode = async () => {
+    fetch(
+      `https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${this.props.location.coords.latitude},${this.props.location.coords.longitude}&mode=retrieveAddresses&maxresults=1&gen=9&app_id=HxPqfmRPvPUbjtldsH8d&app_code=KcABDOVO3ziS5lQhkQhB-A`,
+      {}
+    )
+      .then(res => res.json())
+      .then(res => {
+        res.Response && this.setState({ location: res.Response.View[0].Result[0].Location.Address.Label });
+      })
+      .catch(err => {
+        this.setState({ location: err.message });
+      });
+  };
 
   render() {
     return (
       <View style={{}}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 10 }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', padding: 20 }}>
           <Avatar
             size="large"
             rounded
@@ -84,152 +97,9 @@ class ProfileTabScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: { user: any }) => ({
-  user: state.user
+const mapStateToProps = (state: { user: any; location: any }) => ({
+  user: state.user,
+  location: state.location
 });
 
 export default connect(mapStateToProps)(ProfileTabScreen);
-/*
-*
-<View style={{justifyContent: 'center'}}>
-          <TextInput
-            onTouchStart={() => {}}
-            ref={'textInput'}
-            label={'Name'}
-            underlineColorAndroid={'transparent'}
-            autoCapitalize={'words'}
-            autoCorrect={false}
-            underlineColor={'transparent'}
-            theme={{
-              colors: {
-                text: Theme.text,
-                error: Colors.red,
-                disabled: Theme.text
-              }
-            }}
-            value={this.state.name}
-            onChangeText={name => this.setState(prevState => ({ name, editmode: { ...prevState, name: true } }))}
-            placeholder={'Name'}
-            keyboardType={Platform.OS === 'ios' ? 'name-phone-pad' : 'name-phone-pad'}
-            returnKeyType={'next'}
-            style={{ backgroundColor: 'transparent' }}
-            maxLength={20}
-          />
-          <TextInput
-            ref={'textInput'}
-            label={'Email'}
-            underlineColor={'transparent'}
-            theme={{
-              colors: {
-                text: Theme.text,
-                error: Colors.red,
-                disabled: Theme.text
-              }
-            }}
-            underlineColorAndroid={'transparent'}
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            value={this.state.email}
-            onChangeText={email => this.setState(prevState => ({ email, editmode: { ...prevState, email: true } }))}
-            placeholder={'Email'}
-            keyboardType={'email-address'}
-            style={{ backgroundColor: 'transparent' }}
-            returnKeyType={'next'}
-            maxLength={20}
-          />
-          {!this.props.user.emailVerified && (
-            <TouchableOpacity
-              style={[
-                {
-                  alignSelf: 'flex-end',
-                  padding: 20,
-                  marginTop: 18,
-                  paddingTop: 4,
-                  paddingBottom: 4,
-                  borderWidth: 1,
-                  borderColor: Colors.green
-                }
-              ]}
-              onPress={() => {
-                const mode = this.state.editmode;
-                this.setState({ editmode: !mode });
-                sendEmailVerification().then(() => {
-                  this.dropDownNotification.alertWithType(
-                    'info',
-                    'Verification Email Sent',
-                    'Please Click on the link'
-                  );
-                });
-              }}
-            >
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.green} />
-                <Text style={{ color: Colors.green }}>Verify</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-          <TextInput
-            ref={'textInput'}
-            label={'Phone Number'}
-            disabled
-            underlineColorAndroid={'transparent'}
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            value={this.state.phone}
-            onChangeText={phone => this.setState({ phone, editmode: true })}
-            placeholder={'Phone Number'}
-            keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
-            returnKeyType={'next'}
-            theme={{
-              colors: {
-                text: Theme.darkText,
-                error: Colors.red,
-                disabled: Theme.text
-              }
-            }}
-            maxLength={20}
-            style={{ backgroundColor: 'transparent' }}
-            render={(props: any) => (
-              <TextInputMask
-                {...props}
-                onChangeText={(formatted: any, extracted: any) => {
-                  this.setState({ phone: extracted });
-                }}
-                mask={'[000] [000] [0000]'}
-              />
-            )}
-          />
-
-          {this.state.editmode.name ||
-            (this.state.editmode.email && (
-              <TouchableOpacity
-                style={[
-                  {
-                    alignSelf: 'flex-end',
-                    padding: 20,
-                    marginTop: 18,
-                    paddingTop: 4,
-                    paddingBottom: 4,
-                    borderWidth: 1,
-                    borderColor: Theme.primary
-                  }
-                ]}
-                onPress={() => {
-                  const mode = this.state.editmode;
-                  this.setState({ editmode: !mode });
-                  if (this.state.name) {
-                    updateUserInfo({ displayName: this.state.name });
-                  }
-                  if (this.state.email) {
-                    updateEmail(this.state.email);
-                  }
-                }}
-              >
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Icon size={16} name={'done'} type="MaterialIcons" color={Theme.primary} />
-                  <Text style={{ color: Theme.primary }}>Save</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-        </View>
-*/
