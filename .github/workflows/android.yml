@@ -1,13 +1,8 @@
 name: AndroidCI
 on:
-  push:
-    branches:
-      # - staging
-      # - master       # Push events on master branch --already building on appcenter
   pull_request:
     branches:
-      - master       # Push events on master branch
-      #- staging      # Push events on staging branch
+      - master       # events on master branch
 jobs:
   Ubuntu:
     name: Ubuntu
