@@ -152,7 +152,7 @@
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "babel-runtime": "6.26.0",
     "core-js": "3.2.1",
-    "detox": "^13.3.2",
+    "detox": "^14.3.4",
     "eslint": "5.16.0",
     "eslint-import-resolver-babel-module": "5.1.0",
     "eslint-plugin-import": "2.18.0",
