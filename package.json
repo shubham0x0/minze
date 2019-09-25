@@ -122,7 +122,7 @@
     "@storybook/addon-actions": "5.1.9",
     "@storybook/addon-links": "5.1.9",
     "@storybook/addons": "5.2.0-alpha.33",
-    "@storybook/react-native": "5.2.0-alpha.39",
+    "@storybook/react-native": "5.2.1",
     "@types/dotenv": "6.1.1",
     "@types/enzyme": "3.10.3",
     "@types/enzyme-adapter-react-16": "1.0.5",
