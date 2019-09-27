@@ -11232,14 +11232,14 @@ react-native-paper@2.16.0:
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.12.0"
 
-react-native-popup-dialog@0.18.2:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.18.2.tgz#f36474974e3838ac670f03e006dbc75d5d224b38"
-  integrity sha512-v76F4y2rQWxuGNC+i9WBRSgP+JU7/ur8LcgEYtLI5pGgOVW7V+2fRt4M1xEn2t68YRnkSgX1ILvsrok7RUgF7A==
+react-native-popup-dialog@0.18.3:
+  version "0.18.3"
+  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.18.3.tgz#5d7a13fd7d9f817cf2121965a3b100a257201b67"
+  integrity sha512-ZvqixSEfMlcX2sm9rSRk/KkgWXwvnj7xqq4fIpSGlYGX48FfL8b3Xf2/uT9SvK2H7MX79b7sic53zzwJ+aBh3g==
   dependencies:
     babel-plugin-flow-react-proptypes "^9.1.1"
     prop-types "^15.6.0"
-    react-native-root-siblings "^3.1.7"
+    react-native-root-siblings "^3.2.1"
 
 react-native-ratings@^6.3.0:
   version "6.5.0"
@@ -11254,7 +11254,7 @@ react-native-responsive-dimensions@2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-responsive-dimensions/-/react-native-responsive-dimensions-2.0.1.tgz#64e2064d7e9a2506f10ab7fa7422e8aa64c41d6b"
   integrity sha512-fVSJEfwR353IvNSLtwwv7asAU4BAqd/wXQWeiyKyasn5pqpn/X0w0u7Tc0QWwsQch8lywz3npMjMThXgXkptuQ==
 
-react-native-root-siblings@^3.1.7:
+react-native-root-siblings@^3.2.1:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.2.3.tgz#df5a1cff3a3a1f433f57320e1cae719f1b15a3f2"
   integrity sha512-wOCCtKJteaSIW3K++hzhkfdWRikTqjrG34DnhNDVSzKatuNQyFY1fPBD1YFT/3+kxOIUmNsJdiaPMao9QgoZMA==
