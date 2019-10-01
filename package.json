@@ -57,7 +57,7 @@
     "apollo-boost": "^0.4.3",
     "apollo-client": "^2.6.3",
     "apollo-link-context": "^1.0.18",
-    "appcenter": "^2.2.0",
+    "appcenter": "^2.4.0",
     "appcenter-analytics": "^2.2.0",
     "appcenter-crashes": "^2.2.0",
     "appcenter-push": "2.0.0",
