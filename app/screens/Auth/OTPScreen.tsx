@@ -117,6 +117,7 @@ class OTPScreen extends Component<Props, State> {
       this.dropDownNotification.alertWithType('info', 'OTP Sent', 'OTP sent to your number: ' + phoneNumber);
     } catch (error) {
       this.setState({ spinner: false });
+      console.warn(error);
       this.dropDownNotification.alertWithType('error', 'OTP Not Sent', 'Unable to send the OTP' + __DEV__ && error);
     }
   };

@@ -5,7 +5,6 @@ import DropdownAlert from 'react-native-dropdownalert';
 import CountryPicker, { CCA2Code } from 'react-native-country-picker-modal';
 import { FontWeights, Theme, Colors, DropDownAlertStyles, activeOpacity, baseStyle, Layout } from '../../theme';
 import { TextInput } from 'react-native-paper';
-import TextInputMask from 'react-native-text-input-mask';
 import { NavigationType } from '../../types';
 import { Button } from 'react-native-elements';
 

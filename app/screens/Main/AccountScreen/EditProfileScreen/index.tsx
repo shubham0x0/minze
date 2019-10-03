@@ -9,7 +9,6 @@ import { uploadImage } from '../../../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
 import { updateUserInfo, updateEmail } from '../../../../utils/profile/updateUserInfo';
 
-import TextInputMask from 'react-native-text-input-mask';
 import { Icon, Avatar, Button } from 'react-native-elements';
 import { RootContext } from '../../../../context';
 interface UserInfo {
@@ -188,15 +187,6 @@ const EditProfileScreen = (props: Props) => {
           }}
           maxLength={20}
           style={{ backgroundColor: 'transparent' }}
-          render={(props: any) => (
-            <TextInputMask
-              {...props}
-              onChangeText={(formatted: any, extracted: any) => {
-                setPhoneNumber(extracted);
-              }}
-              mask={'[000] [000] [0000]'}
-            />
-          )}
         />
       </View>
       <Button

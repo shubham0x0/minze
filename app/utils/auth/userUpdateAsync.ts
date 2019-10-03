@@ -12,11 +12,14 @@ const registerIdTokenOnServer = async () => {
   if (!currentUser) {
     return false;
   }
+
   const idToken = await currentUser.getIdToken(/* forceRefresh */ true);
   const mutation = {
     variables: { idToken },
     mutation: LOGIN_USER
   };
+  console.warn('userUpdateAsync' + JSON.stringify(idToken));
+
   const result = await client().mutate(mutation);
   if (result.data && result.data.login && result.data.login.token) {
     const update = { authToken: result.data.login.token, idTokenRegistered: true, serverStatus: 'available' };
@@ -54,6 +57,6 @@ export const userUpdateAsync = async (user: any) => {
       await dispatcher.dispatch(updateUser(User));
     }
   } catch (error) {
-    // console.warn(JSON.stringify(error));
+    console.warn('userUpdateAsync' + JSON.stringify(error));
   }
 };

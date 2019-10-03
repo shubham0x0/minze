@@ -11,5 +11,7 @@ export const FETCH_USER = gql`
 `;
 
 export const Query = (q: any) => gql`
-  query ${q}
+  query {
+
+  }
 `;

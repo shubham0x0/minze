@@ -1754,14 +1754,6 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native-text-input-mask@0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@types/react-native-text-input-mask/-/react-native-text-input-mask-0.7.3.tgz#5857ffe7c0e003826ecac79d139ea45138b8b7bb"
-  integrity sha512-vKXC06lqckCLJvA8PRARDqHbjsLhcMhYzsT958yqbdalHX8fRrlNN8rL6nrALo3ZGK/A1X7tnLHKwhVcZVL6SQ==
-  dependencies:
-    "@types/react" "*"
-    "@types/react-native" "*"
-
 "@types/react-native-vector-icons@6.4.1":
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.1.tgz#d0862f3eb97bbe5720ab604f2f10ee07dacb31ef"
@@ -11169,11 +11161,6 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   integrity sha512-Bke8KkDcDhvB/z0AS7MnQKMD2p6Kwfc1rSKlMOvg9CC5CnClQ2QEnhPSbwegKDYhUkBI92iH/BYy7hNSm5kbUQ==
   dependencies:
     prop-types "^15.6.1"
-
-react-native-text-input-mask@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-text-input-mask/-/react-native-text-input-mask-1.0.1.tgz#93b4374c3c73bc78eac907094662d5d98166f359"
-  integrity sha512-gN0N+3tpw1kgHsuaqzugN7hc5XsjlyXET4/Q3C36F6LxwpIdnf3k9yCL4vfAlw6QxwuBTtyFaRxGJgwZkzk4Ng==
 
 react-native-touchable-scale@2.0.0:
   version "2.0.0"

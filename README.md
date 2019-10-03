@@ -37,12 +37,9 @@ Order Food, drinks and groceries from your favorite places & track on the go, wi
 
 ## IOS : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-1/distribution_groups/public%20preview)
 
-## 🤖 Screenshots
+## 🤖 [Screengrab](https://media.giphy.com/media/LO88oPDHo4UfBKHUZK/giphy.gif)
 
-<div align="center">
-    <img src="https://media.giphy.com/media/LO88oPDHo4UfBKHUZK/giphy.gif" height="300px" />
-
-</div>
+![Screengrab Gif](https://media.giphy.com/media/LO88oPDHo4UfBKHUZK/giphy.gif)
 
 ## 📦 Installation
 
