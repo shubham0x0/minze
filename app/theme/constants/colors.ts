@@ -39,7 +39,7 @@ export const colors = {
   slateGray: '#708090',
   darkSlateGray: '#2F4F4F',
   darkGreen: '#111f10',
-  darkGrey: '#444444',
+  darkGrey: '#555555',
   darkRed: '#ff1100',
   green: '#2b8c2e',
   grey: '#282828',

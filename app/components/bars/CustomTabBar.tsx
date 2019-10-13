@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { MaterialTopTabBar } from 'react-navigation';
+import { MaterialTopTabBar } from 'react-navigation-tabs';
 
 // components
 import AboveTabBar from './AboveTabBar';

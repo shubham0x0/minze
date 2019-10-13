@@ -1,0 +1,50 @@
+[
+  {
+    "title": "quick_filters",
+    "type": "select_one_or_more",
+    "options": [{ "title": "Promotions" }, { "title": "Pure veg" }, { "title": "Online Payments" }]
+  },
+  {
+    "title": "sort_by",
+    "type": "select_one_with_option",
+    "options": [
+      { "title": "Popularity", "order": ["high to low", "low to high"] },
+      { "title": "Delivery Rating", "order": ["high to low", "low to high"] },
+      { "title": "Rating", "order": ["high to low", "low to high"] },
+      { "title": "Recently Added", "order": ["high to low", "low to high"] }
+    ]
+  },
+  {
+    "title": "cuisine",
+    "type": "select_one_or_more",
+    "options": [
+      { "title": "North Indian" },
+      { "title": "Fast Food" },
+      { "title": "Chinese" },
+      { "title": "Beverages" },
+      { "title": "Mughlai" },
+      { "title": "Burger" },
+      { "title": "Rolls" },
+      { "title": "Momos" },
+      { "title": "Italian" },
+      { "title": "Desserts" }
+    ]
+  },
+  {
+    "title": "delivery_time",
+    "type": "select_one",
+    "options": [{ "title": "Up to 30 minutes" }, { "title": "Up to 45 minutes" }, { "title": "Up to 60 minutes" }]
+  },
+  {
+    "title": "price_for_two",
+    "type": "select_one",
+    "options": [
+      { "title": "Less than ₹25012" },
+      { "title": "₹250 to ₹50082" },
+      { "title": "₹500 to ₹1,00024" },
+      { "title": "₹1,000 to ₹1,5000" },
+      { "title": "₹1,500 to ₹2,5000" },
+      { "title": "₹2,500 +0" }
+    ]
+  }
+]

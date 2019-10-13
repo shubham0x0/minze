@@ -7,19 +7,21 @@ configure(() => {
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import LoadingAnimated from '../app/components/loaders/LoadingAnimated';
+import LoadingAnimated from '../app/components/loaders/Activity';
 import { RootContextProvider } from '../app/context';
-import { persistedStore, store } from '../app/store';
+import { persistor, store } from '../app/store';
 import { papertheme } from '../app/theme';
+import SplashScreen from 'react-native-splash-screen';
 
 const StorybookUI = getStorybookUI({ port: 9001, host: 'localhost', onDeviceUI: true });
 
 export const StorybookUIRoot: React.FC = () => {
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Provider store={store}>
-      <PersistGate loading={<LoadingAnimated />} persistor={persistedStore}>
+      <PersistGate loading={<LoadingAnimated />} persistor={persistor}>
         <RootContextProvider>
           <PaperProvider theme={papertheme}>
             <StorybookUI />

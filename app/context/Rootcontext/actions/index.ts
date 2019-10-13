@@ -32,30 +32,30 @@ export const updateUser = (payload: any) => ({
 
 export const selectCurrentAddress = (payload: number) => ({
   type: location.SELECT_CURRENT_DELIVERY,
-  payload: payload
+  payload
 });
 
 export const addAddress = (payload: any) => ({
   type: location.ADD_ADDRESS,
-  payload: payload
+  payload
 });
 
 export const updateAddress = (payload: [number, any]) => ({
   type: location.UPDATE_ADDRESS,
-  payload: payload
+  payload
 });
 
 export const updateCart = (payload: any) => ({
   type: cart.UPDATE_CART,
-  payload: payload
+  payload
 });
 
 export const addCartItem = (payload: any) => ({
   type: cart.ADD_CART_ITEM,
-  payload: payload
+  payload
 });
 
 export const removeCartItem = (payload: any) => ({
   type: cart.REMOVE_CART_ITEM,
-  payload: payload
+  payload
 });

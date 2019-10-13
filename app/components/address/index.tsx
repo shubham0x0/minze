@@ -21,6 +21,7 @@ const AddressMenu = (props: { currentDelivery: any; visible: any; handleCloseBut
       containerStyle={{ backgroundColor: 'transparent' }}
       animationDuration={Platform.OS === 'ios' ? 500 : 800}
       onTouchOutside={handleCloseButton}
+      useNativeDriver
       dialogAnimation={Platform.OS === 'ios' ? new ScaleAnimation() : new SlideAnimation({ slideFrom: 'bottom' })}
       visible={visible}
       {...props}
@@ -28,7 +29,7 @@ const AddressMenu = (props: { currentDelivery: any; visible: any; handleCloseBut
       <DialogContent
         style={{
           width: Layout.window.width / 1.1,
-          height: Layout.window.height / 1.1,
+          height: Layout.window.height / 1.2,
           backgroundColor: Theme.background,
           borderRadius: 0
         }}
