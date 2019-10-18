@@ -25,14 +25,7 @@ const RootContextProvider = (props: { children: React.ReactNode }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (state.location) {
-      reverseGeocoder(state.location.coords).then(result => {
-        dispatch(Actions.updateGPS({ ...result, title: 'Current Location' }));
-      });
-    }
-    // location state get updated
-  }, [state.location]);
+  useEffect(() => {}, [state.location]);
 
   return <RootContext.Provider value={value}>{props.children}</RootContext.Provider>;
 };

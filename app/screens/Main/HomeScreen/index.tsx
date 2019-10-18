@@ -76,7 +76,15 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
   const renderRestautrantsItem = ({ item }: any) => {
     const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
     return (
-      <Card style={{ paddingTop: 20, backgroundColor: Theme.background }}>
+      <Card
+        style={{ paddingTop: 20, backgroundColor: Theme.background }}
+        onPress={() => {
+          props.navigation.navigate('Menu', {
+            menu_id: 101,
+            restaurant_name: name
+          });
+        }}
+      >
         <Card.Content>
           <View style={{ flexDirection: 'row' }}>
             <ImageBackground

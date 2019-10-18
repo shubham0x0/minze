@@ -3,9 +3,12 @@ import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import TabBarIcon from '../../components/icons/TabBarIcon';
 import ActivitiesScreen from '../../screens/Main/ActivitiesScreen';
+import MenuStack from './MenuStack';
+
 const NearbyStack = createStackNavigator(
   {
-    Activities: ActivitiesScreen
+    Activities: ActivitiesScreen,
+    Menu: MenuStack
   },
   {
     defaultNavigationOptions: {

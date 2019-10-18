@@ -9,9 +9,7 @@ interface Props {
 }
 
 const AuthLoadingScreen: React.FC<Props> = (props: Props) => {
-  useEffect(() => {
-    props.navigation.navigate(props.isLoggedIn ? 'App' : 'Auth');
-  }, [props.isLoggedIn, props.navigation]);
+  props.navigation.navigate(props.isLoggedIn ? 'App' : 'Auth', {});
   return <LoadingAnimated />;
 };
 const mapStateToProps = (state: { isLoggedIn: boolean }) => ({

@@ -15,6 +15,7 @@ import { RootContext } from '../../context';
 import { NavigationType } from '../../types';
 import { userUpdateAsync } from '../../utils/auth/userUpdateAsync';
 import { getLocationUpdate } from '../../utils/getLocation';
+import { signOutUserAsync } from '../../utils';
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
@@ -64,25 +65,24 @@ interface Props {
 }
 
 const MainTabNavigator = (props: Props) => {
-  const [appState, setAppState] = useState(AppState.currentState);
-  const handleAppStateChange = (nextAppState: any) => {
-    if (appState.match(/inactive|background/) && nextAppState === 'active') {
-      // console.warn('App has come to the foreground!');
-    }
-    setAppState(nextAppState);
-  };
-  useEffect(() => {
-    getLocationUpdate();
-
-    AppState.addEventListener('change', handleAppStateChange);
-    return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
-    };
-  }, []);
+  // const [appState, setAppState] = useState(AppState.currentState);
+  // const handleAppStateChange = (nextAppState: any) => {
+  //   if (appState.match(/inactive|background/) && nextAppState === 'active') {
+  //     // console.warn('App has come to the foreground!');
+  //   }
+  //   setAppState(nextAppState);
+  // };
+  // useEffect(() => {
+  //   getLocationUpdate();
+  //   AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
   const context = React.useContext(RootContext);
   const client = createApolloClient(context.state.network.authToken);
   if (!client) {
-    return <LoadingAnimated />;
+    signOutUserAsync();
   }
   return (
     <ApolloProvider client={client}>

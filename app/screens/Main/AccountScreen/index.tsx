@@ -105,6 +105,7 @@ const AccountScreen = (props: Props) => {
         />
         <View style={[{ paddingBottom: 20, justifyContent: 'center', backgroundColor: Theme.secondary }]}>
           <Account navigation={props.navigation} />
+          <Text>{__DEV__ && JSON.stringify(context, null, 4)}</Text>
         </View>
         <>
           <View style={styles.bottom}>

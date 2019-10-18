@@ -5,11 +5,13 @@ import { Theme } from '../../theme';
 import TabBarIcon from '../../components/icons/TabBarIcon';
 import ExploreScreen from '../../screens/Main/ExploreScreen';
 import SearchScreen from '../../screens/Main/ExploreScreen/SearchScreen';
+import MenuStack from './MenuStack';
 
 const ExploreStack = createStackNavigator(
   {
     Explore: ExploreScreen,
-    Search: SearchScreen
+    Search: SearchScreen,
+    Menu: MenuStack
   },
   {
     defaultNavigationOptions: {

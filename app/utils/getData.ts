@@ -1,5 +1,6 @@
-import collections from './collection.json';
-import geocode from './geocode.json';
+import collections from '../mockdata/collection.json';
+import geocode from '../mockdata/geocode.json';
+import menuData from '../mockdata/menuData.json';
 
 // import  from './collection.json';
 
@@ -15,6 +16,17 @@ export const getCollections = () =>
   // });
   collections;
 
+export const getMenuData = (menuId: string) =>
+  // console.warn('CALLED');
+  // return fetch('https://developers.zomato.com/api/v2.1/collections?city_id=1&count=10', {
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'User-Key': '5ac52fcf011dbdb12e8a10ed28519fb6'
+  //   }
+  // }).then(response => {
+  //   return response.json();
+  // });
+  menuData;
 export const getActivities = () =>
   // console.warn('CALLED');
   // console.warn(location);

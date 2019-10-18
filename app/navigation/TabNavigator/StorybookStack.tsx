@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import TabBarIcon from '../../components/icons/TabBarIcon';
-import StorybookUIRoot from '../../../storybook';
+import { StorybookUIRoot } from '../../../storybook';
 /**
  * For testing components library
  */

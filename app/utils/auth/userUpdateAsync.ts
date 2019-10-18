@@ -5,6 +5,7 @@ import client from '../../graphql';
 import { LOGIN_USER } from '../../graphql/mutations';
 import { dispatcher } from '../../context';
 import { updateTokenRegistered, updateUser } from '../../context/Rootcontext/actions';
+import { isLoggedInReducer } from 'app/store/reducers/userReducer';
 
 const registerIdTokenOnServer = async () => {
   const { currentUser } = await firebase.auth();
@@ -22,8 +23,9 @@ const registerIdTokenOnServer = async () => {
 
   const result = await client().mutate(mutation);
   if (result.data && result.data.login && result.data.login.token) {
-    const update = { authToken: result.data.login.token, idTokenRegistered: true, serverStatus: 'available' };
-    dispatcher.dispatch(updateTokenRegistered(update));
+    const update = { authToken: result.data.login.token };
+    // dispatcher.dispatch(updateTokenRegistered(update));
+
     return true;
   }
 

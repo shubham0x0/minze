@@ -9,14 +9,14 @@
 import React, { useEffect, useRef } from 'react';
 import { StatusBar } from 'react-native';
 import codePush from 'react-native-code-push';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider, ActivityIndicator } from 'react-native-paper';
 import { useScreens } from 'react-native-screens';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { DropdownAlert } from '../components/extra/AlertMessage';
 import LoadingAnimated from '../components/loaders/LoadingAnimated';
 import { RootContextProvider } from '../context';
-import { persistedStore, store } from '../store';
+import persisted from '../store';
 import { papertheme, Theme } from '../theme';
 import NavigationService from '../utils/NavigationService';
 import AppNavigator from './AppNavigator';
@@ -39,10 +39,26 @@ const Navigator: React.FC = () => {
       return;
     }
   }, []);
-
+  const persistedStore = persisted();
   return (
-    <Provider store={store}>
-      <PersistGate loading={<LoadingAnimated />} persistor={persistedStore}>
+    <Provider store={persistedStore.store}>
+      <PersistGate
+        loading={
+          <ActivityIndicator
+            theme={{
+              colors: {
+                primary: Theme.primary
+              }
+            }}
+            style={{
+              position: 'absolute',
+              alignSelf: 'center',
+              bottom: 20
+            }}
+          />
+        }
+        persistor={persistedStore.persistor}
+      >
         <RootContextProvider>
           <PaperProvider theme={papertheme}>
             <StatusBar barStyle="light-content" backgroundColor={Theme.statusbar} />

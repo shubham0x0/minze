@@ -10,15 +10,6 @@ export const locationReducer = (state: IRootState, action: any) => {
       const addresses = state.savedAddresses;
       addresses[action.payload[0]] = action.payload[1];
       return { ...state, savedAddresses: addresses };
-    case location.UPDATE_GPS_ADDRESS:
-      const adds = state.savedAddresses;
-      if (adds.length === 0) {
-        adds.push(action.payload);
-      } else {
-        // ie. last element is always updated current location address
-        adds[adds.length - 1] = action.payload;
-      }
-      return { ...state, savedAddresses: adds };
     case location.ADD_ADDRESS:
       return { ...state, savedAddresses: [action.payload, ...state.savedAddresses] };
     case location.SELECT_CURRENT_DELIVERY:

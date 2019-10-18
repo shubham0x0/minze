@@ -9,19 +9,26 @@ export const getLocationUpdate = async () => {
       accuracy: 5
     });
 
-    dispatcher.dispatch(updateLocation({ position }));
+    const reverseAddress = await reverseGeocoder({ ...position.coords });
+    dispatcher.dispatch(
+      updateLocation({
+        coords: position.coords,
+        address: reverseAddress
+      })
+    );
     return position;
   } catch (err) {
-    console.warn('LOCATION ERRROR' + err);
+    console.warn('getLocationUpdate' + err);
     return null;
   }
 };
 
 export const reverseGeocoder = async (coords: any) => {
   try {
+    const reverseAddress = await Location.reverseGeocodeAsync({ ...coords });
     return {
-      title: 'Mock Title',
-      address: '123, Hello, world park, Delhi',
+      title: reverseAddress[0].name,
+      address: reverseAddress[0].region,
       coords: {
         ...coords
       }
@@ -31,9 +38,9 @@ export const reverseGeocoder = async (coords: any) => {
     return {
       title: '',
       address: '',
+      addressData: [],
       coords: {
-        latitude: 0,
-        longitude: 0
+        ...coords
       }
     };
   }
@@ -64,4 +71,33 @@ export const geocoder = async (address: string) => {
       }
     };
   }
+};
+
+export const searchLocation = async (search: string) => {
+  return [
+    {
+      title: 'Mock Home1',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    },
+    {
+      title: 'Mock Home2',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    },
+    {
+      title: 'Mock Home3',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    }
+  ];
 };

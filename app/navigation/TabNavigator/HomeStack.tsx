@@ -1,13 +1,13 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import TabBarIcon from '../../components/icons/TabBarIcon';
-// import ExpandedList from '../../components/lists/ExpandedList';
+
 import ServicesScreen from '../../screens/Main/ServicesScreen';
 import { Image } from 'react-native-elements';
+import MenuStack from './MenuStack';
 const HomeStack = createStackNavigator(
   {
-    Home: ServicesScreen
+    Home: ServicesScreen,
+    Menu: MenuStack
   },
   {
     defaultNavigationOptions: {
