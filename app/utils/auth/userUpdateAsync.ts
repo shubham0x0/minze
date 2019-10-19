@@ -24,8 +24,7 @@ const registerIdTokenOnServer = async () => {
   const result = await client().mutate(mutation);
   if (result.data && result.data.login && result.data.login.token) {
     const update = { authToken: result.data.login.token };
-    // dispatcher.dispatch(updateTokenRegistered(update));
-
+    dispatcher.dispatch(updateTokenRegistered(update));
     return true;
   }
 
@@ -38,8 +37,9 @@ export const userUpdateAsync = async (user: any) => {
       return;
     }
     const result = await registerIdTokenOnServer();
+    console.warn('RESULT' + JSON.stringify(result));
     if (result) {
-      await store.dispatch(updateloginStatus(true));
+      store.dispatch(updateloginStatus(true));
       const User = {
         displayName: '',
         phoneNumber: '',
@@ -55,10 +55,9 @@ export const userUpdateAsync = async (user: any) => {
           }
         });
       });
-
-      await dispatcher.dispatch(updateUser(User));
+      dispatcher.dispatch(updateUser(User));
     }
   } catch (error) {
-    console.warn('userUpdateAsync' + JSON.stringify(error));
+    console.warn('error :: userUpdateAsync' + JSON.stringify(error));
   }
 };

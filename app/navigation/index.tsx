@@ -16,7 +16,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { DropdownAlert } from '../components/extra/AlertMessage';
 import LoadingAnimated from '../components/loaders/LoadingAnimated';
 import { RootContextProvider } from '../context';
-import persisted from '../store';
+import persisted, { store } from '../store';
 import { papertheme, Theme } from '../theme';
 import NavigationService from '../utils/NavigationService';
 import AppNavigator from './AppNavigator';
@@ -41,7 +41,7 @@ const Navigator: React.FC = () => {
   }, []);
   const persistedStore = persisted();
   return (
-    <Provider store={persistedStore.store}>
+    <Provider store={store}>
       <PersistGate
         loading={
           <ActivityIndicator

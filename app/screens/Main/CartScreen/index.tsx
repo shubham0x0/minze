@@ -139,7 +139,9 @@ const CartScreen: React.FC = (props: Props) => {
             <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
             <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
               <Icon size={16} name={'rupee'} color={Theme.text} />
-              <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>990</Text>
+              <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>
+                {context.state.cart.total.amount}
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.bottom}>

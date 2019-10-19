@@ -14,9 +14,11 @@ interface Props {
 const BadgeTabIcon: React.FC<Props> = (props: Props) => {
   const context = useContext(RootContext);
   let badge: number = 0;
-  Object.keys(context.state.cart.items).forEach(key => {
-    badge += context.state.cart.items[key].quantity;
-  });
+  if (context.state.cart && context.state.cart.items) {
+    Object.keys(context.state.cart.items).forEach(key => {
+      badge += context.state.cart.items[key].quantity;
+    });
+  }
   return (
     <>
       {badge > 0 ? (

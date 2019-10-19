@@ -1,7 +1,5 @@
 import { UPDATE_SERVER_STATUS, UPDATE_TOKEN_REGISTERED } from '../actions/types';
 import { IRootState } from '../reducers';
-import { store } from '../../../store';
-import { updateloginStatus } from '../../../store/actions';
 
 export const networkReducer = (state: IRootState, action: { type: string; payload?: any }) => {
   switch (action.type) {
@@ -11,7 +9,6 @@ export const networkReducer = (state: IRootState, action: { type: string; payloa
     case UPDATE_TOKEN_REGISTERED:
       console.warn('-------------------------' + action);
       const { authToken = '' } = action.payload;
-      store.dispatch(updateloginStatus(authToken !== ''));
       return { ...state, network: { ...state.network, authToken } };
     default:
       return state;
