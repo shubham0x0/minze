@@ -44,7 +44,7 @@ export interface LocationData {
   timestamp?: number;
   address?: IAddress;
 }
-interface ICartItem {
+export interface ICartItem {
   quantity: number;
   amount_per_item: number;
   discount: string;

@@ -14,7 +14,7 @@ const RootContextProvider = (props: { children: React.ReactNode }) => {
   const value = { state, dispatch };
   if (!dispatcher.isReady) {
     dispatcher.isReady = true;
-    dispatcher.dispatch = async params => await dispatch(params);
+    dispatcher.dispatch = async params => dispatch(params);
     Object.freeze(dispatcher);
   }
   const firstUpdate = React.useRef(true);
