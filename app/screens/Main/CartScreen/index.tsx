@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
 import { RootContext, dispatcher } from '../../../context';
 import { addCartItem, removeCartItem } from '../../../context/Rootcontext/actions';
+import PaymentProvider from '../../../components/payment';
 
 interface Props {}
 
@@ -48,20 +49,12 @@ const CartScreen: React.FC = (props: Props) => {
                       if (cartItems[item.dish_id] && cartItems[item.dish_id]['quantity']) {
                         qty = cartItems[item.dish_id]['quantity'];
                       }
-                      if (qty <= 1) {
-                        dispatcher.dispatch(
-                          removeCartItem({
-                            dish_id: item.dish_id
-                          })
-                        );
-                      } else {
-                        dispatcher.dispatch(
-                          addCartItem({
-                            ...item,
-                            quantity: qty - 1
-                          })
-                        );
-                      }
+                      dispatcher.dispatch(
+                        addCartItem({
+                          ...item,
+                          quantity: qty - 1
+                        })
+                      );
                     }}
                     size={12}
                     color={Theme.text}
@@ -114,6 +107,25 @@ const CartScreen: React.FC = (props: Props) => {
       </Card>
     );
   };
+  const paymentProviders: any[] = [
+    {
+      title: 'Paytm',
+      subtitle: 'Pay via Patm',
+      image: require('../../../assets/images/payments/paytm.png')
+    },
+    {
+      title: 'Debit/Credit Card',
+      subtitle: 'Pay via Debit/Credit card',
+      image: require('../../../assets/images/payments/debit-card.png')
+    },
+    {
+      title: 'Cash on Delivery',
+      subtitle: 'Pay via Cash on Delivery',
+      image: require('../../../assets/images/payments/cod.png')
+    }
+  ];
+  const [visible, setVisible] = React.useState(false);
+  const [select, setSelect] = React.useState(-1);
 
   return (
     <React.Fragment>
@@ -121,11 +133,11 @@ const CartScreen: React.FC = (props: Props) => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }])}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[0, 2]}
+        stickyHeaderIndices={[0, 1]}
         style={baseStyle.container}
       >
         <HeaderBar title={'Cart'} />
-        <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} />
+        {/* <View style={{ ...baseStyle.spacer11, backgroundColor: Theme.secondary }} /> */}
         <>
           <View
             style={{
@@ -136,16 +148,19 @@ const CartScreen: React.FC = (props: Props) => {
               backgroundColor: Theme.surface
             }}
           >
-            <Text style={[baseStyle.cursiveBold5, { color: Theme.text }]}>Total</Text>
-            <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
-              <Icon size={16} name={'rupee'} color={Theme.text} />
-              <Text style={[baseStyle.cursiveBold5, { color: Theme.text, marginLeft: 10 }]}>
-                {context.state.cart.total.amount}
-              </Text>
+            <Text style={{ ...baseStyle.heading4, color: Theme.text }}>Total</Text>
+            <TouchableOpacity
+              activeOpacity={activeOpacity}
+              onPress={() => null}
+              style={{ flexDirection: 'row', alignItems: 'center' }}
+            >
+              <Icon style={{ ...baseStyle.heading5, color: Theme.text }} name={'rupee'} color={Theme.text} />
+              <Text style={{ ...baseStyle.heading4, color: Theme.text }}>{context.state.cart.total.amount}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.bottom}>
             <TouchableOpacity
+              onPress={() => setVisible(true)}
               style={{
                 flex: 1,
                 alignItems: 'center',
@@ -154,7 +169,9 @@ const CartScreen: React.FC = (props: Props) => {
                 justifyContent: 'center'
               }}
             >
-              <Text style={{ ...baseStyle.heading5, color: Theme.surface }}>Select Payment Method</Text>
+              <Text style={{ ...baseStyle.heading5, color: Theme.surface }}>
+                {select >= 0 ? paymentProviders[select].title : 'Select Payment Method'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -169,6 +186,15 @@ const CartScreen: React.FC = (props: Props) => {
             </TouchableOpacity>
           </View>
         </>
+        <PaymentProvider
+          selected={[select, setSelect]}
+          currentDelivery={context.state.currentDelivery}
+          savedAddresses={paymentProviders}
+          handleCloseButton={() => {
+            setVisible(false);
+          }}
+          visible={visible}
+        />
         {cartData && (
           <FlatList keyExtractor={(item, index) => index.toString()} data={cartData} renderItem={renderListItem} />
         )}

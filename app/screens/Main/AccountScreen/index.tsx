@@ -1,22 +1,18 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Theme, baseStyle, Layout, Colors } from '../../../theme';
+import { Theme, baseStyle, Layout } from '../../../theme';
 
 // components
 import TouchableListItem from '../../../components/TouchableListItem';
 
 import topGenres from '../../../mockdata/ourPicks.json';
-import { connect } from 'react-redux';
 import Account from '../../../components/parts/Account';
 import { handleUrl } from '../../../utils';
 import { RootContext } from '../../../context';
 import { ApolloContext } from 'react-apollo';
-import { FETCH_USER } from '../../../graphql/queries';
 import { HeaderBar } from '../../../components/headers/HeaderBar';
-import { GRAPHQL_ENDPOINT } from '../../../config';
-import { getLocationUpdate } from '../../../utils/getLocation';
-import { APP_VERSION } from '../../../config/env-variables';
+import CONFIG from '../../../config';
 import { Button } from 'react-native-elements';
 import AskUserModal from '../../../components/modals/AskUserModal';
 import { signOutUserAsync } from '../../../utils/auth/signOutUserAsync';
@@ -39,7 +35,6 @@ const AccountScreen = (props: Props) => {
         return;
       }
       try {
-        const response = await gqlContext.client.query({ query: FETCH_USER });
       } catch (err) {
         // console.log(err);
       }
@@ -64,7 +59,7 @@ const AccountScreen = (props: Props) => {
     },
     {
       title: 'Version',
-      subtitle: APP_VERSION,
+      subtitle: CONFIG.APP_VERSION,
       handleOnPress: () => {
         handleUrl('https://github.com/shubhamxy/minze');
       }
@@ -73,7 +68,7 @@ const AccountScreen = (props: Props) => {
       title: 'Server Status',
       subtitle: context.state.network.serverStatus,
       handleOnPress: () => {
-        handleUrl(GRAPHQL_ENDPOINT);
+        handleUrl(CONFIG.GRAPHQL_ENDPOINT);
       }
     },
     {
@@ -105,7 +100,6 @@ const AccountScreen = (props: Props) => {
         />
         <View style={[{ paddingBottom: 20, justifyContent: 'center', backgroundColor: Theme.secondary }]}>
           <Account navigation={props.navigation} />
-          <Text>{__DEV__ && JSON.stringify(context, null, 4)}</Text>
         </View>
         <>
           <View style={styles.bottom}>
@@ -209,6 +203,8 @@ const AccountScreen = (props: Props) => {
             />
           </View>
         )}
+
+        <Text>{__DEV__ && JSON.stringify(context, null, 4)}</Text>
       </Animated.ScrollView>
     </React.Fragment>
   );

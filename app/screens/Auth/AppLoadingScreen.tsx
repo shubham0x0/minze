@@ -13,7 +13,6 @@ const AuthLoadingScreen: React.FC<Props> = (props: Props) => {
   const { state } = useContext(RootContext);
   useEffect(() => {
     props.navigation.navigate(props.isLoggedIn ? 'App' : 'Auth', {});
-    console.warn(state.network.authToken);
   }, [props.isLoggedIn, state.network]);
   return <LoadingAnimated />;
 };

@@ -58,7 +58,7 @@ const EditProfileScreen = (props: Props) => {
         await updateEmail(email);
       }
     } catch (err) {
-      // console.warn('warning::' + err);
+      console.warn(err);
     }
     setTimeout(() => {
       setLoading(false);
@@ -96,7 +96,7 @@ const EditProfileScreen = (props: Props) => {
                 setPhotoURL(res.downloadURL);
               }
             } catch (error) {
-              // console.warn(error);
+              console.warn(error);
             }
           }}
           showEditButton

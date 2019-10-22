@@ -8,7 +8,14 @@
     [
       "transform-inline-environment-variables",
       {
-        "include": ["NODE_ENV","SERVER_ENV", "API", "RN_GOOGLE_MAPS_API_KEY"]
+        "include": [
+          "NODE_ENV",
+          "APP_ENV",
+          "APP_URL",
+          "SERVER_ENV",
+          "API_ENDPOINT",
+          "RN_GOOGLE_MAPS_API_KEY"
+        ]
       }
     ],
     [

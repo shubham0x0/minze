@@ -4,7 +4,6 @@ import { dispatcher } from '../../context';
 import { resetContext } from '../../context/Rootcontext/actions';
 
 export const signOutUserAsync = async () => {
-  console.warn('signOut');
   try {
     await firebase.auth().signOut();
     dispatcher.dispatch(resetContext(true));

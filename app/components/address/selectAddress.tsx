@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SearchBar, Icon, Button } from 'react-native-elements';
 
 import { Theme, Colors, baseStyle, activeOpacity } from '../../theme';
-import MapComponent from '../map/MapComponent';
-import { RootContext, dispatcher } from '../../context';
+import { dispatcher } from '../../context';
 import { IAddress } from '../../context/Rootcontext/reducers';
 import { getLocationUpdate, reverseGeocoder, searchLocation } from '../../utils/getLocation';
-import { Region } from 'react-native-maps';
 import { selectCurrentAddress } from '../../context/Rootcontext/actions';
 
 export interface ImenuItem {

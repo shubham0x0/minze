@@ -3,7 +3,6 @@ import uuid from 'uuid';
 import firebase from 'react-native-firebase';
 
 export const uploadImage = async (path: any, imagename?: string) => {
-  // console.warn('PATH' + JSON.stringify(path));
   const defaultStorage = firebase.storage();
   const user = firebase.auth().currentUser;
   if (!imagename) {
@@ -14,6 +13,6 @@ export const uploadImage = async (path: any, imagename?: string) => {
     const uploadTask = imgref.putFile(path.uri);
     return uploadTask;
   } else {
-    throw Error('USER DO NOT EXIST');
+    throw Error('USER_DO_NOT_EXIST');
   }
 };
