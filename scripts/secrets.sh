@@ -86,10 +86,10 @@ elif [[ $MODE == "unpack" ]]; then
     exit 1
   fi
   ## Decrypt
-  # gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
+  gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
   ## Unzip to correct locations in project
-  # tar -xzvf $FILE_ROOT.tar.gz
+  tar -xzvf $FILE_ROOT.tar.gz
   ## Remove intermediaries
-  # rm $FILE_ROOT.tar.gz
+  rm $FILE_ROOT.tar.gz
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
 fi
