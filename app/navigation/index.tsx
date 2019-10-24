@@ -18,7 +18,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { RootContextProvider } from '../context';
 import persisted, { store } from '../store';
 import { papertheme, Theme } from '../theme';
-import NavigationService from '../utils/NavigationService';
+import NavigationService from '../utils/navigation/NavigationService';
 import AppNavigator from './AppNavigator';
 import { preloadFetch } from '../utils/preloadFetch';
 
@@ -43,10 +43,7 @@ const Navigator: React.FC = () => {
   const persistedStore = persisted();
   return (
     <Provider store={store}>
-      <PersistGate
-        loading={null}
-        persistor={persistedStore.persistor}
-      >
+      <PersistGate loading={null} persistor={persistedStore.persistor}>
         <RootContextProvider>
           <PaperProvider theme={papertheme}>
             <StatusBar barStyle="light-content" backgroundColor={Theme.statusbar} />

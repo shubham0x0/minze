@@ -30,11 +30,4 @@ done
 source .env
 source fastlane/.env
 source fastlane/.env.secret
-
-echo -e "${YELLOW}- - - - -"
-echo -e "↪ post-install script 🤖"
-echo -e "- - - - -${NO_COLOR}"
-echo -e "↪ APP_ENV: ${YELLOW}$APP_ENV${NO_COLOR}"
 success "post-install succeed 📦"
-#  npx jetify
-# success "jetify succeed 📦"

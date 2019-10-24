@@ -58,6 +58,7 @@ export interface ICartItem {
 }
 
 export interface IRootState {
+  isReady: boolean;
   cart: {
     total: {
       discount: string;

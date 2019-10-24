@@ -35,7 +35,7 @@ import ENV from 'react-native-config';
 const CONFIG = Object.freeze({
   APP_ENV: (ENV.APP_ENV as string) || 'development',
   APP_URL: (ENV.APP_URL as string) || '',
-  APP_VERSION: require('../../package.json').version,
+  APP_VERSION: 1,
   GOOGLE_MAP_API_KEY: (ENV.RN_GOOGLE_MAPS_API_KEY as string) || '',
   API_ENDPOINT: (ENV.API_ENDPOINT as string) || 'https://minze-server.herokuapp.com',
   GRAPHQL_ENDPOINT: (ENV.API_ENDPOINT as string) || 'https://minze-server.herokuapp.com/graphql',

@@ -7,19 +7,19 @@ import { ActivityIndicator } from 'react-native-paper';
 
 const LoadingAnimated = () => (
   <Modal>
-    <Animation source={animations.InfoListLoading} containerStyles={{ flex: 1, backgroundColor: Theme.background }} />
+    <Animation source={animations.Welcome} containerStyles={{ flex: 1, backgroundColor: Theme.background }} />
     <ActivityIndicator
-            theme={{
-              colors: {
-                primary: Theme.primary
-              }
-            }}
-            style={{
-              position: 'absolute',
-              alignSelf: 'center',
-              bottom: 20
-            }}
-          />
+      theme={{
+        colors: {
+          primary: Theme.primary
+        }
+      }}
+      style={{
+        position: 'absolute',
+        alignSelf: 'center',
+        bottom: 20
+      }}
+    />
   </Modal>
 );
 

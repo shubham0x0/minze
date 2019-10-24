@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import NavigationService from '../NavigationService';
+import NavigationService from '../navigation/NavigationService';
 import { dispatcher } from '../../context';
 import { resetContext } from '../../context/Rootcontext/actions';
 
