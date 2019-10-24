@@ -54,7 +54,7 @@ if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
   source .env
   source fastlane/.env # should have GRADLE_KEYSTORE def in it
-  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/assets/appcenter-config.json android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
+  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/src/main/assets/appcenter-config.json android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
   FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
@@ -74,11 +74,11 @@ if [[ $MODE == "pack" ]]; then
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
 
 elif [[ $MODE == "unpack" ]]; then
-  FILE=.env
-  if test -f "$FILE"; then
-    echo -e "${YELLOW}↪ ${APP_ENV} .env file already exists!!"
-    exit 0
-  fi
+  # FILE=.env
+  # if test -f "$FILE"; then
+    # echo -e "${YELLOW}↪ ${APP_ENV} .env file already exists!!"
+    # exit 0
+  # fi
   # if .env do not exits
   FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   if [ -z $APP_SECRET_PASSPHRASE ]; then
@@ -86,10 +86,10 @@ elif [[ $MODE == "unpack" ]]; then
     exit 1
   fi
   ## Decrypt
-  gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
+  # gpg --decrypt --passphrase $APP_SECRET_PASSPHRASE --batch secrets/$FILE_ROOT.tar.gz.gpg >$FILE_ROOT.tar.gz
   ## Unzip to correct locations in project
-  tar -xzvf $FILE_ROOT.tar.gz
+  # tar -xzvf $FILE_ROOT.tar.gz
   ## Remove intermediaries
-  rm $FILE_ROOT.tar.gz
+  # rm $FILE_ROOT.tar.gz
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been unpacked to the correct location in your local environment"
 fi
