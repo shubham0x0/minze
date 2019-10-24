@@ -38,7 +38,7 @@ const CONFIG = Object.freeze({
   APP_VERSION: require('../../package.json').version,
   GOOGLE_MAP_API_KEY: (ENV.RN_GOOGLE_MAPS_API_KEY as string) || '',
   API_ENDPOINT: (ENV.API_ENDPOINT as string) || 'https://minze-server.herokuapp.com',
-  GRAPHQL_ENDPOINT: 'https://minze-server.herokuapp.com/graphql',
+  GRAPHQL_ENDPOINT: (ENV.API_ENDPOINT as string) || 'https://minze-server.herokuapp.com/graphql',
   SERVER_ENV: (ENV.SERVER_ENV as string) || 'development'
 });
 

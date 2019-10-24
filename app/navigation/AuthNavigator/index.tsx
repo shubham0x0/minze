@@ -1,4 +1,5 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
 import OnBoardingScreen from '../../screens/Auth/OnBoardingScreen';
 import PhoneAuthScreen from '../../screens/Auth/PhoneAuthScreen';
 import OTPScreen from '../../screens/Auth/OTPScreen';

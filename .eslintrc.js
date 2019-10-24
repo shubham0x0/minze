@@ -18,7 +18,7 @@ module.exports = {
       version: 'detect'
     }
   },
-  plugins: ['@typescript-eslint', 'react', 'react-native'],
+  plugins: ['@typescript-eslint'],
   env: {
     jest: true
   },

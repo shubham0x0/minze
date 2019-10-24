@@ -1,5 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
-import MenuScreen from '../../screens/Main/MenuScreen';
+import { createStackNavigator } from 'react-navigation-stack';import MenuScreen from '../../screens/Main/MenuScreen';
 
 const MenuStack = createStackNavigator(
   {

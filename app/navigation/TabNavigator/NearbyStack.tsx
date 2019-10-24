@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import TabBarIcon from '../../components/icons/TabBarIcon';
+import { createStackNavigator } from 'react-navigation-stack';import TabBarIcon from '../../components/icons/TabBarIcon';
 import ActivitiesScreen from '../../screens/Main/ActivitiesScreen';
 import MenuStack from './MenuStack';
 

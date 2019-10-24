@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Keyboard } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
-import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+
 import { FontWeights, Theme, Colors, DropDownAlertStyles, activeOpacity, baseStyle, Layout } from '../../theme';
 import { userUpdateAsync } from '../../utils/auth/userUpdateAsync';
 import OTPTextView from '../../components/inputs/OTPTextView';
@@ -70,7 +71,7 @@ class OTPScreen extends Component<Props, State> {
           );
         }
       };
-      this.unsubscribe = firebase.auth().onAuthStateChanged(authStateChangeHandler);
+      this.unsubscribe = auth().onAuthStateChanged(authStateChangeHandler);
     } catch (err) {
       // console.warn(err);
     }
@@ -90,7 +91,7 @@ class OTPScreen extends Component<Props, State> {
     try {
       this.setState({ spinner: true });
       const { phoneNumber } = this.state;
-      const firebaseConfirmResult = await firebase.auth().signInWithPhoneNumber(phoneNumber);
+      const firebaseConfirmResult = await auth().signInWithPhoneNumber(phoneNumber);
       this.setState({ firebaseConfirmResult, spinner: false });
       this.dropDownNotification.alertWithType('info', 'OTP Sent', 'OTP sent to your number : ' + phoneNumber);
       this.setState({ resendTimer: __DEV__ ? 10 : 60 });
@@ -107,7 +108,7 @@ class OTPScreen extends Component<Props, State> {
     const { phoneNumber } = this.state;
     this.setState({ spinner: true });
     try {
-      const firebaseConfirmResult = await firebase.auth().signInWithPhoneNumber(phoneNumber);
+      const firebaseConfirmResult = await auth().signInWithPhoneNumber(phoneNumber);
       this.setState({
         firebaseConfirmResult,
         verifyOTP: true,

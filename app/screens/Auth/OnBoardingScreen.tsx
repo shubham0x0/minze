@@ -54,7 +54,7 @@ const AppIntroScreen: React.FC<Props> = (props: Props) => {
   const skipButton = () => <Button onPress={() => appIntroSliderRef.goToSlide(2)}>Skip</Button>;
 
   const doneButton = () => (
-    <Button icon="done" testID="doneButton" onPress={navigateToAuth}>
+    <Button testID="doneButton" onPress={navigateToAuth}>
       Done
     </Button>
   );

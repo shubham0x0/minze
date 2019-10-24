@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { View, Text, Platform, TouchableNativeFeedback } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { baseStyle, Colors, Theme, activeOpacity } from '../../../../theme';
 import { TextInput } from 'react-native-paper';
@@ -9,17 +9,8 @@ import { uploadImage } from '../../../../utils/profile/uploadPhoto';
 import * as ImagePicker from 'expo-image-picker';
 import { updateUserInfo, updateEmail } from '../../../../utils/profile/updateUserInfo';
 
-import { Icon, Avatar, Button } from 'react-native-elements';
+import { Avatar, Button } from 'react-native-elements';
 import { RootContext } from '../../../../context';
-interface UserInfo {
-  displayName?: string;
-  email?: string;
-  phoneNumber?: string;
-  photoURL?: string;
-  providerId: string;
-  uid: string;
-  emailVerified: boolean;
-}
 
 interface Props {
   info: any;
@@ -92,8 +83,9 @@ const EditProfileScreen = (props: Props) => {
                 aspect: [1, 1]
               });
               if (!response.cancelled) {
-                const res = await uploadImage(response, 'profile');
-                setPhotoURL(res.downloadURL);
+                const profile = await uploadImage(response, 'profile');
+                const imageURI = profile.ref.getDownloadURL();
+                setPhotoURL(imageURI);
               }
             } catch (error) {
               console.warn(error);
@@ -161,7 +153,6 @@ const EditProfileScreen = (props: Props) => {
             onPress={() => {}}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Icon size={16} name={'done'} type="MaterialIcons" color={Colors.green} />
               <Text style={{ color: Colors.green }}>Verify</Text>
             </View>
           </TouchableOpacity>

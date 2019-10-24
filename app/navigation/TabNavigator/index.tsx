@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
+
 import { AppState, Text } from 'react-native';
+
 import CustomTabBar from '../../components/bars/CustomTabBar';
-import { Theme, Fonts, baseStyle } from '../../theme';
+import { Theme, baseStyle } from '../../theme';
 import CartStack from './CartStack';
 import ExploreStack from './ExploreStack';
 import HomeStack from './HomeStack';
@@ -28,7 +30,6 @@ const TabNavigator = createMaterialTopTabNavigator(
     // initialRouteName: 'ActivitesStack',
     tabBarPosition: 'bottom',
     swipeEnabled: false,
-    animationEnabled: true,
     tabBarComponent: props => <CustomTabBar {...props} />,
     tabBarOptions: {
       showLabel: true,

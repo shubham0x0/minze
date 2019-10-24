@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 
 import DropdownAlert from 'react-native-dropdownalert';
-import CountryPicker, { CCA2Code } from 'react-native-country-picker-modal';
+import CountryPicker, { CountryCode } from 'react-native-country-picker-modal';
 import { FontWeights, Theme, Colors, DropDownAlertStyles, activeOpacity, baseStyle, Layout } from '../../theme';
 import { TextInput } from 'react-native-paper';
 import { NavigationType } from '../../types';
@@ -16,7 +16,7 @@ interface State {
   spinner: boolean;
   phoneNumber: string;
   country: {
-    cca2: CCA2Code;
+    countryCode: CountryCode,
     callingCode: string;
   };
 }
@@ -27,7 +27,7 @@ class PhoneAuthScreen extends Component<Props, State> {
     spinner: false,
     phoneNumber: __DEV__ ? '1234567890' : '',
     country: {
-      cca2: 'IN',
+      countryCode: 'IN',
       callingCode: '91'
     }
   };
@@ -84,14 +84,12 @@ class PhoneAuthScreen extends Component<Props, State> {
     }
     return (
       <CountryPicker
-        ref={'countryPicker'}
-        closeable
-        filterable
-        flagType={FlagType.FLAT}
-        animationType={AnimationType.SLIDE}
-        autoFocusFilter={false}
-        onChange={this.handleChangeCountry}
-        cca2={this.state.country.cca2}
+        // closeable
+        // filterable
+        // animationType={AnimationType.SLIDE}
+        // autoFocusFilter={false}
+        onSelect={this.handleChangeCountry}
+        countryCode={this.state.country.countryCode}
         translation={'common'}
       />
     );
@@ -120,7 +118,7 @@ class PhoneAuthScreen extends Component<Props, State> {
               {this.renderCallingCode()}
             </View>
             <TextInput
-              ref={'textInput'}
+              // ref={'textInput'}
               underlineColorAndroid={'transparent'}
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -170,14 +168,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Colors.greyLight,
-    fontSize: 20,
+    fontSize: 26,
     ...FontWeights.light
   },
   callingCodeText: {
     color: Theme.primary,
-    fontSize: 18,
+    fontSize: 26,
     paddingHorizontal: 10,
-    ...FontWeights.light
+    ...FontWeights.medium
   },
   callingCodeView: {
     alignItems: 'center',
@@ -202,8 +200,9 @@ const styles = StyleSheet.create({
     color: Theme.primary,
     flex: 1,
     padding: 4,
-    fontSize: 44,
-    height: 50,
+    marginTop: 12,
+    fontSize: 26,
+    height: 40,
     backgroundColor: Theme.background
   }
 });

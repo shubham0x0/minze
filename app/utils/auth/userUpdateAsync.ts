@@ -1,14 +1,13 @@
 import { store } from '../../store';
 import { updateloginStatus } from '../../store/actions';
-import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
 import client from '../../graphql';
 import { LOGIN_USER } from '../../graphql/mutations';
 import { dispatcher } from '../../context';
 import { updateTokenRegistered, updateUser } from '../../context/Rootcontext/actions';
-import { isLoggedInReducer } from 'app/store/reducers/userReducer';
 
 const registerIdTokenOnServer = async () => {
-  const { currentUser } = await firebase.auth();
+  const { currentUser } = auth();
 
   if (!currentUser) {
     return false;

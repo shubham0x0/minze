@@ -51,7 +51,6 @@ if ! [ -x "$(command -v gpg)" ]; then
   fi
 fi
 
-FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
 
 if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
@@ -59,6 +58,7 @@ if [[ $MODE == "pack" ]]; then
   source fastlane/.env # should have GRADLE_KEYSTORE def in it
   SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
+  FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
   # Encrypt archive
   if [ -z $APP_SECRET_PASSPHRASE ]; then
@@ -74,6 +74,7 @@ if [[ $MODE == "pack" ]]; then
   mv $FILE_ROOT.tar.gz.gpg secrets
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
 elif [[ $MODE == "unpack" ]]; then
+  FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   if [ -z $APP_SECRET_PASSPHRASE ]; then
     echo -e "❌ ${RED} APP_SECRET_PASSPHRASE for '${APP_ENV}' is required to decrypt the secrets.${NO_COLOR}"
     exit 1

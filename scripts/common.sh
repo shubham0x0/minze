@@ -16,6 +16,8 @@ success(){
 # There are two secrets
 # production and development
 # defaults to development
+APP_ENV=$NODE_ENV
+
 if [ -z $APP_ENV ]; then
   APP_ENV='development'
 fi
