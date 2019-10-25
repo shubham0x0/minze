@@ -75,11 +75,11 @@ if [[ $MODE == "pack" ]]; then
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
 
 elif [[ $MODE == "unpack" ]]; then
-  # FILE=.env
-  # if test -f "$FILE"; then
-  #   echo -e "${YELLOW}↪ ${APP_ENV} .env file already exists!!"
-  #   exit 0
-  # fi
+  FILE=.env
+  if test -f "$FILE"; then
+    echo -e "${YELLOW}↪ ${APP_ENV} .env file already exists!!"
+    exit 0
+  fi
   # if .env do not exits
   FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   if [ -z $APP_SECRET_PASSPHRASE ]; then

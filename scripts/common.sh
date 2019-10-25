@@ -16,7 +16,7 @@ success(){
 # There are two secrets
 # production and development
 # defaults to development
-APP_ENV="development"
+APP_ENV=$NODE_ENV
 
 ################################################################################
 # App development has 3 phases
@@ -41,4 +41,3 @@ if [ -z $APP_ENV ]; then
     APP_ENV='development'
   fi
 fi
-echo -e "--- ${YELLOW}${APP_ENV} ---"
