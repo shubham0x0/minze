@@ -30,4 +30,7 @@ done
 source .env
 source fastlane/.env
 source fastlane/.env.secret
-success "post-install succeed 📦"
+
+npx jetify
+
+success "📦 post-install succeed 📦"

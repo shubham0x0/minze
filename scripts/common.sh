@@ -15,7 +15,7 @@ success(){
 
 # There are two secrets
 # production and development
-# defaults to development
+# defaults to NODE_ENV
 APP_ENV=$NODE_ENV
 
 ################################################################################
