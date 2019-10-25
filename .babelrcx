@@ -17,15 +17,6 @@
           "RN_GOOGLE_MAPS_API_KEY"
         ]
       }
-    ],
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true
-      }
-    ],
-    [
-      "@babel/plugin-proposal-optional-catch-binding"
     ]
   ]
 }
