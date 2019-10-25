@@ -55,7 +55,7 @@ if [[ $MODE == "pack" ]]; then
     echo -e "${RED}Make sure to setup env vars properly!!!"
     exit -1
   fi
-  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/src/main/assets/appcenter-config.json android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
+  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/src/main/assets/appcenter-config.json android/app/debug.keystore android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
   FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
