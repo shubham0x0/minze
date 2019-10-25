@@ -128,7 +128,7 @@ class PhoneAuthScreen extends Component<Props, State> {
               style={styles.textInput}
               textContentType="telephoneNumber"
               returnKeyType={'next'}
-              autoFocus={true}
+              autoFocus
               placeholderTextColor={Theme.primary}
               selectionColor={Theme.primary}
               maxLength={20}

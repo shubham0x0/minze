@@ -14,34 +14,32 @@ export interface ImenuItem {
   children?: React.ReactChild;
 }
 
-const TouchableListItem = (item: ImenuItem) => {
-  return (
-    <TouchableOpacity
-      style={styles.touchableitem}
-      activeOpacity={activeOpacity}
-      onLongPress={item.handleOnPress}
+const TouchableListItem = (item: ImenuItem) => (
+  <TouchableOpacity
+    style={styles.touchableitem}
+    activeOpacity={activeOpacity}
+    onLongPress={item.handleOnPress}
+    onPress={item.handleOnSelected}
+  >
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingRight: 30 }}>
+      <Image style={{ maxWidth: 60, maxHeight: 60 }} source={item.image} />
+    </View>
+    <View style={{ flex: 4 }}>
+      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.subtitle}>{item.subtitle}</Text>
+      {item.children}
+    </View>
+    <Icon
       onPress={item.handleOnSelected}
-    >
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingRight: 30 }}>
-        <Image style={{ maxWidth: 60, maxHeight: 60 }} source={item.image} />
-      </View>
-      <View style={{ flex: 4 }}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
-        {item.children}
-      </View>
-      <Icon
-        onPress={item.handleOnSelected}
-        disabledStyle={{ display: 'none' }}
-        disabled={!(item.handleOnSelected && item.isSelected)}
-        containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-        color={Theme.primary}
-        name="check"
-        size={20}
-      />
-    </TouchableOpacity>
-  );
-};
+      disabledStyle={{ display: 'none' }}
+      disabled={!(item.handleOnSelected && item.isSelected)}
+      containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+      color={Theme.primary}
+      name="check"
+      size={20}
+    />
+  </TouchableOpacity>
+);
 const PaymentProvider = (props: {
   currentDelivery: any;
   visible: any;

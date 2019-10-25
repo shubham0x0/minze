@@ -17,6 +17,4 @@ export const store = createStore(persistedReducer, applyMiddleware(thunk));
 
 export const persistor = persistStore(store);
 
-export default () => {
-  return { store, persistor };
-};
+export default () => ({ store, persistor });
