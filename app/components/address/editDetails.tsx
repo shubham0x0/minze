@@ -15,19 +15,17 @@ export interface ImenuItem {
   handleOnPress?: () => void;
 }
 
-const TouchableListItem = (item: ImenuItem) => {
-  return (
-    <TouchableOpacity activeOpacity={activeOpacity} onPress={item.handleOnPress} style={styles.touchableitem}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <View style={{ flexDirection: 'row' }}>
-          {item.icon && <Icon type={'material-community'} name={item.icon} size={24} />}
-          <Text style={styles.title}>{item.title}</Text>
-        </View>
-        {item.isSelected && <Icon color={Colors.green} type={'material-community'} name={'select-inverse'} size={24} />}
+const TouchableListItem = (item: ImenuItem) => (
+  <TouchableOpacity activeOpacity={activeOpacity} onPress={item.handleOnPress} style={styles.touchableitem}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <View style={{ flexDirection: 'row' }}>
+        {item.icon && <Icon type={'material-community'} name={item.icon} size={24} />}
+        <Text style={styles.title}>{item.title}</Text>
       </View>
-    </TouchableOpacity>
-  );
-};
+      {item.isSelected && <Icon color={Colors.green} type={'material-community'} name={'select-inverse'} size={24} />}
+    </View>
+  </TouchableOpacity>
+);
 
 export const EditDetails: React.FC<any> = (props: {
   handleCloseButton: () => void;
@@ -93,7 +91,7 @@ export const EditDetails: React.FC<any> = (props: {
               }}
               underlineColorAndroid={'transparent'}
               autoCapitalize={'words'}
-              autoCorrect={true}
+              autoCorrect
               label={item[0]}
               defaultValue={item[1]}
               onChangeText={text => {
@@ -151,7 +149,7 @@ export const EditDetails: React.FC<any> = (props: {
                 coords: {
                   ...props.editData.coords
                 },
-                deliveryOption: deliveryOption
+                deliveryOption
               })
             );
             props.handleCloseButton();
@@ -171,7 +169,7 @@ export const EditDetails: React.FC<any> = (props: {
                   coords: {
                     ...props.editData.coords
                   },
-                  deliveryOption: deliveryOption
+                  deliveryOption
                 }
               ])
             );

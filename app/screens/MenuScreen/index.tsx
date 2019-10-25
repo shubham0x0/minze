@@ -60,8 +60,8 @@ const MenuScreen: React.FC<Props> = (props: Props) => {
                 <Button
                   onPress={() => {
                     let quantity = 0;
-                    if (cartItems[dish_id] && cartItems[dish_id]['quantity']) {
-                      quantity = cartItems[item.dish_id]['quantity'];
+                    if (cartItems[dish_id] && cartItems[dish_id].quantity) {
+                      quantity = cartItems[item.dish_id].quantity;
                     }
 
                     dispatcher.dispatch(
@@ -83,7 +83,7 @@ const MenuScreen: React.FC<Props> = (props: Props) => {
       </Card>
     );
   };
-  const bannerImageURI = menuData['featured_image'] ? menuData['featured_image'].uri : '';
+  const bannerImageURI = menuData.featured_image ? menuData.featured_image.uri : '';
 
   return (
     <React.Fragment>

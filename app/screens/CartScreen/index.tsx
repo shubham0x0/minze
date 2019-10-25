@@ -46,8 +46,8 @@ const CartScreen: React.FC = () => {
                   <Icon
                     onPress={() => {
                       let qty = 0;
-                      if (cartItems[item.dish_id] && cartItems[item.dish_id]['quantity']) {
-                        qty = cartItems[item.dish_id]['quantity'];
+                      if (cartItems[item.dish_id] && cartItems[item.dish_id].quantity) {
+                        qty = cartItems[item.dish_id].quantity;
                       }
                       dispatcher.dispatch(
                         addCartItem({
@@ -78,8 +78,8 @@ const CartScreen: React.FC = () => {
                     <Icon
                       onPress={() => {
                         let qty = 0;
-                        if (cartItems[item.dish_id] && cartItems[item.dish_id]['quantity']) {
-                          qty = cartItems[item.dish_id]['quantity'];
+                        if (cartItems[item.dish_id] && cartItems[item.dish_id].quantity) {
+                          qty = cartItems[item.dish_id].quantity;
                         }
                         dispatcher.dispatch(
                           addCartItem({

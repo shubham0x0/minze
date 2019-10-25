@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'react-native-paper';
 import { Theme } from './base';
-import { Theme as ThemeType} from 'react-native-paper/lib/typescript/src/types';
+import { Theme as ThemeType } from 'react-native-paper/lib/typescript/src/types';
 
 export const papertheme: ThemeType = {
   ...DefaultTheme,

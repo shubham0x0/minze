@@ -39,6 +39,11 @@ fastlane android restore_files
 fastlane android install_debug
 ```
 
+### android install_release
+```
+fastlane android install_release
+```
+
 ### android build
 ```
 fastlane android build
