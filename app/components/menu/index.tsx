@@ -33,12 +33,11 @@ const TouchableListItem = (item: ImenuItem) => (
 
 const OverlayMenu = (props: { title?: string; menuData: ImenuItem[]; visible: any; toggleDialog?: any }) => {
   const { title, menuData, visible, toggleDialog } = props;
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    return () => {
       toggleDialog();
-    },
-    []
-  );
+    };
+  }, []);
 
   return (
     <Dialog

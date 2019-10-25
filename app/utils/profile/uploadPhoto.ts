@@ -1,19 +1,19 @@
 import uuid from 'uuid';
 
-import auth from '@react-native-firebase/auth';
-import storage from '@react-native-firebase/storage';
+import firebase from 'react-native-firebase';
 
 export const uploadImage = async (path: any, imagename?: string) => {
-  const defaultStorage = storage();
-  const user = auth().currentUser;
+  // console.warn('PATH' + JSON.stringify(path));
+  const defaultStorage = firebase.storage();
+  const user = firebase.auth().currentUser;
   if (!imagename) {
     imagename = uuid.v4();
   }
   if (user) {
     const imgref = defaultStorage.ref(`images/${user.uid}/${imagename}`);
-    const uploadTask = await imgref.putFile(path.uri);
+    const uploadTask = imgref.putFile(path.uri);
     return uploadTask;
   } else {
-    throw Error('USER_DO_NOT_EXIST');
+    throw Error('USER DO NOT EXIST');
   }
 };

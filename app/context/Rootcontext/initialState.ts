@@ -1,7 +1,6 @@
 import { IRootState } from './reducers';
 
 export const initialState: IRootState = {
-  isReady: false,
   user: {
     displayName: '',
     phoneNumber: '',

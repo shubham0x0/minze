@@ -46,44 +46,58 @@ export const reverseGeocoder = async (coords: any) => {
   }
 };
 
-export const geocoder = async (address: string) => 
-  // const response = await fetch(
-  //   `https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${coords.latitude},${coords.longitude}&mode=retrieveAddresses&maxresults=1&gen=9&app_id=HxPqfmRPvPUbjtldsH8d&app_code=KcABDOVO3ziS5lQhkQhB-A`
-  // );
-  // const json = await response.json()
-   ({
-    title: '',
-    address: '',
-    coords: {
-      latitude: 0,
-      longitude: 0
-    }
-  })
-;
-
-export const searchLocation = async (search: string) => [
-  {
-    title: 'Mock Home1',
-    address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-    coordinate: {
-      latitude: 23,
-      longitude: 72
-    }
-  },
-  {
-    title: 'Mock Home2',
-    address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-    coordinate: {
-      latitude: 23,
-      longitude: 72
-    }
-  },
-  {
-    title: 'Mock Home3',
-    address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
-    coordinate: {
-      latitude: 23,
-      longitude: 72
-    }
+export const geocoder = async (address: string) => {
+  try {
+    // const response = await fetch(
+    //   `https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=${coords.latitude},${coords.longitude}&mode=retrieveAddresses&maxresults=1&gen=9&app_id=HxPqfmRPvPUbjtldsH8d&app_code=KcABDOVO3ziS5lQhkQhB-A`
+    // );
+    // const json = await response.json()
+    return {
+      title: '',
+      address: '',
+      coords: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
+  } catch (err) {
+    console.warn(err);
+    return {
+      title: '',
+      address: '',
+      coords: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
   }
-];
+};
+
+export const searchLocation = async (search: string) => {
+  return [
+    {
+      title: 'Mock Home1',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    },
+    {
+      title: 'Mock Home2',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    },
+    {
+      title: 'Mock Home3',
+      address: 'House 98, Pocket 21, Sector 24, Rohini, New Delhi 110085',
+      coordinate: {
+        latitude: 23,
+        longitude: 72
+      }
+    }
+  ];
+};

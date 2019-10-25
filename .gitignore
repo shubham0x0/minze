@@ -60,9 +60,8 @@ buck-out/
 # Coverage directory
 .nyc_output
 
+# service keys
 android/app/google-services.json
-android/app/assets/appcenter-config.json
-
 # Cocoapods
 ios/Pods
 

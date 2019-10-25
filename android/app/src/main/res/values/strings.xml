@@ -1,5 +1,6 @@
+<?xml version="1.0"?>
 <resources>
-    <string name="app_name">Minze BETA</string>
-    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
+	<string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">UBLo8_oVsSQXdkkm_zmLA7KvuzpRrBK9rUmMy</string>
     <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 </resources>

@@ -20,9 +20,9 @@ or alternatively using `brew cask install fastlane`
 fastlane check_git_status
 ```
 
-### set_build_to_current_timestamp
+### set_build_numbers_to_current_timestamp
 ```
-fastlane set_build_to_current_timestamp
+fastlane set_build_numbers_to_current_timestamp
 ```
 
 
@@ -34,19 +34,24 @@ fastlane set_build_to_current_timestamp
 fastlane android restore_files
 ```
 
+### android set_keys
+```
+fastlane android set_keys
+```
+
 ### android install_debug
 ```
 fastlane android install_debug
 ```
 
-### android install_release
-```
-fastlane android install_release
-```
-
 ### android build
 ```
 fastlane android build
+```
+
+### android deploy_hockey
+```
+fastlane android deploy_hockey
 ```
 
 ### android deploy_to_appcenter

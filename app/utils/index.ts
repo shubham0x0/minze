@@ -1,5 +1,5 @@
 import { openBrowserAsync } from 'expo-web-browser';
-// import Analytics from 'appcenter-analytics';
+import Analytics from 'appcenter-analytics';
 export const handleUrl = (url: string) => {
   openBrowserAsync(url);
 };
@@ -13,6 +13,6 @@ export const logger = (event: any) => {
   } else if (typeof event === 'function') {
     val = event.toString();
   }
-  // Analytics.trackEvent(val);
+  Analytics.trackEvent(val);
   // console.log(val);
 };

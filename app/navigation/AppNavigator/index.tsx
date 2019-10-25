@@ -1,8 +1,8 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthStackNavigator from '../AuthNavigator';
-import AppLoadingScreen from '../../screens/LoadingScreen/AppLoadingScreen';
+import AppLoadingScreen from '../../screens/Auth/AppLoadingScreen';
 import MainTabNavigator from '../TabNavigator';
-// import TestScreen from '../../screens/TestScreen';
+import TestScreen from '../../screens/TestScreen';
 
 const AppNavigator = createSwitchNavigator({
   Loading: AppLoadingScreen,

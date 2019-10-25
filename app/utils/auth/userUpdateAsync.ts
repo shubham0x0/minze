@@ -1,13 +1,14 @@
 import { store } from '../../store';
 import { updateloginStatus } from '../../store/actions';
-import auth from '@react-native-firebase/auth';
+import firebase from 'react-native-firebase';
 import client from '../../graphql';
 import { LOGIN_USER } from '../../graphql/mutations';
 import { dispatcher } from '../../context';
 import { updateTokenRegistered, updateUser } from '../../context/Rootcontext/actions';
+import { isLoggedInReducer } from 'app/store/reducers/userReducer';
 
 const registerIdTokenOnServer = async () => {
-  const { currentUser } = auth();
+  const { currentUser } = await firebase.auth();
 
   if (!currentUser) {
     return false;
@@ -18,6 +19,8 @@ const registerIdTokenOnServer = async () => {
     variables: { idToken },
     mutation: LOGIN_USER
   };
+  console.warn('userUpdateAsync' + JSON.stringify(idToken));
+
   const result = await client().mutate(mutation);
   if (result.data && result.data.login && result.data.login.token) {
     const update = { authToken: result.data.login.token };
@@ -34,6 +37,7 @@ export const userUpdateAsync = async (user: any) => {
       return;
     }
     const result = await registerIdTokenOnServer();
+    console.warn('RESULT' + JSON.stringify(result));
     if (result) {
       store.dispatch(updateloginStatus(true));
       const User = {
@@ -54,6 +58,6 @@ export const userUpdateAsync = async (user: any) => {
       dispatcher.dispatch(updateUser(User));
     }
   } catch (error) {
-    console.warn('UserUpdateAsync Error ::' + JSON.stringify(error));
+    console.warn('error :: userUpdateAsync' + JSON.stringify(error));
   }
 };

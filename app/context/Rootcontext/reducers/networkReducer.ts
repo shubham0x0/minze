@@ -7,6 +7,7 @@ export const networkReducer = (state: IRootState, action: { type: string; payloa
       const serverStatus: string = action.payload;
       return { ...state, network: { ...state.network, serverStatus } };
     case UPDATE_TOKEN_REGISTERED:
+      console.warn('-------------------------' + action);
       const { authToken = '' } = action.payload;
       return { ...state, network: { ...state.network, authToken } };
     default:

@@ -1,8 +1,7 @@
 import { DefaultTheme } from 'react-native-paper';
 import { Theme } from './base';
-import { Theme as ThemeType } from 'react-native-paper/lib/typescript/src/types';
 
-export const papertheme: ThemeType = {
+export const papertheme = {
   ...DefaultTheme,
   roundness: 3,
   dark: false,
@@ -15,9 +14,6 @@ export const papertheme: ThemeType = {
     error: Theme.errorText,
     disabled: Theme.disabled,
     placeholder: Theme.placeholderText,
-    backdrop: Theme.backdrop,
-    onSurface: Theme.errorBackground,
-    onBackground: Theme.errorBackground,
-    notification: Theme.errorBackground
+    backdrop: Theme.backdrop
   }
 };

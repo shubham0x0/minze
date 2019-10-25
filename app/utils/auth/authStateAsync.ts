@@ -1,8 +1,8 @@
-import auth from '@react-native-firebase/auth';
+import firebase from 'react-native-firebase';
 
 import { userUpdateAsync } from './userUpdateAsync';
 export const authStateAsync = async () =>
-  auth().onAuthStateChanged(async (user: any) => {
+  firebase.auth().onAuthStateChanged(async (user: any) => {
     if (user) {
       await userUpdateAsync(user);
     } else {

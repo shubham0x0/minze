@@ -12,16 +12,16 @@ interface Props {
   navigation: any;
 }
 
-const Account: React.FC<Props> = (props: Props) => {
+const Account: React.FC<Props> = () => {
   const context = useContext(RootContext);
-  const { user } = context.state;
+  const { user, savedAddresses } = context.state;
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center', padding: 20 }}>
       <Avatar
         size="large"
         rounded
         source={{
-          uri: user.photoURL || 'https://picsum.photos/id/1/1024/1024'
+          uri: user.photoURL
         }}
         onEditPress={async () => {
           try {
@@ -42,8 +42,19 @@ const Account: React.FC<Props> = (props: Props) => {
           }
         }}
       />
-      {user.displayName ? <Text style={[baseStyle.heading1, { paddingTop: 20 }]}>{user.displayName}</Text> : <View />}
-      {user.phoneNumber ? <Text style={[baseStyle.heading5, { paddingTop: 10 }]}>{user.phoneNumber}</Text> : <View />}
+      <Text style={[baseStyle.heading1, { paddingTop: 20 }]}>{user.displayName}</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center', paddingBottom: 10 }}>
+        <MaterialIcons style={[baseStyle.heading3, { paddingRight: 6 }]} color={Theme.darkText} name="my-location" />
+        {context.state.savedAddresses.length === 0 ? (
+          <Text>Select Delivery Location</Text>
+        ) : (
+          <Text ellipsizeMode={'tail'} style={[baseStyle.heading3, {}]}>
+            {context.state.savedAddresses[context.state.currentDelivery].title ||
+              context.state.savedAddresses[context.state.currentDelivery].address}
+          </Text>
+        )}
+      </View>
+      <Text style={[baseStyle.heading5, {}]}>{user.phoneNumber}</Text>
     </View>
   );
 };

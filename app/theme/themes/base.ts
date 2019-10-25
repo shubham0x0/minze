@@ -36,7 +36,7 @@ const Extended = {
   tintColorInactive: Base.tertiary,
   statusbar: Base.tertiary,
   tabIcon: Base.tertiary,
-  tabIconActive: colors.grey3,
+  tabIconActive: colors.darkBlack,
   tintColor: colors.blue,
   warningBackground: colors.yellow
 };

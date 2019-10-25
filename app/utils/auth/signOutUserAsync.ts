@@ -1,11 +1,12 @@
-import auth from '@react-native-firebase/auth';
-import NavigationService from '../navigation/NavigationService';
+import firebase from 'react-native-firebase';
+import NavigationService from '../NavigationService';
 import { dispatcher } from '../../context';
 import { resetContext } from '../../context/Rootcontext/actions';
 
 export const signOutUserAsync = async () => {
+  console.warn('signOut');
   try {
-    await auth().signOut();
+    await firebase.auth().signOut();
     dispatcher.dispatch(resetContext(true));
     NavigationService.navigate('Auth', {});
   } catch (err) {

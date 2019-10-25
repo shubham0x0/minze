@@ -1,7 +1,7 @@
 import React from 'react';
 import Alert, { DropdownAlertType } from 'react-native-dropdownalert';
 import { DropDownAlertStyles } from '../../theme';
-import NavigationService from '../../utils/navigation/NavigationService';
+import NavigationService from '../../utils/NavigationService';
 
 interface Props {
   children?: any;
