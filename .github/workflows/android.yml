@@ -23,7 +23,7 @@ jobs:
 
     - name: npm install
       env:
-        APPCENTER_BRANCH: master
+        NODE_ENV: production
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
 
       run: |
@@ -49,7 +49,7 @@ jobs:
 
     - name: Fastlane Build
       env:
-        APPCENTER_BRANCH: master
+        NODE_ENV: production
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
       run: |
         yarn run fast:build
