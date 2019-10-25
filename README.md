@@ -39,7 +39,7 @@ Order Food, drinks and groceries from your favorite places & track on the go, wi
 
 ## 🤖 Screengrab
 
-![Screengrab Gif](https://media.giphy.com/media/LO88oPDHo4UfBKHUZK/giphy.gif)
+![Screengrab Gif](./.github/screen.gif)
 
 ## 📦 Installation
 
