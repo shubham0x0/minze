@@ -33,7 +33,7 @@ Order Food, drinks and groceries from your favorite places & track on the go, wi
 - Easy to use.
 - Safe & light weight.
 
-## Android : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-2/distribution_groups/public%20preview)
+## Android : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-3/distribution_groups/preview)
 
 ## IOS : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-1/distribution_groups/public%20preview)
 
