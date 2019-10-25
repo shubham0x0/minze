@@ -1,7 +1,8 @@
-import { createStackNavigator } from 'react-navigation';
-import OnBoardingScreen from '../../screens/Auth/OnBoardingScreen';
-import PhoneAuthScreen from '../../screens/Auth/PhoneAuthScreen';
-import OTPScreen from '../../screens/Auth/OTPScreen';
+import { createStackNavigator } from 'react-navigation-stack';
+
+import OnBoardingScreen from '../../screens/OnboardingScreen';
+import PhoneAuthScreen from '../../screens/AuthScreen/PhoneAuthScreen';
+import OTPScreen from '../../screens/AuthScreen/OTPScreen';
 
 export const PhoneAuthStack = createStackNavigator(
   {

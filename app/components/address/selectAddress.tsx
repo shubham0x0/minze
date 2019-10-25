@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SearchBar, Icon, Button } from 'react-native-elements';
 
 import { Theme, Colors, baseStyle, activeOpacity } from '../../theme';
-import MapComponent from '../map/MapComponent';
-import { RootContext, dispatcher } from '../../context';
+import { dispatcher } from '../../context';
 import { IAddress } from '../../context/Rootcontext/reducers';
 import { getLocationUpdate, reverseGeocoder, searchLocation } from '../../utils/getLocation';
-import { Region } from 'react-native-maps';
 import { selectCurrentAddress } from '../../context/Rootcontext/actions';
 
 export interface ImenuItem {
@@ -19,31 +17,29 @@ export interface ImenuItem {
   children?: React.ReactChild;
 }
 
-const TouchableListItem = (item: ImenuItem) => {
-  return (
-    <TouchableOpacity
-      style={styles.touchableitem}
-      activeOpacity={activeOpacity}
-      onLongPress={item.handleOnPress}
+const TouchableListItem = (item: ImenuItem) => (
+  <TouchableOpacity
+    style={styles.touchableitem}
+    activeOpacity={activeOpacity}
+    onLongPress={item.handleOnPress}
+    onPress={item.handleOnSelected}
+  >
+    <View style={{ flex: 6 }}>
+      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.subtitle}>{item.address}</Text>
+      {item.children}
+    </View>
+    <Icon
       onPress={item.handleOnSelected}
-    >
-      <View style={{ flex: 6 }}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.address}</Text>
-        {item.children}
-      </View>
-      <Icon
-        onPress={item.handleOnSelected}
-        disabledStyle={{ display: 'none' }}
-        disabled={!(item.handleOnSelected && item.isSelected)}
-        containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-        color={Theme.primary}
-        name="check"
-        size={20}
-      />
-    </TouchableOpacity>
-  );
-};
+      disabledStyle={{ display: 'none' }}
+      disabled={!(item.handleOnSelected && item.isSelected)}
+      containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+      color={Theme.primary}
+      name="check"
+      size={20}
+    />
+  </TouchableOpacity>
+);
 
 interface Props {
   search: string;

@@ -1,11 +1,11 @@
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { GRAPHQL_ENDPOINT } from '../config';
+import CONFIG from '../config';
 
 const client = (token?: any) => {
   const link = new HttpLink({
-    uri: GRAPHQL_ENDPOINT,
+    uri: CONFIG.GRAPHQL_ENDPOINT,
     headers: {
       authorization: token ? `Bearer ${token}` : ''
     }

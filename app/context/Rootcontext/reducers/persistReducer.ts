@@ -18,8 +18,7 @@ export const persistReducer = (
       return initialState;
     case GET_PERSISTED_CONTEXT:
       const { contexts } = store.getState();
-      // console.warn(state)
-      return contexts;
+      return { ...initialState, ...contexts, isReady: true };
     default:
       store.dispatch(persistStore(state));
       return state;

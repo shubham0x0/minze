@@ -18,7 +18,7 @@ module.exports = {
       version: 'detect'
     }
   },
-  plugins: ['@typescript-eslint', 'react', 'react-native'],
+  plugins: ['@typescript-eslint'],
   env: {
     jest: true
   },
@@ -74,7 +74,7 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'react/sort-comp': 'off',
-    'semi': 'off'
+    semi: 'off'
   },
   globals: {
     __DEV__: false,

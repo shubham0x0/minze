@@ -15,7 +15,30 @@ success(){
 
 # There are two secrets
 # production and development
-# defaults to development
+# defaults to NODE_ENV
+APP_ENV=$NODE_ENV
+
+
+################################################################################
+# App development has 3 phases
+# for local-branches: checkout from development branch
+################################################################################
+PRODUCTION="master" # Resticted access; main release; auto deploy
+STAGING="staging"   # alpha release; all merge takes place here
+# DEVELOPMENT="development"
+################################################################################
 if [ -z $APP_ENV ]; then
-  APP_ENV='development'
+  # if APP_ENV not set then
+  GIT_BRANCH=$APPCENTER_BRANCH
+  if [ -z $GIT_BRANCH ]; then
+    GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  fi
+
+  # There are two secrets
+  # production and development
+  if [ ${GIT_BRANCH} == $PRODUCTION ] || [ $GIT_BRANCH == $STAGING ]; then
+    APP_ENV='production'
+  else
+    APP_ENV='development'
+  fi
 fi

@@ -1,4 +1,5 @@
-import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+
 import { authStateAsync } from '../auth/authStateAsync';
 
 interface UpdateProfile {
@@ -7,7 +8,7 @@ interface UpdateProfile {
 }
 
 export const updateUserInfo = async (updateProfile: UpdateProfile) => {
-  const user = firebase.auth().currentUser;
+  const user = auth().currentUser;
   if (user) {
     user
       .updateProfile(updateProfile)
@@ -26,7 +27,7 @@ export const updateUserInfo = async (updateProfile: UpdateProfile) => {
 };
 
 export const updateEmail = async (email: string) => {
-  const user = firebase.auth().currentUser;
+  const user = auth().currentUser;
   if (user) {
     user
       .updateEmail(email)
@@ -43,7 +44,7 @@ export const updateEmail = async (email: string) => {
 };
 
 export const sendEmailVerification = async () => {
-  const user = firebase.auth().currentUser;
+  const user = auth().currentUser;
   if (user) {
     return user
       .sendEmailVerification()

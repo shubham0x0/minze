@@ -26,7 +26,6 @@ while getopts ":m:e:p:" opt; do
   esac
 done
 
-
 if [ -z $APP_SECRET_PASSPHRASE ]; then
   echo -e "↪ Checking for secrets/secrets File"
   FILE=secrets/secrets && test -f $FILE && source $FILE
@@ -37,9 +36,7 @@ if [ -z $APP_SECRET_PASSPHRASE ]; then
   fi
 fi
 
-echo -e "${YELLOW}===================="
-echo -e "↪  secrets script 🤖"
-echo -e "====================${NO_COLOR}"
+echo -e "${YELLOW}↪ ${APP_ENV} Secrets 🤖 ${NO_COLOR}"
 
 # required to decrypt secrets
 if ! [ -x "$(command -v gpg)" ]; then
@@ -51,15 +48,18 @@ if ! [ -x "$(command -v gpg)" ]; then
   fi
 fi
 
-FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
-
 if [[ $MODE == "pack" ]]; then
   # Select files to put in the archive
-  source .env
   source fastlane/.env # should have GRADLE_KEYSTORE def in it
-  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
+  if [[ $ENV != $APP_ENV ]]; then
+    echo -e "${RED}Make sure to setup env vars properly!!!"
+    exit -1
+  fi
+  SECRETS_TO_PACK=".env fastlane/.env fastlane/.env.secret android/app/src/main/assets/appcenter-config.json android/app/debug.keystore android/app/${GRADLE_KEYSTORE} android/app/google-services.json"
   # Create archive
+  FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   tar -cvzf $FILE_ROOT.tar.gz $SECRETS_TO_PACK
+
   # Encrypt archive
   if [ -z $APP_SECRET_PASSPHRASE ]; then
     echo -e "↪ APP_SECRET_PASSPHRASE Not Set"
@@ -73,7 +73,15 @@ if [[ $MODE == "pack" ]]; then
   mkdir -p secrets
   mv $FILE_ROOT.tar.gz.gpg secrets
   echo -e "${GREEN}↪ ${APP_ENV} secrets have been packed into ${FILE_ROOT}.tar.gz.gpg. Please commit this encrypted archive."
+
 elif [[ $MODE == "unpack" ]]; then
+  FILE=.env
+  if test -f "$FILE"; then
+    echo -e "${YELLOW}↪ ${APP_ENV} .env file already exists!!"
+    exit 0
+  fi
+  # if .env do not exits
+  FILE_ROOT="${APP_ENV}_app_secrets_with_paths"
   if [ -z $APP_SECRET_PASSPHRASE ]; then
     echo -e "❌ ${RED} APP_SECRET_PASSPHRASE for '${APP_ENV}' is required to decrypt the secrets.${NO_COLOR}"
     exit 1
