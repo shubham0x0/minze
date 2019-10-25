@@ -20,7 +20,7 @@
     "lint-staged": "lint-staged",
     "lint:ts": "eslint index.js app --fix --ext .js,.ts,.tsx",
     "lint": "npm-run-all lint:*",
-    "postinstall": "./scripts/post-install.sh -e production",
+    "postinstall": "./scripts/post-install.sh",
     "prepare": "patch-package",
     "reload": "adb shell input text \"RR\"",
     "secrets:pack": "sudo ./scripts/secrets.sh -m pack",
