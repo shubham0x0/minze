@@ -3,32 +3,26 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } f
 import { Theme, Colors, Layout, baseStyle, activeOpacity, statusBarHeight } from '../../theme';
 import topGenres from '../../mockdata/ourPicks.json';
 import { getCollections, getActivities } from '../../utils/getData';
-import { Card, Title, Subheading, Divider } from 'react-native-paper';
+import { Card, Title, Subheading, Divider, ActivityIndicator } from 'react-native-paper';
 import Carousel from 'react-native-snap-carousel';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import ScrollView from '../../components/view/ScrollView';
 import { RootContext } from '../../context';
 import { NavigationType } from '../../types';
-import OverlayMenu from '../../components/menu';
 import AddressMenu from '../../components/address';
+import { Avatar, Icon } from 'react-native-elements';
+import { FETCH_TOP_RESTAURANTS } from '../../graphql/queries';
+import { useQuery } from '@apollo/react-hooks';
+import { Animation } from '../../components/animations';
+import { animations } from '../../assets';
+import LottieView from 'lottie-react-native';
+
 interface Props {
   navigation: NavigationType;
 }
 const HomeScreen: React.FC<Props> = (props: Props) => {
-  const [activitiesData, setActivitiesData]: any = useState({
-    nearby_restaurants: []
-  });
-
   const context = useContext(RootContext);
-
-  const getInfoAsync = async () => {
-    const activities = getActivities();
-    setActivitiesData(activities);
-  };
-
-  useEffect(() => {
-    getInfoAsync();
-  }, []);
+  const { loading, error, data } = useQuery(FETCH_TOP_RESTAURANTS);
+  const [addressMenuVisible, setAddressMenuVisible] = useState(false);
   const leftComponent = () => (
     <>
       <Text style={[styles.sectionHeading, { marginLeft: 0 }]}>Delivery Location</Text>
@@ -40,27 +34,25 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
           justifyContent: 'center'
         }}
       >
-        {context.state.savedAddresses.length === 0 ? (
-          <Text>Select Delivery Location</Text>
-        ) : (
-          <Text
-            ellipsizeMode={'tail'}
-            numberOfLines={1}
-            style={[styles.headerText, { paddingLeft: 0, maxWidth: Layout.window.width / 2 }]}
-          >
-            {context.state.savedAddresses[context.state.currentDelivery].title ||
+        <Text
+          ellipsizeMode={'tail'}
+          numberOfLines={1}
+          style={[styles.headerText, { paddingLeft: 0, maxWidth: Layout.window.width / 2 }]}
+        >
+          {context.state.savedAddresses.length === 0
+            ? 'Select Delivery Location'
+            : context.state.savedAddresses[context.state.currentDelivery].title ||
               context.state.savedAddresses[context.state.currentDelivery].address}
-          </Text>
-        )}
+        </Text>
       </TouchableOpacity>
     </>
   );
 
   const renderRestautrantsItem = ({ item }: any) => {
-    const { name, cuisines, thumb, user_rating, average_cost_for_two } = item.restaurant;
+    const { name, shortDescription, avgRating, numRatings, avgPricePerPerson, pictures } = item;
     return (
       <Card
-        style={{ paddingTop: 20, backgroundColor: Theme.background }}
+        style={{ margin: 2, backgroundColor: Theme.background }}
         onPress={() => {
           props.navigation.navigate('Menu', {
             menu_id: 101,
@@ -68,33 +60,73 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
           });
         }}
       >
-        <Card.Content>
-          <View style={{ flexDirection: 'row' }}>
+        <Card.Content style={{ flexDirection: 'row' }}>
+          <View>
             <ImageBackground
-              style={{ height: 100, width: 100 }}
-              source={{ uri: thumb || 'https://b.zmtcdn.com/images/developers/apihome_bg.jpg' }}
+              style={{ width: 100, height: 100 }}
+              source={{ uri: pictures[0].url || 'https://b.zmtcdn.com/images/developers/apihome_bg.jpg' }}
             />
-            <View style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20, paddingRight: 20 }}>
-              <Title>{name}</Title>
-              <Subheading style={{ fontSize: 12 }}>{cuisines}</Subheading>
-              <View style={{ paddingTop: 30, flex: 1, flexWrap: 'wrap' }}>
-                <Divider />
-                <View style={{ flexDirection: 'row' }}>
-                  <Icon color={Theme.text} style={{ fontSize: 12, alignSelf: 'center', paddingRight: 4 }} name="star" />
-                  <Subheading style={{ fontSize: 12 }}>
-                    {user_rating.aggregate_rating && user_rating.aggregate_rating}
-                  </Subheading>
-                  <Text style={{ paddingLeft: 16, fontSize: 12, alignSelf: 'center', paddingRight: 16 }}>•</Text>
-
+            <View style={{ width: 100, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', padding: 10 }}>
+              <Icon
+                color={Theme.text}
+                type={'material-community'}
+                iconStyle={{ fontSize: 10 }}
+                style={{ paddingHorizontal: 10 }}
+                name="star"
+              />
+              <Subheading style={{ fontSize: 8, paddingLeft: 10 }}>{numRatings || 0}</Subheading>
+              <Divider />
+              <Subheading style={{ fontSize: 8, paddingLeft: 10 }}>{numRatings || 'No'} Reviews</Subheading>
+            </View>
+          </View>
+          <View style={{ flex: 1, paddingHorizontal: 20 }}>
+            <Title>{name}</Title>
+            <Divider />
+            <Subheading numberOfLines={3} ellipsizeMode={'tail'} style={{ flexWrap: 'wrap', fontSize: 10 }}>
+              {shortDescription}
+            </Subheading>
+            <Divider />
+            <View style={{ paddingTop: 10, flex: 1 }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                  alignItems: 'center'
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10 }}>
                   <Icon
                     color={Theme.text}
-                    style={{ fontSize: 10, alignSelf: 'center', paddingRight: 4 }}
+                    type={'material-icons'}
+                    iconStyle={{ fontSize: 12 }}
+                    style={{ paddingHorizontal: 10 }}
+                    name="local-offer"
+                  />
+                  <Subheading style={{ fontSize: 10, paddingLeft: 10 }}>30% Off</Subheading>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10 }}>
+                  <Icon
+                    color={Theme.text}
+                    type={'material-community'}
+                    iconStyle={{ fontSize: 12 }}
+                    style={{ paddingHorizontal: 10 }}
+                    name="timelapse"
+                  />
+                  <Subheading style={{ fontSize: 10, paddingLeft: 10 }}>40 Min</Subheading>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10 }}>
+                  <Icon
+                    color={Theme.text}
+                    type={'font-awesome'}
+                    iconStyle={{ fontSize: 12 }}
+                    style={{ paddingHorizontal: 10 }}
                     name="rupee"
                   />
-                  <Subheading style={{ fontSize: 12 }}>
-                    {average_cost_for_two && average_cost_for_two} for two{' '}
-                  </Subheading>
+                  <Subheading style={{ fontSize: 10, paddingLeft: 10 }}>{avgPricePerPerson || 1000} for one</Subheading>
                 </View>
+                <Divider />
               </View>
             </View>
           </View>
@@ -119,9 +151,16 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
       </>
     );
   };
-  const [overlayMenuVisible, setOverlayMenuVisible] = useState(false);
-  const [addressMenuVisible, setAddressMenuVisible] = React.useState(false);
-
+  const rightComponent = () => {
+    const onPress = () => {
+      props.navigation.navigate('Profile');
+    };
+    if (context.state.user.photoURL) {
+      return <Avatar onPress={onPress} rounded source={{ uri: context.state.user.photoURL }} />;
+    } else {
+      return <Icon name="person" onPress={onPress} />;
+    }
+  };
   return (
     <ScrollView
       headerProps={{
@@ -135,14 +174,7 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
         },
         leftComponent: leftComponent(),
         centerComponent: {},
-        rightComponent: {
-          onPress: () => {
-            // setOverlayMenuVisible(true);
-            props.navigation.navigate('Profile');
-          },
-          icon: 'person',
-          color: Theme.text
-        }
+        rightComponent: rightComponent()
       }}
       topComponent={
         <View
@@ -222,7 +254,13 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
           >
             <Text style={[baseStyle.heading5, { color: Theme.text, justifyContent: 'center' }]}>33 Results</Text>
             <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
-              <Icon size={16} name={'filter'} color={Theme.text} style={{ justifyContent: 'center' }} />
+              <Icon
+                size={16}
+                name={'filter'}
+                type={'font-awesome'}
+                color={Theme.text}
+                style={{ justifyContent: 'center' }}
+              />
               <Text style={[baseStyle.heading5, { color: Theme.text, marginLeft: 10, justifyContent: 'center' }]}>
                 Sort/Filter
               </Text>
@@ -231,13 +269,6 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
         </>
       }
     >
-      {activitiesData.nearby_restaurants && (
-        <FlatList
-          keyExtractor={(item, index) => index.toString()}
-          data={activitiesData.nearby_restaurants}
-          renderItem={renderRestautrantsItem}
-        />
-      )}
       <AddressMenu
         currentDelivery={context.state.currentDelivery}
         savedAddresses={context.state.savedAddresses}
@@ -246,6 +277,16 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
         }}
         visible={addressMenuVisible}
       />
+      {loading || error ? (
+        <ActivityIndicator style={{ margin: 40 }} />
+      ) : (
+        <FlatList
+          style={{ marginBottom: 200 }}
+          keyExtractor={(item, index) => index.toString()}
+          data={data.topRestaurants}
+          renderItem={renderRestautrantsItem}
+        />
+      )}
     </ScrollView>
   );
 };
@@ -262,9 +303,9 @@ const styles = StyleSheet.create({
   },
   headerText: {
     ...baseStyle.heading5,
-    color: Theme.darkText,
-    borderBottomColor: Theme.primary,
-    borderBottomWidth: 1,
+    color: Theme.text,
+    borderBottomColor: Theme.brandPrimary,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     padding: 4,
     paddingBottom: 6
   },

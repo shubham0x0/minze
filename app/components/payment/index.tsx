@@ -3,6 +3,7 @@ import { Platform, View, Text, ScrollView, FlatList, StyleSheet, TouchableOpacit
 import Dialog, { DialogContent, ScaleAnimation, SlideAnimation } from 'react-native-popup-dialog';
 import { Theme, Layout, baseStyle, activeOpacity } from '../../theme';
 import { Icon, Image } from 'react-native-elements';
+import { ActivityIndicator } from 'react-native-paper';
 
 export interface ImenuItem {
   title: string;
@@ -22,7 +23,7 @@ const TouchableListItem = (item: ImenuItem) => (
     onPress={item.handleOnSelected}
   >
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingRight: 30 }}>
-      <Image style={{ maxWidth: 60, maxHeight: 60 }} source={item.image} />
+      <Image style={{ width: 60, height: 60 }} source={item.image} />
     </View>
     <View style={{ flex: 4 }}>
       <Text style={styles.title}>{item.title}</Text>
@@ -44,7 +45,7 @@ const PaymentProvider = (props: {
   currentDelivery: any;
   visible: any;
   handleCloseButton?: any;
-  savedAddresses: any[];
+  paymentMethods: ImenuItem[];
   selected: any;
 }) => {
   const { visible } = props;
@@ -87,7 +88,7 @@ const PaymentProvider = (props: {
             showsVerticalScrollIndicator={false}
             style={{ marginTop: 6 }}
             contentContainerStyle={styles.containerFlatlist}
-            data={props.savedAddresses}
+            data={props.paymentMethods}
             keyExtractor={(item, index) => `${item}-${index}`}
             numColumns={1}
             renderItem={itemObj => (

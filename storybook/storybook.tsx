@@ -11,11 +11,14 @@ import LoadingAnimated from '../app/components/loaders/LoadingAnimated';
 import { RootContextProvider } from '../app/context';
 import { persistor, store } from '../app/store';
 import { papertheme } from '../app/theme';
+import SplashScreen from 'react-native-splash-screen';
 
 const StorybookUI = getStorybookUI({ port: 9001, host: 'localhost', onDeviceUI: true });
 
 export const StorybookUIRoot: React.FC = () => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    SplashScreen.hide()
+  }, []);
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingAnimated />} persistor={persistor}>

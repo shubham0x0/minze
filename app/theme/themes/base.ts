@@ -2,7 +2,7 @@ import { colors } from '../constants/colors';
 
 // TODO: Document this.
 const Base = {
-  accent: colors.cyanBlue,
+  accent: colors.offWhite,
   background: colors.white,
   brandPrimary: colors.greyBlack,
   disabled: colors.darkGrey,
@@ -29,14 +29,14 @@ const Text = {
 
 const Extended = {
   textC: Text.lightText,
-  tintColorActive: colors.blue,
+  tintColorActive: colors.tertiary,
   backdrop: colors.greyBlack,
   errorBackground: colors.darkRed,
   inactive: colors.greyLight,
-  tintColorInactive: Base.tertiary,
+  tintColorInactive: colors.dimgrey,
   statusbar: Base.tertiary,
-  tabIcon: Base.tertiary,
-  tabIconActive: colors.grey3,
+  tabIcon: colors.dimgrey,
+  tabIconActive: colors.tertiary,
   tintColor: colors.blue,
   warningBackground: colors.yellow
 };

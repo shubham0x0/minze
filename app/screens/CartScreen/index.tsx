@@ -193,7 +193,7 @@ const CartScreen: React.FC = () => {
         <PaymentProvider
           selected={[select, setSelect]}
           currentDelivery={context.state.currentDelivery}
-          savedAddresses={paymentProviders}
+          paymentMethods={paymentProviders}
           handleCloseButton={() => {
             setVisible(false);
           }}

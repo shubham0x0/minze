@@ -118,8 +118,9 @@ class OTPScreen extends Component<Props, State> {
       this.dropDownNotification.alertWithType('info', 'OTP Sent', 'OTP sent to your number: ' + phoneNumber);
     } catch (error) {
       this.setState({ spinner: false });
+      this.dropDownNotification.alertWithType('error', 'OTP Not Sent', 'Unable to send the OTP');
       console.warn(error);
-      this.dropDownNotification.alertWithType('error', 'OTP Not Sent', 'Unable to send the OTP' + __DEV__ && error);
+      setTimeout(this.props.navigation.goBack, 200);
     }
   };
 
@@ -133,11 +134,8 @@ class OTPScreen extends Component<Props, State> {
        **/
       await this.state.firebaseConfirmResult.confirm(this.state.otp);
     } catch (error) {
-      this.dropDownNotification.alertWithType(
-        'error',
-        'Not Verified',
-        'The OTP you provided is not correct' + __DEV__ && error
-      );
+      this.dropDownNotification.alertWithType('error', 'Not Verified', 'The OTP you provided is not correct');
+      console.warn(error);
       this.setState({
         spinner: false
       });
@@ -209,9 +207,8 @@ class OTPScreen extends Component<Props, State> {
             containerStyle={{ padding: 20, flexWrap: 'wrap' }}
             textInputStyle={{ color: Colors.darkBlack, backgroundColor: Theme.background }}
             handleTextChange={async (value: string) => {
-              await this.setState({ otp: value });
+              this.setState({ otp: value });
               if (value.length >= 6) {
-                await this.setState({ otp: value });
                 this.verifyCode();
               }
             }}
@@ -223,7 +220,7 @@ class OTPScreen extends Component<Props, State> {
             type={'solid'}
             loading={this.state.spinner}
             activeOpacity={activeOpacity}
-            containerStyle={{ marginTop: Layout.window.height / 4, borderRadius: 0, marginLeft: 20, marginRight: 20 }}
+            containerStyle={{ marginTop: Layout.window.height / 6, borderRadius: 0, marginLeft: 20, marginRight: 20 }}
             buttonStyle={{ backgroundColor: Theme.darkText }}
             titleStyle={{ ...baseStyle.heading2, color: Theme.secondary }}
           />

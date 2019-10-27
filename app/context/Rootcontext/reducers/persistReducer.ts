@@ -15,7 +15,7 @@ export const persistReducer = (
     case RESET_CONTEXT:
       store.dispatch(persistStore(initialState));
       store.dispatch(updateloginStatus(false));
-      return initialState;
+      return { ...initialState, isReady: true };
     case GET_PERSISTED_CONTEXT:
       const { contexts } = store.getState();
       return { ...initialState, ...contexts, isReady: true };

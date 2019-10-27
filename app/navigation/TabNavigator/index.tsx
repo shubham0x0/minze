@@ -5,7 +5,7 @@ import { Theme, baseStyle } from '../../theme';
 import CartStack from './Cart/CartStack';
 import ExploreStack from './Explore/ExploreStack';
 import ActivitesStack from './Profile/ActivitesStack';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import createApolloClient from '../../graphql';
 import { RootContext } from '../../context';
 import { NavigationType } from '../../types';
@@ -13,11 +13,12 @@ import { signOutUserAsync } from '../../utils';
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
-    ActivitesStack,
     ExploreStack,
+    ActivitesStack,
     CartStack
   },
   {
+    initialRouteName: 'ActivitesStack',
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     tabBarComponent: props => <CustomTabBar {...props} />,
@@ -26,21 +27,20 @@ const TabNavigator = createMaterialTopTabNavigator(
       showIcon: true,
       scrollEnabled: false,
       pressOpacity: 0.8,
-      pressColor: Theme.secondary,
-      allowFontScaling: true,
+      pressColor: Theme.accent,
       indicatorStyle: {
         height: 0
       },
       iconStyle: {
         alignItems: 'center',
-        height: 36,
-        width: 36
+        height: 22,
+        width: 22
       },
       labelStyle: {
         ...baseStyle.heading5,
-        padding: 0,
+        paddingTop: 4,
         margin: 0,
-        fontSize: 10
+        fontSize: 8
       },
       activeTintColor: Theme.tabIconActive,
       inactiveTintColor: Theme.tabIcon,

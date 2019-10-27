@@ -10,7 +10,6 @@ import topGenres from '../../mockdata/ourPicks.json';
 import Account from '../../components/parts/Account';
 import { handleUrl } from '../../utils';
 import { RootContext } from '../../context';
-import { ApolloContext } from 'react-apollo';
 import { HeaderBar } from '../../components/headers/HeaderBar';
 import CONFIG from '../../config';
 import { Button } from 'react-native-elements';
@@ -26,20 +25,6 @@ const AccountScreen = (props: Props) => {
   const [settingsTab, setSettingsTab] = React.useState(true);
   const [visible, setVisible] = React.useState(false);
   const context = React.useContext(RootContext);
-  const gqlContext = React.useContext(ApolloContext);
-
-  React.useEffect(() => {
-    (async () => {
-      // await getLocationUpdate();
-      if (!gqlContext || !gqlContext.client) {
-        return;
-      }
-      try {
-      } catch (err) {
-        // console.log(err);
-      }
-    })();
-  }, [gqlContext]);
 
   const accountData = [
     {

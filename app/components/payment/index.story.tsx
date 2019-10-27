@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { StoryScreen, Story } from '../../../storybook/views';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { RootContext } from '../../context';
 import PaymentProvider from '.';
+import CONFIG from '../../config';
 
 const StoryView: React.FC = () => {
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
   const context = React.useContext(RootContext);
   const paymentProviders: any[] = [
     {
@@ -35,13 +36,15 @@ const StoryView: React.FC = () => {
             setVisible(true);
           }}
         />
+        <Text>{JSON.stringify(CONFIG)}</Text>
       </ScrollView>
       <PaymentProvider
         currentDelivery={context.state.currentDelivery}
-        savedAddresses={paymentProviders}
+        paymentMethods={paymentProviders}
         handleCloseButton={() => {
           setVisible(false);
         }}
+        selected={-1}
         visible={visible}
       />
     </Story>
