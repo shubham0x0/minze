@@ -33,7 +33,7 @@
     "setup:production": "yarn run secrets:unpack -e production -r",
     "start:storybook": "react-native start",
     "start": "react-native start",
-    "test": "jest -u --no-cache --coverage --verbose",
+    "test": "npx jest -u --no-cache --coverage --verbose",
     "validate": "yarn test ; yarn lint ; tsc --noEmit"
   },
   "repository": {
