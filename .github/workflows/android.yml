@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
       - master       # events on master branch
+      - staging      # events on master branch
 jobs:
   Ubuntu:
     name: Ubuntu
