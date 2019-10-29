@@ -12,10 +12,3 @@ APP_OS='android'
 success(){
   echo -e "✅  ${GREEN}$1${NO_COLOR}"
 }
-
-# There are two secrets
-# production and development
-# defaults to development
-if [ -z $APP_ENV ]; then
-  APP_ENV='development'
-fi

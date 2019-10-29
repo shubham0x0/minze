@@ -1,6 +1,6 @@
-import { initialState } from '../../context/Rootcontext/initialState';
+import { IActionType } from '../actions';
 
-export const contextsReducer = (state = initialState, action: any) => {
+export const contextsReducer = (state = {}, action: IActionType) => {
   if (action.type === 'ROOT_CONTEXT_PERSIST') {
     return action.payload;
   }

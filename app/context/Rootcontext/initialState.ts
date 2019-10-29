@@ -1,19 +1,32 @@
 import { IRootState } from './reducers';
 
 export const initialState: IRootState = {
-  loading: true,
+  isReady: false,
   user: {
     displayName: '',
     phoneNumber: '',
     email: '',
     photoURL: ''
   },
+  cart: {
+    total: {
+      discount: '',
+      amount: ''
+    },
+    restaurant_name: '',
+    cart_id: '16507624',
+    items: {}
+  },
   savedAddresses: [],
   currentDelivery: 0,
-  location: null,
+  location: {
+    coords: {
+      latitude: 0,
+      longitude: 0
+    }
+  },
   network: {
     serverStatus: 'unavailable',
-    idTokenRegistered: false,
     authToken: '' // from aur servers
   },
   props: {
@@ -21,7 +34,7 @@ export const initialState: IRootState = {
       title: 'title',
       visible: false,
       onPress: () => {},
-      navigation: undefined,
+      navigation: null,
       info: 'unavailable'
     }
   }

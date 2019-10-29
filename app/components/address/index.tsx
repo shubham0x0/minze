@@ -4,7 +4,6 @@ import Dialog, { DialogContent, ScaleAnimation, SlideAnimation } from 'react-nat
 import { Theme, Layout } from '../../theme';
 import { SelectAddress } from './selectAddress';
 import { EditDetails } from './editDetails';
-import { reverseGeocoder, getLocationUpdate } from '../../utils/getLocation';
 
 const AddressMenu = (props: { currentDelivery: any; visible: any; handleCloseButton?: any; savedAddresses: any[] }) => {
   const { visible, savedAddresses, currentDelivery } = props;
@@ -22,6 +21,7 @@ const AddressMenu = (props: { currentDelivery: any; visible: any; handleCloseBut
       containerStyle={{ backgroundColor: 'transparent' }}
       animationDuration={Platform.OS === 'ios' ? 500 : 800}
       onTouchOutside={handleCloseButton}
+      useNativeDriver
       dialogAnimation={Platform.OS === 'ios' ? new ScaleAnimation() : new SlideAnimation({ slideFrom: 'bottom' })}
       visible={visible}
       {...props}
@@ -29,12 +29,12 @@ const AddressMenu = (props: { currentDelivery: any; visible: any; handleCloseBut
       <DialogContent
         style={{
           width: Layout.window.width / 1.1,
-          height: Layout.window.height / 1.1,
+          height: Layout.window.height / 1.2,
           backgroundColor: Theme.background,
           borderRadius: 0
         }}
       >
-        {Object.keys(editData).length !== 0 || savedAddresses.length === 0 ? (
+        {Object.keys(editData).length !== 0 ? (
           <EditDetails
             save={search !== '' || savedAddresses.length === 0}
             selected={selected}

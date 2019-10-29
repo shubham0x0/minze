@@ -7,8 +7,8 @@ export const networkReducer = (state: IRootState, action: { type: string; payloa
       const serverStatus: string = action.payload;
       return { ...state, network: { ...state.network, serverStatus } };
     case UPDATE_TOKEN_REGISTERED:
-      const { idTokenRegistered = false, authToken = '' } = action.payload;
-      return { ...state, network: { ...state.network, idTokenRegistered, authToken } };
+      const { authToken = '' } = action.payload;
+      return { ...state, network: { ...state.network, authToken } };
     default:
       return state;
   }

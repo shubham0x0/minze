@@ -6,6 +6,7 @@ import { IAboveTopBarProps } from '../../../components/bars/AboveTabBar';
 import { propsReducer } from './propsReducer';
 import { locationReducer } from './locationReducer';
 import { userReducer } from './userReducer';
+import { cartReducer } from './cartReducer';
 
 export interface IRootContextProps {
   state: IRootState;
@@ -31,7 +32,7 @@ export interface IAddress {
   timestamp?: number;
 }
 
-interface LocationData {
+export interface LocationData {
   coords: {
     latitude: number;
     longitude: number;
@@ -41,17 +42,40 @@ interface LocationData {
     speed?: number;
   };
   timestamp?: number;
+  address?: IAddress;
+}
+export interface ICartItem {
+  quantity: number;
+  amount_per_item: number;
+  discount: string;
+  total_amount: number;
+  dish_id: string;
+  name: string;
+  dish_image: {
+    url: string;
+  };
+  instructions: any;
 }
 
 export interface IRootState {
-  loading: boolean;
+  isReady: boolean;
+  cart: {
+    total: {
+      discount: string;
+      amount: string;
+    };
+    restaurant_name: string;
+    cart_id: string;
+    items: {
+      [key: string]: ICartItem;
+    };
+  };
   currentDelivery: number; // currently selected delivery address index
   savedAddresses: IAddress[]; // all saved address
-  location: LocationData | null; // gps location coords
+  location: LocationData; // gps location coords
   user: any; // user details
   network: {
     serverStatus: string;
-    idTokenRegistered: boolean; // idTokenRegistered on the backend server
     authToken: string; // token from backend server
   };
   props: {
@@ -65,5 +89,6 @@ export const reducer = combineReducers(
   userReducer,
   locationReducer,
   propsReducer,
+  cartReducer,
   persistReducer
 );

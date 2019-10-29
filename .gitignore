@@ -51,17 +51,19 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
-
 # Bundle artifact
 *.jsbundle
 
 # keys
 .env
+app/config/keys.ts
+
 # Coverage directory
 .nyc_output
 
-# service keys
 android/app/google-services.json
+android/app/assets/appcenter-config.json
+
 # Cocoapods
 ios/Pods
 

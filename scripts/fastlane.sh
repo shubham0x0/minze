@@ -1,7 +1,5 @@
 #! /bin/bash
 source scripts/common.sh
-
-source .env
 source fastlane/.env
 source fastlane/.env.secret
 ################################################################################
@@ -12,13 +10,16 @@ if ! gem query -i -n fastlane > /dev/null 2>&1; then
   sudo gem install fastlane -NV
 fi
 
-while getopts ":e:o:" opt; do
+while getopts ":e:o:m:" opt; do
   case $opt in
   e)
     APP_ENV="$OPTARG"
     ;;
   o)
     APP_OS="$OPTARG"
+    ;;
+  m)
+    FASTLANE="$OPTARG"
     ;;
   \?)
     echo "❌ ${RED}Invalid option -$OPTARG${NO_COLOR}" >&2
@@ -28,15 +29,17 @@ done
 
 if [[ $APP_OS == "android" ]]; then
   echo -e "${YELLOW}- - - - -"
-  echo -e "↪Android ${APP_ENV} 🤖"
+  echo -e "↪ Android FASTLANE ENV: ${ENV}  APP_ENV: ${APP_ENV} 🤖"
   echo -e "- - - - -${NO_COLOR}"
+  if [[ $ENV != $APP_ENV ]]; then
+    echo -e "${RED}Make sure to setup env vars properly!!!${NO_COLOR}"
+    exit -1
+  fi
   if [ $# -eq 0 ]; then
     bundle exec fastlane android
   else
-    for ARG in "$@"; do
-      bundle exec fastlane android $ARG
-      echo -e "↪ fastlane Android ${ARG} succeded"
-    done
+      bundle exec fastlane android $FASTLANE
+      echo -e "↪ fastlane Android ${FASTLANE} succeded"
   fi
 fi
 

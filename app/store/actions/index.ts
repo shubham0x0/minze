@@ -19,3 +19,10 @@ export const updateloginStatus = (update: boolean) => ({
   type: UPDATE_LOGINSTATUS,
   payload: update
 });
+
+export interface IActionType {
+  payload?: any;
+  type?: string;
+}
+
+export * from './types';

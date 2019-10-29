@@ -2,6 +2,7 @@ import { store } from '../../../store';
 import { IRootState } from '../reducers';
 import { initialState } from '../initialState';
 import { RESET_CONTEXT, GET_PERSISTED_CONTEXT } from '../actions/types';
+import { updateloginStatus } from '../../../store/actions';
 
 export const persistReducer = (
   state: IRootState,
@@ -13,12 +14,11 @@ export const persistReducer = (
   switch (action.type) {
     case RESET_CONTEXT:
       store.dispatch(persistStore(initialState));
-      return initialState;
+      store.dispatch(updateloginStatus(false));
+      return { ...initialState, isReady: true };
     case GET_PERSISTED_CONTEXT:
-      const contexts = store.getState().contexts;
-      if (contexts.savedAddresses.length === 0) {
-      }
-      return { ...contexts, loading: false };
+      const { contexts } = store.getState();
+      return { ...initialState, ...contexts, isReady: true };
     default:
       store.dispatch(persistStore(state));
       return state;

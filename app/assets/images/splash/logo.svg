@@ -17,7 +17,7 @@
    id="svg10"
    sodipodi:docname="logo.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
+   inkscape:export-filename="/home/mzeroes/Workspace/MINZE/minze/app/assets/images/icons/icon.png"
    inkscape:export-xdpi="192"
    inkscape:export-ydpi="192">
   <metadata
@@ -418,6 +418,27 @@
          overflow="visible"
          id="use930" />
     </clipPath>
+    <defs
+       id="defs5">
+      <rect
+         height="700"
+         width="700"
+         id="rect2427"
+         x="0"
+         y="0" />
+    </defs>
+    <clipPath
+       id="clipPath191">
+      <use
+         id="use189"
+         overflow="visible"
+         xlink:href="#SVGID_1_"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
@@ -432,66 +453,36 @@
      inkscape:window-height="768"
      id="namedview12"
      showgrid="false"
-     inkscape:zoom="0.53779975"
-     inkscape:cx="140.17715"
-     inkscape:cy="257.53204"
+     inkscape:zoom="0.7605637"
+     inkscape:cx="423.81675"
+     inkscape:cy="225.17278"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g5359" />
-  <g
-     transform="matrix(0.86800131,0,0,0.86800131,-46.864752,-11.540573)"
-     id="g38">
-    <defs
-       id="defs5">
-      <rect
-         y="0"
-         x="0"
-         id="rect2427"
-         width="700"
-         height="700" />
-    </defs>
-    <clipPath
-       id="clipPath191">
-      <use
-         height="100%"
-         width="100%"
-         y="0"
-         x="0"
-         style="overflow:visible"
-         xlink:href="#SVGID_1_"
-         overflow="visible"
-         id="use189" />
-    </clipPath>
-    <g
-       id="g5359"
-       inkscape:export-xdpi="192"
-       inkscape:export-ydpi="192">
-      <rect
-         ry="230.4144"
-         y="77.8116"
-         x="118.5076"
-         height="460.8288"
-         width="460.82883"
-         id="rect79"
-         style="opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke-width:1.15207195" />
-      <rect
-         inkscape:export-ydpi="96"
-         inkscape:export-xdpi="96"
-         inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
-         ry="230.4144"
-         y="77.8116"
-         x="118.5076"
-         height="460.8288"
-         width="460.8288"
-         id="rect2696"
-         style="opacity:1;fill:#f9f9f9;fill-opacity:0;fill-rule:nonzero;stroke-width:0.89720947" />
-      <path
-         style="fill:#008080;stroke-width:15.38202953"
-         id="path8"
-         d="m 452.79917,277.70858 -18.91992,-18.7661 66.60428,-66.60419 -19.07371,-18.91989 -66.60416,66.14273 -19.07372,-18.91992 66.60416,-66.60417 -18.30467,-19.07371 -66.60418,66.60415 a 53.837103,53.837103 0 0 0 -2.15347,73.52617 l -166.58738,165.97201 23.68831,23.84213 165.5107,-166.12581 a 53.529461,53.529461 0 0 0 73.37225,-1.99968 L 537.8618,230.17814 519.40346,211.1044 Z m -105.05924,44.30027 1.53823,25.99562 116.74966,116.7495 24.14975,-23.99594 -116.90346,-116.7495 z m -64.6045,7.84474 47.99189,-47.99187 L 212.0705,162.9586 a 67.988567,67.988567 0 0 0 0,95.98388 z"
-         class="cls-1"
-         inkscape:connector-curvature="0" />
-    </g>
-  </g>
+     inkscape:current-layer="svg10" />
+  <rect
+     inkscape:export-ydpi="96"
+     inkscape:export-xdpi="96"
+     inkscape:export-filename="/home/mzeroes/Workspace/minze/minze/app/assets/images/icons/icon.png"
+     ry="200"
+     y="55.999996"
+     x="56"
+     height="400"
+     width="400"
+     id="rect2696"
+     style="opacity:1;fill:#4d4d4d;fill-opacity:0;fill-rule:nonzero;stroke-width:0.77877897" />
+  <rect
+     style="opacity:1;fill:#333333;fill-opacity:1;fill-rule:nonzero;stroke-width:0.98013711"
+     id="rect881"
+     width="500"
+     height="500"
+     x="6"
+     y="6"
+     ry="111.83472" />
+  <path
+     style="fill:#f2f2f2;stroke-width:13.35162163"
+     id="path8"
+     d="m 346.16552,229.51084 -16.42251,-16.289 57.8126,-57.81253 -16.55601,-16.42248 -57.8125,57.41197 -16.55601,-16.42251 57.8125,-57.81251 -15.88848,-16.55601 -57.81251,57.81249 a 46.730676,46.730676 0 0 0 -1.86922,63.82082 L 134.27532,371.305 154.8368,392 298.50031,247.80258 a 46.463642,46.463642 0 0 0 63.6872,-1.73573 l 57.81248,-57.8125 -16.02186,-16.55603 z m -91.19156,38.45269 1.33519,22.56423 101.33886,101.33872 20.96201,-20.82851 -101.47236,-101.33871 z m -56.07679,6.80925 41.65703,-41.65701 -103.34148,-103.20806 a 59.014165,59.014165 0 0 0 0,83.31413 z"
+     class="cls-1"
+     inkscape:connector-curvature="0" />
 </svg>

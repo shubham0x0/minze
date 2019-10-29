@@ -8,11 +8,12 @@
  */
 
 import { AppRegistry, YellowBox } from 'react-native';
+
 import App from './app/navigation/index.tsx';
 import { name as appName } from './app.json';
 import { StorybookUIRoot } from './storybook/index.ts';
 
-YellowBox.ignoreWarnings(['ViewPagerAndroid']);
+YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Require cycle', 'Warning: Async Storage']);
 
 /**
  *  @note Leave `SHOW_STORYBOOK` as `false` when checking into git.

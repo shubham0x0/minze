@@ -1,17 +1,18 @@
 import { store } from '../../store';
 import { updateloginStatus } from '../../store/actions';
-import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
 import client from '../../graphql';
 import { LOGIN_USER } from '../../graphql/mutations';
 import { dispatcher } from '../../context';
 import { updateTokenRegistered, updateUser } from '../../context/Rootcontext/actions';
 
 const registerIdTokenOnServer = async () => {
-  const { currentUser } = await firebase.auth();
+  const { currentUser } = auth();
 
   if (!currentUser) {
     return false;
   }
+
   const idToken = await currentUser.getIdToken(/* forceRefresh */ true);
   const mutation = {
     variables: { idToken },
@@ -19,7 +20,7 @@ const registerIdTokenOnServer = async () => {
   };
   const result = await client().mutate(mutation);
   if (result.data && result.data.login && result.data.login.token) {
-    const update = { authToken: result.data.login.token, idTokenRegistered: true, serverStatus: 'available' };
+    const update = { authToken: result.data.login.token };
     dispatcher.dispatch(updateTokenRegistered(update));
     return true;
   }
@@ -34,7 +35,7 @@ export const userUpdateAsync = async (user: any) => {
     }
     const result = await registerIdTokenOnServer();
     if (result) {
-      await store.dispatch(updateloginStatus(true));
+      store.dispatch(updateloginStatus(true));
       const User = {
         displayName: '',
         phoneNumber: '',
@@ -50,10 +51,9 @@ export const userUpdateAsync = async (user: any) => {
           }
         });
       });
-
-      await dispatcher.dispatch(updateUser(User));
+      dispatcher.dispatch(updateUser(User));
     }
   } catch (error) {
-    // console.warn(JSON.stringify(error));
+    console.warn('UserUpdateAsync Error ::' + JSON.stringify(error));
   }
 };

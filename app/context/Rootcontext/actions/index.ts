@@ -1,5 +1,5 @@
-import { UPDATE_SERVER_STATUS, UPDATE_TOKEN_REGISTERED, RESET_CONTEXT, UPDATE_USER, location } from './types';
-import { IAddress } from '../reducers';
+import { UPDATE_SERVER_STATUS, UPDATE_TOKEN_REGISTERED, RESET_CONTEXT, UPDATE_USER, location, cart } from './types';
+import { LocationData } from '../reducers';
 
 export const updateServerStatus = (onLine: boolean) => ({
   type: UPDATE_SERVER_STATUS,
@@ -7,7 +7,6 @@ export const updateServerStatus = (onLine: boolean) => ({
 });
 
 interface IUpdateTokenPayload {
-  idTokenRegistered: boolean;
   authToken: string;
 }
 
@@ -21,7 +20,7 @@ export const resetContext = (payload: boolean) => ({
   payload
 });
 
-export const updateLocation = (payload: any) => ({
+export const updateLocation = (payload: LocationData) => ({
   type: location.UPDATE_LOCATION,
   payload
 });
@@ -33,20 +32,30 @@ export const updateUser = (payload: any) => ({
 
 export const selectCurrentAddress = (payload: number) => ({
   type: location.SELECT_CURRENT_DELIVERY,
-  payload: payload
+  payload
 });
 
 export const addAddress = (payload: any) => ({
   type: location.ADD_ADDRESS,
-  payload: payload
+  payload
 });
 
 export const updateAddress = (payload: [number, any]) => ({
   type: location.UPDATE_ADDRESS,
-  payload: payload
+  payload
 });
 
-export const updateGPS = (payload: any) => ({
-  type: location.UPDATE_GPS_ADDRESS,
-  payload: payload
+export const updateCart = (payload: any) => ({
+  type: cart.UPDATE_CART,
+  payload
+});
+
+export const addCartItem = (payload: any) => ({
+  type: cart.ADD_CART_ITEM,
+  payload
+});
+
+export const removeCartItem = (payload: any) => ({
+  type: cart.REMOVE_CART_ITEM,
+  payload
 });

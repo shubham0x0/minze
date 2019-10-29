@@ -1,0 +1,22 @@
+{
+  "total": {
+    "discount": 1000,
+    "amount": 1000
+  },
+  "restaurant_name": "Vinohradský pivovar",
+  "cart_id": "16507624",
+  "items": [
+    {
+      "quantity": 1,
+      "amount_per_item": 1000,
+      "discount": "10%",
+      "total_amount": 900,
+      "dish_id": "104089345",
+      "name": "Tatarák ze sumce s toustem",
+      "dish_image": {
+        "url": "https://b.zmtcdn.com/data/pictures/2/3372/7bb76629ab645d288f0bd6fa8b1e7190.jpg?output-format=webp"
+      },
+      "instructions": {}
+    }
+  ]
+}

@@ -14,7 +14,7 @@ jobs:
     - name: Set Node.js 10.x
       uses: actions/setup-node@master
       with:
-        version: 10.x
+        node-version: 10.x
 
     - name: set up JDK 1.8
       uses: actions/setup-java@v1
@@ -23,7 +23,7 @@ jobs:
 
     - name: npm install
       env:
-        APPCENTER_BRANCH: master
+        NODE_ENV: production
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
 
       run: |
@@ -49,10 +49,12 @@ jobs:
 
     - name: Fastlane Build
       env:
-        APPCENTER_BRANCH: master
+        NODE_ENV: production
         APP_SECRET_PASSPHRASE: ${{ secrets.APP_SECRET_PASSPHRASE }}
       run: |
-        yarn run fast:build
+        yarn run test
+        yarn run setup:production
+        yarn run build:production
 
   # macOS:
   #   name: macOS IOS

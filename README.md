@@ -12,14 +12,14 @@
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Android_Studio_icon.svg" height="22">&nbsp;&nbsp;
-  <a href="https://install.appcenter.ms/users/mzeroes/apps/minze-2/distribution_groups/public%20preview">
+  <a href="https://install.appcenter.ms/users/mzeroes/apps/minze-3/distribution_groups/public%20preview">
   <img
-      src="https://build.appcenter.ms/v0.1/apps/75f79544-14d2-4cd5-9750-2b228d36230d/branches/master/badge" />
+      src="https://build.appcenter.ms/v0.1/apps/8880bb0e-5cc6-47b0-b568-6b3e64ad3f8c/branches/master/badge" />
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" height="22">&nbsp;&nbsp;
-    <a href="https://install.appcenter.ms/users/mzeroes/apps/minze-1/distribution_groups/public%20preview">
+    <a href="https://install.appcenter.ms/users/mzeroes/apps/minze/distribution_groups/public%20preview">
   <img
-    src="https://build.appcenter.ms/v0.1/apps/3e39cb42-80f1-4d25-a1df-11e84edf4773/branches/master/badge" />
+    src="https://build.appcenter.ms/v0.1/apps/1a2b2b7a-1fc9-4662-9239-28fcc0bdf751/branches/master/badge" />
   </a>
 </p>
 </div>
@@ -33,16 +33,13 @@ Order Food, drinks and groceries from your favorite places & track on the go, wi
 - Easy to use.
 - Safe & light weight.
 
-## Android : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-2/distribution_groups/public%20preview)
+## Android : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-3/distribution_groups/preview)
 
 ## IOS : [download](https://install.appcenter.ms/users/mzeroes/apps/minze-1/distribution_groups/public%20preview)
 
-## 🤖 Screenshots
+## 🤖 Screengrab
 
-<div align="center">
-    <img src="https://media.giphy.com/media/LO88oPDHo4UfBKHUZK/giphy.gif" height="300px" />
-
-</div>
+![Screengrab Gif](./.github/screen.gif)
 
 ## 📦 Installation
 
