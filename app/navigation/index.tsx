@@ -10,7 +10,7 @@ import React, { useEffect, useRef } from 'react';
 import { StatusBar } from 'react-native';
 // import codePush from 'react-native-code-push';
 import { Provider as PaperProvider, ActivityIndicator } from 'react-native-paper';
-// import { useScreens } from 'react-native-screens';
+import { useScreens } from 'react-native-screens';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { DropdownAlert } from '../components/extra/AlertMessage';
@@ -22,7 +22,7 @@ import NavigationService from '../utils/navigation/NavigationService';
 import AppNavigator from './AppNavigator';
 import { preloadFetch } from '../utils/preloadFetch';
 
-// useScreens();
+useScreens();
 
 // const codePushOptions = {
 //   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -31,14 +31,16 @@ import { preloadFetch } from '../utils/preloadFetch';
 // };
 
 const Navigator: React.FC = () => {
-  const update = useRef(true);
   useEffect(() => {
-    if (update.current) {
-      update.current = false;
-      preloadFetch();
-      SplashScreen.hide();
-      return;
-    }
+    (async () => {
+      try {
+        await Promise.all([preloadFetch()]);
+      } catch ({ message }) {
+        console.error('Navigation: Error loading assets: ' + message);
+      } finally {
+        SplashScreen.hide();
+      }
+    })();
   }, []);
   const persistedStore = persisted();
   return (

@@ -32,7 +32,7 @@
     "setup:development": "yarn run secrets:unpack -e development -r",
     "setup:production": "yarn run secrets:unpack -e production -r",
     "start:storybook": "react-native start",
-    "start": "react-native start",
+    "start": "adb reverse tcp:8081 tcp:8081; react-native start",
     "test": "npx jest -u --no-cache --coverage --verbose",
     "validate": "yarn test ; yarn lint ; tsc --noEmit"
   },

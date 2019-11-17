@@ -10,23 +10,8 @@ import CONFIG from '../../config';
 const StoryView: React.FC = () => {
   const [visible, setVisible] = React.useState(false);
   const context = React.useContext(RootContext);
-  const paymentProviders: any[] = [
-    {
-      title: 'Paytm',
-      subtitle: 'Pay via Patm',
-      image: require('../../assets/images/payments/paytm.png')
-    },
-    {
-      title: 'Debit/Credit Card',
-      subtitle: 'Pay via Debit/Credit card',
-      image: require('../../assets/images/payments/debit-card.png')
-    },
-    {
-      title: 'Cash on Delivery',
-      subtitle: 'Pay via Cash on Delivery',
-      image: require('../../assets/images/payments/cod.png')
-    }
-  ];
+  const [filters, setFilters] = React.useState([]);
+
   return (
     <Story>
       <ScrollView>
@@ -38,15 +23,6 @@ const StoryView: React.FC = () => {
         />
         <Text>{JSON.stringify(CONFIG)}</Text>
       </ScrollView>
-      <PaymentProvider
-        currentDelivery={context.state.currentDelivery}
-        paymentMethods={paymentProviders}
-        handleCloseButton={() => {
-          setVisible(false);
-        }}
-        selected={-1}
-        visible={visible}
-      />
     </Story>
   );
 };

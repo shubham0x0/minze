@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { Theme, Colors, Layout, baseStyle, activeOpacity, statusBarHeight } from '../../theme';
 import topCategories from '../../mockdata/ourPicks.json';
@@ -11,16 +11,35 @@ import { NavigationType } from '../../types';
 import AddressMenu from '../../components/address';
 import { Avatar, Icon } from 'react-native-elements';
 import { FETCH_TOP_RESTAURANTS } from '../../graphql/queries';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import filtersData from '../../mockdata/filters.json';
 import ListAnimated from '../../components/loaders/List';
+import FilterMenu from '../../components/filter';
 
 interface Props {
   navigation: NavigationType;
 }
 const HomeScreen: React.FC<Props> = (props: Props) => {
   const context = useContext(RootContext);
-  const { loading, data } = useQuery(FETCH_TOP_RESTAURANTS);
+  // const { loading, data } = useQuery(FETCH_TOP_RESTAURANTS);
   const [addressMenuVisible, setAddressMenuVisible] = useState(false);
+  const [filters, setFilters] = useState(filtersData);
+  const [filterMenuVisible, setFilterMenuVisible] = useState(false);
+  const [loadRestaurants, { called, loading, data }] = useLazyQuery(FETCH_TOP_RESTAURANTS, {
+    variables: { filters }
+  });
+
+  useEffect(() => {
+    loadRestaurants();
+  }, [filters]);
+
+  const noOfResults: number | string = loading
+    ? ''
+    : data
+    ? data.topRestaurants
+      ? data.topRestaurants.length
+      : ''
+    : '';
   const leftComponent = () => (
     <>
       <Text style={[styles.sectionHeading, { marginLeft: 0 }]}>Delivery Location</Text>
@@ -265,8 +284,17 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
               borderBottomWidth: StyleSheet.hairlineWidth
             }}
           >
-            <Text style={[baseStyle.heading5, { color: Theme.text, justifyContent: 'center' }]}>33 Results</Text>
-            <TouchableOpacity activeOpacity={activeOpacity} onPress={() => null} style={{ flexDirection: 'row' }}>
+            <Text style={[baseStyle.heading5, { color: Theme.text, justifyContent: 'center' }]}>
+              {' '}
+              {noOfResults} Results
+            </Text>
+            <TouchableOpacity
+              activeOpacity={activeOpacity}
+              onPress={() => {
+                setFilterMenuVisible(true);
+              }}
+              style={{ flexDirection: 'row' }}
+            >
               <Icon
                 size={16}
                 name={'filter'}
@@ -296,10 +324,15 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
         <FlatList
           style={{ marginBottom: 200 }}
           keyExtractor={(item, index) => index.toString()}
-          data={data.topRestaurants}
+          data={data && data.topRestaurants}
           renderItem={renderRestautrantsItem}
         />
       )}
+      <FilterMenu
+        handleCloseButton={setFilterMenuVisible}
+        visible={filterMenuVisible}
+        useFilters={[filters, setFilters]}
+      />
     </ScrollView>
   );
 };
