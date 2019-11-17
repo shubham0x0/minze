@@ -15,7 +15,6 @@ interface Props {
 }
 
 interface State {
-  verifyOTP: boolean;
   spinner: boolean;
   resendTimer: number;
   phoneNumber: string;
@@ -30,12 +29,11 @@ class OTPScreen extends Component<Props, State> {
 
   dropDownNotification: any;
   state: State = {
-    verifyOTP: false,
     spinner: false,
     phoneNumber: '',
     resendTimer: __DEV__ ? 10 : 60,
     firebaseConfirmResult: null,
-    otp: '123456'
+    otp: __DEV__ ? '123456' : ''
   };
   timerHandle: number | undefined;
   componentWillMount() {
@@ -92,9 +90,10 @@ class OTPScreen extends Component<Props, State> {
       this.setState({ spinner: true });
       const { phoneNumber } = this.state;
       const firebaseConfirmResult = await auth().signInWithPhoneNumber(phoneNumber);
-      this.setState({ firebaseConfirmResult, spinner: false });
+
+      this.setState({ firebaseConfirmResult });
       this.dropDownNotification.alertWithType('info', 'OTP Sent', 'OTP sent to your number : ' + phoneNumber);
-      this.setState({ resendTimer: __DEV__ ? 10 : 60 });
+      this.setState({ resendTimer: __DEV__ ? 10 : 60, spinner: false });
     } catch (error) {
       this.dropDownNotification.alertWithType(
         'error',
@@ -111,23 +110,21 @@ class OTPScreen extends Component<Props, State> {
       const firebaseConfirmResult = await auth().signInWithPhoneNumber(phoneNumber);
       this.setState({
         firebaseConfirmResult,
-        verifyOTP: true,
         spinner: false,
         phoneNumber
       });
       this.dropDownNotification.alertWithType('info', 'OTP Sent', 'OTP sent to your number: ' + phoneNumber);
     } catch (error) {
-      this.setState({ spinner: false });
       this.dropDownNotification.alertWithType('error', 'OTP Not Sent', 'Unable to send the OTP');
       console.warn(error);
       setTimeout(this.props.navigation.goBack, 200);
+    } finally {
+      this.setState({ spinner: false });
     }
   };
 
   verifyCode = async () => {
-    this.setState({
-      spinner: true
-    });
+    this.setState({ spinner: true });
     try {
       /**
        * NOTE: onAuthStateChanged should handle update and navigation
@@ -136,19 +133,16 @@ class OTPScreen extends Component<Props, State> {
     } catch (error) {
       this.dropDownNotification.alertWithType('error', 'Not Verified', 'The OTP you provided is not correct');
       console.warn(error);
+    } finally {
       this.setState({
         spinner: false
       });
     }
   };
 
-  tryAgain = () => {
-    this.setState({ verifyOTP: false });
-  };
-
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { otp } = this.state;
-    Keyboard.dismiss();
+    // Keyboard.dismiss();
     if (otp.length >= 6) {
       this.verifyCode();
     } else {
@@ -208,17 +202,14 @@ class OTPScreen extends Component<Props, State> {
             textInputStyle={{ color: Colors.darkBlack, backgroundColor: Theme.background }}
             handleTextChange={async (value: string) => {
               this.setState({ otp: value });
-              if (value.length >= 6) {
-                this.verifyCode();
-              }
             }}
           />
+          {/* <Text>{JSON.stringify(this.state)}</Text> */}
           <Button
             testID="submitButton_1"
             onPress={this.handleSubmit}
             title={'Submit'}
             type={'solid'}
-            loading={this.state.spinner}
             activeOpacity={activeOpacity}
             containerStyle={{ marginTop: Layout.window.height / 6, borderRadius: 0, marginLeft: 20, marginRight: 20 }}
             buttonStyle={{ backgroundColor: Theme.darkText }}

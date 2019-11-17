@@ -41,7 +41,7 @@ Order Food, drinks and groceries from your favorite places & track on the go, wi
 
 ![Screengrab Gif](./.github/screen.gif)
 
-## 📦 Installation
+## 📦 Installation Guide
 
 Building
 

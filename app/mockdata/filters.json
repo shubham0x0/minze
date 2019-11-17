@@ -1,21 +1,26 @@
 [
   {
-    "title": "quick_filters",
+    "title": "Quick filters",
+    "id": "quick_filters",
     "type": "select_one_or_more",
-    "options": [{ "title": "Promotions" }, { "title": "Pure veg" }, { "title": "Online Payments" }]
+    "options": [{ "title": "Promotions" }, { "title": "Pure veg" }, { "title": "Online Payments" }],
+    "selected": []
   },
   {
-    "title": "sort_by",
+    "title": "Sort by",
+    "id": "sort_by",
     "type": "select_one_with_option",
     "options": [
       { "title": "Popularity", "order": ["high to low", "low to high"] },
       { "title": "Delivery Rating", "order": ["high to low", "low to high"] },
       { "title": "Rating", "order": ["high to low", "low to high"] },
       { "title": "Recently Added", "order": ["high to low", "low to high"] }
-    ]
+    ],
+    "selected": []
   },
   {
-    "title": "cuisine",
+    "title": "Cuisine",
+    "id": "cuisine",
     "type": "select_one_or_more",
     "options": [
       { "title": "North Indian" },
@@ -28,15 +33,19 @@
       { "title": "Momos" },
       { "title": "Italian" },
       { "title": "Desserts" }
-    ]
+    ],
+    "selected": []
   },
   {
-    "title": "delivery_time",
+    "title": "Delivery time",
+    "id": "delivery_time",
     "type": "select_one",
-    "options": [{ "title": "Up to 30 minutes" }, { "title": "Up to 45 minutes" }, { "title": "Up to 60 minutes" }]
+    "options": [{ "title": "Up to 30 minutes" }, { "title": "Up to 45 minutes" }, { "title": "Up to 60 minutes" }],
+    "selected": []
   },
   {
-    "title": "price_for_two",
+    "title": "Price for two",
+    "id": "price_for_two",
     "type": "select_one",
     "options": [
       { "title": "Less than ₹25012" },
@@ -45,6 +54,7 @@
       { "title": "₹1,000 to ₹1,5000" },
       { "title": "₹1,500 to ₹2,5000" },
       { "title": "₹2,500 +0" }
-    ]
+    ],
+    "selected": []
   }
 ]

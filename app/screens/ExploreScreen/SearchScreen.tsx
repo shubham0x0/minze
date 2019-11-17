@@ -165,7 +165,7 @@ const SearchScreen: React.FC = (props: any) => {
       <FilterMenu
         handleCloseButton={setFilterMenuVisible}
         visible={filterMenuVisible}
-        selected={[filters, setFilters]}
+        useFilters={[filters, setFilters]}
       />
     </ScrollView>
   );

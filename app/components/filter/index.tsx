@@ -1,61 +1,94 @@
 import React from 'react';
-import { Platform, View, Text, ScrollView, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Platform,
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  GestureResponderEvent
+} from 'react-native';
 import Dialog, { DialogContent, ScaleAnimation, SlideAnimation } from 'react-native-popup-dialog';
 import { Theme, Layout, baseStyle, activeOpacity } from '../../theme';
 import { Icon } from 'react-native-elements';
 
-export interface ImenuItem {
+interface Ifilter {
+  id: string;
   title: string;
   type: string;
-  options: any[];
-  children?: React.ReactChild;
+  options: IfilterOption[];
+  selected: any[];
 }
-
-const FilterMenu = (props: { visible: any; handleCloseButton?: any; selected: [any[], any] }) => {
+interface IfilterOption {
+  title: string;
+  order?: any[];
+}
+const FilterMenu = (props: { visible: any; handleCloseButton?: any; useFilters: [Ifilter[], any] }) => {
   const { visible } = props;
+  const [filters, setFilters] = props.useFilters;
+
   const handleCloseButton = () => {
     props.handleCloseButton(false);
   };
 
-  const TouchableListItem = (itemObj: ImenuItem, index: number) => (
-    <>
-      <Text
-        style={{
-          ...baseStyle.heading3,
-          color: Theme.darkText,
-          paddingVertical: 20,
-          paddingLeft: 20
-        }}
-      >
-        {itemObj.title.replace('_', ' ')}
-      </Text>
-      <FlatList
-        key={1}
-        showsVerticalScrollIndicator={false}
-        style={{ marginTop: 6 }}
-        contentContainerStyle={styles.containerFlatlist}
-        data={itemObj.options}
-        keyExtractor={(item, index) => `${item}-${index}`}
-        numColumns={1}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity style={styles.touchableitem} activeOpacity={activeOpacity} onPress={() => {}}>
-            <View style={{ flex: 4 }}>
-              <Text style={styles.title}>{item.title}</Text>
-              {item.children}
-            </View>
-            <Icon
-              disabledStyle={{ display: 'none' }}
-              disabled={!(item.handleOnSelected && item.isSelected)}
-              containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-              color={Theme.primary}
-              name="check"
-              size={20}
-            />
-          </TouchableOpacity>
-        )}
-      />
-    </>
-  );
+  const TouchableListItem = (itemObj: Ifilter, index: number) => {
+    const filter = filters[index];
+
+    const handleSelection = (item: any, idx: number) => {
+      if (idx in filter.selected) {
+        const sel = filter.selected.filter((i: number) => i !== idx);
+        filter.selected = sel;
+      } else {
+        filter.selected.concat(idx);
+      }
+      filters[index] = { ...filter };
+      setFilters(filters);
+    };
+
+    return (
+      <>
+        <Text
+          style={{
+            ...baseStyle.heading3,
+            color: Theme.darkText,
+            paddingVertical: 20,
+            paddingLeft: 20
+          }}
+        >
+          {itemObj.title}
+        </Text>
+        <FlatList
+          key={1}
+          showsVerticalScrollIndicator={false}
+          style={{ marginTop: 6 }}
+          contentContainerStyle={styles.containerFlatlist}
+          data={itemObj.options}
+          keyExtractor={(item, index) => `${item}-${index}`}
+          numColumns={1}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={styles.touchableitem}
+              activeOpacity={activeOpacity}
+              onPress={() => handleSelection(item, index)}
+            >
+              <View style={{ flex: 4 }}>
+                <Text style={styles.title}>{item.title}</Text>
+              </View>
+              <Icon
+                disabledStyle={{ display: 'none' }}
+                disabled={!(index in filter.selected)}
+                containerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+                color={Theme.primary}
+                name="check"
+                size={20}
+              />
+            </TouchableOpacity>
+          )}
+        />
+      </>
+    );
+  };
   return (
     <Dialog
       containerStyle={{ backgroundColor: 'transparent' }}
@@ -91,10 +124,10 @@ const FilterMenu = (props: { visible: any; handleCloseButton?: any; selected: [a
             showsVerticalScrollIndicator={false}
             style={{ marginTop: 6 }}
             contentContainerStyle={styles.containerFlatlist}
-            data={props.selected[0]}
+            data={filters}
             keyExtractor={(item, index) => `${item}-${index}`}
             numColumns={1}
-            renderItem={itemObj => <TouchableListItem index={itemObj.index} {...itemObj.item} />}
+            renderItem={({ item, index }) => <TouchableListItem index={index} itemObj={item} />}
           />
         </ScrollView>
       </DialogContent>

@@ -24,7 +24,6 @@ const registerIdTokenOnServer = async () => {
     dispatcher.dispatch(updateTokenRegistered(update));
     return true;
   }
-
   return false;
 };
 
